@@ -1,19 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <script src="js/main.js" defer></script>
-    <title>Playday</title>
-</head>
-<body>
-    <h1>Just to create some content</h1>
-    <ul>
-        <li>test01</li>
-        <li>test02</li>
-        <li>test03</li>
-        <li>test04</li>
-    </ul>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-app.js"></script>
+
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+            https://firebase.google.com/docs/web/setup#available-libraries -->
+        <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-analytics.js"></script>
+        
+
+        <script src="https://www.gstatic.com/firebasejs/ui/4.7.1/firebase-ui-auth.js"></script>
+        <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.7.1/firebase-ui-auth.css" />
+
+        <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+            apiKey: "AIzaSyA84cFZU4zoLh4pNdLCf8Gacqp5BtkljAA",
+            authDomain: "login-chat-test-7bab7.firebaseapp.com",
+            projectId: "login-chat-test-7bab7",
+            storageBucket: "login-chat-test-7bab7.appspot.com",
+            messagingSenderId: "1083715500488",
+            appId: "1:1083715500488:web:ee431e1bce7ff29c18e8fd"
+        };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+            firebase.analytics();
+        </script>
+
+        <script type="text/javascript">
+
+            var uiConfig = {
+                signInSuccessUrl: 'loggedin.html',
+                signInOptions: [
+                // Leave the lines as is for the providers you want to offer your users.
+                {
+                provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+                scopes: [
+                    'https://www.googleapis.com/auth/contacts.readonly'
+                ],
+                customParameters: {
+                    // Forces account selection even when one account
+                    // is available.
+                    prompt: 'select_account'
+                }
+                },
+                firebase.auth.EmailAuthProvider.PROVIDER_ID,
+                ],
+                // tosUrl and privacyPolicyUrl accept either url string or a callback
+                // function.
+                // Terms of service url/callback.
+                tosUrl: '<your-tos-url>',
+                // Privacy policy url/callback.
+                privacyPolicyUrl: function() {
+                window.location.assign('<your-privacy-policy-url>');
+                }
+            };
+
+            // Initialize the FirebaseUI Widget using Firebase.
+            var ui = new firebaseui.auth.AuthUI(firebase.auth());
+            // The start method will wait until the DOM is loaded.
+            ui.start('#firebaseui-auth-container', uiConfig);
+        </script>
+    </head>
+
+    <body>
+        <h1>Welcome to My Awesome App</h1>
+        <div id="firebaseui-auth-container"></div>
+        <button id="find-me">Show my location</button><br/>
+        <p id = "status"></p>
+        <a id = "map-link" target="_blank"></a>
+    </body>
+
+    <script>
+        document.getElementById("find-me").addEventListener("click", function() {
+            const status = document.querySelector('#status');
+            const mapLink = document.querySelector('#map-link');
+
+            mapLink.href = '';
+            mapLink.textContent = '';
+
+            function success(position) {
+                const latitude  = position.coords.latitude;
+                const longitude = position.coords.longitude;
+
+                status.textContent = '';
+                mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
+                mapLink.textContent = `Latitude: ${latitude} °, Longitude: ${longitude} °`;
+            }
+
+            function error() {
+                status.textContent = 'Unable to retrieve your location';
+                }
+
+                if(!navigator.geolocation) {
+                status.textContent = 'Geolocation is not supported by your browser';
+                } else {
+                status.textContent = 'Locating…';
+                navigator.geolocation.getCurrentPosition(success, error);
+            }
+        });
+
+        // document.querySelector('#find-me').addEventListener('click', geoFindMe);
+    </script>
 </html>
+
