@@ -12,13 +12,14 @@ let user = $("#userName").val();
 // copied from firebase 
   // Your web app's Firebase configuration
   const firebaseConfig = {
-    apiKey: "AIzaSyBPYOCQydlvzqkGDnBTQGaTY_ykU089_Wk",
-    authDomain: "thiagotestchat.firebaseapp.com",
-    projectId: "thiagotestchat",
-    storageBucket: "thiagotestchat.appspot.com",
-    messagingSenderId: "930444899485",
-    appId: "1:930444899485:web:bd17a3a9a8c17da1401074"
-  };
+
+      apiKey: "AIzaSyA84cFZU4zoLh4pNdLCf8Gacqp5BtkljAA",
+      authDomain: "login-chat-test-7bab7.firebaseapp.com",
+      projectId: "login-chat-test-7bab7",
+      storageBucket: "login-chat-test-7bab7.appspot.com",
+      messagingSenderId: "1083715500488",
+      appId: "1:1083715500488:web:ee431e1bce7ff29c18e8fd"
+    };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
