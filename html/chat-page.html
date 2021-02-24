@@ -1,6 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-
+    <!-- JQuery CDN -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-firestore.js"></script>
+    <!-- Chat JavaScript file -->   
+    <script src="../js/chat.js" defer></script>
+    <style>
+        .chat-content-wrapper{
+            border: 1px solid black;
+            min-height: 65vh;
+            display: flex;
+            flex-flow: column nowrap;
+        }
+        .chat-messages-wrapper{
+            min-height: 60vh;
+        }
+        .send-message-wrapper{
+            display: flex;
+            flex-flow: row nowrap;
+        }
+        .send-message-wrapper input{
+            flex: 1 0 35%;
+            margin-right: .5rem;
+        }
+        .pullRight{
+            text-align: right;
+        }
+        #chat-messages{
+            
+        }
+    </style>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,48 +49,23 @@
                 </a>
             </button>
         </div>
-        <!-- Chat History Heading -->
-        <h2 class="chat-history-heading page-heading">Chat History</h2>
+        <!-- Chat Heading -->
+        <h2 class="chat-heading page-heading">Friend's name</h2>
     </header>
 
     <main>
-        <!-- Chat History With Other Players -->
+        <!-- Chat -->
         <div class="chat-content-wrapper content-wrapper">
-            <ul class="previous-chat-sessions">
-                <!-- Player Chat Details -->
-                <li class="player-1 chat-excerpt">
-                    <div class="player-img-wrapper">
-                        <img src="" alt="" class="player-img">
-                    </div>
-                    <div class="player-details">
-                        <p class="player-name">Amandeep Singh</p>
-                        <p class="latest-msg">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita, natus.
-                        </p>
-                    </div>
-                </li>
+            <div class="chat-messages-wrapper">
+                <ul id="chat-messages">
 
-                <li class="player-2 chat-excerpt">
-                    <div class="player-img-wrapper">
-                        <img src="" alt="" class="player-img">
-                    </div>
-                    <div class="player-details">
-                        <p class="player-name">Thiago Sequiora</p>
-                        <p class="latest-msg">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Obcaecati enim
-                            tenetur inventore eum ducimus quasi.</p>
-                    </div>
-                </li>
+                </ul>
+            </div>
+           <div class="send-message-wrapper">
+            <input type="text" id="chat-message">
+            <button id="sendButton">SEND</button>
+           </div>
 
-                <li class="player-3 chat-excerpt">
-                    <div class="player-img-wrapper">
-                        <img src="" alt="" class="player-img">
-                    </div>
-                    <div class="player-details">
-                        <p class="player-name">Diana Malynovska</p>
-                        <p class="latest-msg">Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, quos.
-                        </p>
-                    </div>
-                </li>
-            </ul>
         </div>
     </main>
     <footer class="iconsBar">
