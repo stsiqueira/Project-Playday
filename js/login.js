@@ -26,21 +26,8 @@ const signInWithEmailFunction = () => {
 			// Signed in 
 			var user = userCredential.user;
 	        window.location.assign('../html/loggedin.html');
-
 			console.log(user);
-			// db.collection("users").doc(user.uid).set({
-			// 	CourtID: "",
-			// 	Ranking: "Beginner",
-			// 	name: user.displayName,
-			// 	userID: user.uid,
-			// 	profilepic: user.photoURL
-			// })
-			// .then((docRef) => {
-			// 	console.log("Document written with ID: ");
-			// })
-			// .catch((error) => {
-			// 	console.error("Error adding document: ", error);
-			// });
+			
 		})
 		.catch(error => {
 			console.error(error);
@@ -50,7 +37,7 @@ const signInWithEmailFunction = () => {
 signInWithMail.addEventListener('click', signInWithEmailFunction);
 
 signUp.addEventListener('click', () => {
-	window.location.assign('signup.html');
+	window.location.assign('../html/signup.html');
 });
 
 var provider = new firebase.auth.GoogleAuthProvider();

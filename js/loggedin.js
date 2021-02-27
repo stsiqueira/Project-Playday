@@ -15,7 +15,6 @@ firebase.auth().onAuthStateChanged(function(user) {
     if(user) {
         var div = document.getElementById('firebaseui-auth-container');
         div.innerHTML = `<h1> Congrats ${user.displayName} logged in with ${user.email}</h1>`;
-        console.log("hey");
     }
     else {
         console.log(user);
@@ -24,7 +23,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 function signout(){
     firebase.auth().signOut();
-    window.location='index.html';
+    window.location='../index.html';
 }
 
 document.getElementById("find-me").addEventListener("click", function() {
