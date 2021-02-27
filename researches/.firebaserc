@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "test-1-5be12"
+    "staging": "playday-f43e6",
+    "default": "playday-f43e6"
   }
 }
