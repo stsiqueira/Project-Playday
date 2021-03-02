@@ -63,3 +63,11 @@ $("#sendButton").click(()=>{
     }
     
 });
+
+
+
+
+// collection(chat).document(PlayerID).collection(concatenateUserIDPLayer1PLayer2).doc(date).fields
+
+
+
