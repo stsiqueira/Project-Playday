@@ -240,3 +240,12 @@ a{
     padding: .7rem;
 }
 /* Account Settings screen - end */
+
+
+
+/* Thiago ================================ */
+/* Single player info====================  */
+.player-image img{
+    border-radius: 50%;
+    width: 100px;
+}
