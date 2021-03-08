@@ -31,9 +31,29 @@ let collection = "Chat"; // to be changed to a mix of userName and friend;
  db.collection("chat").onSnapshot((snapshot)=>{
      snapshot.docChanges().forEach((change)=>{
          if(change.type === "added"){
-                let newLine = document.createElement("li");
-                newLine.innerHTML = change.doc.data().senderId + ": " + change.doc.data().message;
-                $("#chat-messages").append(newLine);
+                if(change.doc.data().senderId == "Mayra"){
+                    let newLine = `                    
+                        <li>
+                            <div class="chat-image">
+                                <img src="../img/bg-404-sinatra.jpg" alt="Thiago">
+                            </div>
+                            <div class="chat-message">
+                                <p class="text-message"> ${change.doc.data().message}</p>
+                            </div>
+                        </li>`;
+                        $("#chat-messages").append(newLine);
+                }else{
+                    let newLine = `  
+                        <li class="sender">
+                            <div class="chat-image">
+                                <img src="../img/bg-404-sinatra.jpg" alt="">
+                            </div>
+                            <div class="chat-message sender">
+                                <p class="text-message">${change.doc.data().message}</p>
+                            </div>
+                        </li>`;
+                        $("#chat-messages").append(newLine);
+                }
          }
      });
  });
@@ -63,3 +83,5 @@ $("#sendButton").click(()=>{
     }
     
 });
+
+

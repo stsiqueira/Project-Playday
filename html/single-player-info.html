@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- JQuery CDN -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-firestore.js"></script>
+    <!-- Chat JavaScript file -->   
+    <script src="https://kit.fontawesome.com/ef8606d888.js" crossorigin="anonymous"></script> 
+    <title>Playday</title>
+    <script src="../js/single-player-info.js" defer></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            list-style: 1.4;
+        }
+        main{
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: center;
+            align-items: center;
+        }
+        .player-detail-content-wrapper{
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: center;
+            align-items: center;
+
+        }
+        .player-image img{
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-top: 2rem;
+            border: 3px solid #000;
+        }
+        h2.player-name{
+            color: #fc5007;
+            margin-top: 1.5rem;
+            font-size: 2.3rem;
+        }
+        .player-detail-wrapper{
+            width: 90%;
+            margin: 1rem auto 0;
+            padding: 0 1rem;
+        }
+        .player-description{
+            background-color: rgb(247, 200, 179);
+            border-radius: 20px;
+            padding: .5rem 1rem;
+        }
+        .player-description p{
+            margin: .5rem 0;
+            font-size: 1.4rem;
+        }
+        .player-description p:nth-of-type(3){
+            margin: 2rem 0;
+        }
+        div.buttons{
+            display: flex;
+            flex-flow: column nowrap;
+        }
+        .common-button{
+            margin-top: 2rem;
+            width: 300px;
+            height: 50px;
+            font-size: 1.4rem;
+            border-radius: 30px;
+            border: none;
+            outline: none;
+            background: rgba(255, 125, 69,.9);
+        }
+        .player-chat-button{
+            background: rgb(242, 174, 142);
+        }
+
+    </style>
+</head>
+<body class="page player-details-page">
+    <header>   
+    </header>
+    <main>
+        <div class="player-detail-content-wrapper content-wrapper">
+            <!-- Inserted code here -->
+        </div>
+        <div class="buttons">
+            <!-- Buttons for Chat and Challenge -->
+            <a href="chat-page.html">
+            <button class="player-chat-button common-button">Chat</button>
+            </a>
+            <a href="player-invite.html">
+            <button class="player-challenge-button common-button">Challenge</button>
+            </a>
+        </div>
+    </main>
+
+<footer class="iconsBar">
+    <div class="icon">
+        <a href="#">
+            <i class="fas fa-home"></i>
+            <span class="visually-hidden">Home button</span>
+        </a>
+    </div>
+    <div class="icon">
+        <a href="#">
+            <i class="far fa-user-circle"></i>
+            <span class="visually-hidden">Profile</span>
+        </a>
+    
+    </div>
+    <div class="icon">
+        <a href="#">
+            <i class="far fa-bell"></i>
+            <span class="visually-hidden">Notification</span>
+        </a>
+    </div>
+    <div class="icon">
+        <a href="#">
+            <i class="fas fa-cog"></i>
+            <span class="visually-hidden">Settings</span>
+        </a>
+    </div>
+</footer>
+</body>
+</html>
+
+

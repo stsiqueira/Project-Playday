@@ -8,14 +8,19 @@
     <!-- Chat JavaScript file -->   
     <script src="../js/chat.js" defer></script>
     <style>
+        *{
+            padding:0;
+            margin:0;
+            font-size: 1.3rem;
+        }
         .chat-content-wrapper{
-            border: 1px solid black;
-            min-height: 65vh;
+            /* border: 1px solid black; */
+            min-height: 45vh;
             display: flex;
             flex-flow: column nowrap;
         }
         .chat-messages-wrapper{
-            min-height: 60vh;
+            min-height: 50vh;
         }
         .send-message-wrapper{
             display: flex;
@@ -31,6 +36,36 @@
         #chat-messages{
             
         }
+        #chat-messages li{
+            display: flex;
+            flex-flow: row nowrap;
+            margin-bottom: .4rem;
+            gap: .5rem;
+        }
+        #chat-messages li.sender{
+            display: flex;
+            flex-flow: row-reverse nowrap;
+        }
+        .chat-image img{
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+        }
+        .chat-message-image{
+            flex: 0 0 8%;
+        }
+        .chat-message {
+            padding: 0 .5rem;
+            background-color: rgba(246, 180, 152, 0.701);
+            border-radius: 10px;
+        }
+        div.sender  {
+ 
+            background-color: rgba(255, 125, 69,.7);
+        }
+        #chat-message-input{
+            margin: 0 0 .5rem 0;
+        }
     </style>
 <head>
     <meta charset="UTF-8">
@@ -42,15 +77,9 @@
 
 <body class="page chat-page">
     <header>
-        <div class="back">
-            <button class="back-button">
-                <a href="player-details.html">
-                    <i class="fas fa-chevron-left"><span class="visually-hidden">Back button</span></i>
-                </a>
-            </button>
+        <div class="chat-title">
+            <h2 class="chat-title"></h2>
         </div>
-        <!-- Chat Heading -->
-        <h2 class="chat-heading page-heading">Friend's name</h2>
     </header>
 
     <main>
@@ -62,39 +91,13 @@
                 </ul>
             </div>
            <div class="send-message-wrapper">
-            <input type="text" id="chat-message">
+            <input type="text" id="chat-message-input">
             <button id="sendButton">SEND</button>
            </div>
 
         </div>
     </main>
-    <footer class="iconsBar">
-        <div class="icon">
-            <a href="#">
-                <i class="fas fa-home"></i>
-                <span class="visually-hidden">Home button</span>
-            </a>
-        </div>
-        <div class="icon">
-            <a href="#">
-                <i class="far fa-user-circle"></i>
-                <span class="visually-hidden">Profile</span>
-            </a>
-        
-        </div>
-        <div class="icon">
-            <a href="#">
-                <i class="far fa-bell"></i>
-                <span class="visually-hidden">Notification</span>
-            </a>
-        </div>
-        <div class="icon">
-            <a href="#">
-                <i class="fas fa-cog"></i>
-                <span class="visually-hidden">Settings</span>
-            </a>
-        </div>
-    </footer>
+
 </body>
 
 </html>
