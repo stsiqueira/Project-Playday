@@ -23,7 +23,7 @@ const signInWithEmailFunction = () => {
 	const password = passwordField.value;
 	firebase.auth().signInWithEmailAndPassword(email, password)
 		.then((userCredential) => {
-			// Signed in 
+            // Signed in 
 			var user = userCredential.user;
 	        window.location.assign('../html/loggedin.html');
 			console.log(user);
