@@ -4,7 +4,6 @@ const username = document.getElementById('username');
 const passwordField = document.getElementById('password');
 const gsignup = document.getElementById('gsignup');
 
-
 function ValidateEmail(mail) {
   if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(mail)) {
     return (true)
@@ -24,16 +23,33 @@ const signUpWithEmailFunction = () => {
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .then((userCredential) => {
         var user = userCredential.user;
-        console.log(name);
-        db.collection("user").doc(user.uid).set({
-          CourtID: "",
-          Ranking: "Beginner",
-          name: name,
-          userID: user.uid,
-          profilepic: user.photoURL
-        })
-          .then((docRef) => {
-            console.log("Document written with ID: ");
+		var docData = {
+			about: "",
+			dateOfBirth: "Beginner",
+			name: name,
+			profilePic: null,
+			sports: {
+				badminton: {
+					challengeCourts: [],
+					savedCourts: [],
+					userLevel: "beginner"
+				},
+				tennis: {
+					challengeCourts: [],
+					savedCourts: [],
+					userLevel: "beginner"
+				},
+				volleyball: {
+					challengeCourts: [],
+					savedCourts: [],
+					userLevel: "beginner"
+				}
+			},
+			userID: user.uid,
+			userLocation: new firebase.firestore.GeoPoint(0, 0)
+	  	} 
+        db.collection("user").doc(user.uid).set(docData).then((docRef) => {
+            window.location = "../index.html";
           })
           .catch((error) => {
             console.error("Error adding document: ", error);
@@ -48,8 +64,8 @@ const signUpWithEmailFunction = () => {
 
 signUp.addEventListener('click', signUpWithEmailFunction);
 
-function test() {
-  db.collection("user").where("name", "==", "Gle")
+function fetch() {
+  db.collection("user").where("name", "==", "aman")
   .get()
   .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
@@ -62,5 +78,5 @@ function test() {
   });
 }
 
-gsignup.addEventListener('click', test);
+gsignup.addEventListener('click', fetch);
 

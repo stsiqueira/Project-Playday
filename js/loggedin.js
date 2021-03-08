@@ -1,23 +1,11 @@
-var firebaseConfig = {
-    apiKey: "AIzaSyATN0KrGH8WPsgEiozxcev0W3Fgq3F41i4",
-    authDomain: "test-1-5be12.firebaseapp.com",
-    projectId: "test-1-5be12",
-    storageBucket: "test-1-5be12.appspot.com",
-    messagingSenderId: "419371280336",
-    appId: "1:419371280336:web:e6a5055469d95d9d777bd5",
-    measurementId: "G-DP5FXPH4WE"
-};
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-// firebase.analytics();
-
 firebase.auth().onAuthStateChanged(function(user) {
     if(user) {
         var div = document.getElementById('firebaseui-auth-container');
         div.innerHTML = `<h1> Congrats ${user.displayName} logged in with ${user.email}</h1>`;
     }
     else {
-        console.log(user);
+        alert("not logged in")
+        window.location = "../index.html";
     }
 });
 

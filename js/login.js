@@ -1,19 +1,9 @@
-var firebaseConfig = {
-    apiKey: "AIzaSyATN0KrGH8WPsgEiozxcev0W3Fgq3F41i4",
-    authDomain: "test-1-5be12.firebaseapp.com",
-    projectId: "test-1-5be12",
-    storageBucket: "test-1-5be12.appspot.com",
-    messagingSenderId: "419371280336",
-    appId: "1:419371280336:web:e6a5055469d95d9d777bd5",
-    measurementId: "G-DP5FXPH4WE"
-};
-    // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
 const mailField = document.getElementById('mail');
 const passwordField = document.getElementById('password');
 const signInWithMail = document.getElementById('signInWithMail');
 const signUp = document.getElementById('signUp');
-const googlesignin = document.getElementById("googlesignup")
+const forgotPassword = document.getElementById('forgot-pass');
+const googleSignin = document.getElementById("googlesignup")
 
 var db = firebase.firestore();
 
@@ -25,9 +15,7 @@ const signInWithEmailFunction = () => {
 		.then((userCredential) => {
 			// Signed in 
 			var user = userCredential.user;
-	        window.location.assign('../html/loggedin.html');
-			console.log(user);
-			
+	        window.location.assign('html/loggedin.html');
 		})
 		.catch(error => {
 			console.error(error);
@@ -37,10 +25,34 @@ const signInWithEmailFunction = () => {
 signInWithMail.addEventListener('click', signInWithEmailFunction);
 
 signUp.addEventListener('click', () => {
-	window.location.assign('../html/signup.html');
+	window.location.assign('html/signup.html');
 });
 
 var provider = new firebase.auth.GoogleAuthProvider();
+
+const googleSignOn = () => {
+        firebase.auth()
+    .signInWithPopup(provider)
+    .then((result) => {
+        /** @type {firebase.auth.OAuthCredential} */
+        var credential = result.credential;
+        var token = credential.accessToken;
+        // The signed-in user info.
+        var user = result.user;
+        console.log(result);
+    }).catch((error) => {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // The email of the user's account used.
+        var email = error.email;
+        // The firebase.auth.AuthCredential type that was used.
+        var credential = error.credential;
+        // ...
+    });
+}
+
+googleSignin.addEventListener('click', googleSignOn);
 
 // ui.start('#firebaseui-auth-container', uiConfig);
 
