@@ -19,6 +19,13 @@ const signInWithEmailFunction = () => {
 		})
 		.catch(error => {
 			console.error(error);
+            console.log(error.code);
+            if(error.code == "auth/wrong-password") {
+                alert(error.message);
+            }
+            else if(error.code == "auth/user-not-found") {
+                alert("user not found");
+            }
 		})
 }
 

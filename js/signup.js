@@ -15,13 +15,13 @@ function ValidateEmail(mail) {
 var db = firebase.firestore();
 
 const updateDB = (user, flag) => {
+	console.log(`flag inside db ${updateDB}`)
 	if(flag) {
-    var displayName = username.value;
+    	var displayName = username.value;
 	}
-  else {
-    var displayName = user.displayName;
-  }
-	console.log(displayName);
+	else {
+		var displayName = user.displayName;
+	}
 	var docData = {
 		about: "",
 		dateOfBirth: "Beginner",
@@ -48,7 +48,7 @@ const updateDB = (user, flag) => {
 		userLocation: new firebase.firestore.GeoPoint(0, 0)
 	} 
 	db.collection("user").doc(user.uid).set(docData).then((docRef) => {
-        window.location.assign('loggedin.html');
+        window.location.assign('../index.html');
 	})
 	.catch((error) => {
 		console.error("Error adding document: ", error);
@@ -62,10 +62,11 @@ const checkIfUserExist = (user, flag) => {
 	.then((querySnapshot) => {
 			if (querySnapshot.exists) {
 				console.log("user exist");
-				window.location.assign('html/loggedin.html');
+				window.location.assign('../index.html');
 			} 
 			else {
 				console.log("user created");
+				console.log(flag);
 				updateDB(user, flag);
 			}
 	})
@@ -104,7 +105,6 @@ const googleSignOn = () => {
         /** @type {firebase.auth.OAuthCredential} */
         var user = result.user;
 		checkIfUserExist(user, 0);
-        // window.location.assign('loggedin.html');
     }).catch((error) => {
         var errorCode = error.code;
         var errorMessage = error.message;

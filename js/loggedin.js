@@ -1,7 +1,7 @@
 firebase.auth().onAuthStateChanged(function(user) {
     if(user) {
         var div = document.getElementById('firebaseui-auth-container');
-        div.innerHTML = `<h1> Congrats ${user.displayName} logged in with ${user.email}</h1>`;
+        div.innerHTML = `<h1> Congrats you logged in with ${user.email}</h1>`;
     }
     else {
         window.location = "../index.html";
