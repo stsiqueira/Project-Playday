@@ -22,16 +22,16 @@ const db =firebase.firestore();
 
 let userName = "Thiago"; // to be changed to user.displayName(authentication function);
 let friend = "Siqueira"; // to be changed to ??????????;
-let collection = "Chat"; // to be changed to a mix of userName and friend;
+let chatId = 0; // to be changed to a mix of userName and friend;
 
 ////////////////////////////////////////////
 //  Functions
 //////////////////////////////////////////// 
 
- db.collection("chat").onSnapshot((snapshot)=>{
+ db.collection(`chat${chatId}`).onSnapshot((snapshot)=>{
      snapshot.docChanges().forEach((change)=>{
          if(change.type === "added"){
-                if(change.doc.data().senderId == "Mayra"){
+                if(change.doc.data().senderId == "Thiago"){
                     let newLine = `                    
                         <li>
                             <div class="chat-image">
@@ -72,14 +72,23 @@ const generateDocumentId = ()=>{
 //  Event Listener
 //////////////////////////////////////////// 
 $("#sendButton").click(()=>{
+    if(parseInt($("#senderId").val()) < parseInt($("#receiverId").val())){
+        console.log("sender");
+        chatId = $("#senderId").val()+$("#receiverId").val();
+    }else{
+        console.log("receiver");
+        chatId = $("#senderId").val()+$("#receiverId").val();
+    }
+    console.log(chatId);
     if($("#chat-message").val() == ""){
     }else{
-        db.collection("chat").doc(generateDocumentId()).set({
-            senderId: userName, 
-            receiverId: friend, 
-            message: $("#chat-message").val()
+        console.log("i am here");
+        db.collection(`chat${chatId}`).doc(generateDocumentId()).set({
+            senderId: "Thiago", 
+            receiverId: "Mayra", 
+            message: $("#chat-message-input").val()
         });
-        $("#chat-message").val("");
+        $("#chat-message-input").val();
     }
     
 });

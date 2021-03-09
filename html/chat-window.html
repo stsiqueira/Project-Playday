@@ -66,6 +66,23 @@
         #chat-message-input{
             margin: 0 0 .5rem 0;
         }
+        .temporary-inputs{
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-between;
+            padding-bottom: .5rem;
+            margin-bottom: 2rem;
+            border-bottom: 4px solid rgba(255, 125, 69,.7) ;
+        }
+        .temporary-inputs select{
+            border: none;
+            outline: none;
+            background-color: rgba(255, 125, 69,.7);
+            font-size: 1.2rem;
+            padding: .2rem;
+            border-radius: 15px;
+
+        }
     </style>
 <head>
     <meta charset="UTF-8">
@@ -80,14 +97,37 @@
         <div class="chat-title">
             <h2 class="chat-title"></h2>
         </div>
+        <div class="temporary-inputs">
+            <div class="senderInput">
+                <select name="senderId" id="senderId">
+                    <option value="1">Aman</option>
+                    <option value="2">Diana</option>
+                    <option value="3">Gen</option>
+                    <option value="4">Munish</option>
+                    <option value="5">Thiago</option>
+                    <option value="6">Viet</option>
+                </select>
+            </div>
+            <div class="receiverInput">
+                <select name="receiverId" id="receiverId">
+                    <option value="1">Aman</option>
+                    <option value="2" selected>Diana</option>
+                    <option value="3">Gen</option>
+                    <option value="4">Munish</option>
+                    <option value="5">Thiago</option>
+                    <option value="6">Viet</option>
+                </select>
+            </div>
     </header>
 
     <main>
+        
+        
         <!-- Chat -->
         <div class="chat-content-wrapper content-wrapper">
             <div class="chat-messages-wrapper">
                 <ul id="chat-messages">
-
+                <!-- inserted code here -->
                 </ul>
             </div>
            <div class="send-message-wrapper">
