@@ -62,7 +62,7 @@ const checkIfUserExist = (user, flag) => {
 	.then((querySnapshot) => {
 			if (querySnapshot.exists) {
 				console.log("user exist");
-				// window.location.assign('html/loggedin.html');
+				window.location.assign('html/loggedin.html');
 			} 
 			else {
 				console.log("user created");
