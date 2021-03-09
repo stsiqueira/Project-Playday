@@ -1,0 +1,63 @@
+body,
+.login-wrapper,
+.mail-container,
+.wrapper-sign-up-screen {
+    height: 100vh;
+    background-color: lightsteelblue;
+    overflow: hidden;
+}
+
+.signup-heading {
+    margin: 0;
+}
+
+.content-wrapper {
+    height: 100vh; 
+    display: grid;
+    align-items: center; 
+}
+
+.signup-page {
+    border: none;
+    padding: unset;
+    margin: 8px;
+}
+
+.mail-container,
+.content-wrapper fieldset{
+   display: grid;
+   gap: 1rem;
+   justify-items: center;
+   align-items: center; 
+}
+
+.content-wrapper fieldset {
+    border: none;
+}
+
+.content-wrapper div {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);;
+}
+
+.mail-container fieldset {
+    display: grid;
+    gap: .5rem;
+}
+
+.button-wrapper {
+    display: flex;
+    flex-flow: row wrap;
+    gap: .3rem;
+}
+
+.signin-button,
+.signup-button {
+    flex: 1 0 45%;
+    padding: .5rem;
+}
+
+.google-button {
+    flex: 1 0 25%;
+    padding: .25rem;
+}

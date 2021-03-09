@@ -18,10 +18,10 @@ h1{
 }
 
 body{
-    border: 1px solid green !important;
+    border: 1px solid green;
     /* max-width: 600px !important; */
-    margin: 2rem !important;
-    padding: 1rem !important;
+    margin: 2rem;
+    padding: 1rem;
 }
 
 a{

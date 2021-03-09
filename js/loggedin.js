@@ -4,7 +4,6 @@ firebase.auth().onAuthStateChanged(function(user) {
         div.innerHTML = `<h1> Congrats ${user.displayName} logged in with ${user.email}</h1>`;
     }
     else {
-        alert("not logged in")
         window.location = "../index.html";
     }
 });

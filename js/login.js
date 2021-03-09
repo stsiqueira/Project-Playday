@@ -3,7 +3,7 @@ const passwordField = document.getElementById('password');
 const signInWithMail = document.getElementById('signInWithMail');
 const signUp = document.getElementById('signUp');
 const forgotPassword = document.getElementById('forgot-pass');
-const googleSignin = document.getElementById("googlesignup")
+const googleSignin = document.getElementById("googleSignup")
 
 var db = firebase.firestore();
 
@@ -30,16 +30,65 @@ signUp.addEventListener('click', () => {
 
 var provider = new firebase.auth.GoogleAuthProvider();
 
+const updateDB = (user) => {
+    var displayName = user.displayName;
+	var docData = {
+		about: "",
+		dateOfBirth: "Beginner",
+		name: displayName,
+		profilePic: null,
+		sports: {
+		  badminton: {
+			challengeCourts: [],
+			savedCourts: [],
+			userLevel: "beginner"
+		  },
+		  tennis: {
+			challengeCourts: [],
+			savedCourts: [],
+			userLevel: "beginner"
+		  },
+		  volleyball: {
+			challengeCourts: [],
+			savedCourts: [],
+			userLevel: "beginner"
+		  }
+		},
+		userID: user.uid,
+		userLocation: new firebase.firestore.GeoPoint(0, 0)
+	} 
+    db.collection("user").doc(user.uid).set(docData).then((docRef) => {
+        console.log("user created");
+        window.location.assign('html/loggedin.html');
+    })
+    .catch((error) => {
+        console.error("Error adding document: ", error);
+    });
+}
+
+const checkIfUserExist = (user) => {
+    db.collection("user").doc(user.uid)
+    .get()
+    .then((querySnapshot) => {
+        if (querySnapshot.exists) {
+            window.location.assign('html/loggedin.html');
+        } 
+        else {
+            updateDB(user);
+        }
+    })
+    .catch((error) => {
+        console.log("Error getting documents: ", error);
+    });
+}
+
 const googleSignOn = () => {
-        firebase.auth()
+    firebase.auth()
     .signInWithPopup(provider)
     .then((result) => {
         /** @type {firebase.auth.OAuthCredential} */
-        var credential = result.credential;
-        var token = credential.accessToken;
-        // The signed-in user info.
         var user = result.user;
-        console.log(result);
+		checkIfUserExist(user);
     }).catch((error) => {
         // Handle Errors here.
         var errorCode = error.code;
@@ -56,30 +105,30 @@ googleSignin.addEventListener('click', googleSignOn);
 
 // ui.start('#firebaseui-auth-container', uiConfig);
 
-document.getElementById("find-me").addEventListener("click", function() {
-    const status = document.querySelector('#status');
-    const mapLink = document.querySelector('#map-link');
+// document.getElementById("find-me").addEventListener("click", function() {
+//     const status = document.querySelector('#status');
+//     const mapLink = document.querySelector('#map-link');
 
-    mapLink.href = '';
-    mapLink.textContent = '';
+//     mapLink.href = '';
+//     mapLink.textContent = '';
 
-    function success(position) {
-        const latitude  = position.coords.latitude;
-        const longitude = position.coords.longitude;
+//     function success(position) {
+//         const latitude  = position.coords.latitude;
+//         const longitude = position.coords.longitude;
 
-        status.textContent = '';
-        mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
-        mapLink.textContent = `Latitude: ${latitude} °, Longitude: ${longitude} °`;
-    }
+//         status.textContent = '';
+//         mapLink.href = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
+//         mapLink.textContent = `Latitude: ${latitude} °, Longitude: ${longitude} °`;
+//     }
 
-    function error() {
-        status.textContent = 'Unable to retrieve your location';
-        }
+//     function error() {
+//         status.textContent = 'Unable to retrieve your location';
+//         }
 
-        if(!navigator.geolocation) {
-        status.textContent = 'Geolocation is not supported by your browser';
-        } else {
-        status.textContent = 'Locating…';
-        navigator.geolocation.getCurrentPosition(success, error);
-    }
-});
+//         if(!navigator.geolocation) {
+//         status.textContent = 'Geolocation is not supported by your browser';
+//         } else {
+//         status.textContent = 'Locating…';
+//         navigator.geolocation.getCurrentPosition(success, error);
+//     }
+// });

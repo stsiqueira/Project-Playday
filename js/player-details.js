@@ -3,11 +3,9 @@ const about = document.getElementById('about');
 const update = document.getElementById('update');
 const image = document.getElementById('player-image');
 
-var u = firebase.auth().currentUser;
-
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
-        db.collection("user").where("userID", "==", user.uid)
+        db.collection("user").where("userID", "==", "7KhZCViEtaVUMFJfGap23nJJtL73")
         .get()
         .then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
@@ -18,12 +16,6 @@ firebase.auth().onAuthStateChanged(function(user) {
         .catch((error) => {
             console.log("Error getting documents: ", error);
         });
-
-        var document = db.collection("user").doc(user.uid)
-        document.set({
-            about: "hii",
-            'sports.badminton.challengeCourts': arrayUnion("hii")
-        },{ merge: true });
     } else {
         window.location = "../index.html";
     }
@@ -32,8 +24,16 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 const updateData = () => {
     description = about.value;
-    console.log(getUser());
-    var document = db.collection("cities").doc(getUser());
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            var document = db.collection("user").doc("7KhZCViEtaVUMFJfGap23nJJtL73")
+            document.set({
+                about: "heil"
+        },{ merge: true });
+        } else {
+          // No user is signed in.
+        }
+      });
 }
 
 update.addEventListener('click', updateData);
