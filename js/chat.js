@@ -20,15 +20,13 @@ const firebaseConfig = {
 
 const db =firebase.firestore();
 
-let userName = "Thiago"; // to be changed to user.displayName(authentication function);
-let friend = "Siqueira"; // to be changed to ??????????;
+let friend = "Diana"; // to be changed to ??????????;
 let chatId = 0; // to be changed to a mix of userName and friend;
-
+let myName = "";
 
 firebase.auth().onAuthStateChanged(function(user) {
     if(user) {
-        var div = document.getElementById('firebaseui-auth-container');
-        div.innerHTML = `<h1> Congrats Thiago you logged in with ${user.email}</h1>`;
+        myName = user.displayName;
     }
     else {
         window.location = "../index.html";
@@ -38,10 +36,10 @@ firebase.auth().onAuthStateChanged(function(user) {
 //  Functions
 //////////////////////////////////////////// 
 
- db.collection(`chat${chatId}`).onSnapshot((snapshot)=>{
+ db.collection("chat001002").onSnapshot((snapshot)=>{
      snapshot.docChanges().forEach((change)=>{
          if(change.type === "added"){
-                if(change.doc.data().senderId == "Thiago"){
+                if(change.doc.data().senderId != myName){
                     let newLine = `                    
                         <li>
                             <div class="chat-image">
@@ -82,25 +80,18 @@ const generateDocumentId = ()=>{
 //  Event Listener
 //////////////////////////////////////////// 
 $("#sendButton").click(()=>{
-    if(parseInt($("#senderId").val()) < parseInt($("#receiverId").val())){
-        console.log("sender");
-        chatId = $("#senderId").val()+$("#receiverId").val();
-    }else{
-        console.log("receiver");
-        chatId = $("#senderId").val()+$("#receiverId").val();
-    }
-    console.log(chatId);
     if($("#chat-message").val() == ""){
     }else{
-        console.log("i am here");
-        db.collection(`chat${chatId}`).doc(generateDocumentId()).set({
-            senderId: "Thiago", 
-            receiverId: "Mayra", 
+        db.collection("chat001002").doc(generateDocumentId()).set({
+            senderId: myName, 
+            receiverId: "Diana", 
             message: $("#chat-message-input").val()
         });
-        $("#chat-message-input").val();
+        $("#chat-message-input").val("");
     }
     
 });
-
+setTimeout(() => {
+    $(".user-test h3").text(myName);
+}, 2000);
 

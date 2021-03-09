@@ -7,6 +7,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-firestore.js"></script>
     <!-- Chat JavaScript file -->   
     <script src="../js/chat.js" defer></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-auth.js"></script>
     <style>
         *{
             padding:0;
@@ -94,30 +95,10 @@
 
 <body class="page chat-page">
     <header>
-        <div class="chat-title">
+        <div class="chat-container">
             <h2 class="chat-title"></h2>
         </div>
-        <div class="temporary-inputs">
-            <div class="senderInput">
-                <select name="senderId" id="senderId">
-                    <option value="1">Aman</option>
-                    <option value="2">Diana</option>
-                    <option value="3">Gen</option>
-                    <option value="4">Munish</option>
-                    <option value="5">Thiago</option>
-                    <option value="6">Viet</option>
-                </select>
-            </div>
-            <div class="receiverInput">
-                <select name="receiverId" id="receiverId">
-                    <option value="1">Aman</option>
-                    <option value="2" selected>Diana</option>
-                    <option value="3">Gen</option>
-                    <option value="4">Munish</option>
-                    <option value="5">Thiago</option>
-                    <option value="6">Viet</option>
-                </select>
-            </div>
+
     </header>
 
     <main>
@@ -136,6 +117,11 @@
            </div>
 
         </div>
+        <footer>
+            <div class="user-test">
+                <h3></h3>
+            </div>
+        </footer>
     </main>
 
 </body>
