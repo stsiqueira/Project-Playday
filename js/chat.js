@@ -24,6 +24,16 @@ let userName = "Thiago"; // to be changed to user.displayName(authentication fun
 let friend = "Siqueira"; // to be changed to ??????????;
 let chatId = 0; // to be changed to a mix of userName and friend;
 
+
+firebase.auth().onAuthStateChanged(function(user) {
+    if(user) {
+        var div = document.getElementById('firebaseui-auth-container');
+        div.innerHTML = `<h1> Congrats Thiago you logged in with ${user.email}</h1>`;
+    }
+    else {
+        window.location = "../index.html";
+    }
+});
 ////////////////////////////////////////////
 //  Functions
 //////////////////////////////////////////// 
