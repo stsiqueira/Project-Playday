@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,39 +11,44 @@
     <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js" defer></script>
     <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+    <script src="../js/project-credentials.js" defer></script>
     <script src="../js/signup.js" defer></script>
 
     <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/common.css">
     <title>Playday - Sign Up</title>
 </head>
+
 <body class="page signup-page">
-    <button><a href="splash-screen.html">&#8592;</a></button>
+    <!-- <button><a href="splash-screen.html">&#8592;</a></button>
     <div class="bigLogo">
         <img src="../img/blockimage.svg" alt="big logo Playday">
+    </div> -->
+
+    <div class="wrapper-sign-up-screen">
+        <div class="content-wrapper">
+            <fieldset>
+                <h2 class="signup-heading">Signup</h2>
+                <div>
+                    <label for="username">User Name</label>
+                    <input type="text" id="username" name="username" />
+                </div>
+                <div>
+                    <label for="mail">Email</label>
+                    <input type="email" id="mail" name="mail" />
+                </div>
+                <div>
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" />
+                </div>
+                <div class="button-wrapper">
+                    <button id="signUp" class="signup-button">Signup</button>
+                    <button id="gsignup" class="google-button">Sign Up with Google</button>
+                </div>
+                <a href="../index.html" class="login-page">Back to Login</a>
+            </fieldset>
+        </div>
     </div>
-
-        <h1>Playday</h1>
-        <h2>Sign Up</h2>
-
-<div class="wrapper-sign-up-screen">
-    <div>
-        <label for="username">User Name</label>
-        <input type="text" id="username" name="username"/>
-    </div>
-<div>
-        <label for="mail">Email</label>
-        <input type="email" id="mail" name="mail"/>
-    </div>
-    <div>
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password"/> <br>
-    </div>
-    <button id="signUp">Signup</button>
-        <p>Or</p>
-
-        <button id="gsignup">Sign Up with Google</button>
-
-
-</div>
 </body>
+
 </html>
