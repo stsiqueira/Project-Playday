@@ -1,0 +1,16 @@
+
+a{
+    text-decoration: none;
+}
+
+nav{
+    border-bottom: 1px solid pink;
+    ul{
+        list-style-type: none;
+        a{
+            display: block;
+            color: $color_link_visited;
+        }
+
+    }
+}
