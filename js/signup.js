@@ -3,6 +3,7 @@ const mailField = document.getElementById('mail');
 const username = document.getElementById('username');
 const passwordField = document.getElementById('password');
 const gsignup = document.getElementById('gsignup');
+const facebookSignin = document.getElementById("fsignup");
 
 function ValidateEmail(mail) {
   if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(mail)) {
@@ -48,7 +49,7 @@ const updateDB = (user, flag) => {
 		userLocation: new firebase.firestore.GeoPoint(0, 0)
 	} 
 	db.collection("user").doc(user.uid).set(docData).then((docRef) => {
-        window.location.assign('loggedin.html');
+		console.log("data added")
 	})
 	.catch((error) => {
 		console.error("Error adding document: ", error);
@@ -83,6 +84,7 @@ const signUpWithEmailFunction = () => {
       .then((userCredential) => {
         var user = userCredential.user;
 		checkIfUserExist(user, 1);
+		window.location.assign('../index.html');
       })
       .catch((error) => {
         var errorCode = error.code;
@@ -96,8 +98,6 @@ const signUpWithEmailFunction = () => {
 
 signUp.addEventListener('click', signUpWithEmailFunction);
 
-var provider = new firebase.auth.GoogleAuthProvider();
-
 const googleSignOn = () => {
     firebase.auth()
     .signInWithPopup(provider)
@@ -105,6 +105,7 @@ const googleSignOn = () => {
         /** @type {firebase.auth.OAuthCredential} */
         var user = result.user;
 		checkIfUserExist(user, 0);
+		window.location.assign('loggedin.html');
     }).catch((error) => {
         var errorCode = error.code;
         var errorMessage = error.message;
@@ -116,6 +117,7 @@ const googleSignOn = () => {
     });
 }
 
+var provider = new firebase.auth.GoogleAuthProvider();
 gsignup.addEventListener('click', googleSignOn);
 
 // gsignup.addEventListener('click', fetch);

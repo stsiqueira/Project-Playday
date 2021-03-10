@@ -9,6 +9,7 @@ body,
 
 .signup-heading {
     margin: 0;
+    text-align: center;
 }
 
 .login-content {
@@ -31,6 +32,7 @@ body,
     height: 100vh; 
     display: grid;
     align-items: center; 
+    justify-items: center;
 }
 
 .signup-page,
@@ -44,15 +46,23 @@ body,
 .content-wrapper fieldset{
    display: grid;
    gap: 1rem;
-   justify-items: center;
+   /* justify-items: center; */
    align-items: center; 
+}
+
+.login-wrapper .content-wrapper fieldset{
+    justify-items: center;
+}
+
+.login-wrapper input {
+    margin: .5rem 0;
 }
 
 .content-wrapper fieldset {
     border: none;
 }
 
-.content-wrapper div {
+.content-wrapper div:not(.button-wrapper) {
     display: grid;
     grid-template-columns: repeat(2, 1fr);;
 }
@@ -60,6 +70,7 @@ body,
 .mail-container fieldset {
     display: grid;
     gap: .5rem;
+    border: none;
 }
 
 .button-wrapper {
@@ -70,11 +81,51 @@ body,
 
 .signin-button,
 .signup-button {
-    flex: 1 0 45%;
+    flex: 1 0 25%;
     padding: .5rem;
+}
+
+.login-wrapper .mail-container {
+    justify-items: center;
+}
+
+.login-wrapper .signin-button, 
+.login-wrapper .signup-button {
+    flex: 1 0 45%;
 }
 
 .google-button {
     flex: 1 0 25%;
     padding: .25rem;
 }
+
+.button {
+    background-color: #495a49; /* Green */
+    border: none;
+    color: white;
+    padding: .4rem;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+#mail, 
+#password,
+#username {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.signup-page #mail, 
+.signup-page #username, 
+.signup-page #password {
+    padding: unset;
+}
+

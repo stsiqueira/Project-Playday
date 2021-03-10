@@ -3,7 +3,9 @@ const passwordField = document.getElementById('password');
 const signInWithMail = document.getElementById('signInWithMail');
 const signUp = document.getElementById('signUp');
 const forgotPassword = document.getElementById('forgot-pass');
-const googleSignin = document.getElementById("googleSignup")
+const googleSignin = document.getElementById("googleSignup");
+const facebookSignin = document.getElementById("facebookSignup")
+
 
 var db = firebase.firestore();
 
@@ -18,8 +20,7 @@ const signInWithEmailFunction = () => {
 	        window.location.assign('html/loggedin.html');
 		})
 		.catch(error => {
-			console.error(error);
-            console.log(error.code);
+            alert(error.message);
             if(error.code == "auth/wrong-password") {
                 alert(error.message);
             }
@@ -35,7 +36,6 @@ signUp.addEventListener('click', () => {
 	window.location.assign('html/signup.html');
 });
 
-var provider = new firebase.auth.GoogleAuthProvider();
 
 const updateDB = (user) => {
     var displayName = user.displayName;
@@ -89,6 +89,8 @@ const checkIfUserExist = (user) => {
     });
 }
 
+var provider = new firebase.auth.GoogleAuthProvider();
+
 const googleSignOn = () => {
     firebase.auth()
     .signInWithPopup(provider)
@@ -101,6 +103,7 @@ const googleSignOn = () => {
         var errorCode = error.code;
         var errorMessage = error.message;
         // The email of the user's account used.
+        // alert(error.message);
         var email = error.email;
         // The firebase.auth.AuthCredential type that was used.
         var credential = error.credential;
