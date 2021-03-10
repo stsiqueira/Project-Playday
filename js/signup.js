@@ -48,7 +48,7 @@ const updateDB = (user, flag) => {
 		userLocation: new firebase.firestore.GeoPoint(0, 0)
 	} 
 	db.collection("user").doc(user.uid).set(docData).then((docRef) => {
-        window.location.assign('../index.html');
+        window.location.assign('loggedin.html');
 	})
 	.catch((error) => {
 		console.error("Error adding document: ", error);
@@ -60,15 +60,15 @@ const checkIfUserExist = (user, flag) => {
 	db.collection("user").doc(user.uid)
 	.get()
 	.then((querySnapshot) => {
-			if (querySnapshot.exists) {
-				console.log("user exist");
-				window.location.assign('../index.html');
-			} 
-			else {
-				console.log("user created");
-				console.log(flag);
-				updateDB(user, flag);
-			}
+		if (querySnapshot.exists) {
+			console.log("user exist");
+			window.location.assign('../index.html');
+		} 
+		else {
+			console.log("user created");
+			console.log(flag);
+			updateDB(user, flag);
+		}
 	})
 	.catch((error) => {
 		console.log("Error getting documents: ", error);

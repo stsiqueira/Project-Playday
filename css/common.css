@@ -11,13 +11,25 @@ body,
     margin: 0;
 }
 
+.login-content {
+    display: grid;
+    gap: 1rem;
+    padding: 1rem 0;
+}
+
+.login-content h1,
+.login-content h2 {
+    margin: 0;
+}
+
 .content-wrapper {
     height: 100vh; 
     display: grid;
     align-items: center; 
 }
 
-.signup-page {
+.signup-page,
+.loggedin {
     border: none;
     padding: unset;
     margin: 8px;
