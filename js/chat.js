@@ -20,7 +20,7 @@ const firebaseConfig = {
 
 const db =firebase.firestore();
 
-let friend = "Diana"; // to be changed to ??????????;
+let friend = "Diana"; // to be changed to URL variable from court page;
 let chatId = 0; // to be changed to a mix of userName and friend;
 let myName = "";
 
@@ -76,11 +76,10 @@ const generateDocumentId = ()=>{
     let sec = date.getSeconds();
     return year+month+day+hour+min+sec;
 }
-////////////////////////////////////////////
-//  Event Listener
-//////////////////////////////////////////// 
-$("#sendButton").click(()=>{
+
+const checkMessages = () => {
     if($("#chat-message").val() == ""){
+        console.log("invalid")
     }else{
         db.collection("chat001002").doc(generateDocumentId()).set({
             senderId: myName, 
@@ -89,8 +88,21 @@ $("#sendButton").click(()=>{
         });
         $("#chat-message-input").val("");
     }
-    
+}
+////////////////////////////////////////////
+//  Event Listener
+//////////////////////////////////////////// 
+$("#sendButton").click(()=>{
+    checkMessages();
 });
+////////////////////////////////////////////
+//  Keyboard Listener
+//////////////////////////////////////////// 
+document.addEventListener('keydown', (e) => { 
+    if(e.keyCode == 13){
+        checkMessages();
+    }
+})
 setTimeout(() => {
     $(".user-test h3").text(myName);
 }, 2000);
