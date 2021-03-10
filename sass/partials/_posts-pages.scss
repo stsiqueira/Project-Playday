@@ -1,0 +1,42 @@
+
+.home {
+
+        footer {
+            background-color: $color_header_footer_bg;
+            color: $color_header_footer;
+
+                a{
+                    text-decoration: underline;
+                }
+        }
+
+}
+
+.home,
+.archive,
+.search {
+    main {
+        border: 1px solid $color_header_footer_bg;
+        line-height: 1.45;
+        display: grid;
+        grid-gap: 1rem;
+
+        @media screen and (min-width: 662px){
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 1rem 2rem;
+
+        }
+
+        @media screen and (min-width: 962px){
+            grid-template-columns: repeat(3, 1fr);
+
+        }
+
+        @media screen and (min-width: 1462px){
+            grid-template-columns: repeat(4, 1fr);
+            line-height: 1.5;
+
+        }
+
+    }
+}

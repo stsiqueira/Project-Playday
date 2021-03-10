@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Thiagos font awesome kit -- we need to change to playdays kit -->
+    <script
+      src="https://kit.fontawesome.com/ef8606d888.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="../css/normalize.css" />
+
+    <title>Home</title>
+
+    <style>
+      body {
+        max-width: 1000px;
+        margin: auto;
+      }
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+      main {
+        height: 50vh;
+      }
+      .sports {
+        height: 50vh;
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        align-items: center;
+        margin: 0 1rem;
+      }
+      .sport-name {
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body class="page home">
+    <header></header>
+
+    <main>
+      <div class="sports">
+        <div class="sport-1">
+          <a href="select-court.html?sport=badminton" id="badminton">
+            <img
+              src="https://images.pexels.com/photos/2202685/pexels-photo-2202685.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+              alt="random"
+            />
+            <div class="sport-name">Badminton</div>
+          </a>
+        </div>
+        <div class="sport-2">
+          <a href="select-court.html?sport=tennis" id="tennis">
+            <img
+              src="https://images.pexels.com/photos/1277397/pexels-photo-1277397.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+              alt="random"
+            />
+            <div class="sport-name">Tennis</div>
+          </a>
+        </div>
+        <div class="sport-3">
+          <a href="select-court.html?sport=volley" id="volleyball">
+            <img
+              src="https://images.pexels.com/photos/6203521/pexels-photo-6203521.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+              alt="random"
+            />
+            <div class="sport-name">Volleyball</div>
+          </a>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <!-- Bottom Navigation Bar -->
+    </footer>
+  </body>
+</html>

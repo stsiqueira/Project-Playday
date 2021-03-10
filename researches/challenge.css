@@ -1,0 +1,11 @@
+main article:not(:last-child)::after{
+    content: "\00a7";
+    color: lightgrey;
+    position: relative;
+    left: 50%;
+
+}
+article{
+    width: 500px;
+    border: 1px solid black;
+}
