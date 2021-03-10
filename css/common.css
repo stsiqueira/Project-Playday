@@ -22,6 +22,11 @@ body,
     margin: 0;
 }
 
+.login-content .links {
+    display: flex;
+    gap: 1rem;
+}
+
 .content-wrapper {
     height: 100vh; 
     display: grid;

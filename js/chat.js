@@ -20,18 +20,26 @@ const firebaseConfig = {
 
 const db =firebase.firestore();
 
-let userName = "Thiago"; // to be changed to user.displayName(authentication function);
-let friend = "Siqueira"; // to be changed to ??????????;
-let collection = "Chat"; // to be changed to a mix of userName and friend;
+let friend = "Diana"; // to be changed to ??????????;
+let chatId = 0; // to be changed to a mix of userName and friend;
+let myName = "";
 
+firebase.auth().onAuthStateChanged(function(user) {
+    if(user) {
+        myName = user.displayName;
+    }
+    else {
+        window.location = "../index.html";
+    }
+});
 ////////////////////////////////////////////
 //  Functions
 //////////////////////////////////////////// 
 
- db.collection("chat").onSnapshot((snapshot)=>{
+ db.collection("chat001002").onSnapshot((snapshot)=>{
      snapshot.docChanges().forEach((change)=>{
          if(change.type === "added"){
-                if(change.doc.data().senderId == "Mayra"){
+                if(change.doc.data().senderId != myName){
                     let newLine = `                    
                         <li>
                             <div class="chat-image">
@@ -74,14 +82,16 @@ const generateDocumentId = ()=>{
 $("#sendButton").click(()=>{
     if($("#chat-message").val() == ""){
     }else{
-        db.collection("chat").doc(generateDocumentId()).set({
-            senderId: userName, 
-            receiverId: friend, 
-            message: $("#chat-message").val()
+        db.collection("chat001002").doc(generateDocumentId()).set({
+            senderId: myName, 
+            receiverId: "Diana", 
+            message: $("#chat-message-input").val()
         });
-        $("#chat-message").val("");
+        $("#chat-message-input").val("");
     }
     
 });
-
+setTimeout(() => {
+    $(".user-test h3").text(myName);
+}, 2000);
 

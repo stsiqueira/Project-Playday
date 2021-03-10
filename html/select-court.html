@@ -1,87 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PlayDay - List Courts</title>
+    <link rel="stylesheet" href="../css/normalize.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.5.0/maps/maps.css"
+    />
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/main.css">
-    <script src="https://kit.fontawesome.com/ef8606d888.js" crossorigin="anonymous"></script> 
-    <title>Playday</title>
-</head>
+    <style>
+      img {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+      }
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+      a {
+        text-decoration: none;
+        color: black;
+      }
 
-<body class="page select-court-page">
-    <header>
-        <div class="back">
-            <button class="back-button">
-                <a href="location-settings.html">
-                    <i class="fas fa-chevron-left"><span class="visually-hidden">Back button</span></i>
-                </a>
-            </button>
+      body {
+        font-family: sans-serif;
+
+        max-width: 600px;
+        margin: auto;
+      }
+      header {
+        min-height: 10vh;
+      }
+      .body-wrapper {
+        padding: 0 0.5rem;
+      }
+      main {
+        margin: 0.5rem;
+      }
+
+      .filters {
+        display: flex;
+        gap: 1rem;
+        justify-content: space-evenly;
+      }
+
+      /* IMPORTANT */
+      .mapboxgl-map {
+        overflow: visible !important;
+      }
+      .mapboxgl-canvas {
+        width: 100% !important;
+      }
+
+      #api-result ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+      #api-result li {
+        padding: 8px;
+        box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1),
+          0 0 0 2px rgb(255, 255, 255), 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+        margin-top: 1rem;
+      }
+      .court-name {
+        margin-bottom: 0.5rem;
+      }
+
+      .map-wrapper {
+        height: 250px;
+        overflow: hidden;
+        box-sizing: border-box;
+        border: 1px solid black;
+      }
+
+      .address {
+        /* margin-top: 0.5rem; */
+      }
+
+      .meta-data {
+        margin-top: 0.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .hidden {
+        display: none;
+      }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.5.0/maps/maps-web.min.js"></script>
+    <script
+      type="text/javascript"
+      src="../js/shared-location-functions.js" defer
+    ></script>
+    <!-- <script type="text/javascript" src="../js/courts-list.js"></script> -->
+    <script type="text/javascript" src="../js/select-court.js"></script>
+  </head>
+  <body class="select-court">
+    <div class="body-wrapper">
+      <header></header>
+      <main>
+        <div class="filters">
+          <div class="sort">
+            <label for="sortby">Sort By:</label>
+            <select name="sortBy" id="sortby">
+              <option value="players">No. of players</option>
+              <option value="distance">Closest to my location</option>
+            </select>
+          </div>
+          <div class="radius-container">
+            <label for="radius">Distance:</label>
+            <select name="radius" id="radius">
+              <option value="5">5 Km</option>
+              <option value="10">10 Km</option>
+              <option value="25">25 Km</option>
+              <option value="50">50 Km</option>
+            </select>
+          </div>
         </div>
-        <h2>Select the court where you want to play</h2>
-        <!-- Court Image -->
-        <!-- <div class="court-image header-image">
-         
-        </div> -->
-
-    </header>
-    <main>
-
-       
-
-        <div class="court-list-content-wrapper content-wrapper">
-
-            <ul class="court-list">
-                <!-- Individual Player Excerpt -->
-            <a href="courts-page.html">
-                <img src="../img/blockimage.svg" alt="court-image">
-                <li class="court-items court-1">
-                    <img src="" alt="" class="court-pic">
-                    <p class="court-name">Court Name 1</p>
-                </li>
-            </a>
-                <img src="../img/blockimage.svg" alt="court-image">
-                <li class="court-items court-2">
-                    <img src="" alt="" class="court-pic">
-                    <p class="court-name">Court Name 2</p>
-                </li>
-                <img src="../img/blockimage.svg" alt="court-image">
-                <li class="court-items court-2">
-                    <img src="" alt="" class="court-pic">
-                    <p class="court-name">Court Name 3</p>
-                </li>
-            </ul>
+        <div id="api-result">
+          <ul></ul>
         </div>
-    </main>
-
-    <footer class="iconsBar">
-        <div class="icon">
-            <a href="#">
-                <i class="fas fa-home"></i>
-                <span class="visually-hidden">Home button</span>
-            </a>
+        <div class="court-selection-container">
+          <div class="hero">
+            <div id="map" class="map"></div>
+            <div class="gallery">
+              <!-- <img id="selected-img" src="" alt="selected image"> -->
+            </div>
+            <div id="selected-name" class="name"></div>
+          </div>
+          <div class="court-meta">
+            <div id="selected-address" class="address"></div>
+            <div id="selected-distance" class="distance"></div>
+            <div id="selected-phone" class="phone"></div>
+          </div>
         </div>
-        <div class="icon">
-            <a href="#">
-                <i class="far fa-user-circle"></i>
-                <span class="visually-hidden">Profile</span>
-            </a>
-        
-        </div>
-        <div class="icon">
-            <a href="#">
-                <i class="far fa-bell"></i>
-                <span class="visually-hidden">Notification</span>
-            </a>
-        </div>
-        <div class="icon">
-            <a href="#">
-                <i class="fas fa-cog"></i>
-                <span class="visually-hidden">Settings</span>
-            </a>
-        </div>
-    </footer>
-   
-</body>
-
+      </main>
+      <footer></footer>
+    </div>
+  </body>
 </html>

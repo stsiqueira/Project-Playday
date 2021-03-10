@@ -7,6 +7,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-firestore.js"></script>
     <!-- Chat JavaScript file -->   
     <script src="../js/chat.js" defer></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-auth.js"></script>
     <style>
         *{
             padding:0;
@@ -66,6 +67,23 @@
         #chat-message-input{
             margin: 0 0 .5rem 0;
         }
+        .temporary-inputs{
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-between;
+            padding-bottom: .5rem;
+            margin-bottom: 2rem;
+            border-bottom: 4px solid rgba(255, 125, 69,.7) ;
+        }
+        .temporary-inputs select{
+            border: none;
+            outline: none;
+            background-color: rgba(255, 125, 69,.7);
+            font-size: 1.2rem;
+            padding: .2rem;
+            border-radius: 15px;
+
+        }
     </style>
 <head>
     <meta charset="UTF-8">
@@ -77,17 +95,20 @@
 
 <body class="page chat-page">
     <header>
-        <div class="chat-title">
+        <div class="chat-container">
             <h2 class="chat-title"></h2>
         </div>
+
     </header>
 
     <main>
+        
+        
         <!-- Chat -->
         <div class="chat-content-wrapper content-wrapper">
             <div class="chat-messages-wrapper">
                 <ul id="chat-messages">
-
+                <!-- inserted code here -->
                 </ul>
             </div>
            <div class="send-message-wrapper">
@@ -96,6 +117,11 @@
            </div>
 
         </div>
+        <footer>
+            <div class="user-test">
+                <h3></h3>
+            </div>
+        </footer>
     </main>
 
 </body>
