@@ -22,7 +22,13 @@ const db =firebase.firestore();
 
 let friend = "Diana"; // to be changed to URL variable from court page;
 let chatId = 0; // to be changed to a mix of userName and friend;
-let myName = "";
+let myName = firebase.auth().currentUser;
+if(myName == null){
+    // enviar para index.html
+    window.location.href="../index.html";
+    console.log("user not logged");
+}
+
 
 firebase.auth().onAuthStateChanged(function(user) {
     if(user) {
@@ -32,6 +38,7 @@ firebase.auth().onAuthStateChanged(function(user) {
         window.location = "../index.html";
     }
 });
+
 ////////////////////////////////////////////
 //  Functions
 //////////////////////////////////////////// 
@@ -41,7 +48,7 @@ firebase.auth().onAuthStateChanged(function(user) {
          if(change.type === "added"){
                 if(change.doc.data().senderId != myName){
                     let newLine = `                    
-                        <li>
+                        <li id="100101010" onclick="openChat('100101010')">
                             <div class="chat-image">
                                 <img src="../img/bg-404-sinatra.jpg" alt="Thiago">
                             </div>
