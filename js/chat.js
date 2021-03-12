@@ -11,8 +11,8 @@ const firebaseConfig = {
     messagingSenderId: "732773100147",
     appId: "1:732773100147:web:13f7a6804851ac8486d806",
     measurementId: "G-TZB3NY5S6W"
-  };
-  firebase.initializeApp(firebaseConfig);
+};
+firebase.initializeApp(firebaseConfig);
   
 ////////////////////////////////////////////
 //  Variables
@@ -21,15 +21,11 @@ const firebaseConfig = {
 const db =firebase.firestore();
 
 let friend = "Diana"; // to be changed to URL variable from court page;
-let chatId = 0; // to be changed to a mix of userName and friend;
-let myName = firebase.auth().currentUser;
-if(myName == null){
-    // enviar para index.html
-    window.location.href="../index.html";
-    console.log("user not logged");
-}
+let myName = "";
 
-
+////////////////////////////////////////////
+//  Check if user is Logged in
+//////////////////////////////////////////// 
 firebase.auth().onAuthStateChanged(function(user) {
     if(user) {
         myName = user.displayName;
@@ -46,11 +42,11 @@ firebase.auth().onAuthStateChanged(function(user) {
  db.collection("chat001002").onSnapshot((snapshot)=>{
      snapshot.docChanges().forEach((change)=>{
          if(change.type === "added"){
-                if(change.doc.data().senderId != myName){
+                if(change.doc.data().senderId != localStorage.getItem("username")){
                     let newLine = `                    
-                        <li id="100101010" onclick="openChat('100101010')">
+                        <li> 
                             <div class="chat-image">
-                                <img src="../img/bg-404-sinatra.jpg" alt="Thiago">
+                                <img src="../img/bg-404-sinatra.jpg" alt="${localStorage.getItem("username")}'s picture">
                             </div>
                             <div class="chat-message">
                                 <p class="text-message"> ${change.doc.data().message}</p>
@@ -88,9 +84,10 @@ const checkMessages = () => {
     if($("#chat-message").val() == ""){
         console.log("invalid")
     }else{
+        // change the chatID 
         db.collection("chat001002").doc(generateDocumentId()).set({
-            senderId: myName, 
-            receiverId: "Diana", 
+            senderId: localStorage.getItem("username"), 
+            receiverId: "Diana", // change to name grabbed from LI in Aman's court Screen
             message: $("#chat-message-input").val()
         });
         $("#chat-message-input").val("");
@@ -110,7 +107,5 @@ document.addEventListener('keydown', (e) => {
         checkMessages();
     }
 })
-setTimeout(() => {
-    $(".user-test h3").text(myName);
-}, 2000);
 
+$(".chat-title").text(localStorage.getItem("username")); // change to name grabbed from LI in Aman's court Screen
