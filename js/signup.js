@@ -23,7 +23,7 @@ const signUpWithEmailFunction = () => {
       .then((userCredential) => {
         var user = userCredential.user;
 		checkIfUserExist(user, 1, 0);
-		window.location.assign('../index.html');
+		window.location.assign('log-in.html');
       })
       .catch((error) => {
         var errorCode = error.code;

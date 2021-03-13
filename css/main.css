@@ -202,7 +202,7 @@ a{
     padding: .7rem;
     grid-row: 2 / 3;
     grid-column: 1 / 2;
-    background-color: #ccc;
+    background-color: #fff;
 }
 .secondaryInfo{
     grid-row: 2 / 3;

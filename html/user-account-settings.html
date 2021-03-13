@@ -6,6 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/ef8606d888.js" crossorigin="anonymous"></script> 
     <link rel="stylesheet" href="../css/main.css">
+
+	<!-- Firebase CDN  -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-auth.js"></script>
+
+	<!-- User javascript Files -->
+	<script src="../js/project-credentials.js" defer></script>
+    <script src="../js/common.js" defer></script>
+    <script src="../js/player-details.js" defer></script>
     <title>Account Settings</title>
 </head>
 
@@ -23,11 +33,13 @@
     <main>
         <div class="profile basicInfo">
             <div class="profileImg">
-                <img  src="../img/blockimage.svg" alt="Player image">
+                <img src="../img/default1.jpg" alt="Player image">
             </div>
-            
-
             <div class="primaryInfo">
+                <label for="playerAbout">
+                    About:
+                    <input type="text" class="playerInfo" id="playerAbout">
+                </label>
                 <label for="playerFirstName">
                     First Name:
                     
@@ -41,6 +53,7 @@
                     Nickname:
                     <input type="text" class="playerInfo" id="playerNickname" disabled>
                 </label>
+                <button type="submit" id="update">update</button>
             </div>
             <div class="secondaryInfo">
                 <!-- <label for="playerAge">
@@ -58,6 +71,13 @@
                 </label>
             </div>
         </div>
+        <div class="player-password">
+            <label for="player-password">
+                Password:
+                <input type="text" class="playerInfo" id="playerPassword">
+            </label>
+        </div>
+        <button type="submit" id="updatePassword">update</button>
         <div class="profile locationInfo">
             <label for="playerLocation">
                 Location:
@@ -67,13 +87,13 @@
                 </a>
             </label>
         </div>
-        <div class="profile favoriteCourt">
+        <!-- <div class="profile favoriteCourt">
             <label for="playerCourt">
                 Favorite Court:
                 <input type="text" id="playerLocation" disabled>
                 <img src="../img/blockimage.svg" alt="Court Name">
             </label>
-        </div>
+        </div> -->
     </main>
 
         <footer class="iconsBar">
