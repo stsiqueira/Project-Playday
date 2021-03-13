@@ -1,0 +1,40 @@
+
+footer{
+    height: 115px;
+    background-color: whitesmoke;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+
+    ul.bottom-nav-bar{
+        list-style: none;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-around;
+        margin: 0;
+        padding: 0;
+       
+    }
+    li{
+        flex: 1 0 25%;
+    }
+        a{
+            text-decoration: none;
+            color: $color_footer_nav_link;
+            font-size: 1.2rem;
+            transition: .5s;
+        }
+
+        a:hover{
+            color: $color_footer_nav_hover;
+
+        }
+    
+}
+
+.footer-icons{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}

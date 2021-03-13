@@ -10,6 +10,7 @@ firebase.auth().onAuthStateChanged(function(user) {
                 console.log(doc.data());
                 console.log(doc.data().name);
                 var username = doc.data().name;
+                localStorage.setItem("username", username);
                 div.innerHTML = `<h2> Congrats ${username} logged in with ${user.email}</h2>`;
             });
         })
