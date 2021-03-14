@@ -10,18 +10,26 @@
     Footer
     Media
     Accessibility
+    Mixins
+    Articles
 
 
 
 */
 
-@import "partials/variables/variables";
+
 
 
 /* 1. Normalize ===================================================== */
 @import "partials/normalize";
 
-/* 2. Typography  =================================================== */
+/* Variables ===================================================== */
+@import "partials/variables/variables";
+
+/* Mixins ================================================= */
+@import "partials/mixins";
+
+/* Typography  =================================================== */
 @import "partials/typography";
 
 /* Header ======================================================== */
@@ -35,6 +43,12 @@
 
 /* Accessibility ================================================= */
 @import "partials/accessibility";
+
+/* Articles ================================================= */
+@import "partials/articles";
+
+
+
 
 
 

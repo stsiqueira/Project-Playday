@@ -8,6 +8,8 @@
     Footer
     Media
     Accessibility
+    Mixins
+    Articles
 
 
 
@@ -356,7 +358,9 @@ template {
   display: none;
 }
 
-/* 2. Typography  =================================================== */
+/* Variables ===================================================== */
+/* Mixins ================================================= */
+/* Typography  =================================================== */
 /* Header ======================================================== */
 /* Footer ======================================================== */
 footer {
@@ -451,5 +455,18 @@ img {
   position: absolute;
   white-space: nowrap;
   width: 1px;
+}
+
+/* Articles ================================================= */
+.article-section-wrapper h1 {
+  text-align: center;
+}
+
+.single-article-section {
+  margin: 0 2%;
+}
+
+.single-article-section img {
+  border-radius: 15px;
 }
 /*# sourceMappingURL=style.css.map */
