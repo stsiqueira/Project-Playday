@@ -364,7 +364,7 @@ template {
 /* Header ======================================================== */
 /* Footer ======================================================== */
 footer {
-  height: 115px;
+  height: 90px;
   background-color: whitesmoke;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -377,7 +377,7 @@ footer {
       -ms-flex-pack: center;
           justify-content: center;
   position: -webkit-sticky;
-  margin-top: 50px;
+  margin-top: 40px;
   position: sticky;
   bottom: 0;
 }
@@ -413,10 +413,12 @@ footer a {
 
 footer a i {
   font-size: 2rem;
+  padding-bottom: 10px;
 }
 
 footer a .button-text {
   font-size: 1rem;
+  font-family: poppins, helvetica, arial, sans-serif;
 }
 
 footer a:hover {
