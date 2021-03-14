@@ -2,13 +2,10 @@ let appUserLocal;
 
 const redirectBasedOnLogin = (googleLogin) => {
     if (!googleLogin) {
-        window.location.assign('../index.html');
-    }
-    else if (googleLogin == 2) {
-        window.location.assign('loggedin.html');
+        window.location.assign('log-in.html');
     }
     else {
-        window.location.assign('html/loggedin.html');
+        window.location.assign('loggedin.html');
     }
 }
 
@@ -166,3 +163,18 @@ const set_appUser = () => {
             window.location = "../index.html";
         }
 }
+// const updateDB = (collection, user, key, value) => {
+//     var dbRef = db.collection(collection).doc(user.uid);
+
+//     // Set the "capital" field of the city 'DC'
+//     return dbRef.update({
+//         key: value
+//     })
+//     .then(() => {
+//         console.log("Document successfully updated!");
+//     })
+//     .catch((error) => {
+//         // The document probably doesn't exist.
+//         console.error("Error updating document: ", error);
+//     });
+// }

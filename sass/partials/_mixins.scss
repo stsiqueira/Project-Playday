@@ -1,0 +1,18 @@
+
+//articels section 
+@mixin roundImage() {
+    border-radius: 15px;
+}
+
+//buttons
+@mixin borderRadiusButtons(){
+    height: 50px;
+    font-family: $font_sans;
+    font-weight: medium;
+    border-radius: 25px;
+
+}
+
+@mixin pageMargin() {
+    margin: 0 2%;
+}

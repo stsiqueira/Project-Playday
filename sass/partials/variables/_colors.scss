@@ -1,12 +1,24 @@
 
-$color_body_copy: #333;
+//footer nav colors 
+$color_footer_nav_link: #9094AA;
+$color_footer_nav_hover:  #FF9364;
 
-$color_body_bg: #eef;
-$color_header_footer: white;
-$color_header_footer_bg: black;
-$color_headings: hotpink;
+// background color 
+$color-main-bg: #F0F0F3; 
 
-/* links */
+// buttons colors 
+$color-green-button: #6CC8A6;
+$color-red-button: #FF8188;
+$color-grey-button: #EAECF0;
+$color-orange-button: #FFB494;
 
-$color_link: hsl(240, 50%, 50%);
-$color_link_visited: hsl(240, 50%, 30%);
+// input area color
+$color-input-field: #EEF0F6;
+
+// user-level-selection screen colors
+$color-user-level-beginner: #E9FFF3;
+$color-user-level-intermediate: #FFC098;
+$color-user-level-advance: #F2746D;
+
+
+

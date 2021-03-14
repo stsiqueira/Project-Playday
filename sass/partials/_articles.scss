@@ -1,0 +1,15 @@
+
+.article-section-wrapper{
+    h1{
+        text-align: center;
+    }
+}
+
+.single-article-section{
+
+    @include pageMargin;
+
+    img{
+        @include roundImage;
+    }
+}

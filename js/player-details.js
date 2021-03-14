@@ -1,40 +1,54 @@
 var db = firebase.firestore();
-const about = document.getElementById('about');
+const about = document.getElementById('playerAbout');
+const pass = document.getElementById('playerPassword');
+const passUpdate = document.getElementById('updatePassword');
 const update = document.getElementById('update');
 const image = document.getElementById('player-image');
 
-firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-        db.collection("user").where("userID", "==", "7KhZCViEtaVUMFJfGap23nJJtL73")
-        .get()
-        .then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                image.src = doc.get("profilePic");
-                var arr = doc.get("sports.badminton.challengeCourts");
-            });
-        })
-        .catch((error) => {
-            console.log("Error getting documents: ", error);
-        });
-    } else {
-        window.location = "../index.html";
-    }
-});
+const updateDetails = (collection, user, key, value) => {
+    var dbRef = db.collection(collection).doc(user.uid);
+    return dbRef.update({
+        [key]: value
+    })
+    .then(() => {
+        console.log("Document successfully updated!");
+    })
+    .catch((error) => {
+        console.error("Error updating document: ", error);
+    });
+}
 
 
-const updateData = () => {
+const getUserDetails = (collection, key) => {
     description = about.value;
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-            var document = db.collection("user").doc("7KhZCViEtaVUMFJfGap23nJJtL73")
-            document.set({
-                about: "heil"
-        },{ merge: true });
+            updateDetails(collection, user, key, description);
         } else {
           // No user is signed in.
         }
-      });
+    });
 }
 
-update.addEventListener('click', updateData);
+update.addEventListener('click', function() {
+    getUserDetails('user', 'about');
+});
+
+const updatePassword = () => {
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            user.updatePassword(pass.value).then(function() {
+                console.log("password updated successful");
+            }).catch(function(error) {
+            // An error happened.
+            });
+        } else {
+          // No user is signed in.
+        }
+    });
+}
+
+passUpdate.addEventListener('click', function() {
+    updatePassword();
+});
 

@@ -16,7 +16,7 @@ const signInWithEmailFunction = () => {
 		.then((userCredential) => {
             // Signed in 
 			var user = userCredential.user;
-	        window.location.assign('html/loggedin.html');
+	        window.location.assign('loggedin.html');
 		})
 		.catch(error => {
             if(error.code == "auth/wrong-password") {
@@ -34,7 +34,7 @@ const signInWithEmailFunction = () => {
 signInWithMail.addEventListener('click', signInWithEmailFunction);
 
 signUp.addEventListener('click', () => {
-	window.location.assign('html/sign-up.html');
+	window.location.assign('sign-up.html');
 });
 
 
