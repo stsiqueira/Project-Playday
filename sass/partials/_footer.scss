@@ -5,7 +5,11 @@ footer{
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
-
+    position: -webkit-sticky;
+    margin-top: 50px;
+    position: sticky;
+    bottom: 0;
+  
     ul.bottom-nav-bar{
         list-style: none;
         display: flex;
@@ -23,6 +27,13 @@ footer{
             color: $color_footer_nav_link;
             font-size: 1.2rem;
             transition: .5s;
+
+            i{
+                font-size: 2rem;
+            }
+            .button-text{
+                font-size: 1rem;
+            }
         }
 
         a:hover{

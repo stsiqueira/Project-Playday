@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
 /*
 
 
@@ -7,6 +8,7 @@
     Footer
     Media
     Accessibility
+
 
 
 */
@@ -370,6 +372,10 @@ footer {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  position: -webkit-sticky;
+  margin-top: 50px;
+  position: sticky;
+  bottom: 0;
 }
 
 footer ul.bottom-nav-bar {
@@ -399,6 +405,14 @@ footer a {
   font-size: 1.2rem;
   -webkit-transition: .5s;
   transition: .5s;
+}
+
+footer a i {
+  font-size: 2rem;
+}
+
+footer a .button-text {
+  font-size: 1rem;
 }
 
 footer a:hover {
