@@ -1,5 +1,5 @@
 
-//articels section 
+//articles section 
 @mixin roundImage() {
     border-radius: 15px;
 }
@@ -13,6 +13,63 @@
 
 }
 
+//margins 
+
 @mixin pageMargin() {
     margin: 0 2%;
 }
+
+
+//font weights 
+
+@mixin fontWeight($weight) {
+    $weights: (
+      extra-light: 200,
+      light: 300,
+      regular: 400,
+      medium: 500,
+      semi-bold: 600,
+      bold: 700,
+    );
+
+    $output: $weight;
+    @if map-has-key($weights, $weight) {
+      $output: map-get($weights, $weight);
+    }
+    
+    font-weight: $output;
+}
+
+// grid 
+
+@mixin autoGrid($minWidth){
+    display: grid;
+    grid-gap: 1rem;
+    padding: 1rem;
+    // grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax($minWidth, 1fr) );
+    // grid-auto-flow: dense;
+}
+
+@mixin basicButtonStyle($bgColor, $fontColor){
+    height: 50px;
+    width: auto;
+    border: none;
+    font-size: $font_size_buttons;
+    font-family: $font_sans;
+    border-radius: 25px;
+    @include fontWeight(medium);
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    background-color: $bgColor;
+    color: $fontColor;
+    box-shadow: 4px 4px 8px rgb(128 128 128 / 21%);
+    display: block;
+    
+
+
+}
+
+
+
