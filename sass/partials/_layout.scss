@@ -1,0 +1,10 @@
+.player-invite-page{
+    background-color: $color-main-bg;
+}
+
+body{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-between;
+    height: 100vh;
+}
