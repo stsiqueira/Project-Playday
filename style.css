@@ -470,6 +470,11 @@ img {
   font-size: 36px;
 }
 
+.article-section-wrapper .all-articles-wrapper {
+  max-width: 1300px;
+  margin: auto;
+}
+
 .single-article-section {
   font-family: poppins, helvetica, arial, sans-serif;
   display: -webkit-box;
@@ -640,19 +645,5 @@ a {
 /* Layout ================================================= */
 .player-invite-page {
   background-color: #F0F0F3;
-}
-
-body {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: column wrap;
-          flex-flow: column wrap;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  height: 100vh;
 }
 /*# sourceMappingURL=style.css.map */

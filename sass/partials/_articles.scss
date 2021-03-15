@@ -6,6 +6,11 @@
         @include fontWeight(bold);
         font-size: $font_size_h1;
     }
+    .all-articles-wrapper{
+        max-width: 1300px;
+        margin: auto;
+    }
+    
 
 }
 
@@ -68,4 +73,8 @@
     height: 250px;
 }
 }
+
+
+
+
 
