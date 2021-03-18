@@ -3,15 +3,21 @@ $(document).ready(function () {
 
   let appUserobject = get_appUser();
 
-  // let previousPage = document.URL;
-  // previousPage = (previousPage.substring(previousPage.lastIndexOf("/") + 1, previousPage.length)); //it should be set in cookies);
-  // previousPage = "login.html";
+  let storedDBpositions = false;
 
   let showSkip = false;
   let isSkip = urlParam("isSkip");
 
+   // let hiddenCoordinates = { lat: 49.26357, lon: -123.13857 }; //Vancouver Coordinates
+   let hiddenCoordinates = { lat: 0, lon: 0 };
+
   if (isSkip == 1 && appUserobject.userLocation.latitude == "0" && appUserobject.userLocation.longitude == "0") {
     showSkip = true;
+  }
+  else if (appUserobject.userLocation.latitude != "0" && appUserobject.userLocation.longitude != "0") {
+    storedDBpositions = true;
+    hiddenCoordinates.lat = appUserobject.userLocation.latitude;
+    hiddenCoordinates.lon = appUserobject.userLocation.longitude;
   }
 
   let reset = () => {
@@ -20,10 +26,18 @@ $(document).ready(function () {
     $("#map,#autoSearchBox").html("");
   }
 
+  let showButtons = () => {
+    $('#auto').hide();
+    $('#manual').show();
+    if (showSkip) { $('#skip').show(); }
+
+    $('#continue').show();
+  }
+
+
   reset();
 
-  // let hiddenCoordinates = { lat: 49.26357, lon: -123.13857 }; //Vancouver Coordinates
-  let hiddenCoordinates = { lat: 0, lon: 0 };
+ 
 
   $('#manual').click(function () {
     reset();
@@ -44,10 +58,15 @@ $(document).ready(function () {
   });
 
   $('#continue').click(function () {
-    updateUserLocation();    
+    updateUserLocation();
   });
 
-  getCurrentLocation();
+  if (storedDBpositions) {
+    showMap(hiddenCoordinates.lat, hiddenCoordinates.lon, "map", "Your Selected Location");
+    showButtons();
+  } else {
+    getCurrentLocation();    
+  }
 
   function getCurrentLocation() {
     if (navigator.geolocation) {
@@ -58,18 +77,15 @@ $(document).ready(function () {
     } else {
       manualSelect("Not Supported");
     }
-
+    showButtons();
   }
 
+ 
   function showPosition(position) {
-    $('#auto').hide();
-    $('#manual').show();
-    if (showSkip) { $('#skip').show(); }
-
-    $('#continue').show();
 
     hiddenCoordinates.lat = position.coords.latitude;
     hiddenCoordinates.lon = position.coords.longitude;
+
     // latitude = 49.2176865;    // longitude = -123.09937450000001;
 
     showMap(hiddenCoordinates.lat, hiddenCoordinates.lon, "map", "Your Selected Location");
@@ -95,7 +111,7 @@ $(document).ready(function () {
       searchBoxShow();
     }
   }
- 
+
   const updateUserLocation = () => {
     let db = firebase.firestore();
     firebase.auth().onAuthStateChanged(function (user) {
@@ -104,8 +120,8 @@ $(document).ready(function () {
         document.set({
           userLocation: new firebase.firestore.GeoPoint(hiddenCoordinates.lat, hiddenCoordinates.lon)
         }, { merge: true }).then(() => {
-          set_appUser();
-          // window.location.href = "../html/home.html"
+          set_appUser("../html/home.html");
+          
         });
         //update local storage variable too LATER
       } else {
@@ -114,7 +130,7 @@ $(document).ready(function () {
         localStorage.removeItem("appUser");
       }
     });
-    
+
   }
 
   function searchBoxShow() {
@@ -124,12 +140,12 @@ $(document).ready(function () {
 
     var options = {
       searchOptions: {
-        key: "lDNGOihuwicB9jy3du63gNr5gUGwCAZC",
+        key: tomtomApiKey,
         language: "en-GB",
         limit: 5,
       },
       autocompleteOptions: {
-        key: "lDNGOihuwicB9jy3du63gNr5gUGwCAZC",
+        key: tomtomApiKey,
         language: "en-GB",
       },
     };
@@ -283,14 +299,13 @@ $(document).ready(function () {
       searchMarkersManager.clear();
     }
 
-    if(hiddenCoordinates.lon == 0 && hiddenCoordinates.lat == 0)
-    {
-      hiddenCoordinates.lon= -123.13857;
-      hiddenCoordinates.lat= 49.26357; 
+    if (hiddenCoordinates.lon == 0 && hiddenCoordinates.lat == 0) {
+      hiddenCoordinates.lon = -123.13857;
+      hiddenCoordinates.lat = 49.26357;
     }
 
     var map = tt.map({
-      key: "lDNGOihuwicB9jy3du63gNr5gUGwCAZC",
+      key: tomtomApiKey,
       container: "map",
       center: [hiddenCoordinates.lon, hiddenCoordinates.lat],
       zoom: 12,

@@ -4,7 +4,7 @@ const showMap = (latitude, longitude, htmlElementId, markerHead) =>{
 
     tt.setProductInfo("PlayDay", "Display Location");
     var map = tt.map({
-        key: "lDNGOihuwicB9jy3du63gNr5gUGwCAZC",
+        key: tomtomApiKey,
         container: htmlElementId,
         center: myCoordinates,
         zoom: 12,
@@ -23,7 +23,7 @@ const showMap = (latitude, longitude, htmlElementId, markerHead) =>{
 
     let addressString = "";      
 
-    $.getJSON(`https://api.tomtom.com/search/2/reverseGeocode/${latitude},${longitude}.json?key=lDNGOihuwicB9jy3du63gNr5gUGwCAZC`, function (json) {
+    $.getJSON(`https://api.tomtom.com/search/2/reverseGeocode/${latitude},${longitude}.json?key=${tomtomApiKey}`, function (json) {
         addressString = json.addresses[0].address.freeformAddress;
 
         var popup = new tt.Popup({ offset: popupOffsets }).setHTML(

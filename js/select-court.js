@@ -1,12 +1,12 @@
 $(document).ready(function () {
 
-    const apikey = "lDNGOihuwicB9jy3du63gNr5gUGwCAZC";
+    // const apikey = "lDNGOihuwicB9jy3du63gNr5gUGwCAZC";
     let appUserobject = get_appUser();
     // let userSelectedLocation = { lat: 49.2176865, lon: -123.09937450000001 } // to be fetched from user profile
     let userSelectedLocation = { lat: appUserobject.userLocation.latitude, lon: appUserobject.userLocation.longitude } // to be fetched from user profile
 
     let sports = urlParam("sport"); // fetched from url
-    let radius = $("#radius").val() * 1000 // fetched from dropdown
+    let radius = $("#radius").val() != undefined &&  $("#radius").val() != null && $("#radius").val() != 0 ? $("#radius").val() * 1000 : 5000; // fetched from dropdown
     let defaultImgSrc = "https://images.unsplash.com/photo-1556719779-e1413cb43bb6?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80";
 
     let noImg = () => {
@@ -25,7 +25,7 @@ $(document).ready(function () {
     let courtsRetrieved = [];
 
     const loadResult = () => {
-        $.getJSON(`https://api.tomtom.com/search/2/poiSearch/${sports}.JSON?key=${apikey}&typeahead=true&lat=${userSelectedLocation.lat}&lon=${userSelectedLocation.lon}&limit=20&radius=${radius}`, function (response) {
+        $.getJSON(`https://api.tomtom.com/search/2/poiSearch/${sports}.JSON?key=${tomtomApiKey}&typeahead=true&lat=${userSelectedLocation.lat}&lon=${userSelectedLocation.lon}&limit=20&radius=${radius}`, function (response) {
             let output = $('#api-result ul').html();
             output = "";
 
@@ -44,7 +44,7 @@ $(document).ready(function () {
 
                     if (element.hasOwnProperty("dataSources") && element.dataSources.hasOwnProperty("poiDetails")) {
                         // console.log(element.dataSources.poiDetails[0].id);
-                        imgSrc = callPoiDetails(apikey, element.dataSources.poiDetails[0].id);
+                        imgSrc = callPoiDetails(tomtomApiKey, element.dataSources.poiDetails[0].id);
                         havePOIDetails = true;
                     }
 
@@ -55,7 +55,7 @@ $(document).ready(function () {
                     // output += `<li id="entry-${count}"><a><h3 class="court-name">${element.poi.name}</h3><div class="img-wrapper"><img id="img-${count}" src="${imgSrc}" class="c-img"></div><div class="meta-data"><div class="poiIDHidden">${element.dataSources.poiDetails[0].id}</div><div class="address">${element.address.freeformAddress}</div><div class="players-playing-count">${players} active players</div></div></a></li>`
                     // else output += `<li id="entry-${count}"><a><h3 class="court-name">${element.poi.name}</h3><div class="img-wrapper"><img id="img-${count}" src="${imgSrc}" class="c-img"></div><div class="meta-data"><div class="poiIDHidden">NA</div><div class="address">${element.address.freeformAddress}</div><div class="players-playing-count">${players} active players</div></div></a></li>`
 
-                    output += `<li class="apiResultRow" id="entry-${count}"><a><h3 id="entry-court-name-${count}" class="court-name">${element.poi.name}</h3><div class="img-wrapper"><img id="entry-img-${count}" src="${imgSrc}" class="c-img"></div><div id="metadata-${count}" class="meta-data"><div class="hidden"><div class="poiIDHidden">${(havePOIDetails && imgSrc != defaultImgSrc)? element.dataSources.poiDetails[0].id :"NA"}</div><div id="entry-phone-${count}" class="hiddenPhone">${ (element.poi.hasOwnProperty("phone"))? JSON.stringify(element.poi.phone): "Not Available"}</div><div class="hiddenPosition">${JSON.stringify(element.position)}</div></div><div id="entry-address-${count}" class="address">${element.address.freeformAddress}</div><div id="entry-players-${count}" class="players-playing-count">${players} active players</div></div></a></li>`
+                    output += `<li class="apiResultRow" id="entry-${count}"><div class="img-wrapper"><img id="entry-img-${count}" src="${imgSrc}" class="c-img"></div><h3 id="entry-court-name-${count}" class="court-name">${element.poi.name}</h3> <div id="entry-players-${count}" class="players-playing-count">${players}</div> <div class="hidden" id="metadata-${count}" class="meta-data"><div><div class="poiIDHidden">${(havePOIDetails && imgSrc != defaultImgSrc)? element.dataSources.poiDetails[0].id :"NA"}</div><div id="entry-phone-${count}" class="hiddenPhone">${ (element.poi.hasOwnProperty("phone"))? JSON.stringify(element.poi.phone): "Not Available"}</div><div class="hiddenPosition">${JSON.stringify(element.position)}</div></div><div id="entry-address-${count}" class="address">${element.address.freeformAddress}</div></div></li>`
                     
                 });
             }

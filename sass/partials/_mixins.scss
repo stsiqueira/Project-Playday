@@ -16,3 +16,12 @@
 @mixin pageMargin() {
     margin: 0 2%;
 }
+
+@mixin select-options{
+    height: 50px;
+    font-family: $font_sans;
+    font-weight: medium;
+    border-radius: 25px;
+    outline: transparent;
+    
+}
