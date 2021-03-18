@@ -5,12 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/ef8606d888.js" crossorigin="anonymous"></script>
+    <!-- <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script> -->
+
     <!-- <link rel="stylesheet" href="../css/main.css"> -->
 
     <!-- Firebase CDN  -->
     <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-storage.js"></script>
+
 
     <!-- User javascript Files -->
     <script src="../js/project-credentials.js" defer></script>
@@ -25,7 +29,9 @@
     <main class="page user-account-page">
         <div class="wrapper user-account-wrapper">
             <div class="image-about-wrapper">
-                <div class="image-wrapper"><img src="https://picsum.photos/300/300?random=1" alt="" class="user-img">
+                <div class="image-wrapper">
+                    <img src="https://picsum.photos/300/300?random=1" alt="" id="user-image" class="user-img">
+                    <input type="file" id="imgupload" accept="image/*" style="display:none"/> 
                 </div>
                 <div class="user-bio">
                     <h2 class="user-name">Glen</h2>
@@ -55,7 +61,7 @@
                     <form action="/" class="change-password-form">
                         <input type="text" value="New Password" class="new-password">
                         <input type="text" value="Confirm Password" class="confirm-password">
-                        <input type="button" value="save-password" class="save-changes">
+                        <input type="button" value="save-password" class="green-button">
                     </form>
                 </div>
             </div>

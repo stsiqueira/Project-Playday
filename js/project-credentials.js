@@ -2,6 +2,7 @@ var firebaseConfig = {
     apiKey: "AIzaSyCVfkLdpaLZUwFN8eMVMSptFoZfOpp1pZ8",
     authDomain: "playday-f43e6.firebaseapp.com",
     databaseURL: "https://playday-f43e6-default-rtdb.firebaseio.com",
+    storageBucket: "https://console.firebase.google.com/project/playday-f43e6/storage/playday-f43e6.appspot.com/files",
     projectId: "playday-f43e6",
     storageBucket: "playday-f43e6.appspot.com",
     messagingSenderId: "732773100147",
