@@ -1,0 +1,91 @@
+.select-court {
+  max-width: 600px;
+  margin: auto;
+  background: #e5e5e5;
+  font-family: $font_sans;
+
+  .body-wrapper {
+    padding: 0 1rem;
+    margin-top: 2rem; //to be removed
+  }
+
+  .filters {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+  }
+
+  /* IMPORTANT */
+  .mapboxgl-map {
+    overflow: visible !important;
+  }
+  .mapboxgl-canvas {
+    width: 100% !important;
+  }
+
+  .map-wrapper {
+    height: 250px;
+    overflow: hidden;
+    box-sizing: border-box;
+    border: 1px solid black;
+  }
+
+  /* IMPORTANT */
+
+  .sortby,
+  .radius {
+    @include select-options;
+    max-width: 150px;
+  }
+
+  //   CARD
+  #api-result ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  #api-result li {
+    margin-top: 1.5rem;
+    border-radius: 50px;
+
+    display: grid;
+    grid-template-columns: 3fr 1fr
+  }
+  .img-wrapper {
+    grid-column: 1/-1;
+    max-height: 200px;
+    overflow: hidden;
+  }
+  .img-wrapper img {
+    display: block;
+    border-radius: 10px 10px 0 0;
+  }
+  .court-name,
+  .players-playing-count {
+    margin: 0;
+    padding: 1rem 0.5rem 1rem 0.5rem;
+    background: black;
+    color: white;
+    width: calc(100% - 1rem);
+  }
+  .court-name {
+    border-radius: 0 0 0 10px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font-weight: normal;
+  }
+  .players-playing-count {
+    text-align: right;
+    border-radius: 0 0 10px 0;
+  }
+  .hidden {
+    display: none;
+  }
+  .meta-data {
+    margin-top: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

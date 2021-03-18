@@ -19,6 +19,14 @@
     margin: 0 2%;
 }
 
+@mixin select-options{
+    height: 50px;
+    font-family: $font_sans;
+    font-weight: medium;
+    border-radius: 25px;
+    outline: transparent;
+    
+}
 @mixin inputStyle($width:25%, $color: #EEF0F6) {
     overflow: visible;
     width: $width;

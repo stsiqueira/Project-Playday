@@ -1,4 +1,7 @@
 let appUserLocal;
+// const tomtomApiKey = "lDNGOihuwicB9jy3du63gNr5gUGwCAZC";
+let tomtomApiKey = "ctMg0rMDauN3jPf1SOHXHVJNpJnhmGaS";
+// tomtomApiKey = "XOeleMUFVN4TaGSAJwKm8y7IBfy7YeQA";
 
 const redirectBasedOnLogin = (googleLogin) => {
     if (!googleLogin) {
@@ -98,7 +101,7 @@ const urlParam = function (name) {
     }
 }
 
-const updateLevel = (sport = "Unknown", level) => {
+const updateLevel = (sport = "Unknown", level, redirect = "") => {
     let db = firebase.firestore();
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
@@ -108,7 +111,8 @@ const updateLevel = (sport = "Unknown", level) => {
             myUpdate[`sports.${sport}.userLevel`] = level;
             document.update(myUpdate);
 
-            set_appUser();
+            if(redirect != ""){set_appUser(redirect)}
+            else set_appUser();
             //update local storage variable too LATER
         } else {
             // No user is signed in.
@@ -138,7 +142,7 @@ const get_appUser = () => {
     return appUserLocal;
 }
 
-const set_appUser = () => {
+const set_appUser = (redirect="") => {
     
     let user = firebase.auth().currentUser;
         if (user) {
@@ -154,7 +158,12 @@ const set_appUser = () => {
                         appUserLocal = au;
                         localStorage.setItem("appUser", JSON.stringify(au));
                     });
-                }).then(() => {console.log('appUserLocal set!')})
+                }).then(() => {
+                    console.log('appUserLocal set!')
+                    if(redirect !=""){
+                        window.location.href =  redirect;
+                    }
+                })
                 .catch((error) => {
                     console.log("Error getting documents: ", error);
                 });
