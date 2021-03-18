@@ -12,6 +12,9 @@
     Accessibility
     Mixins
     Articles
+    Buttons
+    Layout
+    
 
 
 
@@ -48,7 +51,22 @@
 @import "partials/articles";
 
 /* Select Court Specification */
-@import "partials/select-courts"
+@import "partials/select-courts";
+
+/* Content ================================================= */
+@import "partials/content";
+
+/* Content ================================================= */
+@import "partials/buttons";
+
+/* Buttons ================================================= */
+@import "partials/buttons";
+
+/* Layout ================================================= */
+@import "partials/layout";
+
+
+
 
 
 

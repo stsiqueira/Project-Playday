@@ -4,8 +4,23 @@ const pass = document.getElementById('playerPassword');
 const passUpdate = document.getElementById('updatePassword');
 const update = document.getElementById('update');
 const image = document.getElementById('player-image');
+const changePassword = document.getElementsByClassName("change-password");
 
-const updateDetails = (collection, user, key, value) => {
+window.FontAwesomeConfig = {
+    searchPseudoElements: true
+  }
+
+changePassword[0].addEventListener('click', function (event) {
+    changePassword[0].classList.toggle("active");
+    var panel = changePassword[0].nextElementSibling;
+    if (panel.style.maxHeight) {
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    }
+});
+
+const updateDbDetails = (collection, user, key, value) => {
     var dbRef = db.collection(collection).doc(user.uid);
     return dbRef.update({
         [key]: value
@@ -19,7 +34,7 @@ const updateDetails = (collection, user, key, value) => {
 }
 
 
-const getUserDetails = (collection, key) => {
+const getDbUserDetails = (collection, key) => {
     description = about.value;
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
@@ -31,7 +46,7 @@ const getUserDetails = (collection, key) => {
 }
 
 update.addEventListener('click', function() {
-    getUserDetails('user', 'about');
+    getDbUserDetails('user', 'about');
 });
 
 const updatePassword = () => {
