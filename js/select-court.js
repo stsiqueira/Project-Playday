@@ -1,17 +1,10 @@
 $(document).ready(function () {
 
     const apikey = "lDNGOihuwicB9jy3du63gNr5gUGwCAZC";
-    let userSelectedLocation = { lat: 49.2176865, lon: -123.09937450000001 } // to be fetched from user profile
+    let appUserobject = get_appUser();
+    // let userSelectedLocation = { lat: 49.2176865, lon: -123.09937450000001 } // to be fetched from user profile
+    let userSelectedLocation = { lat: appUserobject.userLocation.latitude, lon: appUserobject.userLocation.longitude } // to be fetched from user profile
 
-    const urlParam = function (name) {
-        var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-        if (results == null) {
-            return null;
-        }
-        else {
-            return results[1] || 0;
-        }
-    }
     let sports = urlParam("sport"); // fetched from url
     let radius = $("#radius").val() * 1000 // fetched from dropdown
     let defaultImgSrc = "https://images.unsplash.com/photo-1556719779-e1413cb43bb6?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80";
@@ -110,7 +103,6 @@ $(document).ready(function () {
     $(document.body).on('click', '.apiResultRow' ,function(){
 
         let selectedRow = $(this).attr('id').substr($(this).attr('id').indexOf("-")+1);
-        console.log(selectedRow);
 
         $("#selected-name").html($(`#entry-court-name-${selectedRow}`).html());
         $("#selected-address").html($(`#entry-address-${selectedRow}`).html());

@@ -1,12 +1,12 @@
 
 footer{
-    height: 115px;
+    height: 90px;
     background-color: whitesmoke;
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
     position: -webkit-sticky;
-    margin-top: 50px;
+    margin-top: 40px;
     position: sticky;
     bottom: 0;
   
@@ -30,9 +30,11 @@ footer{
 
             i{
                 font-size: 2rem;
+                padding-bottom: 10px;
             }
             .button-text{
-                font-size: 1rem;
+                font-size: .9rem;
+                font-family: $font_sans;
             }
         }
 
@@ -49,3 +51,8 @@ footer{
     justify-content: center;
     align-items: center;
 }
+
+
+
+
+    
