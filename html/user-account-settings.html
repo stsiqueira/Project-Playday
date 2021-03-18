@@ -1,128 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
-    
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/ef8606d888.js" crossorigin="anonymous"></script> 
-    <link rel="stylesheet" href="../css/main.css">
+    <script src="https://kit.fontawesome.com/ef8606d888.js" crossorigin="anonymous"></script>
+    <!-- <link rel="stylesheet" href="../css/main.css"> -->
 
-	<!-- Firebase CDN  -->
+    <!-- Firebase CDN  -->
     <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-app.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-auth.js"></script>
 
-	<!-- User javascript Files -->
-	<script src="../js/project-credentials.js" defer></script>
+    <!-- User javascript Files -->
+    <script src="../js/project-credentials.js" defer></script>
     <script src="../js/common.js" defer></script>
     <script src="../js/player-details.js" defer></script>
+
+    <link rel="stylesheet" href="../style.css">
     <title>Account Settings</title>
 </head>
 
 <body class="page user-account-settings-page">
-    <header>
-        <div class="back">
-            <button class="back-button">
-                <a href="#">
-                    <i class="fas fa-chevron-left"><span class="visually-hidden">Back button</span></i>
-                </a>
-            </button>
+    <main class="page user-account-page">
+        <div class="wrapper user-account-wrapper">
+            <div class="image-about-wrapper">
+                <div class="image-wrapper"><img src="https://picsum.photos/300/300?random=1" alt="" class="user-img">
+                </div>
+                <div class="user-bio">
+                    <h2 class="user-name">Glen</h2>
+                    <p class="about-player">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit labore
+                        exercitationem voluptate doloribus accusantium architecto libero nulla nemo numquam in!</p>
+                </div>
+            </div>
+            <form action="/" class="user-location-level-wrapper">
+                <div class="location-info">
+                    <label for="">Location</label>
+                    <input type="text" class="location-input">
+                </div>
+                <div class="sport-info">
+                    <label for="">Change Sport</label>
+                    <input type="text" class="location-input">
+                </div>
+                <div class="user-level-info">
+                    <label for="">User Level</label>
+                    <input type="text" class="location-input">
+                </div>
+                <input type="button" value="Apply" class="save-changes">
+            </form>
+
+            <div class="change-password-wrapper">
+                <div class="change-password">
+                    <h2 class="change-text-heading">Change Password</h2>
+                    <form action="/" class="change-password-form">
+                        <input type="text" value="New Password" class="new-password">
+                        <input type="text" value="Confirm Password" class="confirm-password">
+                        <input type="button" value="save-password" class="save-changes">
+                    </form>
+                </div>
+            </div>
+            <section class="saved-courts">
+                <h2 class="saved-courts-heading">Saved Courts</h2>
+                <div class="courts courts-1">
+                    <div class="court-details">
+                        <div class="court-location">Lorem ipsum dolor sit.</div>
+                        <div class="sports-court">
+                            Lorem, ipsum.
+                        </div>
+                    </div>
+                    <div class="delete-court-wrapper">
+                        <button class="delete-button">Delete</button>
+                    </div>
+                </div>
+            </section>
         </div>
 
-    </header>
-    <main>
-        <div class="profile basicInfo">
-            <div class="profileImg">
-                <img src="../img/default1.jpg" alt="Player image">
-            </div>
-            <div class="primaryInfo">
-                <label for="playerAbout">
-                    About:
-                    <input type="text" class="playerInfo" id="playerAbout">
-                </label>
-                <label for="playerFirstName">
-                    First Name:
-                    
-                    <input type="text" class="playerInfo" id="playerFirstName" disabled>
-                </label>
-                <label for="playerLastName">
-                    Last Name:
-                    <input type="text" class="playerInfo" id="playerLastName" disabled>
-                </label>
-                <label for="playerNickname">
-                    Nickname:
-                    <input type="text" class="playerInfo" id="playerNickname" disabled>
-                </label>
-                <button type="submit" id="update">update</button>
-            </div>
-            <div class="secondaryInfo">
-                <!-- <label for="playerAge">
-                    Age:
-                    <input type="text" class="playerInfo" id="playerAge">
-                </label>
-                <label for="playerGender">
-                    Gender:
-                    <input type="text" class="playerInfo" id="playerGender">
-                </label> -->
-                <label for="playerLevel">
-                    Level:
-                    <input type="text" class="playerInfo" id="playerLevel">
-                    <img src="../img/blockimage.svg" alt="player medal level">
-                </label>
-            </div>
         </div>
-        <div class="player-password">
-            <label for="player-password">
-                Password:
-                <input type="text" class="playerInfo" id="playerPassword">
-            </label>
-        </div>
-        <button type="submit" id="updatePassword">update</button>
-        <div class="profile locationInfo">
-            <label for="playerLocation">
-                Location:
-                <input type="text" id="playerLocation" disabled>
-                <a href="location-settings.html">
-                <button id="changeLocation">Change</button>
-                </a>
-            </label>
-        </div>
-        <!-- <div class="profile favoriteCourt">
-            <label for="playerCourt">
-                Favorite Court:
-                <input type="text" id="playerLocation" disabled>
-                <img src="../img/blockimage.svg" alt="Court Name">
-            </label>
-        </div> -->
     </main>
 
-        <footer class="iconsBar">
-            <div class="icon">
-                <a href="#">
-                    <i class="fas fa-home"></i>
-                    <span class="visually-hidden">Home button</span>
-                </a>
-            </div>
-            <div class="icon">
-                <a href="#">
-                    <i class="far fa-user-circle"></i>
-                    <span class="visually-hidden">Profile</span>
-                </a>
-            
-            </div>
-            <div class="icon">
-                <a href="#">
-                    <i class="far fa-bell"></i>
-                    <span class="visually-hidden">Notification</span>
-                </a>
-            </div>
-            <div class="icon">
-                <a href="#">
-                    <i class="fas fa-cog"></i>
-                    <span class="visually-hidden">Settings</span>
-                </a>
-            </div>
-        </footer>
+    <!-- <footer class="iconsBar">
+        <div class="icon">
+            <a href="#">
+                <i class="fas fa-home"></i>
+                <span class="visually-hidden">Home button</span>
+            </a>
+        </div>
+        <div class="icon">
+            <a href="#">
+                <i class="far fa-user-circle"></i>
+                <span class="visually-hidden">Profile</span>
+            </a>
+
+        </div>
+        <div class="icon">
+            <a href="#">
+                <i class="far fa-bell"></i>
+                <span class="visually-hidden">Notification</span>
+            </a>
+        </div>
+        <div class="icon">
+            <a href="#">
+                <i class="fas fa-cog"></i>
+                <span class="visually-hidden">Settings</span>
+            </a>
+        </div>
+    </footer> -->
 
 </body>
+
 </html>

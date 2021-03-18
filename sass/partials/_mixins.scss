@@ -15,3 +15,19 @@
 @mixin pageMargin() {
     margin: 0 2%;
 }
+
+@mixin inputStyle($width:25%, $color: #EEF0F6) {
+    overflow: visible;
+    width: $width;
+    border: none;
+    padding: .2rem;
+    background: $color;
+    border-radius: 20px;
+    font-size: .8rem;
+    box-sizing: border-box;
+}
+
+@mixin boxShadow() {
+    -webkit-box-shadow: 4px 3px 10px -3px grey;
+    box-shadow: 4px 3px 10px -3px grey;
+}
