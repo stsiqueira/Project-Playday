@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PlayDay - List Courts</title>
-    <link rel="stylesheet" href="../css/normalize.css" />
     <link
       rel="stylesheet"
       type="text/css"
@@ -19,6 +18,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.5.0/maps/maps-web.min.js"></script>
+    
+    <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-auth.js"></script>
+    <script src="../js/project-credentials.js" defer></script>
+
     <script
       type="text/javascript"
       src="../js/shared-location-functions.js" defer
@@ -51,21 +56,22 @@
         <div id="api-result">
           <ul></ul>
         </div>
+
         <div class="court-selection-container">
+          <div id="court-id" style="display: none;"></div>
           <div class="selected-hero">
-            <div id="map" class="map"></div>
             <div class="selected-gallery">
-              <!-- <img id="selected-img" src="" alt="selected image"> -->
+              <img id="selected-img" src="" alt="selected image">
             </div>            
             <div class="selected-players-playing">
-              People play at this court: <span id="s-p-playing"></span>
+              <span>People play at this court: </span><span id="s-p-playing"></span>
             </div>
           </div>
-          <div id="selected-name" class="selectedname"></div>
+          <div id="selected-name" class="selected-name"></div>
           <div class="select-court-meta">            
-            <div id="selected-address" class="address"></div>
-            <div id="selected-distance" class="distance"></div>
-            <div id="selected-phone" class="phone"></div>
+            <div id="selected-address" class="selected-address"></div>
+            <div id="selected-distance" class="selected-distance"></div>
+            <div id="selected-phone" class="selected-phone"></div>
           </div>
           <div class="user-options">
             <div id="save-court" class="save-container">Save Court</div>
@@ -75,10 +81,10 @@
 
           </div>
           <div class="players-list-container">
-            <h3>Players enrolled at this court</h3>
+            <h3 id="show-players-list"> See Players enrolled at this court</h3>
             <ul id="players-list">
 
-            </ul>
+            </ul> 
           </div>
         </div>
       </main>

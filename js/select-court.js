@@ -6,7 +6,7 @@ $(document).ready(function () {
     let userSelectedLocation = { lat: appUserobject.userLocation.latitude, lon: appUserobject.userLocation.longitude } // to be fetched from user profile
 
     let sports = urlParam("sport"); // fetched from url
-    let radius = $("#radius").val() != undefined &&  $("#radius").val() != null && $("#radius").val() != 0 ? $("#radius").val() * 1000 : 5000; // fetched from dropdown
+    let radius = $("#radius").val() != undefined && $("#radius").val() != null && $("#radius").val() != 0 ? $("#radius").val() * 1000 : 5000; // fetched from dropdown
     let defaultImgSrc = "https://images.unsplash.com/photo-1556719779-e1413cb43bb6?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80";
 
     let noImg = () => {
@@ -34,7 +34,7 @@ $(document).ready(function () {
                 let count = 0;
                 let players = 0;
 
-                
+
                 // cats = arr.filter((v,i,a)=>a.findIndex(t=>(t.id === v.id))===i);
 
                 courtsRetrieved.forEach(element => {
@@ -55,8 +55,34 @@ $(document).ready(function () {
                     // output += `<li id="entry-${count}"><a><h3 class="court-name">${element.poi.name}</h3><div class="img-wrapper"><img id="img-${count}" src="${imgSrc}" class="c-img"></div><div class="meta-data"><div class="poiIDHidden">${element.dataSources.poiDetails[0].id}</div><div class="address">${element.address.freeformAddress}</div><div class="players-playing-count">${players} active players</div></div></a></li>`
                     // else output += `<li id="entry-${count}"><a><h3 class="court-name">${element.poi.name}</h3><div class="img-wrapper"><img id="img-${count}" src="${imgSrc}" class="c-img"></div><div class="meta-data"><div class="poiIDHidden">NA</div><div class="address">${element.address.freeformAddress}</div><div class="players-playing-count">${players} active players</div></div></a></li>`
 
-                    output += `<li class="apiResultRow" id="entry-${count}"><div class="img-wrapper"><img id="entry-img-${count}" src="${imgSrc}" class="c-img"></div><h3 id="entry-court-name-${count}" class="court-name">${element.poi.name}</h3> <div id="entry-players-${count}" class="players-playing-count">${players}</div> <div class="hidden" id="metadata-${count}" class="meta-data"><div><div class="poiIDHidden">${(havePOIDetails && imgSrc != defaultImgSrc)? element.dataSources.poiDetails[0].id :"NA"}</div><div id="entry-phone-${count}" class="hiddenPhone">${ (element.poi.hasOwnProperty("phone"))? JSON.stringify(element.poi.phone): "Not Available"}</div><div class="hiddenPosition">${JSON.stringify(element.position)}</div></div><div id="entry-address-${count}" class="address">${element.address.freeformAddress}</div></div></li>`
-                    
+                    output += `<li class="apiResultRow" id="entry-${count}">
+
+                                    <div class="img-wrapper">
+                                        <img id="entry-img-${count}" src="${imgSrc}" class="c-img">
+                                    </div>
+                                    <h3 id="entry-court-name-${count}" class="court-name">${element.poi.name}</h3>
+                                    <div id="entry-players-${count}" class="players-playing-count">${players}</div>
+
+                                    <div class="hidden" id="metadata-${count}" class="meta-data">
+                                        <div id="entry-location-id-${count}">${element.id}</div>                                    
+                                        <div class="poiID-Hidden">
+                                            ${(havePOIDetails && imgSrc != defaultImgSrc) ? element.dataSources.poiDetails[0].id : "NA"}
+                                        </div>
+                                        <div id="entry-phone-${count}" class="hiddenPhone">
+                                            ${(element.poi.hasOwnProperty("phone")) ? JSON.stringify(element.poi.phone) : "Not Available"}
+                                        </div>
+                                        <div class="hiddenPosition">
+                                            ${JSON.stringify(element.position)}
+                                        </div>
+                                        <div class="entry-hidden-distance" id="entry-distance-${count}">
+                                            ${element.dist}  
+                                        </div>
+                                        <div id="entry-address-${count}" class="address">
+                                            ${element.address.freeformAddress}                                    
+                                        </div>
+                                    <div>
+                                </li>`
+
                 });
             }
             $("#api-result ul").html(output);
@@ -100,17 +126,60 @@ $(document).ready(function () {
         loadResult();
     });
 
-    $(document.body).on('click', '.apiResultRow' ,function(){
+    $(document.body).on('click', '.apiResultRow', function () {
 
-        let selectedRow = $(this).attr('id').substr($(this).attr('id').indexOf("-")+1);
+        let selectedRow = $(this).attr('id').substr($(this).attr('id').indexOf("-") + 1);
+
+        $("#court-id").html($(`#entry-location-id-${selectedRow}`).html());
+        $("#selected-img").attr("src", $(`#entry-img-${selectedRow}`).attr('src'));
+        $("#s-p-playing").html($(`#entry-players-${selectedRow}`).html());
 
         $("#selected-name").html($(`#entry-court-name-${selectedRow}`).html());
-        $("#selected-address").html($(`#entry-address-${selectedRow}`).html());
+        $("#selected-address").html("<span>Address: </span>" + $(`#entry-address-${selectedRow}`).html());
 
-        // $("#selected-distance").html(); To be Calculated through another API
+        $("#selected-distance").html("<span>Distance: </span>" + ($(`#entry-distance-${selectedRow}`).html() / 1000).toFixed(2) + " Km");
 
-        $("#selected-phone").html($(`#entry-phone-${selectedRow}`).html());
-    
+
+
+        if ($(`#entry-phone-${selectedRow}`).html() != "" && $(`#entry-phone-${selectedRow}`).html().trim() != "Not Available") {
+            $("#selected-phone").html("<span>Contact: </span>" + $(`#entry-phone-${selectedRow}`).html().trim());
+            $("#selected-phone").show();
+        }
+        else {
+            $("#selected-phone").hide();
+        }
+
     });
+
+    $("#save-court").click(function () {
+
+        let db = firebase.firestore();
+        let courtId = $("#court-id").html().trim();
+        let courtName = $("#selected-name").html().trim();
+
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                let document = db.collection("user").doc(get_appUser().auid);
+
+                var myUpdate = {};
+                myUpdate[`sports.${sports}.challengeCourt.${courtId}.courtName`] = courtName;
+                document.update(myUpdate);
+
+                if (redirect != "") { set_appUser() }
+                else set_appUser();
+                //update local storage variable too LATER
+            } else {
+                // No user is signed in.
+                window.location.assign('../index.html');
+                localStorage.removeItem("appUser");
+            }
+        });
+
+
+    });
+    $("#challenge-court").click(function () {
+        console.log("Y");
+    });
+
 
 });
