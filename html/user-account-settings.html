@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/ef8606d888.js" crossorigin="anonymous"></script>
-    <!-- <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script> -->
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
 
     <!-- <link rel="stylesheet" href="../css/main.css"> -->
 
@@ -41,27 +41,35 @@
             </div>
             <form action="/" class="user-location-level-wrapper">
                 <div class="location-info">
-                    <label for="">Location</label>
-                    <input type="text" class="location-input">
+                    <label for="location-input">Location</label>
+                    <input type="text" id="location-input" class="location-input">
                 </div>
                 <div class="sport-info">
-                    <label for="">Change Sport</label>
-                    <input type="text" class="location-input">
+                    <label for="change-sport">Change Sport</label>
+                    <select name="sports" class="grey-button sport-change" onchange="changeSport()" id="change-sport">
+                        <option value="Tennis">Tennis</option>
+                        <option value="Badminton">Badminton</option>
+                        <option value="Volleyball">Volleyball</option>
+                    </select>
                 </div>
                 <div class="user-level-info">
                     <label for="">User Level</label>
-                    <input type="text" class="location-input">
+                    <select name="level" class="grey-button level-info" id="user-level">
+                        <option value="Beginner">Beginner</option>
+                        <option value="Intermediate">Intermediate</option>
+                        <option value="Advanced">Advanced</option>
+                    </select>
                 </div>
-                <input type="button" value="Apply" class="save-changes">
+                <input type="submit" value="Apply" class="green-button apply">
             </form>
 
             <div class="change-password-wrapper">
                 <div class="change-password">
                     <h2 class="change-text-heading">Change Password</h2>
                     <form action="/" class="change-password-form">
-                        <input type="text" value="New Password" class="new-password">
-                        <input type="text" value="Confirm Password" class="confirm-password">
-                        <input type="button" value="save-password" class="green-button">
+                        <input type="text" id="new-password" placeholder="New Password" class="new-password">
+                        <input type="text" id="confirm-password"  placeholder="Confirm Password" class="confirm-password">
+                        <input type="button" id="pass-update" value="Change Password" class="green-button">
                     </form>
                 </div>
             </div>
@@ -79,6 +87,7 @@
                     </div>
                 </div>
             </section>
+            <button id="logout" onclick="signout()" class="logout red-button">Logout</button>
         </div>
 
         </div>

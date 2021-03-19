@@ -20,7 +20,6 @@ const updateDB = (user, flag = 0, googleLogin = 0) => {
     else {
         var displayName = user.displayName;
     }
-    var displayName = user.displayName;
     var docData = {
         about: "",
         dateOfBirth: "01/31/1800",
@@ -28,18 +27,18 @@ const updateDB = (user, flag = 0, googleLogin = 0) => {
         profilePic: null,
         sports: {
             badminton: {
-                challengeCourts: [],
-                savedCourts: [],
+                challengeCourts: {},
+                savedCourts: {},
                 userLevel: ""
             },
             tennis: {
-                challengeCourts: [],
-                savedCourts: [],
+                challengeCourts: {},
+                savedCourts: {},
                 userLevel: ""
             },
             volleyball: {
-                challengeCourts: [],
-                savedCourts: [],
+                challengeCourts: {},
+                savedCourts: {},
                 userLevel: ""
             }
         },
@@ -48,47 +47,46 @@ const updateDB = (user, flag = 0, googleLogin = 0) => {
     }
     db.collection("user").doc(user.uid).set(docData).then((docRef) => {
         redirectBasedOnLogin(googleLogin);
+        console.log("document added");
     })
-        .catch((error) => {
-            console.error("Error adding document: ", error);
-        });
+    .catch((error) => {
+        console.error("Error adding document: ", error);
+    });
 }
 
 // Check if the User Already exist in DB
 const checkIfUserExist = (user, flag = 0, googleLogin = 0) => {
-    db.collection("user").doc(user.uid)
-        .get()
-        .then((querySnapshot) => {
-            if (querySnapshot.exists) {
-                redirectBasedOnLogin(googleLogin);
-            }
-            else {
-                updateDB(user, flag, googleLogin);
-            }
-        })
-        .catch((error) => {
-            console.log("Error getting documents: ", error);
-        });
+    db.collection("user").doc(user.uid).get()
+    .then((querySnapshot) => {
+        if (querySnapshot.exists) {
+            redirectBasedOnLogin(googleLogin);
+        }
+        else {
+            updateDB(user, flag, googleLogin);
+        }
+    })
+    .catch((error) => {
+        console.log("Error getting documents: ", error);
+    });
 }
 
 // Invoking Sign Up function for Sign UP
 const googleSignOn = (flag, googlelogin) => {
-    firebase.auth()
-        .signInWithPopup(provider)
-        .then((result) => {
-            /** @type {firebase.auth.OAuthCredential} */
-            var user = result.user;
-            checkIfUserExist(user, flag, googlelogin);
-        }).catch((error) => {
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            // The email of the user's account used.
-            var email = error.email;
-            // The firebase.auth.AuthCredential type that was used.
-            var credential = error.credential;
-            alert(errorMessage);
-            // ...
-        });
+    firebase.auth().signInWithPopup(provider)
+    .then((result) => {
+        /** @type {firebase.auth.OAuthCredential} */
+        var user = result.user;
+        checkIfUserExist(user, flag, googlelogin);
+    }).catch((error) => {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // The email of the user's account used.
+        var email = error.email;
+        // The firebase.auth.AuthCredential type that was used.
+        var credential = error.credential;
+        alert(errorMessage);
+        // ...
+    });
 }
 
 const urlParam = function (name) {
@@ -160,9 +158,9 @@ const set_appUser = (redirect="") => {
                     });
                 }).then(() => {
                     console.log('appUserLocal set!')
-                    if(redirect !=""){
-                        window.location.href =  redirect;
-                    }
+                    // if(redirect !=""){
+                    //     window.location.href =  redirect;
+                    // }
                 })
                 .catch((error) => {
                     console.log("Error getting documents: ", error);

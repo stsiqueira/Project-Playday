@@ -22,13 +22,13 @@ firebase.auth().onAuthStateChanged(function (user) {
             });
     }
     else {
-        window.location = "../index.html";
+        // window.location = "../index.html";
     }
 });
 
-function signout() {
-    firebase.auth().signOut();
-    window.location = '../index.html';
+const signout = () => {
+    // firebase.auth().signOut();
+    // window.location = '../index.html';
 }
 
 

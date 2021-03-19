@@ -848,12 +848,10 @@ img {
   gap: 1rem;
 }
 
-.user-account-wrapper .user-location-level-wrapper input[type=button] {
+.user-account-wrapper .user-location-level-wrapper .apply {
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
-  padding: .2rem 1rem;
-  border-radius: 20px;
   border: none;
   -webkit-box-shadow: 4px 3px 10px -3px grey;
   box-shadow: 4px 3px 10px -3px grey;
@@ -868,6 +866,9 @@ img {
       -ms-flex-flow: row nowrap;
           flex-flow: row nowrap;
   padding: 1rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   border-radius: 8px;
   background: white;
   -webkit-box-pack: justify;
@@ -879,6 +880,24 @@ img {
 
 .user-account-wrapper .user-location-level-wrapper > div label {
   font-weight: 600;
+}
+
+.user-account-wrapper .user-location-level-wrapper > div .sport-change,
+.user-account-wrapper .user-location-level-wrapper > div .level-info {
+  min-width: unset;
+  font-size: 1rem;
+  text-align: center;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  width: 9rem;
+  appearance: none;
+  text-align-last: center;
+  -moz-text-align-last: center;
+}
+
+.user-account-wrapper .user-location-level-wrapper > div .sport-change:focus {
+  outline: none;
 }
 
 .user-account-wrapper .user-location-level-wrapper > div input {
@@ -948,13 +967,17 @@ img {
   padding: .5rem 1rem;
 }
 
+.user-account-wrapper .change-password-wrapper .change-password-form input:focus {
+  outline: none;
+}
+
 .user-account-wrapper .change-password-wrapper .change-password-form input[type=button] {
   width: unset;
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
   background: #6CC8A6;
-  padding: .6rem 1rem;
+  text-align: center;
 }
 
 .user-account-wrapper .saved-courts .saved-courts-heading {
@@ -1149,6 +1172,18 @@ button {
   min-width: 115px;
 }
 
+.logout {
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.apply {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  font-size: 1rem;
+}
+
 a {
   text-decoration: none;
 }
@@ -1320,6 +1355,18 @@ button {
   background-color: #FF8188;
   color: white;
   min-width: 115px;
+}
+
+.logout {
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.apply {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  font-size: 1rem;
 }
 
 a {
