@@ -33,31 +33,33 @@
     <script type="text/javascript" src="../js/select-court.js"></script>
   </head>
   <body class="select-court">
-    <div class="body-wrapper">
+    <div class="main-wrapper">
       <main>
-        <div class="filters">
-          <div class="sort">            
-            <select name="sortby" class="sortby" id="sortby" aria-placeholder="Sort By">
-              <option value="" disabled selected>Sort By</option>
-              <option value="players">No. of players</option>
-              <option value="distance">Closest to my location</option>
-            </select>
+        <div class="select-court-container">
+          <div class="filters">
+            <div class="sort">
+              <select name="sortby" class="sortby" id="sortby" aria-placeholder="Sort By">
+                <option value="" disabled selected>Sort By</option>
+                <option value="players">No. of players</option>
+                <option value="distance">Closest to my location</option>
+              </select>
+            </div>
+            <div class="radius-container">
+              <select name="radius" id="radius" class="radius" aria-placeholder="Distance">
+                <option value="5" disabled selected>Distance</option>
+                <option value="5">5 Km</option>
+                <option value="10">10 Km</option>
+                <option value="25">25 Km</option>
+                <option value="50">50 Km</option>
+              </select>
+            </div>
           </div>
-          <div class="radius-container">
-            <select name="radius" id="radius" class="radius" aria-placeholder="Distance">
-              <option value="5" disabled selected>Distance</option>
-              <option value="5">5 Km</option>
-              <option value="10">10 Km</option>
-              <option value="25">25 Km</option>
-              <option value="50">50 Km</option>
-            </select>
+          <div id="api-result">
+            <ul></ul>
           </div>
-        </div>
-        <div id="api-result">
-          <ul></ul>
         </div>
 
-        <div class="court-selection-container">
+        <div class="single-court-info-container" style="display: none;">
           <div id="court-id" style="display: none;"></div>
           <div class="selected-hero">
             <div class="selected-gallery">
@@ -89,6 +91,44 @@
           </div>
         </div>
       </main>
+
+      
     </div>
+    <footer>
+      <!-- Bottom Navigation Bar -->
+
+  <ul class="bottom-nav-bar footer-nav">
+
+      <li id="goBack" class="nav-elements nav-1">
+          <div class="icons-back footer-icons">
+              <i class="fas fa-chevron-circle-left"></i>
+              <div class="button-text">Back</div>
+              <span class="visually-hidden">Back button</span>
+          </div>
+      </li>
+      <li class="nav-elements nav-2">
+          <a href="home.html" class="icons-home footer-icons">
+              <i class="fas fa-home"></i>
+              <div class="button-text">Home</div>
+              <span class="visually-hidden">Home button</span>
+          </a>
+      </li>
+      <li class="nav-elements nav-3">
+          <a href="user-account-settings.html" class="icons-user-setting footer-icons">
+              <i class="far fa-user-circle"></i>
+              <div class="button-text">User setting</div>
+              <span class="visually-hidden">User setting button</span>
+          </a>
+      </li>
+      <li class="nav-elements nav-4">
+          <a href="" class="icons-chat footer-icons">
+              <i class="fas fa-comment-dots"></i>
+              <div class="button-text">Chat</div>
+              <span class="visually-hidden">Chat button</span>
+          </a>
+      </li>
+
+   </ul>
+</footer> 
   </body>
 </html>

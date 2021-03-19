@@ -149,6 +149,13 @@ $(document).ready(function () {
             $("#selected-phone").hide();
         }
 
+        $(".select-court-container").slideUp(1000);
+        setTimeout(() => {
+            $(".single-court-info-container").slideDown(1000);
+        }, 1000);
+
+
+
     });
 
     $("#save-court").click(function () {
@@ -157,8 +164,7 @@ $(document).ready(function () {
         let courtName = $("#selected-name").html().trim();
 
         if (courtId != null && courtId != undefined && courtId != ""
-            && courtName != null && courtName != undefined && courtName != "") 
-            { setCourts(sports, "savedCourts", courtId, courtName); }
+            && courtName != null && courtName != undefined && courtName != "") { setCourts(sports, "savedCourts", courtId, courtName); }
 
     });
     $("#challenge-court").click(function () {
@@ -169,6 +175,17 @@ $(document).ready(function () {
         if (courtId != null && courtId != undefined && courtId != ""
             && courtName != null && courtName != undefined && courtName != "") {
             setCourts(sports, "challengeCourts", courtId, courtName);
+        }
+    });
+
+    $("#goBack").click(function () {
+        
+        if ($(".single-court-info-container").is(":visible")) {
+            $(".single-court-info-container").slideUp(1000);
+
+            setTimeout(() => {
+                $(".select-court-container").slideDown(1000);
+            }, 1000);
         }
     });
 
