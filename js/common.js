@@ -26,19 +26,13 @@ const updateDB = (user, flag = 0, googleLogin = 0) => {
         name: displayName,
         profilePic: null,
         sports: {
-            badminton: {
-                challengeCourts: {},
-                savedCourts: {},
+            badminton: {                
                 userLevel: ""
             },
             tennis: {
-                challengeCourts: {},
-                savedCourts: {},
                 userLevel: ""
             },
             volleyball: {
-                challengeCourts: {},
-                savedCourts: {},
                 userLevel: ""
             }
         },
@@ -158,9 +152,9 @@ const set_appUser = (redirect="") => {
                     });
                 }).then(() => {
                     console.log('appUserLocal set!')
-                    // if(redirect !=""){
-                    //     window.location.href =  redirect;
-                    // }
+                    if(redirect !=""){
+                        window.location.href =  redirect;
+                    }
                 })
                 .catch((error) => {
                     console.log("Error getting documents: ", error);
@@ -169,6 +163,26 @@ const set_appUser = (redirect="") => {
         else {
             window.location = "../index.html";
         }
+}
+
+const setCourts = (sport, courtType, courtId, courtName) =>{
+
+    let db = firebase.firestore();
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                let document = db.collection("user").doc(get_appUser().auid);
+
+                var myUpdate = {};
+                myUpdate[`sports.${sport}.${courtType}.${courtId}.courtName`] = courtName;
+                document.update(myUpdate);
+
+                set_appUser();
+            } else {
+                // No user is signed in.
+                window.location.assign('../index.html');
+                localStorage.removeItem("appUser");
+            }
+        });
 }
 // const updateDB = (collection, user, key, value) => {
 //     var dbRef = db.collection(collection).doc(user.uid);

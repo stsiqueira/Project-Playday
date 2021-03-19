@@ -728,6 +728,18 @@ img {
   border-radius: 0 0 10px 0;
 }
 
+.select-court .players-list-container {
+  margin-top: 2rem;
+}
+
+.select-court .players-list-container .show-players-list, .select-court .players-list-container h3 {
+  text-align: center;
+}
+
+.select-court .players-list-container h3 {
+  margin-top: 0.5rem;
+}
+
 .select-court .hidden {
   display: none;
 }

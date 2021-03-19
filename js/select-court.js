@@ -153,32 +153,23 @@ $(document).ready(function () {
 
     $("#save-court").click(function () {
 
-        let db = firebase.firestore();
         let courtId = $("#court-id").html().trim();
         let courtName = $("#selected-name").html().trim();
 
-        firebase.auth().onAuthStateChanged(function (user) {
-            if (user) {
-                let document = db.collection("user").doc(get_appUser().auid);
-
-                var myUpdate = {};
-                myUpdate[`sports.${sports}.challengeCourt.${courtId}.courtName`] = courtName;
-                document.update(myUpdate);
-
-                if (redirect != "") { set_appUser() }
-                else set_appUser();
-                //update local storage variable too LATER
-            } else {
-                // No user is signed in.
-                window.location.assign('../index.html');
-                localStorage.removeItem("appUser");
-            }
-        });
-
+        if (courtId != null && courtId != undefined && courtId != ""
+            && courtName != null && courtName != undefined && courtName != "") 
+            { setCourts(sports, "savedCourts", courtId, courtName); }
 
     });
     $("#challenge-court").click(function () {
-        console.log("Y");
+
+        let courtId = $("#court-id").html().trim();
+        let courtName = $("#selected-name").html().trim();
+
+        if (courtId != null && courtId != undefined && courtId != ""
+            && courtName != null && courtName != undefined && courtName != "") {
+            setCourts(sports, "challengeCourts", courtId, courtName);
+        }
     });
 
 

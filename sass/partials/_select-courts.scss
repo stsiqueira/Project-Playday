@@ -140,6 +140,17 @@
     text-align: right;
     border-radius: 0 0 10px 0;
   }
+
+  .players-list-container{
+    margin-top: 2rem;
+
+    .show-players-list, h3{
+      text-align: center;
+    }
+    h3{
+      margin-top: 0.5rem;
+    }
+  }
   .hidden {
     display: none;
   }
