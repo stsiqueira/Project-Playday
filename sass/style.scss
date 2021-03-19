@@ -14,6 +14,7 @@
     Articles
     Buttons
     Layout
+    Home
     
 
 
@@ -64,6 +65,12 @@
 
 /* Layout ================================================= */
 @import "partials/layout";
+
+/* Home-page ================================================= */
+@import "partials/home-page";
+
+/* User-level ================================================= */
+@import "partials/user-level";
 
 
 

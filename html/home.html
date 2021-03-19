@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
-    <script
-      src="https://kit.fontawesome.com/ef8606d888.js"
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://kit.fontawesome.com/ef8606d888.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
@@ -16,210 +14,12 @@
 
     <script type="text/javascript" src="../js/common.js" defer ></script>
     <script type="text/javascript" src="../js/home.js" defer ></script>
+    
+    <link rel="stylesheet" href="../style.css">
 
     <title>Home</title>
 
-    <style>
-      body.home {
-        max-width: 1000px;
-        margin: auto;
-        font-family: "Poppins", sans-serif;
-        /* background-color: azure; */
-        transition: all 0.5s ease-in-out;
-      }      
-      img,
-      svg {
-        max-width: 100%;
-        height: auto;
-      }
-      a {
-        text-decoration: none;
-        color: black;
-      }
-      .hide-right{
-        transform: translateX(100%);
-      }
-      .slide-in{
-        transform: translateX(0);
-      }
-
-      .home .hero-section {
-        position: relative;
-      }
-      .home .app-branding {
-        position: absolute;
-        margin: 1rem;
-      }
-      .home .title {
-        font-weight: bold;
-      }
-      .hero-img img{
-        display: block;
-      }
-
-      /* Main */
-      .home main {
-        margin: 0.5rem 0.7rem;
-      }
-
-      .horizontal-slider {
-        overflow-x: scroll;
-        overflow-y: hidden;
-        max-width: 100%;
-        padding-bottom: 2rem;
-      }
-      .sports-cards {
-        display: flex;
-        gap: 0.5rem;
-        width: max-content;
-      }
-
-      .sport-card {
-        padding: 0.5rem 0rem;
-        border-radius: 10px;
-        min-width: 100px;
-        box-shadow: 6px 10px 22px -7px rgba(0, 0, 0, 0.58);
-      }
-
-      .sport-name {
-        text-align: center;
-        margin-top: 1.5rem;
-      }
-
-      .sport-card:nth-of-type(1) {
-        background: radial-gradient(circle, #6cc8a6 40%, #e9fff3 41%);
-      }
-      .sport-card:nth-of-type(2) {
-        background: radial-gradient(circle, #ffc098 40%, #ffeee2 41%);
-      }
-      .sport-card:nth-of-type(3) {
-        background: radial-gradient(circle, #f2746d 40%, #ffd5d2 41%);
-      }
-
-      .promotions-container h3 {
-        margin-top: 0;
-      }
-      .promotion {
-        position: relative;        
-        border-radius: 10px;        
-      }
-      .discount {
-        position: absolute;
-        margin: 1rem 0 0 0.5rem;
-      }
-      .discount-rate {
-        font-size: 1.5rem;
-        font-weight: bold;
-      }
-      .discount-image img {
-        display: block;
-        border-radius: 10px;
-        box-shadow: 6px 10px 22px -7px rgba(0, 0, 0, 0.58);
-      }
-
-      .blogs {
-        margin-top: 1.5rem;
-      }
-
-      .blogs h4 {
-        margin: 1rem;
-        font-size: large;
-        padding-bottom: 0.15rem;
-        border-bottom: 3px white solid;
-        width: fit-content;
-        color: white;
-      }
-
-      .blogs h4 a {
-        color: white;
-      }
-
-      .blogs section {
-        /* border-radius: 10px; */
-        display: flex;
-        flex-flow: row nowrap;
-        justify-content: space-between;
-        margin-top: 1.2rem;
-      }
-      .blog-sport-name {
-        margin-top: 1.5rem;
-      }
-      .left .blog-sport-name {
-        order: 2;
-      }
-      .blogs .left {
-        padding: 0 0 1rem 1rem;
-      }
-      .blogs .right {
-        padding: 0 1rem 1rem 0;
-      }
-      .graphic-outer {
-        width: 160px;
-        height: 160px;
-        border-radius: 50%;
-        position: relative;
-      }
-
-      .graphic-inner {
-        width: 140px;
-        height: 140px;
-        border-radius: 50%;
-        margin: 0;
-
-        position: absolute;
-      }
-      .blogs section:nth-of-type(1) {
-        background-image: linear-gradient(
-          180deg,
-          transparent 0%,
-          transparent 15%,
-          #ff918b 15%
-        );
-      }
-
-      .blogs section:nth-of-type(2) {
-        background-image: linear-gradient(
-          180deg,
-          transparent 0%,
-          transparent 15%,
-          #6cc8a6 15%
-        );
-      }
-
-      .blogs section:nth-of-type(3) {
-        background-image: linear-gradient(
-          180deg,
-          transparent 0%,
-          transparent 15%,
-          #ffc098 15%
-        );
-      }
-
-      .blogs section:nth-of-type(1) .graphic-outer {
-        background-color: #ffd5d2;
-      }
-      .blogs section:nth-of-type(1) .graphic-inner {
-        background-color: #fffbfb;
-        top: 5px;
-        left: 15px;
-      }
-      .blogs section:nth-of-type(2) .graphic-outer {
-        background-color: #a0dbc5;
-      }
-      .blogs section:nth-of-type(2) .graphic-inner {
-        background-color: #e9fff4;
-        top: 13px;
-        left: 15px;
-      }
-      .blogs section:nth-of-type(3) .graphic-outer {
-        background-color: #ffd8bf;
-      }
-      .blogs section:nth-of-type(3) .graphic-inner {
-        background-color: #fff3eb;
-        top: 5px;
-        left: 5px;
-      }
-    </style>
+    
   </head>
 
   <body class="page home hide-right">
@@ -256,7 +56,7 @@
       <div class="horizontal-slider">
         <div class="sports-cards">
           <div class="sport-card">
-            <a href="#" id="badminton">
+            <a href="user-level.html" id="badminton">
               <div class="badminton-svg">
                 <img src="../img/home-screen/badminton-main.png" alt="badminton-logo" />
                 <!-- <svg width="113" height="217" viewBox="0 0 113 217" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -273,7 +73,7 @@
             </a>
           </div>
           <div class="sport-card">
-            <a href="#" id="tennis">
+            <a href="user-level.html" id="tennis">
               <div class="tennis-svg">
                 <img src="../img/home-screen/tennis-main.png" alt="tennis-logo" />
                 <!-- <svg width="127" height="164" viewBox="0 0 127 164" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -289,7 +89,7 @@
             </a>
           </div>
           <div class="sport-card">
-            <a href="#" id="volleyball">
+            <a href="user-level.html" id="volleyball">
               <div class="volley-svg">
                 <img src="../img/home-screen/volleyball-main.png" alt="volleyball-logo" />
                 <!-- <svg width="77" height="167" viewBox="0 0 77 167" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -317,7 +117,7 @@
             </div>
           </div>
           <div class="discount-image">
-            <img src="https://picsum.photos/400/250?random=number" alt="" />
+            <img src="../img/home-screen/discount.png" alt="" />
           </div>
         </div>
       </div>
@@ -326,7 +126,7 @@
         <h3>Blogs and News</h3>
         <section class="left">
           <div class="blog-sport-name">
-            <h4><a href="#">Volleyball</a></h4>
+            <h4><a href="articles/volleyball-article.html">Volleyball</a></h4>
           </div>
           <div class="graphic">
             <div class="graphic-outer">
@@ -339,7 +139,7 @@
 
         <section class="right">
           <div class="blog-sport-name">
-            <h4><a href="#">Badminton</a></h4>
+            <h4><a href="articles/badminton-article.html">Badminton</a></h4>
           </div>
           <div class="graphic">
             <div class="graphic-outer">
@@ -352,7 +152,7 @@
 
         <section class="left">
           <div class="blog-sport-name">
-            <h4><a href="#">Tennis</a></h4>
+          <h4><a href="articles/tennis-article.html">Tennis</a></h4>
           </div>
           <div class="graphic">
             <div class="graphic-outer">
@@ -365,8 +165,41 @@
       </div>
     </main>
 
-    <footer>
+  <footer>
       <!-- Bottom Navigation Bar -->
-    </footer>
+
+  <ul class="bottom-nav-bar footer-nav">
+
+      <li class="nav-elements nav-1">
+          <a href="" class="icons-back footer-icons">
+              <i class="fas fa-chevron-circle-left"></i>
+              <div class="button-text">Back</div>
+              <span class="visually-hidden">Back button</span>
+          </a>
+      </li>
+      <li class="nav-elements nav-2">
+          <a href="home.html" class="icons-home footer-icons">
+              <i class="fas fa-home"></i>
+              <div class="button-text">Home</div>
+              <span class="visually-hidden">Home button</span>
+          </a>
+      </li>
+      <li class="nav-elements nav-3">
+          <a href="user-account-settings.html" class="icons-user-setting footer-icons">
+              <i class="far fa-user-circle"></i>
+              <div class="button-text">User setting</div>
+              <span class="visually-hidden">User setting button</span>
+          </a>
+      </li>
+      <li class="nav-elements nav-4">
+          <a href="" class="icons-chat footer-icons">
+              <i class="fas fa-comment-dots"></i>
+              <div class="button-text">Chat</div>
+              <span class="visually-hidden">Chat button</span>
+          </a>
+      </li>
+
+   </ul>
+</footer> 
   </body>
 </html>
