@@ -618,6 +618,80 @@ img {
   display: grid;
   -ms-grid-columns: 3fr 1fr;
       grid-template-columns: 3fr 1fr;
+  cursor: pointer;
+}
+
+.select-court .court-selection-container {
+  margin-top: 3rem;
+}
+
+.select-court .court-selection-container .selected-gallery {
+  max-height: 200px;
+  overflow: hidden;
+}
+
+.select-court .court-selection-container .selected-gallery img {
+  display: block;
+  border-radius: 10px 10px 0 0;
+}
+
+.select-court .court-selection-container .selected-players-playing {
+  margin: 0;
+  padding: 1rem 0.5rem 1rem 0.5rem;
+  background: black;
+  color: white;
+  width: calc(100% - 1rem);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border-radius: 0 0 10px 10px;
+}
+
+.select-court .court-selection-container .selected-name {
+  margin: 1rem auto;
+  text-align: center;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 0.8rem;
+  border-bottom: 1px solid #000;
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+.select-court .court-selection-container .select-court-meta {
+  margin-top: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  gap: 1rem;
+}
+
+.select-court .court-selection-container .selected-address span, .select-court .court-selection-container .selected-distance span, .select-court .court-selection-container .selected-phone span {
+  padding-right: 0.5rem;
+  font-weight: bold;
+}
+
+.select-court .court-selection-container .user-options {
+  margin-top: 1.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  color: #FF7D45;
+}
+
+.select-court .court-selection-container .save-container, .select-court .court-selection-container .challenge-container {
+  cursor: pointer;
 }
 
 .select-court .img-wrapper {
