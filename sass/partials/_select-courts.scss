@@ -4,9 +4,10 @@
   background: #e5e5e5;
   font-family: $font_sans;
 
-  .body-wrapper {
+  .main-wrapper {
     padding: 0 1rem;
     margin-top: 2rem; //to be removed
+    min-height: 100vh;
   }
 
   .filters {
@@ -53,7 +54,7 @@
     cursor: pointer;
   }
 
-  .court-selection-container {
+  .single-court-info-container {
 
     margin-top: 3rem;
     .selected-gallery {
@@ -139,6 +140,17 @@
   .players-playing-count {
     text-align: right;
     border-radius: 0 0 10px 0;
+  }
+
+  .players-list-container{
+    margin-top: 2rem;
+
+    .show-players-list, h3{
+      text-align: center;
+    }
+    h3{
+      margin-top: 0.5rem;
+    }
   }
   .hidden {
     display: none;

@@ -7,6 +7,9 @@ $(document).ready(function () {
 
   let showSkip = false;
   let isSkip = urlParam("isSkip");
+  let routeTo = urlParam("routeTo");
+
+ 
 
    // let hiddenCoordinates = { lat: 49.26357, lon: -123.13857 }; //Vancouver Coordinates
    let hiddenCoordinates = { lat: 0, lon: 0 };
@@ -58,7 +61,11 @@ $(document).ready(function () {
   });
 
   $('#continue').click(function () {
-    updateUserLocation();
+    let redirect = "";
+    if(routeTo != null){
+      redirect = `select-court.html?sport=${routeTo}`;
+    }
+    updateUserLocation(redirect);
   });
 
   if (storedDBpositions) {
@@ -112,7 +119,7 @@ $(document).ready(function () {
     }
   }
 
-  const updateUserLocation = () => {
+  const updateUserLocation = (redirect = "") => {
     let db = firebase.firestore();
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
@@ -120,6 +127,11 @@ $(document).ready(function () {
         document.set({
           userLocation: new firebase.firestore.GeoPoint(hiddenCoordinates.lat, hiddenCoordinates.lon)
         }, { merge: true }).then(() => {
+
+          if(redirect != ""){
+            set_appUser(redirect);
+          }
+          else
           set_appUser("../html/home.html");
           
         });

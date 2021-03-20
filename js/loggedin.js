@@ -12,7 +12,7 @@ firebase.auth().onAuthStateChanged(function (user) {
                     var username = doc.data().name;
 
                     let au = new AppUser(doc.data().userID, doc.data().name.substring(0, doc.data().name.indexOf(" ")), doc.data().name.substring(doc.data().name.indexOf(" ")+1, doc.data().name.length),doc.data().dateOfBirth, doc.data().profilePic, doc.data().about, doc.data().userLocation, doc.data().sports);
-                    set_appUser(au);
+                    set_appUser();
 
                     div.innerHTML = `<h2> Congrats ${username} logged in with ${user.email}</h2>`;
                 });

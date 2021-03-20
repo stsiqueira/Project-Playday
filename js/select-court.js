@@ -1,9 +1,8 @@
 $(document).ready(function () {
 
-    // const apikey = "lDNGOihuwicB9jy3du63gNr5gUGwCAZC";
     let appUserobject = get_appUser();
-    // let userSelectedLocation = { lat: 49.2176865, lon: -123.09937450000001 } // to be fetched from user profile
-    let userSelectedLocation = { lat: appUserobject.userLocation.latitude, lon: appUserobject.userLocation.longitude } // to be fetched from user profile
+
+    let userSelectedLocation = { lat: appUserobject.userLocation.latitude, lon: appUserobject.userLocation.longitude }
 
     let sports = urlParam("sport"); // fetched from url
     let radius = $("#radius").val() != undefined && $("#radius").val() != null && $("#radius").val() != 0 ? $("#radius").val() * 1000 : 5000; // fetched from dropdown
@@ -34,9 +33,6 @@ $(document).ready(function () {
                 let count = 0;
                 let players = 0;
 
-
-                // cats = arr.filter((v,i,a)=>a.findIndex(t=>(t.id === v.id))===i);
-
                 courtsRetrieved.forEach(element => {
                     count++;
                     let imgSrc = noImg();
@@ -49,7 +45,8 @@ $(document).ready(function () {
                     }
 
                     // CODE TO CHECK NUMBER OF PLAYERS PLAYING
-                    players = 999;
+
+
 
                     // if(havePOIDetails && imgSrc != defaultImgSrc)
                     // output += `<li id="entry-${count}"><a><h3 class="court-name">${element.poi.name}</h3><div class="img-wrapper"><img id="img-${count}" src="${imgSrc}" class="c-img"></div><div class="meta-data"><div class="poiIDHidden">${element.dataSources.poiDetails[0].id}</div><div class="address">${element.address.freeformAddress}</div><div class="players-playing-count">${players} active players</div></div></a></li>`
@@ -61,7 +58,7 @@ $(document).ready(function () {
                                         <img id="entry-img-${count}" src="${imgSrc}" class="c-img">
                                     </div>
                                     <h3 id="entry-court-name-${count}" class="court-name">${element.poi.name}</h3>
-                                    <div id="entry-players-${count}" class="players-playing-count">${players}</div>
+                                    <div id="entry-players-${count}" class="players-playing-count"></div>
 
                                     <div class="hidden" id="metadata-${count}" class="meta-data">
                                         <div id="entry-location-id-${count}">${element.id}</div>                                    
@@ -81,9 +78,11 @@ $(document).ready(function () {
                                             ${element.address.freeformAddress}                                    
                                         </div>
                                     <div>
-                                </li>`
+                                </li>`;
+                    getCourtPlayers(sports, element.id, `entry-players-${count}`, true);
 
                 });
+
             }
             $("#api-result ul").html(output);
         });
@@ -130,7 +129,7 @@ $(document).ready(function () {
 
         let selectedRow = $(this).attr('id').substr($(this).attr('id').indexOf("-") + 1);
 
-        $("#court-id").html($(`#entry-location-id-${selectedRow}`).html());
+        $("#selected-court-id").html($(`#entry-location-id-${selectedRow}`).html());
         $("#selected-img").attr("src", $(`#entry-img-${selectedRow}`).attr('src'));
         $("#s-p-playing").html($(`#entry-players-${selectedRow}`).html());
 
@@ -149,37 +148,108 @@ $(document).ready(function () {
             $("#selected-phone").hide();
         }
 
+        $(".select-court-container").fadeOut(1000);
+
+        setTimeout(() => {
+            $(".single-court-info-container").slideDown(1000);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 1000);
     });
 
     $("#save-court").click(function () {
 
-        let db = firebase.firestore();
-        let courtId = $("#court-id").html().trim();
+        let courtId = $("#selected-court-id").html().trim();
         let courtName = $("#selected-name").html().trim();
 
-        firebase.auth().onAuthStateChanged(function (user) {
-            if (user) {
-                let document = db.collection("user").doc(get_appUser().auid);
-
-                var myUpdate = {};
-                myUpdate[`sports.${sports}.challengeCourt.${courtId}.courtName`] = courtName;
-                document.update(myUpdate);
-
-                if (redirect != "") { set_appUser() }
-                else set_appUser();
-                //update local storage variable too LATER
-            } else {
-                // No user is signed in.
-                window.location.assign('../index.html');
-                localStorage.removeItem("appUser");
-            }
-        });
-
+        if (courtId != null && courtId != undefined && courtId != ""
+            && courtName != null && courtName != undefined && courtName != "") { setCourts(sports, "savedCourts", courtId, courtName); }
 
     });
     $("#challenge-court").click(function () {
-        console.log("Y");
+
+        let courtId = $("#selected-court-id").html().trim();
+        let courtName = $("#selected-name").html().trim();
+
+        if (courtId != null && courtId != undefined && courtId != ""
+            && courtName != null && courtName != undefined && courtName != "") {
+            setCourts(sports, "challengeCourts", courtId, courtName);
+        }
     });
 
+    $("#goBack").click(function () {
+
+        if ($(".single-court-info-container").is(":visible")) {
+
+            $(".single-court-info-container").slideUp(1000);
+
+            setTimeout(() => {
+                $(".select-court-container").fadeIn(1000);
+            }, 1000);
+            $("#players-list").html("");
+        }
+    });
+
+    $("#show-players-list").click(function () {
+
+        let sport = urlParam("sport");
+        let uniqueCourtId = $("#selected-court-id").html().trim();
+        getCourtPlayers(sport, uniqueCourtId);
+
+    });
+
+    const getCourtPlayers = (sport, uniqueCourtId, divId = "", countOnly = true) => {
+
+        let query = `sports.${sport}.challengeCourts.${uniqueCourtId}`;
+        let db = firebase.firestore();
+
+        let courtPlayers = [];
+
+        db.collection("user")
+            .get()
+            .then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+
+                    if (doc.get(query) != null) {
+                        courtPlayers.push(doc);
+                    }
+                });
+            }).then(() => {
+                if (divId != "" && countOnly) {
+                    $(`#${divId}`).html(courtPlayers.length);
+                }
+                else {
+                    $("#players-list").html("");
+                    let playerName; let playerPic; let playerLevel
+                    let playersList = "";
+
+                    for (let i of courtPlayers) {
+                        playerName = i.data().name;
+                        playerPic = i.data().profilePic;
+
+                        switch (sport) {
+                            case "badminton":
+                                playerLevel = i.data().sports.badminton.userLevel;
+                                break;
+                            case "tennis":
+                                playerLevel = i.data().sports.tennis.userLevel;
+                                break;
+                            case "volleyball":
+                                playerLevel = i.data().sports.volleyball.userLevel;
+                                break;
+                        }
+                        playersList += `<li><b>${playerName}</b>
+                                            <div>Player Level: ${playerLevel}</div>
+                                            <div>Player Pic: ${playerPic}</div>
+                                        </li>`
+                    }
+                    $("#players-list").html(playersList);
+                }
+
+            })
+            .catch((error) => {
+                console.log("Error getting documents: ", error);
+            });
+
+    };
 
 });

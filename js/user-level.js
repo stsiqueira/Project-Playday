@@ -1,4 +1,7 @@
 $(document).ready(function () {
+
+    $('body.user-level').removeClass('hide-up'); 
+    $('body.user-level').addClass('slide-in');
     
     let sport = urlParam("sport"); // fetched from url
 
