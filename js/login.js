@@ -16,7 +16,7 @@ const signInWithEmailFunction = () => {
     .then((userCredential) => {
         // Signed in 
         var user = userCredential.user;
-        window.location.assign('loggedin.html');
+        window.location.assign('home.html');
     })
     .catch(error => {
         if(error.code == "auth/wrong-password") {

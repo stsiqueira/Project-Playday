@@ -29,8 +29,8 @@ const signUpWithEmailFunction = () => {
 	firebase.auth().createUserWithEmailAndPassword(email, password)
       .then((userCredential) => {
         var user = userCredential.user;
-		checkIfUserExist(user, 1, 0);
-		// window.location.assign('log-in.html');
+      checkIfUserExist(user, 1, 0);
+      // window.location.assign('log-in.html');
       })
       .catch((error) => {
         var errorCode = error.code;

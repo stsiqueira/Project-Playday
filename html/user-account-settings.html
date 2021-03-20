@@ -39,14 +39,14 @@
                         exercitationem voluptate doloribus accusantium architecto libero nulla nemo numquam in!</p>
                 </div>
             </div>
-            <form action="/" class="user-location-level-wrapper">
+            <form action="" class="user-location-level-wrapper">
                 <div class="location-info">
                     <label for="location-input">Location</label>
-                    <input type="text" id="location-input" class="location-input">
+                    <input type="text" id="location-input" class="location-input-box grey-button">
                 </div>
                 <div class="sport-info">
                     <label for="change-sport">Change Sport</label>
-                    <select name="sports" class="grey-button sport-change" onchange="changeSport()" id="change-sport">
+                    <select name="sports" class="grey-button sport-change" onchange="updateSport()" id="change-sport">
                         <option value="Tennis">Tennis</option>
                         <option value="Badminton">Badminton</option>
                         <option value="Volleyball">Volleyball</option>
@@ -55,12 +55,13 @@
                 <div class="user-level-info">
                     <label for="">User Level</label>
                     <select name="level" class="grey-button level-info" id="user-level">
+                        <option value="NoSelect">Not Selected</option>
                         <option value="Beginner">Beginner</option>
                         <option value="Intermediate">Intermediate</option>
                         <option value="Advanced">Advanced</option>
                     </select>
                 </div>
-                <input type="submit" value="Apply" class="green-button apply">
+                <input type="button" id="apply-changes" value="Apply" class="green-button apply">
             </form>
 
             <div class="change-password-wrapper">
@@ -75,17 +76,11 @@
             </div>
             <section class="saved-courts">
                 <h2 class="saved-courts-heading">Saved Courts</h2>
-                <div class="courts courts-1">
-                    <div class="court-details">
-                        <div class="court-location">Lorem ipsum dolor sit.</div>
-                        <div class="sports-court">
-                            Lorem, ipsum.
-                        </div>
-                    </div>
-                    <div class="delete-court-wrapper">
-                        <button class="delete-button">Delete</button>
-                    </div>
-                </div>
+                
+            </section>
+            <section class="challenge-courts">
+                <h2 class="challenge-courts-heading">Challenge Courts</h2>
+                
             </section>
             <button id="logout" onclick="signout()" class="logout red-button">Logout</button>
         </div>

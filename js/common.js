@@ -8,7 +8,7 @@ const redirectBasedOnLogin = (googleLogin) => {
         window.location.assign('log-in.html');
     }
     else {
-        window.location.assign('loggedin.html');
+        window.location.assign('home.html');
     }
 }
 
@@ -170,18 +170,3 @@ const set_appUser = (redirect="") => {
             window.location = "../index.html";
         }
 }
-// const updateDB = (collection, user, key, value) => {
-//     var dbRef = db.collection(collection).doc(user.uid);
-
-//     // Set the "capital" field of the city 'DC'
-//     return dbRef.update({
-//         key: value
-//     })
-//     .then(() => {
-//         console.log("Document successfully updated!");
-//     })
-//     .catch((error) => {
-//         // The document probably doesn't exist.
-//         console.error("Error updating document: ", error);
-//     });
-// }

@@ -931,6 +931,10 @@ img {
   box-shadow: 4px 3px 10px -3px grey;
 }
 
+.user-account-wrapper .user-location-level-wrapper .location-info:hover {
+  cursor: pointer;
+}
+
 .user-account-wrapper .user-location-level-wrapper > div {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -957,7 +961,8 @@ img {
 }
 
 .user-account-wrapper .user-location-level-wrapper > div .sport-change,
-.user-account-wrapper .user-location-level-wrapper > div .level-info {
+.user-account-wrapper .user-location-level-wrapper > div .level-info,
+.user-account-wrapper .user-location-level-wrapper > div .location-input-box {
   min-width: unset;
   font-size: 1rem;
   text-align: center;
@@ -974,17 +979,8 @@ img {
   outline: none;
 }
 
-.user-account-wrapper .user-location-level-wrapper > div input {
-  overflow: visible;
-  width: 25%;
-  border: none;
-  padding: .2rem;
-  background: #EEF0F6;
-  border-radius: 20px;
-  font-size: .8rem;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  text-align: center;
+.user-account-wrapper .user-location-level-wrapper > div .location-input-box {
+  width: 7rem;
 }
 
 .user-account-wrapper .user-location-level-wrapper > div input:focus {
@@ -1054,11 +1050,28 @@ img {
   text-align: center;
 }
 
-.user-account-wrapper .saved-courts .saved-courts-heading {
-  font-weight: 500;
+.user-account-wrapper .saved-courts,
+.user-account-wrapper .challenge-courts {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  gap: 1rem;
 }
 
-.user-account-wrapper .saved-courts .courts {
+.user-account-wrapper .saved-courts .saved-courts-heading,
+.user-account-wrapper .saved-courts .challenge-courts-heading,
+.user-account-wrapper .challenge-courts .saved-courts-heading,
+.user-account-wrapper .challenge-courts .challenge-courts-heading {
+  font-weight: 500;
+  margin: 0;
+}
+
+.user-account-wrapper .saved-courts .courts,
+.user-account-wrapper .challenge-courts .courts {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1076,7 +1089,8 @@ img {
   box-shadow: 4px 3px 10px -3px grey;
 }
 
-.user-account-wrapper .saved-courts .courts .court-details {
+.user-account-wrapper .saved-courts .courts .court-details,
+.user-account-wrapper .challenge-courts .courts .court-details {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1090,11 +1104,13 @@ img {
           justify-content: space-between;
 }
 
-.user-account-wrapper .saved-courts .courts .sports-court {
+.user-account-wrapper .saved-courts .courts .sports-court,
+.user-account-wrapper .challenge-courts .courts .sports-court {
   font-size: .8rem;
 }
 
-.user-account-wrapper .saved-courts .courts .delete-court-wrapper {
+.user-account-wrapper .saved-courts .courts .delete-court-wrapper,
+.user-account-wrapper .challenge-courts .courts .delete-court-wrapper {
   -ms-grid-column-align: end;
       justify-self: end;
   -ms-flex-item-align: center;
