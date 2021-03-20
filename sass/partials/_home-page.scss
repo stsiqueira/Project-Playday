@@ -1,3 +1,10 @@
+.home.hide-right{
+  transform: translateX(100%);
+}
+.home.slide-in{
+  transform: translateX(0);
+}
+
 
 body.home {
   max-width: 1000px;
@@ -13,12 +20,7 @@ svg {
 a {
   text-decoration: none;
 //   color: black;
-}
-.hide-right{
-  transform: translateX(100%);
-}
-.slide-in{
-  transform: translateX(0);
+display: block;
 }
 
  .hero-section {
