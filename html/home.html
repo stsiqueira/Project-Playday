@@ -1,25 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
-    <script src="https://kit.fontawesome.com/ef8606d888.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script
+      src="https://kit.fontawesome.com/ef8606d888.js"
+      crossorigin="anonymous"
+    ></script>
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
       rel="stylesheet"
     />
 
-    <script type="text/javascript" src="../js/common.js" defer ></script>
-    <script type="text/javascript" src="../js/home.js" defer ></script>
-    
-    <link rel="stylesheet" href="../style.css">
+    <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-auth.js"></script>
+    <script type="text/javascript" src="../js/common.js" defer></script>
+
+    <!-- User javascript Files -->    
+
+    <script type="text/javascript" src="../js/home.js" defer></script>
+
+    <link rel="stylesheet" href="../style.css" />
 
     <title>Home</title>
-
-    
   </head>
 
   <body class="page home hide-right">
@@ -44,7 +50,7 @@
         </div>
         <div class="hero-img">
           <!-- Put hero image below -->
-          <img src='../img/home-screen/hero-img.png' alt="app-hero">
+          <img src="../img/home-screen/hero-img.png" alt="app-hero" />
         </div>
       </div>
     </header>
@@ -58,15 +64,21 @@
           <div class="sport-card">
             <div id="badminton">
               <div class="badminton-svg">
-                <img src="../img/home-screen/badminton-main.png" alt="badminton-logo" />                
+                <img
+                  src="../img/home-screen/badminton-main.png"
+                  alt="badminton-logo"
+                />
               </div>
               <div class="sport-name">Badminton</div>
             </div>
           </div>
           <div class="sport-card">
-            <div  id="tennis">
+            <div id="tennis">
               <div class="tennis-svg">
-                <img src="../img/home-screen/tennis-main.png" alt="tennis-logo" />                
+                <img
+                  src="../img/home-screen/tennis-main.png"
+                  alt="tennis-logo"
+                />
               </div>
               <div class="sport-name">Tennis</div>
             </div>
@@ -74,7 +86,10 @@
           <div class="sport-card">
             <div id="volleyball">
               <div class="volley-svg">
-                <img src="../img/home-screen/volleyball-main.png" alt="volleyball-logo" />                
+                <img
+                  src="../img/home-screen/volleyball-main.png"
+                  alt="volleyball-logo"
+                />
               </div>
               <div class="sport-name">Volleyball</div>
             </div>
@@ -128,7 +143,7 @@
 
         <section class="left">
           <div class="blog-sport-name">
-          <h4><a href="articles/tennis-article.html">Tennis</a></h4>
+            <h4><a href="articles/tennis-article.html">Tennis</a></h4>
           </div>
           <div class="graphic">
             <div class="graphic-outer">
@@ -141,41 +156,42 @@
       </div>
     </main>
 
-  <footer>
+    <footer>
       <!-- Bottom Navigation Bar -->
 
-  <ul class="bottom-nav-bar footer-nav">
-
-      <li class="nav-elements nav-1">
+      <ul class="bottom-nav-bar footer-nav">
+        <li class="nav-elements nav-1">
           <a href="" class="icons-back footer-icons">
-              <i class="fas fa-chevron-circle-left"></i>
-              <div class="button-text">Back</div>
-              <span class="visually-hidden">Back button</span>
+            <i class="fas fa-chevron-circle-left"></i>
+            <div class="button-text">Back</div>
+            <span class="visually-hidden">Back button</span>
           </a>
-      </li>
-      <li class="nav-elements nav-2">
+        </li>
+        <li class="nav-elements nav-2">
           <a href="home.html" class="icons-home footer-icons">
-              <i class="fas fa-home"></i>
-              <div class="button-text">Home</div>
-              <span class="visually-hidden">Home button</span>
+            <i class="fas fa-home"></i>
+            <div class="button-text">Home</div>
+            <span class="visually-hidden">Home button</span>
           </a>
-      </li>
-      <li class="nav-elements nav-3">
-          <a href="user-account-settings.html" class="icons-user-setting footer-icons">
-              <i class="far fa-user-circle"></i>
-              <div class="button-text">User setting</div>
-              <span class="visually-hidden">User setting button</span>
+        </li>
+        <li class="nav-elements nav-3">
+          <a
+            href="user-account-settings.html"
+            class="icons-user-setting footer-icons"
+          >
+            <i class="far fa-user-circle"></i>
+            <div class="button-text">User setting</div>
+            <span class="visually-hidden">User setting button</span>
           </a>
-      </li>
-      <li class="nav-elements nav-4">
+        </li>
+        <li class="nav-elements nav-4">
           <a href="" class="icons-chat footer-icons">
-              <i class="fas fa-comment-dots"></i>
-              <div class="button-text">Chat</div>
-              <span class="visually-hidden">Chat button</span>
+            <i class="fas fa-comment-dots"></i>
+            <div class="button-text">Chat</div>
+            <span class="visually-hidden">Chat button</span>
           </a>
-      </li>
-
-   </ul>
-</footer> 
+        </li>
+      </ul>
+    </footer>
   </body>
 </html>
