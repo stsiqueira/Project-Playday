@@ -18,7 +18,7 @@ firebase.initializeApp(firebaseConfig);
 //////////////////////////////////////////// 
 
 const db =firebase.firestore();
-
+let test="";
 let userProfile = "A";
 let userName = "Thiago"; // to be changed to user.displayName(authentication function);
 let collection = "Chat"; // to be changed to a mix of userName and friend;
@@ -26,7 +26,7 @@ let collection = "Chat"; // to be changed to a mix of userName and friend;
 
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
-const friendId = urlParams.get('court-player-id');
+const friendId = urlParams.get('courtPlayerId');
 console.log(friendId);
 
 ////////////////////////////////////////////
