@@ -18,21 +18,20 @@ firebase.initializeApp(firebaseConfig);
 //  Variables
 //////////////////////////////////////////// 
 let myName = "";
-let myId = 4;     // grab from Amans function common.js
-let chatId = "";
+let myChatId = 4;    
 
 
 const db =firebase.firestore();
 //grab variable from URL
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
-const friendId = urlParams.get('fId');
+const friendChatId = urlParams.get('userChatId');
 // console.log(friendId);
 
-if(myId < friendId){
-    chatId = "chatId" + myId + friendId;
+if(myChatId < friendChatId){
+    chatId = "chatId" + myChatId + friendId;
 }else{
-    chatId = "chatId" + friendId + myId;
+    chatId = "chatId" + friendId + myChatId;
 }
 
 
@@ -52,7 +51,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 //  Functions
 //////////////////////////////////////////// 
 // change the chat ID, img SRC
- db.collection("chat001002").onSnapshot((snapshot)=>{
+ db.collection(chatId).onSnapshot((snapshot)=>{
      snapshot.docChanges().forEach((change)=>{
          if(change.type === "added"){
                 if(change.doc.data().senderId != localStorage.getItem("username")){

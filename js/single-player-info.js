@@ -21,43 +21,45 @@ const db =firebase.firestore();
 
 let userProfile = "A";
 let userName = "Thiago"; // to be changed to user.displayName(authentication function);
-let friend = "Siqueira"; // to be changed to ??????????;
 let collection = "Chat"; // to be changed to a mix of userName and friend;
+
+
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const friendId = urlParams.get('court-player-id');
+console.log(friendId);
 
 ////////////////////////////////////////////
 //  Functions for single-player-info
 //////////////////////////////////////////// 
-const getProfile = () => {
-    db.collection("user").where("name", "==", "Amandeep").get()
-        .then((querySnapshot)=>{
-            querySnapshot.forEach((doc) => {
-                // console.log(doc.data().name);
-                userProfile = doc.data();
-                printProfile();
-            });
-        })
-        .catch((error) => {
-            console.log("Error getting documents: ", error);
-    });
-}
-async function getAsync() {
-    await getProfile();
-}
+
+db.collection("user").where("userID", "==", "1002").get()
+    .then((querySnapshot)=>{
+        querySnapshot.forEach((doc) => {
+            // console.log(doc.data().name);
+            userProfile = doc.data();
+            printProfile();
+        });
+    })
+    .catch((error) => {
+        console.log("Error getting documents: ", error);
+});
+
 const printProfile = ()=>{
     let html =`                 
             <div class="player-image header-image">
-                <img src="../img/bg-404-sinatra.jpg" alt="${userProfile.name}-image">
+                <img src="" alt="${userProfile.profilePic}-image">
             </div>
-            <h2 class="player-name">${userProfile.name} ${userProfile.lastName}</h2>
+            <h2 class="player-name">${userProfile.name}</h2>
             <div class="player-detail-wrapper">
                 <div class="player-description">
                     <p class="player-description-location"> 
                         <strong>Location:</strong> 
-                        <span>${userProfile.location}</span>
+                        <span>${userProfile.userLocation}</span>
                     </p>
                     <p class="player-description-location"> 
                         <strong>Level:</strong> 
-                        <span>${userProfile.level}</span>
+                        <span>${userProfile.sports.tennis.userLevel}</span>
                     </p>
 
                     <p class="player-description-location"> 
@@ -66,8 +68,18 @@ const printProfile = ()=>{
                     </p>
                     <p class="player-description-location"> 
                         <strong>I play at:</strong> 
-                        <span>${userProfile.playAt}</span>
+                        <span>${userProfile.sports.tennis.challengeCourts}</span>
                     </p>
+                </div>
+            </div>
+                <div class="buttons">
+                    <!-- Buttons for Chat and Challenge -->
+                    <a href="chat-window.html?userChatId=${userProfile.chatId}">
+                    <button class="player-chat-button common-button">Chat</button>
+                    </a>
+                    <a href="player-invite.html">
+                    <button class="player-challenge-button common-button">Challenge</button>
+                    </a>
                 </div>
     `;
     $(".player-detail-content-wrapper").append(html);
@@ -81,7 +93,7 @@ const printProfile = ()=>{
 ////////////////////////////////////////////
 //  Iterations
 //////////////////////////////////////////// 
-getAsync();
+
 
 
 

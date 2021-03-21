@@ -239,7 +239,7 @@ $(document).ready(function () {
                                 playerLevel = i.data().sports.volleyball.userLevel;
                                 break;
                         }
-                        playersList += `<li id="courtPlayer-${playerCount}" class="court-player"><b>${playerName}</b>
+                        playersList += `<li id="courtPlayer-${playerCount}" class="court-player"><b><a href="single-player-info.html?court-player-id=1001"> ${playerName}</a></b>
                                             <div>Player Level: ${playerLevel}</div>
                                             <div>Player Pic: ${playerPic}</div>
                                             <div id ="courtPlayerId-${playerCount}" style="display:none">${playerId}</div>
