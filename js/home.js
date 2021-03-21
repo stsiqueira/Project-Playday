@@ -4,7 +4,7 @@ $(document).ready(function () {
 
     
     let appUserobject = get_appUser();
-    $("#user-name").html(appUserobject != null && appUserobject.firstName != "" ? appUserobject : "Guest");
+    $("#user-name").html(appUserobject != null && appUserobject.firstName != "" ? appUserobject.firstName : "Guest");
 
     $('#badminton').click(function () {
             goToSportCourts("badminton");

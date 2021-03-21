@@ -16,7 +16,35 @@ const signInWithEmailFunction = () => {
     .then((userCredential) => {
         // Signed in 
         var user = userCredential.user;
-        window.location.assign('home.html');
+
+        if (user) {
+            var db = firebase.firestore();
+            db.collection("user").where("userID", "==", user.uid)
+                .get()
+                .then((querySnapshot) => {
+                    querySnapshot.forEach((doc) => {
+                        if (appUserLocal == null || appUserLocal == "undefined") {
+    
+                            let au = new AppUser(doc.data().userID, doc.data().name.substring(0, doc.data().name.indexOf(" ")), doc.data().name.substring(doc.data().name.indexOf(" ") + 1, doc.data().name.length), doc.data().dateOfBirth, doc.data().profilePic, doc.data().about, doc.data().userLocation, doc.data().sports);
+                            appUserLocal = au;
+                            localStorage.setItem("appUser", JSON.stringify(au));                                
+                        }
+                    });
+                }).then(()=>
+                {
+                    window.location.assign('home.html');
+                })
+                .catch((error) => {
+                    console.log("Authentication service error: ", error);
+                });
+            
+        }
+        else {
+            window.location = "../index.html";
+        }
+
+
+        
     })
     .catch(error => {
         if(error.code == "auth/wrong-password") {

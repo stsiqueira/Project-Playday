@@ -61,11 +61,9 @@ $(document).ready(function () {
   });
 
   $('#continue').click(function () {
-    let redirect = "";
-    if(routeTo != null){
-      redirect = `select-court.html?sport=${routeTo}`;
-    }
-    updateUserLocation(redirect);
+
+    routeTo != null ? updateUserLocation(routeTo) : updateUserLocation();  
+    
   });
 
   if (storedDBpositions) {
@@ -119,7 +117,7 @@ $(document).ready(function () {
     }
   }
 
-  const updateUserLocation = (redirect = "") => {
+  const updateUserLocation = (routeTo = "") => {
     let db = firebase.firestore();
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
@@ -128,8 +126,11 @@ $(document).ready(function () {
           userLocation: new firebase.firestore.GeoPoint(hiddenCoordinates.lat, hiddenCoordinates.lon)
         }, { merge: true }).then(() => {
 
-          if(redirect != ""){
-            set_appUser(redirect);
+          
+
+          if(routeTo != ""){   
+            set_appUser();         
+            goToSportCourts(routeTo);
           }
           else
           set_appUser("../html/home.html");

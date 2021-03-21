@@ -219,11 +219,13 @@ $(document).ready(function () {
                 }
                 else {
                     $("#players-list").html("");
-                    let playerName; let playerPic; let playerLevel
+                    let playerName; let playerId; let playerPic; let playerLevel;
                     let playersList = "";
-
+                    let playerCount = 0;
                     for (let i of courtPlayers) {
+                        playerCount++;
                         playerName = i.data().name;
+                        playerId = i.data().userID;
                         playerPic = i.data().profilePic;
 
                         switch (sport) {
@@ -237,19 +239,33 @@ $(document).ready(function () {
                                 playerLevel = i.data().sports.volleyball.userLevel;
                                 break;
                         }
-                        playersList += `<li><b>${playerName}</b>
+                        playersList += `<li id="courtPlayer-${playerCount}" class="court-player"><b>${playerName}</b>
                                             <div>Player Level: ${playerLevel}</div>
                                             <div>Player Pic: ${playerPic}</div>
+                                            <div id ="courtPlayerId-${playerCount}" style="display:none">${playerId}</div>
                                         </li>`
                     }
                     $("#players-list").html(playersList);
                 }
-
             })
             .catch((error) => {
                 console.log("Error getting documents: ", error);
             });
 
     };
+
+    $(document.body).on('click', '.court-player', function () {
+        
+        let selectedRow = $(this).attr('id').substr($(this).attr('id').indexOf("-") + 1);
+        let cPlayerId =  $(`#courtPlayerId-${selectedRow}`).html().trim();        
+
+        if(appUserobject.auid != cPlayerId){
+            window.location.href = `single-player-info.html?court-playerID=${cPlayerId}`;
+        }
+        else{
+            console.log("Why you wanna chat with yourself!");
+        }
+        
+    });
 
 });
