@@ -17,11 +17,24 @@ firebase.initializeApp(firebaseConfig);
 ////////////////////////////////////////////
 //  Variables
 //////////////////////////////////////////// 
+let myName = "";
+let myId = 4;     // grab from Amans function common.js
+let chatId = "";
+
 
 const db =firebase.firestore();
+//grab variable from URL
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const friendId = urlParams.get('fId');
+// console.log(friendId);
 
-let friend = "Diana"; // to be changed to URL variable from court page;
-let myName = "";
+if(myId < friendId){
+    chatId = "chatId" + myId + friendId;
+}else{
+    chatId = "chatId" + friendId + myId;
+}
+
 
 ////////////////////////////////////////////
 //  Check if user is Logged in
@@ -38,7 +51,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 ////////////////////////////////////////////
 //  Functions
 //////////////////////////////////////////// 
-
+// change the chat ID, img SRC
  db.collection("chat001002").onSnapshot((snapshot)=>{
      snapshot.docChanges().forEach((change)=>{
          if(change.type === "added"){
@@ -88,7 +101,8 @@ const checkMessages = () => {
         db.collection("chat001002").doc(generateDocumentId()).set({
             senderId: localStorage.getItem("username"), 
             receiverId: "Diana", // change to name grabbed from LI in Aman's court Screen
-            message: $("#chat-message-input").val()
+            message: $("#chat-message-input").val(),
+            date: new Date()
         });
         $("#chat-message-input").val("");
     }

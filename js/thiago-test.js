@@ -34,28 +34,30 @@ const printData = (fname, lname, dtbirth, about)=>{
 //  Aman
 //////////////////////////////////////////// 
 $("#Amandeep").click(()=>{
-    db.collection("user").doc("Amandeep").set({
+    db.collection("user-data-thiago").add({
         name: "Amandeep", 
         dateOfBirth: "1998/20/10", 
         lastName: "Singh",
         location: "Turkey",
         level: "Begginer",
         playAt: "School court",
-        about: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+        about: "I am Aman. I am Aman. I am Aman. I am Aman. I am Aman. I am Aman. I am Aman. ",
+        chatId: 0001
     });
 });
 ////////////////////////////////////////////
 //  Diana
 ////////////////////////////////////////////
 $("#Diana").click(()=>{
-    db.collection("user").doc("Diana").set({
+    db.collection("user-data-thiago").add({
         name: "Diana", 
         dateOfBirth: "1998/10/10", 
         lastName: "Malynovska",
         location: "Congo",
         level: "Begginer",
         playAt: "College court",
-        about: "DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD"
+        about: "I am Diana. I am Diana. I am Diana. I am Diana. I am Diana. I am Diana.",
+        chatId: 0002
     });
 });
 
@@ -63,14 +65,15 @@ $("#Diana").click(()=>{
 //  Glen
 ////////////////////////////////////////////
 $("#Glen").click(()=>{
-    db.collection("user").doc("Glen").set({
+    db.collection("user-data-thiago").add({
         name: "Glen", 
         dateOfBirth: "1998/10/10", 
         lastName: "Thomas",
         location: "Argentina",
         level: "Intermediate",
         playAt: "Street",
-        about: "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG"
+        about: "I am Glen. I am Glen. I am Glen. I am Glen. I am Glen. I am Glen. I am Glen. I am Glen. ",
+        chatId: 0003
     });
 });
 
@@ -78,14 +81,15 @@ $("#Glen").click(()=>{
 //  Thiago
 ////////////////////////////////////////////
 $("#Thiago").click(()=>{
-    db.collection("user").doc("Thiago").set({
+    db.collection("user-data-thiago").add({
         name: "Thiago", 
         dateOfBirth: "1998/12/09", 
         lastName: "Siqueira",
         location: "Japan",
         level: "Begginer",
         playAt: "home",
-        about: "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG"
+        about: "I am Thiago. I am Thiago. I am Thiago. I am Thiago. I am Thiago. I am Thiago. ",
+        chatId: 0004
     });
 });
 
