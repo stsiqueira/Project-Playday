@@ -14,7 +14,7 @@ $(document).ready(function () {
    // let hiddenCoordinates = { lat: 49.26357, lon: -123.13857 }; //Vancouver Coordinates
    let hiddenCoordinates = { lat: 0, lon: 0 };
 
-  if (isSkip == 1 && appUserobject.userLocation.latitude == "0" && appUserobject.userLocation.longitude == "0") {
+  if (isSkip == 1) {
     showSkip = true;
   }
   else if (appUserobject.userLocation.latitude != "0" && appUserobject.userLocation.longitude != "0") {
@@ -57,7 +57,7 @@ $(document).ready(function () {
   });
 
   $('#skip').click(function () {
-    document.location.href = "/html/home.html";
+    document.location.href = "home.html";
   });
 
   $('#continue').click(function () {
@@ -129,8 +129,8 @@ $(document).ready(function () {
           
 
           if(routeTo != ""){   
-            set_appUser();         
-            goToSportCourts(routeTo);
+            // set_appUser().then(()=>{goToSportCourts(routeTo);});
+            set_appUser(`goToSportCourts-${routeTo}`);           
           }
           else
           set_appUser("../html/home.html");

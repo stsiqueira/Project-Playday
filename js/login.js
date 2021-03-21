@@ -32,7 +32,10 @@ const signInWithEmailFunction = () => {
                     });
                 }).then(()=>
                 {
-                    window.location.assign('home.html');
+                    if(appUserLocal.userLocation.latitude == "0" && appUserLocal.userLocation.longitude == "0"){
+                        window.location.assign('location-selection.html?isSkip=1')
+                    }
+                    else window.location.assign('home.html');
                 })
                 .catch((error) => {
                     console.log("Authentication service error: ", error);
@@ -42,9 +45,6 @@ const signInWithEmailFunction = () => {
         else {
             window.location = "../index.html";
         }
-
-
-        
     })
     .catch(error => {
         if(error.code == "auth/wrong-password") {

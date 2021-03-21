@@ -16,7 +16,7 @@ let appUserLocal;
 // if (window.location.href.indexOf("sign-up.html") == -1) {
 //     debugger;
 //     firebase.auth().onAuthStateChanged(function (user) {
-        
+
 //     });
 // }
 
@@ -38,28 +38,30 @@ const redirectBasedOnLogin = (user, googleLogin) => {
 
                         let au = new AppUser(doc.data().userID, doc.data().name.substring(0, doc.data().name.indexOf(" ")), doc.data().name.substring(doc.data().name.indexOf(" ") + 1, doc.data().name.length), doc.data().dateOfBirth, doc.data().profilePic, doc.data().about, doc.data().userLocation, doc.data().sports);
                         appUserLocal = au;
-                        localStorage.setItem("appUser", JSON.stringify(au));                                
+                        localStorage.setItem("appUser", JSON.stringify(au));
                     }
                 });
-            }).then(()=>
-            {
+            }).then(() => {
                 if (!googleLogin) {
                     window.location.assign('log-in.html');
                 }
                 else {
-                    window.location.assign('home.html');
+                    if (appUserLocal.userLocation.latitude == "0" && appUserLocal.userLocation.longitude == "0") {
+                        window.location.assign('location-selection.html?isSkip=1')
+                    }
+                    else window.location.assign('home.html');
                 }
             })
             .catch((error) => {
                 console.log("Authentication service error: ", error);
             });
-        
+
     }
     else {
         window.location = "../index.html";
     }
 
-    
+
 }
 
 // Updating the User Database while Signing Up
@@ -238,7 +240,7 @@ const get_appUser = () => {
     return appUserLocal;
 }
 
-const set_appUser = (redirect = "") => {
+async function set_appUser (redirect = "")  {
 
     let user = firebase.auth().currentUser;
     if (user) {
@@ -256,7 +258,11 @@ const set_appUser = (redirect = "") => {
                 });
             }).then(() => {
                 console.log('appUserLocal set!')
-                if (redirect != "") {
+                if(redirect != "" && ~redirect.indexOf("goToSportCourts") ){
+                    let routedSport = redirect.substring(redirect.indexOf("-") + 1 , redirect.length);
+                    goToSportCourts(routedSport);
+                }
+                else if (redirect != "") {
                     window.location.href = redirect;
                 }
             })
