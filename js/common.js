@@ -168,7 +168,7 @@ const updateLevel = (sport = "Unknown", level, redirect = "") => {
 }
 
 class AppUser {
-    constructor(auid, firstName, lastName, dob, profilePhoto, about, userLocation, sports) {
+    constructor(auid, firstName, lastName, dob, profilePhoto, about, userLocation, sports, chatId) {
         this.auid = auid;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -177,6 +177,7 @@ class AppUser {
         this.about = about;
         this.userLocation = userLocation;
         this.sports = sports;
+        this.chatId = chatId;
     }
 }
 
@@ -253,8 +254,9 @@ async function set_appUser (redirect = "")  {
                     // doc.data() is never undefined for query doc snapshots
                     console.log(doc.data());
 
-                    let au = new AppUser(doc.data().userID, doc.data().name.substring(0, doc.data().name.indexOf(" ")), doc.data().name.substring(doc.data().name.indexOf(" ") + 1, doc.data().name.length), doc.data().dateOfBirth, doc.data().profilePic, doc.data().about, doc.data().userLocation, doc.data().sports);
+                    let au = new AppUser(doc.data().userID, doc.data().name.substring(0, doc.data().name.indexOf(" ")), doc.data().name.substring(doc.data().name.indexOf(" ") + 1, doc.data().name.length), doc.data().dateOfBirth, doc.data().profilePic, doc.data().about, doc.data().userLocation, doc.data().sports, doc.data().chatId);
                     appUserLocal = au;
+
                     localStorage.setItem("appUser", JSON.stringify(au));
                 });
             }).then(() => {
@@ -276,3 +278,6 @@ async function set_appUser (redirect = "")  {
         console.log("User not Found ");
     }
 }
+//////////////////////////////////////////////////////////
+// Thiago
+/////////////////////////////////////////////////////////
