@@ -52,7 +52,7 @@ $(document).ready(function () {
                     // output += `<li id="entry-${count}"><a><h3 class="court-name">${element.poi.name}</h3><div class="img-wrapper"><img id="img-${count}" src="${imgSrc}" class="c-img"></div><div class="meta-data"><div class="poiIDHidden">${element.dataSources.poiDetails[0].id}</div><div class="address">${element.address.freeformAddress}</div><div class="players-playing-count">${players} active players</div></div></a></li>`
                     // else output += `<li id="entry-${count}"><a><h3 class="court-name">${element.poi.name}</h3><div class="img-wrapper"><img id="img-${count}" src="${imgSrc}" class="c-img"></div><div class="meta-data"><div class="poiIDHidden">NA</div><div class="address">${element.address.freeformAddress}</div><div class="players-playing-count">${players} active players</div></div></a></li>`
 
-                    output += `<li class="apiResultRow" id="entry-${count}">
+                    output += `<li class="apiResultRow" id="entry-${count}" data-distance="${element.dist}" data-playersCount="0">
 
                                     <div class="img-wrapper">
                                         <img id="entry-img-${count}" src="${imgSrc}" class="c-img">
@@ -125,6 +125,30 @@ $(document).ready(function () {
         loadResult();
     });
 
+    $("#sortby").on('change', function () {
+        let sortBy = $("#sortby").val();
+        sort(sortBy);
+
+    });
+
+    function sort(sortBy) {
+
+        if (sortBy == "playerscount") {
+            $(".sortResult").each(function () {
+                $(this).html($(this).children('li').sort(function (a, b) {
+                    return ($(b).data(sortBy)) > ($(a).data(sortBy)) ? 1 : -1;
+                }));
+            });
+        }
+        else {
+            $(".sortResult").each(function () {
+                $(this).html($(this).children('li').sort(function (a, b) {
+                    return ($(b).data(sortBy)) < ($(a).data(sortBy)) ? 1 : -1;
+                }));
+            });
+        }
+    }
+    
     $(document.body).on('click', '.apiResultRow', function () {
 
         let selectedRow = $(this).attr('id').substr($(this).attr('id').indexOf("-") + 1);
@@ -208,7 +232,6 @@ $(document).ready(function () {
             .get()
             .then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
-
                     if (doc.get(query) != null) {
                         courtPlayers.push(doc);
                     }
@@ -216,6 +239,8 @@ $(document).ready(function () {
             }).then(() => {
                 if (divId != "" && countOnly) {
                     $(`#${divId}`).html(courtPlayers.length);
+                    let rowCount = divId.substring(divId.lastIndexOf("-") + 1, divId.length);
+                    $(`#entry-${rowCount}`).attr("data-playersCount", courtPlayers.length);
                 }
                 else {
                     $("#players-list").html("");
@@ -255,17 +280,17 @@ $(document).ready(function () {
     };
 
     $(document.body).on('click', '.court-player', function () {
-        
-        let selectedRow = $(this).attr('id').substr($(this).attr('id').indexOf("-") + 1);
-        let cPlayerId =  $(`#courtPlayerId-${selectedRow}`).html().trim();        
 
-        if(appUserobject.auid != cPlayerId){
+        let selectedRow = $(this).attr('id').substr($(this).attr('id').indexOf("-") + 1);
+        let cPlayerId = $(`#courtPlayerId-${selectedRow}`).html().trim();
+
+        if (appUserobject.auid != cPlayerId) {
             window.location.href = `single-player-info.html?courtPlayerId=${cPlayerId}&sport=${sports}`;
         }
-        else{
+        else {
             console.log("Why you wanna chat with yourself!");
         }
-        
+
     });
 
 });

@@ -26,7 +26,7 @@ const redirectBasedOnLogin = (user, googleLogin) => {
             .get()
             .then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
-                    if (appUserLocal && appUserLocal == null || appUserLocal == "undefined") {
+                    if (appUserLocal == null || appUserLocal == "undefined") {
 
                         let au = new AppUser(doc.data().userID, doc.data().name.substring(0, doc.data().name.indexOf(" ")), doc.data().name.substring(doc.data().name.indexOf(" ") + 1, doc.data().name.length), doc.data().dateOfBirth, doc.data().profilePic, doc.data().about, doc.data().userLocation, doc.data().sports);
                         appUserLocal = au;
@@ -38,7 +38,7 @@ const redirectBasedOnLogin = (user, googleLogin) => {
                     window.location.assign('log-in.html');
                 }
                 else {
-                    if (appUserLocal.userLocation.latitude == "0" && appUserLocal.userLocation.longitude == "0") {
+                    if (appUserLocal && appUserLocal.userLocation.latitude == "0" && appUserLocal.userLocation.longitude == "0") {
                         window.location.assign('location-selection.html?isSkip=1')
                     }
                     else window.location.assign('home.html');
