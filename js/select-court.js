@@ -260,7 +260,7 @@ $(document).ready(function () {
         let cPlayerId =  $(`#courtPlayerId-${selectedRow}`).html().trim();        
 
         if(appUserobject.auid != cPlayerId){
-            window.location.href = `single-player-info.html?court-playerID=${cPlayerId}`;
+            window.location.href = `single-player-info.html?courtPlayerId=${cPlayerId}&sport=${sports}`;
         }
         else{
             console.log("Why you wanna chat with yourself!");
