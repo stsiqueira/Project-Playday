@@ -18,22 +18,22 @@ firebase.initializeApp(firebaseConfig);
 //////////////////////////////////////////// 
 
 const db =firebase.firestore();
-let test="";
-let userProfile = "A";
-let userName = "Thiago"; // to be changed to user.displayName(authentication function);
-let collection = "Chat"; // to be changed to a mix of userName and friend;
+
 
 
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
-const friendId = urlParams.get('courtPlayerId');
-console.log(friendId);
+const friendId = urlParams.get('court-playerID');
+// const sport = urlParams.get('sport');
+const sport = "tennis";
+const playAtPath = `userProfile.sports.${sport}.challengeCourts.courtName`;
+const levelPath = `userProfile.sports.${sport}.userLevel`;
 
 ////////////////////////////////////////////
 //  Functions for single-player-info
 //////////////////////////////////////////// 
 
-db.collection("user").where("userID", "==", "1002").get()
+db.collection("user").where("userID", "==", friendId).get()
     .then((querySnapshot)=>{
         querySnapshot.forEach((doc) => {
             // console.log(doc.data().name);
@@ -55,11 +55,11 @@ const printProfile = ()=>{
                 <div class="player-description">
                     <p class="player-description-location"> 
                         <strong>Location:</strong> 
-                        <span>${userProfile.userLocation}</span>
+                        <span>${userProfile.userLocationCity}</span>
                     </p>
                     <p class="player-description-location"> 
                         <strong>Level:</strong> 
-                        <span>${userProfile.sports.tennis.userLevel}</span>
+                        <span>${levelPath}</span>
                     </p>
 
                     <p class="player-description-location"> 
@@ -86,15 +86,8 @@ const printProfile = ()=>{
 }
 
 
-////////////////////////////////////////////
-//  Event Listener
-//////////////////////////////////////////// 
-
-////////////////////////////////////////////
-//  Iterations
-//////////////////////////////////////////// 
 
 
 
 
-
+// "Hi I am Thiago. I like to PLay Tennis on Saturday and Sunday morninngs. text me and lets schedule our next game. Hope to see you soon."
