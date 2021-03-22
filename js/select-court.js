@@ -239,7 +239,7 @@ $(document).ready(function () {
                                 playerLevel = i.data().sports.volleyball.userLevel;
                                 break;
                         }
-                        playersList += `<li id="courtPlayer-${playerCount}" class="court-player"><b><a href="single-player-info.html?court-player-id=1001"> ${playerName}</a></b>
+                        playersList += `<li id="courtPlayer-${playerCount}" class="court-player"><b>${playerName}</b>
                                             <div>Player Level: ${playerLevel}</div>
                                             <div>Player Pic: ${playerPic}</div>
                                             <div id ="courtPlayerId-${playerCount}" style="display:none">${playerId}</div>
@@ -260,7 +260,7 @@ $(document).ready(function () {
         let cPlayerId =  $(`#courtPlayerId-${selectedRow}`).html().trim();        
 
         if(appUserobject.auid != cPlayerId){
-            window.location.href = `single-player-info.html?court-playerID=${cPlayerId}`;
+            window.location.href = `single-player-info.html?courtPlayerId=${cPlayerId}&sport=${sports}`;
         }
         else{
             console.log("Why you wanna chat with yourself!");
