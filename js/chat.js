@@ -82,7 +82,7 @@ const checkMessages = () => {
     }else{
         // change the chatID 
         db.collection(chatId).doc(generateDocumentId()).set({
-            senderId: "Thiago", 
+            senderId: get_appUser().firstName,
             receiverId: friendProfile.name, 
             message: $("#chat-message-input").val(),
             date: new Date()
