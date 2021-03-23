@@ -13,11 +13,6 @@ const userAbout = document.getElementsByClassName("about-player");
 const selectedSport = document.getElementById("change-sport");
 const userLevelInput = document.getElementById("user-level");
 const submitButton = document.getElementById("apply-changes");
-// change password
-// const passUpdate = document.getElementById('pass-update');
-// const changePassword = document.getElementsByClassName("change-password");
-// const newPass = document.getElementById('new-password');
-// const confirmPass = document.getElementById('confirm-password');
 
 const db = firebase.firestore();
 const storageRef = firebase.storage().ref();
@@ -25,11 +20,6 @@ const storageRef = firebase.storage().ref();
 let appUserobject = get_appUser();
 
 //update page details ****************************
-
-// $(window).bind('load', function() {            
-//     var image = `<img src="" alt="" id="user-image" class="user-img">`
-//     $("#user-image").append(image);
-// });
 
 const updateInnerHtml = (element, value) => {
     element.innerHTML = value;
@@ -98,10 +88,8 @@ const getDownloadUrl = (path="/", user, flag=0, googleSignInFlag = 0) => {
     if (googleSignInFlag) {
         var docRef = db.collection("user").doc(user.uid);
         docRef.get().then((doc) => {
-            if (doc.exists) {
+            if (!doc.exists) {
                 // pass
-            } else {
-                // doc.data() will be undefined in this case
                 console.log("No such document!");
             }
         }).catch((error) => {
@@ -295,11 +283,12 @@ const getSignInMethod = () => {
                 <div class="change-password">
                 <form action="/" class="change-password-form">
                         <input type="password" id="current-password" placeholder="Current Password" class="current-password">
-                        <input type="password" id="confirm-password"  placeholder="Confirm Password" class="confirm-password">
+                        <input type="password" id="confirm-password"  placeholder="New Password" class="confirm-password">
                         <input type="button" id="pass-update" value="Change Password" class="green-button">
                 </form>
             </div>` 
-            $( ".test" ).append(changePasswordHtml);
+            $(".accordion-wrapper").css("display", "block");
+            $( ".accordion-wrapper" ).append(changePasswordHtml);
             const passUpdate = document.getElementById('pass-update');
             const currentPass = document.getElementById('current-password');
             const confirmPass = document.getElementById('confirm-password');

@@ -1043,14 +1043,14 @@ img {
   padding: 1rem;
 }
 
-.user-account-wrapper .test {
+.user-account-wrapper .accordion-wrapper {
   -webkit-box-shadow: 4px 3px 10px -3px grey;
           box-shadow: 4px 3px 10px -3px grey;
   background: white;
   border-radius: 20px;
 }
 
-.user-account-wrapper .test .change-password-form {
+.user-account-wrapper .accordion-wrapper .change-password-form {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1062,7 +1062,7 @@ img {
   padding: 1rem;
 }
 
-.user-account-wrapper .test .change-password-form input {
+.user-account-wrapper .accordion-wrapper .change-password-form input {
   overflow: visible;
   width: 100%;
   border: none;
@@ -1077,11 +1077,11 @@ img {
   padding: .5rem 1rem;
 }
 
-.user-account-wrapper .test .change-password-form input:focus {
+.user-account-wrapper .accordion-wrapper .change-password-form input:focus {
   outline: none;
 }
 
-.user-account-wrapper .test .change-password-form input[type=button] {
+.user-account-wrapper .accordion-wrapper .change-password-form input[type=button] {
   width: unset;
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
@@ -2310,8 +2310,10 @@ body.home .blogs section:nth-of-type(3) .graphic-inner {
 .sign-in-sectio {
   position: absolute;
   bottom: 20%;
-  /* transform: translateX(-50%); */
-  right: 40%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  /* right: 38%; */
+  left: 50%;
   /* left: 0; */
   /* top: 0; */
   /* bottom: 0; */
