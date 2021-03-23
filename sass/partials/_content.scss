@@ -180,6 +180,11 @@
             border: none;
             -webkit-box-shadow: 4px 3px 10px -3px grey;
             box-shadow: 4px 3px 10px -3px grey;
+            cursor: pointer;
+        }
+
+        .apply:focus {
+            outline: none;
         }
 
         .location-info:hover {
@@ -215,7 +220,8 @@
                 -moz-text-align-last: center;
             }
 
-            .sport-change:focus {
+            .sport-change:focus,
+            .level-info:focus {
                 outline: none;
             }
 
@@ -235,15 +241,20 @@
     }
 
     .change-password-wrapper {
-        display: flex;
-        flex-flow: column;
-        background: white;
-        border-radius: 20px;
-        -webkit-box-shadow: 4px 3px 10px -3px grey;
-        box-shadow: 4px 3px 10px -3px grey;
+        // display: flex;
+        // flex-flow: column;
+        // background: white;
+        // border-radius: 20px;
+        // -webkit-box-shadow: 4px 3px 10px -3px grey;
+        // box-shadow: 4px 3px 10px -3px grey;
 
         @include boxShadow();
-
+        .change-password-form {
+            display: flex;
+            flex-flow: column;
+            background: white;
+            border-radius: 20px;
+        }
 
         .change-text-heading {
             margin: .5rem 0;
@@ -252,6 +263,20 @@
             font-size: 1.3rem;
         }
 
+        .change-password-form {
+            display: flex;
+            flex-flow: column;
+            gap: 1.2rem;
+            padding: 1rem;
+
+            
+        }
+    }
+
+    .test {
+        box-shadow: 4px 3px 10px -3px grey;
+        background: white;
+        border-radius: 20px;
         .change-password-form {
             display: flex;
             flex-flow: column;

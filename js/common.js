@@ -1,15 +1,59 @@
+var firebaseConfig = {
+    apiKey: "AIzaSyCVfkLdpaLZUwFN8eMVMSptFoZfOpp1pZ8",
+    authDomain: "playday-f43e6.firebaseapp.com",
+    databaseURL: "https://playday-f43e6-default-rtdb.firebaseio.com",
+    storageBucket: "https://console.firebase.google.com/project/playday-f43e6/storage/playday-f43e6.appspot.com/files",
+    projectId: "playday-f43e6",
+    storageBucket: "playday-f43e6.appspot.com",
+    messagingSenderId: "732773100147",
+    appId: "1:732773100147:web:13f7a6804851ac8486d806",
+    measurementId: "G-TZB3NY5S6W"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
 let appUserLocal;
+
 // const tomtomApiKey = "lDNGOihuwicB9jy3du63gNr5gUGwCAZC";
 let tomtomApiKey = "ctMg0rMDauN3jPf1SOHXHVJNpJnhmGaS";
 // tomtomApiKey = "XOeleMUFVN4TaGSAJwKm8y7IBfy7YeQA";
 
-const redirectBasedOnLogin = (googleLogin) => {
-    if (!googleLogin) {
-        window.location.assign('log-in.html');
+const redirectBasedOnLogin = (user, googleLogin) => {
+
+    if (user) {
+        var db = firebase.firestore();
+        db.collection("user").where("userID", "==", user.uid)
+            .get()
+            .then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    if (appUserLocal == null || appUserLocal == "undefined") {
+
+                        let au = new AppUser(doc.data().userID, doc.data().name.substring(0, doc.data().name.indexOf(" ")), doc.data().name.substring(doc.data().name.indexOf(" ") + 1, doc.data().name.length), doc.data().dateOfBirth, doc.data().profilePic, doc.data().about, doc.data().userLocation, doc.data().sports);
+                        appUserLocal = au;
+                        localStorage.setItem("appUser", JSON.stringify(au));
+                    }
+                });
+            }).then(() => {
+                if (!googleLogin) {
+                    window.location.assign('log-in.html');
+                }
+                else {
+                    if (appUserLocal && appUserLocal.userLocation.latitude == "0" && appUserLocal.userLocation.longitude == "0") {
+                        window.location.assign('location-selection.html?isSkip=1')
+                    }
+                    else window.location.assign('home.html');
+                }
+            })
+            .catch((error) => {
+                console.log("Authentication service error: ", error);
+            });
+
     }
     else {
-        window.location.assign('home.html');
+        window.location = "../index.html";
     }
+
+
 }
 
 // Updating the User Database while Signing Up
@@ -36,11 +80,12 @@ const updateDB = (user, flag = 0, googleLogin = 0) => {
                 userLevel: ""
             }
         },
+        chatId:Date.now(),
         userID: user.uid,
         userLocation: new firebase.firestore.GeoPoint(0, 0)
     }
     db.collection("user").doc(user.uid).set(docData).then((docRef) => {
-        redirectBasedOnLogin(googleLogin);
+        redirectBasedOnLogin(user, googleLogin);
         console.log("document added");
     })
         .catch((error) => {
@@ -53,7 +98,7 @@ const checkIfUserExist = (user, flag = 0, googleLogin = 0) => {
     db.collection("user").doc(user.uid).get()
         .then((querySnapshot) => {
             if (querySnapshot.exists) {
-                redirectBasedOnLogin(googleLogin);
+                redirectBasedOnLogin(user, googleLogin);
             }
             else {
                 updateDB(user, flag, googleLogin);
@@ -115,7 +160,7 @@ const updateLevel = (sport = "Unknown", level, redirect = "") => {
 }
 
 class AppUser {
-    constructor(auid, firstName, lastName, dob, profilePhoto, about, userLocation, sports) {
+    constructor(auid, firstName, lastName, dob, profilePhoto, about, userLocation, sports, chatId) {
         this.auid = auid;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -124,6 +169,7 @@ class AppUser {
         this.about = about;
         this.userLocation = userLocation;
         this.sports = sports;
+        this.chatId = chatId;
     }
 }
 
@@ -152,17 +198,17 @@ const goToSportCourts = (sport) => {
 
     let routeToUserLevel = false;
 
-        switch (sport) {
-            case "badminton":
-                routeToUserLevel = get_appUser().sports.badminton.userLevel == "" ? true : false;
-                break;
-            case "tennis":
-                routeToUserLevel = get_appUser().sports.tennis.userLevel == "" ? true : false;
-                break;
-            case "volleyball":
-                routeToUserLevel = get_appUser().sports.volleyball.userLevel == "" ? true : false;
-                break;
-        }
+    switch (sport) {
+        case "badminton":
+            routeToUserLevel = get_appUser().sports.badminton.userLevel == "" ? true : false;
+            break;
+        case "tennis":
+            routeToUserLevel = get_appUser().sports.tennis.userLevel == "" ? true : false;
+            break;
+        case "volleyball":
+            routeToUserLevel = get_appUser().sports.volleyball.userLevel == "" ? true : false;
+            break;
+    }
 
     if (get_appUser().userLocation.latitude == "0" && get_appUser().userLocation.longitude == "0") {
         window.location.href = `location-selection.html?routeTo=${sport}`;
@@ -170,7 +216,7 @@ const goToSportCourts = (sport) => {
     else if (routeToUserLevel) {
         window.location.href = `user-level.html?sport=${sport}`;
     }
-    else{
+    else {
         window.location.href = `select-court.html?sport=${sport}`;
     }
 
@@ -179,16 +225,16 @@ const goToSportCourts = (sport) => {
 
 const get_appUser = () => {
     if (appUserLocal == undefined || appUserLocal == "") {
-        if(localStorage.getItem("appUser") === null || localStorage.getItem("appUser") === null){
+        if (localStorage.getItem("appUser") === null || localStorage.getItem("appUser") === null) {
             set_appUser();
         }
         else
-        appUserLocal = JSON.parse(localStorage.getItem('appUser'));
+            appUserLocal = JSON.parse(localStorage.getItem('appUser'));
     }
     return appUserLocal;
 }
 
-const set_appUser = (redirect = "") => {
+async function set_appUser (redirect = "")  {
 
     let user = firebase.auth().currentUser;
     if (user) {
@@ -200,13 +246,18 @@ const set_appUser = (redirect = "") => {
                     // doc.data() is never undefined for query doc snapshots
                     console.log(doc.data());
 
-                    let au = new AppUser(doc.data().userID, doc.data().name.substring(0, doc.data().name.indexOf(" ")), doc.data().name.substring(doc.data().name.indexOf(" ") + 1, doc.data().name.length), doc.data().dateOfBirth, doc.data().profilePic, doc.data().about, doc.data().userLocation, doc.data().sports);
+                    let au = new AppUser(doc.data().userID, doc.data().name.substring(0, doc.data().name.indexOf(" ")), doc.data().name.substring(doc.data().name.indexOf(" ") + 1, doc.data().name.length), doc.data().dateOfBirth, doc.data().profilePic, doc.data().about, doc.data().userLocation, doc.data().sports, doc.data().chatId);
                     appUserLocal = au;
+
                     localStorage.setItem("appUser", JSON.stringify(au));
                 });
             }).then(() => {
                 console.log('appUserLocal set!')
-                if (redirect != "") {
+                if(redirect != "" && ~redirect.indexOf("goToSportCourts") ){
+                    let routedSport = redirect.substring(redirect.indexOf("-") + 1 , redirect.length);
+                    goToSportCourts(routedSport);
+                }
+                else if (redirect != "") {
                     window.location.href = redirect;
                 }
             })
@@ -215,6 +266,10 @@ const set_appUser = (redirect = "") => {
             });
     }
     else {
-        window.location = "../index.html";
+        // window.location = "../index.html";
+        console.log("User not Found ");
     }
 }
+//////////////////////////////////////////////////////////
+// Thiago
+/////////////////////////////////////////////////////////

@@ -7,103 +7,11 @@
     <script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-auth.js"></script>
     <!-- Chat JavaScript file -->   
+    <script src="../js/common.js" defer></script>
     <script src="../js/chat.js" defer></script>
         <!-- Thiago FontAwesome Better create our own icons -->  
     <script src='https://kit.fontawesome.com/ef8606d888.js' crossorigin='anonymous'></script>
-
-    <style>
-        *{
-            padding:0;
-            margin:0;
-            line-height: 1.4;
-        }
-        main{
-            padding: 1rem 2%;
-        }
-        .chat-content-wrapper{
-            /* border: 1px solid black; */
-            min-height: 45vh;
-            display: flex;
-            flex-flow: column nowrap;
-        }
-        .chat-messages-wrapper{
-            min-height: 50vh;
-        }
-        .chat-title-container{
-            position: sticky;
-            left: 0; right: 0; top: 0;
-            padding: 1rem 2.5% 1rem;
-            background-color: #F0F0F3;
-            display: flex;
-            justify-content: center;
-
-        }
-        .send-message-wrapper{
-            display: flex;
-            flex-flow: row nowrap;
-            gap: .5rem;
-            position: fixed;
-            left: 0; right: 0; bottom: 0;
-            padding: 0.7rem 2.5% .5rem;
-            background-color: #fff;
-        }
-        .send-message-wrapper input{
-            flex: 1 0 35%;
-            margin-right: .5rem;
-            border-radius: 20px;
-            height: 35px;
-            outline: none;
-            font-size: 1.1rem;
-            padding-left: .7rem;
-      
-        }
-        #sendButton{
-            border: none;
-            outline: none;
-            background-color: #fff;
-            line-height: 1;
-            padding: 0;
-        }
-        .fa-paper-plane{
-            color: #007AFF;
-            font-size: 1.3rem;
-            padding-bottom: .3rem;
-        }
-        .pullRight{
-            text-align: right;
-        }
-        #chat-messages li{
-            display: flex;
-            flex-flow: row nowrap;
-            margin-bottom: .4rem;
-            gap: .5rem;
-        }
-        #chat-messages li.sender{
-            display: flex;
-            flex-flow: row-reverse nowrap;
-        }
-        .chat-image img{
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            border: 1px solid black;
-        }
-        .chat-message-image{
-            flex: 0 0 8%;
-        }
-        .chat-message {
-            padding: .5rem;
-            background-color: rgba(246, 180, 152, 0.701);
-            border-radius: 6px;
-        }
-        .chat-message p{
-            font-size: 1.1rem;
-        }
-        div.sender  {
- 
-            background-color: rgba(255, 125, 69,.7);
-        }
-    </style>
+    <link rel="stylesheet" href="../style.css">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -111,7 +19,7 @@
     <script src="https://kit.fontawesome.com/ef8606d888.js" crossorigin="anonymous"></script> 
     <title>Playday</title>
 </head>
-<body class="page chat-page">
+<body class="page chat-window">
     <header>
         <div class="chat-title-container">
             <h2 class="chat-title"></h2>

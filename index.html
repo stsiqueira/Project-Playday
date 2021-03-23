@@ -2,36 +2,44 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <!-- <link rel="stylesheet" href="css/common.css"> -->
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<!-- <link rel="stylesheet" href="css/common.css"> -->
 	<link rel="stylesheet" href="style.css">
-    <link rel="manifest" href="manifest.json">
-    <script>
-        if (navigator.serviceWorker) {
-          navigator.serviceWorker.register('./sw.js',{scope:'.'}).then(function (registration) {
-            console.log('ServiceWorker registration successful with scope:', registration.scope);
-          }).catch(function (error) {
-            console.log('ServiceWorker registration failed:', error);
-          });
-        }
-      </script>
+	<link rel="manifest" href="manifest.json">
+	<script>
+		if (navigator.serviceWorker) {
+			navigator.serviceWorker.register('./sw.js', { scope: '.' }).then(function (registration) {
+				console.log('ServiceWorker registration successful with scope:', registration.scope);
+			}).catch(function (error) {
+				console.log('ServiceWorker registration failed:', error);
+			});
+		}
+	</script>
 </head>
 
-<body>
-    <div class="wrapper front-page-wrapper">
+<body class="splash">
+	<div class="wrapper front-page-wrapper">
+		<div class="third-circle">
+			<div class="second-circle">
+				<div class="first-circle">
+					<div class="logo">
+						<span class="logoimage">logo</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<section class="sign-in-sectio">
+			<a href="html/log-in.html" class="login-button" id="login">Login</a>
+			<a href="html/sign-up.html" class="Signup-button" id="signup">Signup</a>
+		</section>
 		<!-- <div class="logo-wrapper">
 			<img src="img/home-screen/badminton-main.png" alt="playday logo">
 		</div> -->
-		<section class="sign-in-sectio">
-			  <a href="html/log-in.html" class="login-button" id="login">Login</a>
-          		<a href="html/sign-up.html" class="Signup-button" id="signup">Signup</a>
-		</section>
-    </div>
-    <!-- <button id="find-me">Show my location</button><br />
-    <p id="status"></p>
-    <a id="map-link" target="_blank"></a> -->
+	</div>
+
+
 </body>
 
 

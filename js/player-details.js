@@ -4,6 +4,8 @@ const update = document.getElementById('update');
 // user data
 const locationInfo = document.getElementsByClassName("location-info");
 const imageUser = document.getElementById('user-image');
+const imageContainer = document.getElementById('image-container');
+
 const locationInput = document.getElementById('location-input'); 
 const imgUpload = document.getElementById("imgupload")
 const userName = document.getElementsByClassName("user-name");
@@ -12,10 +14,10 @@ const selectedSport = document.getElementById("change-sport");
 const userLevelInput = document.getElementById("user-level");
 const submitButton = document.getElementById("apply-changes");
 // change password
-const passUpdate = document.getElementById('pass-update');
-const changePassword = document.getElementsByClassName("change-password");
-const newPass = document.getElementById('new-password');
-const confirmPass = document.getElementById('confirm-password');
+// const passUpdate = document.getElementById('pass-update');
+// const changePassword = document.getElementsByClassName("change-password");
+// const newPass = document.getElementById('new-password');
+// const confirmPass = document.getElementById('confirm-password');
 
 const db = firebase.firestore();
 const storageRef = firebase.storage().ref();
@@ -23,6 +25,11 @@ const storageRef = firebase.storage().ref();
 let appUserobject = get_appUser();
 
 //update page details ****************************
+
+// $(window).bind('load', function() {            
+//     var image = `<img src="" alt="" id="user-image" class="user-img">`
+//     $("#user-image").append(image);
+// });
 
 const updateInnerHtml = (element, value) => {
     element.innerHTML = value;
@@ -43,16 +50,21 @@ $.getJSON(`https://api.tomtom.com/search/2/reverseGeocode/${appUserobject.userLo
     }
 });
 
+$( "#location-info-wrapper" ).click(function() {
+    window.location.href = "location-selection.html";
+});
+
 // ***************************************************
 
 // function for updating db values
 const updateDbDetails = (collection, user, key, value) => {
+
     let dbRef = db.collection(collection).doc(user);
     return dbRef.update({
         [key]: value
     })
     .then(() => {
-        // pass
+        set_appUser();
     })
     .catch((error) => {
         console.error("Error updating document: ", error);
@@ -167,24 +179,32 @@ function handleFiles() {
 
 // Changing User Password ***********************************
 
-const updateUserPassword = () => {
-    if(newPass.value != confirmPass.value) {
-        alert("password doesn't match");
-        return false;
-    }
-    firebase.auth().onAuthStateChanged(function (user) {
-        if (user) {
-            user.updatePassword(newPass.value).then(function () {
-            }).catch(function (error) {
-                alert(error);
-            });
-        }
-    });
+reauthenticate = (currentPassword) => {
+    var user = firebase.auth().currentUser;
+    var cred = firebase.auth.EmailAuthProvider.credential(
+        user.email, currentPassword);
+    return user.reauthenticateWithCredential(cred);
 }
 
-passUpdate.addEventListener('click', function () {
-    updatePassword();
-});
+const updateUserPassword = (currentPassword, confirmPass) => {
+    var user = firebase.auth().currentUser;
+    var credential =  firebase.auth.EmailAuthProvider.credential(
+        user.email, 
+        currentPassword.value
+    );
+    user.reauthenticateWithCredential(credential).then(function() {
+        user.updatePassword(confirmPass.value).then(function () {
+        }).catch(function (error) {
+            alert(error);
+        });
+      }).catch(function(error) {
+        // An error happened.
+      });
+}
+
+// passUpdate.addEventListener('click', function () {
+//     updatePassword();
+// });
 
 // ***********************************************************
 
@@ -241,20 +261,84 @@ function changeSport(typeOfCourts, destinationHtml) {
             $(id).closest(".courts").remove();
             let deleteCourt = `sports.${selectedSport.value.toLowerCase()}.challengeCourts.${courtId[0]}`;
             updateDbDetails('user', appUserobject.auid, deleteCourt, firebase.firestore.FieldValue.delete())  
+            set_appUser();
         }
     });
+}
+
+const removeSelectOption = (classname) => {
+    $(`.${classname} option[value='NoSelect']`).remove();
 }
 
 function updateSport() {
     changeSport('savedCourts', 'saved-courts');
     changeSport('challengeCourts', 'challenge-courts');
+    removeSelectOption("sport-change");
 }
 
-updateSport('challengeCourts');
+// updateSport();
 
 submitButton.addEventListener('click', function (event) {
     // updating user level from select
     let userLevelKey = `sports.${selectedSport.value.toLowerCase()}.userLevel`;
     updateDbDetails('user', appUserobject.auid, userLevelKey, userLevelInput.value);
+    showToast();
     event.preventDefault();
 });
+
+const getSignInMethod = () => {
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+            let currentSignIn = user.providerData[0].providerId;
+            if(currentSignIn == "password") {
+                let changePasswordHtml = `
+                <div class="change-password">
+                <form action="/" class="change-password-form">
+                        <input type="password" id="current-password" placeholder="Current Password" class="current-password">
+                        <input type="password" id="confirm-password"  placeholder="Confirm Password" class="confirm-password">
+                        <input type="button" id="pass-update" value="Change Password" class="green-button">
+                </form>
+            </div>` 
+            $( ".test" ).append(changePasswordHtml);
+            const passUpdate = document.getElementById('pass-update');
+            const currentPass = document.getElementById('current-password');
+            const confirmPass = document.getElementById('confirm-password');
+            changePasswordAccordion();
+            passUpdate.addEventListener('click', function () {
+                updateUserPassword(currentPass, confirmPass);
+                });
+            }
+        }
+    });
+}
+
+function showToast() {
+    // Get the snackbar DIV
+    var x = document.getElementById("toast");
+    // Add the "show" class to DIV
+    x.innerHTML = "Data Updated"
+
+    x.className = "show";
+    // After 3 seconds, remove the show class from DIV
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+  }
+
+getSignInMethod();
+
+function changePasswordAccordion() {
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+    for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function() {
+            this.classList.toggle('active');
+            var panel = this.nextElementSibling;
+            if (panel.style.maxHeight) {
+                panel.style.maxHeight = null;
+              } else {
+                panel.style.maxHeight = panel.scrollHeight + "px";
+              }
+        });
+    }
+}
+
+set_appUser();

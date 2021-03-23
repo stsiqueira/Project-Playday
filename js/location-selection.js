@@ -14,7 +14,7 @@ $(document).ready(function () {
    // let hiddenCoordinates = { lat: 49.26357, lon: -123.13857 }; //Vancouver Coordinates
    let hiddenCoordinates = { lat: 0, lon: 0 };
 
-  if (isSkip == 1 && appUserobject.userLocation.latitude == "0" && appUserobject.userLocation.longitude == "0") {
+  if (isSkip == 1) {
     showSkip = true;
   }
   else if (appUserobject.userLocation.latitude != "0" && appUserobject.userLocation.longitude != "0") {
@@ -57,15 +57,13 @@ $(document).ready(function () {
   });
 
   $('#skip').click(function () {
-    document.location.href = "/html/home.html";
+    document.location.href = "home.html";
   });
 
   $('#continue').click(function () {
-    let redirect = "";
-    if(routeTo != null){
-      redirect = `select-court.html?sport=${routeTo}`;
-    }
-    updateUserLocation(redirect);
+
+    routeTo != null ? updateUserLocation(routeTo) : updateUserLocation();  
+    
   });
 
   if (storedDBpositions) {
@@ -119,7 +117,7 @@ $(document).ready(function () {
     }
   }
 
-  const updateUserLocation = (redirect = "") => {
+  const updateUserLocation = (routeTo = "") => {
     let db = firebase.firestore();
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
@@ -128,8 +126,11 @@ $(document).ready(function () {
           userLocation: new firebase.firestore.GeoPoint(hiddenCoordinates.lat, hiddenCoordinates.lon)
         }, { merge: true }).then(() => {
 
-          if(redirect != ""){
-            set_appUser(redirect);
+          
+
+          if(routeTo != ""){   
+            // set_appUser().then(()=>{goToSportCourts(routeTo);});
+            set_appUser(`goToSportCourts-${routeTo}`);           
           }
           else
           set_appUser("../html/home.html");
