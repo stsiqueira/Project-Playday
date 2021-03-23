@@ -1062,6 +1062,9 @@ img {
       align-self: center;
   background: #6CC8A6;
   text-align: center;
+  font-size: 1rem;
+  -webkit-box-shadow: 4px 3px 10px -3px grey;
+  box-shadow: 4px 3px 10px -3px grey;
 }
 
 .user-account-wrapper .saved-courts,
@@ -1211,7 +1214,6 @@ button {
   text-decoration: none;
   font-size: 1rem;
   border-radius: 20px;
-  height: unset;
   cursor: pointer;
 }
 
@@ -1279,6 +1281,9 @@ button {
 .logout {
   font-size: 1rem;
   cursor: pointer;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
 }
 
 .apply {
@@ -1396,7 +1401,6 @@ button {
   text-decoration: none;
   font-size: 1rem;
   border-radius: 20px;
-  height: unset;
   cursor: pointer;
 }
 
@@ -1464,6 +1468,9 @@ button {
 .logout {
   font-size: 1rem;
   cursor: pointer;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
 }
 
 .apply {

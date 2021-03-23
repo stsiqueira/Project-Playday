@@ -207,7 +207,7 @@ const savedAndChallengeCourtsHtml = (count, courtName, selectedSport, key,destin
                         </div>
                     </div>
                     <div class="delete-court-wrapper">
-                        <button id="${key}-${typeOfCourts}" class="delete-button delete-button-${count}">Delete</button>
+                        <button id="${key}-${typeOfCourts}" class="delete-button red-button delete-button-${count}">Delete</button>
                     </div>
                 </div>`
     $(`.${destinationHtml}`).append(html);

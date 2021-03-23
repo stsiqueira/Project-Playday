@@ -274,6 +274,9 @@
                 align-self: center;
                 background: $color-green-button;
                 text-align: center;
+                font-size: 1rem;
+                -webkit-box-shadow: 4px 3px 10px -3px grey;
+                box-shadow: 4px 3px 10px -3px grey;
                 // padding: .6rem 1rem;
             }
         }
