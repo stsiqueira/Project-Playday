@@ -767,7 +767,7 @@ img {
 }
 
 .user-account-settings-page {
-  padding: 5rem 0;
+  padding-top: 5rem;
 }
 
 .wrapper-sign-up-screen .signup-heading,
@@ -880,10 +880,6 @@ img {
   font-style: italic;
   text-decoration: none;
   color: black;
-}
-
-.sign-in-section {
-  background-color: hotpink;
 }
 
 .user-account-settings-page {
@@ -1220,7 +1216,8 @@ button:focus {
   background: #55ACE3;
 }
 
-.wrapper-sign-up-screen .button {
+.wrapper-sign-up-screen .button,
+.login-wrapper .button {
   cursor: pointer;
 }
 
@@ -1407,7 +1404,8 @@ button:focus {
   background: #55ACE3;
 }
 
-.wrapper-sign-up-screen .button {
+.wrapper-sign-up-screen .button,
+.login-wrapper .button {
   cursor: pointer;
 }
 
@@ -2245,7 +2243,6 @@ body.home .blogs section:nth-of-type(3) .graphic-inner {
 }
 
 .logoimage {
-  height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2255,6 +2252,9 @@ body.home .blogs section:nth-of-type(3) .graphic-inner {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  max-width: 100%;
+  width: 11rem;
+  margin: 1rem auto;
 }
 
 .first-circle {
@@ -2331,6 +2331,8 @@ body.home .blogs section:nth-of-type(3) .graphic-inner {
   padding: .5rem 2rem;
   border-radius: 20px;
   background: white;
+  text-transform: uppercase;
+  font-weight: bold;
   color: #FF4C04;
 }
 /*# sourceMappingURL=style.css.map */

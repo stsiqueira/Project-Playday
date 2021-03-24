@@ -3,8 +3,9 @@ const passwordField = document.getElementById('password');
 const signInWithMail = document.getElementById('signInWithMail');
 // const signUp = document.getElementById('signUp');
 const forgotPassword = document.getElementById('forgot-pass');
-const googleSignin = document.getElementById("googleSignup");
-const facebookSignin = document.getElementById("facebookSignup")
+// const googleSignin = document.getElementById("googleSignup");
+const gsignup = document.getElementById('gsignup');
+const facebookSignin = document.getElementById("fsignup");
 
 var db = firebase.firestore();
 
@@ -61,13 +62,20 @@ const signInWithEmailFunction = () => {
 
 signInWithMail.addEventListener('click', signInWithEmailFunction);
 
+
+var provider = new firebase.auth.GoogleAuthProvider();
+var fbProvider = new firebase.auth.FacebookAuthProvider();
+
+
+gsignup.addEventListener('click',function(){
+    googleSignOn(0, 2);
+});
+
+facebookSignin.addEventListener('click',function(){
+    fbSignOn(0, 2);
+});
 // signUp.addEventListener('click', () => {
 // 	window.location.assign('sign-up.html');
 // });
 
 
-// var provider = new firebase.auth.GoogleAuthProvider();
-
-// googleSignin.addEventListener('click',function(){
-//     googleSignOn(0, 1);
-// });
