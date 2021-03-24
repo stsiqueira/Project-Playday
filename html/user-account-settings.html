@@ -69,14 +69,13 @@
                 </div>
             </div>
 
-
-            <section class="saved-courts">
-                <h2 class="saved-courts-heading">Saved Courts</h2>
-                
-            </section>
+            <!-- <div class="accordion-wrapper"> -->
+                <section class="saved-courts">
+                    <h2 class="saved-courts-heading">Saved Courts</h2>   
+                </section>
+            <!-- </div> -->
             <section class="challenge-courts">
                 <h2 class="challenge-courts-heading">Challenge Courts</h2>
-                
             </section>
             <button id="logout" onclick="signout()" class="logout red-button">Logout</button>
 
@@ -87,33 +86,40 @@
         </div>
     </main>
 
-    <!-- <footer class="iconsBar">
-        <div class="icon">
-            <a href="#">
-                <i class="fas fa-home"></i>
-                <span class="visually-hidden">Home button</span>
-            </a>
-        </div>
-        <div class="icon">
-            <a href="#">
-                <i class="far fa-user-circle"></i>
-                <span class="visually-hidden">Profile</span>
-            </a>
+    <footer>
+		<!-- Bottom Navigation Bar -->
 
-        </div>
-        <div class="icon">
-            <a href="#">
-                <i class="far fa-bell"></i>
-                <span class="visually-hidden">Notification</span>
-            </a>
-        </div>
-        <div class="icon">
-            <a href="#">
-                <i class="fas fa-cog"></i>
-                <span class="visually-hidden">Settings</span>
-            </a>
-        </div>
-    </footer> -->
+		<ul class="bottom-nav-bar footer-nav">
+			<li class="nav-elements nav-1">
+				<a href="" class="icons-back footer-icons">
+					<i class="fas fa-chevron-circle-left"></i>
+					<div class="button-text">Back</div>
+					<span class="visually-hidden">Back button</span>
+				</a>
+			</li>
+			<li class="nav-elements nav-2">
+				<a href="home.html" class="icons-home footer-icons">
+					<i class="fas fa-home"></i>
+					<div class="button-text">Home</div>
+					<span class="visually-hidden">Home button</span>
+				</a>
+			</li>
+			<li class="nav-elements nav-3">
+				<a href="user-account-settings.html" class="icons-user-setting footer-icons">
+					<i class="far fa-user-circle"></i>
+					<div class="button-text">User setting</div>
+					<span class="visually-hidden">User setting button</span>
+				</a>
+			</li>
+			<li class="nav-elements nav-4">
+				<a href="" class="icons-chat footer-icons">
+					<i class="fas fa-comment-dots"></i>
+					<div class="button-text">Chat</div>
+					<span class="visually-hidden">Chat button</span>
+				</a>
+			</li>
+		</ul>
+	</footer>
 
 </body>
 

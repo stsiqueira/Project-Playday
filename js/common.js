@@ -112,20 +112,32 @@ const checkIfUserExist = (user, flag = 0, googleLogin = 0) => {
 // Invoking Sign Up function for Sign UP
 const googleSignOn = (flag, googlelogin) => {
     firebase.auth().signInWithPopup(provider)
-        .then((result) => {
-            /** @type {firebase.auth.OAuthCredential} */
-            var user = result.user;
-            checkIfUserExist(user, flag, googlelogin);
-        }).catch((error) => {
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            // The email of the user's account used.
-            var email = error.email;
-            // The firebase.auth.AuthCredential type that was used.
-            var credential = error.credential;
-            alert(errorMessage);
-            // ...
-        });
+    .then((result) => {
+        var user = result.user;
+        checkIfUserExist(user, flag, googlelogin);
+    }).catch((error) => {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        var email = error.email;
+        var credential = error.credential;
+        alert(errorMessage);
+        // ...
+    });
+}
+
+// Invoking Sign Up function for Sign UP
+const fbSignOn = (flag, googlelogin) => {
+    firebase.auth().signInWithPopup(fbProvider)
+    .then((result) => {
+    var user = result.user;
+    checkIfUserExist(user, flag, googlelogin);
+  })
+  .catch((error) => {
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    var email = error.email;
+    var credential = error.credential;
+    });
 }
 
 const urlParam = function (name) {

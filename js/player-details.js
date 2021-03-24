@@ -268,10 +268,15 @@ function updateSport() {
 
 submitButton.addEventListener('click', function (event) {
     // updating user level from select
-    let userLevelKey = `sports.${selectedSport.value.toLowerCase()}.userLevel`;
-    updateDbDetails('user', appUserobject.auid, userLevelKey, userLevelInput.value);
-    showToast();
-    event.preventDefault();
+    if(selectedSport.value != "NoSelect") {
+        console.log(selectedSport.value);
+        let userLevelKey = `sports.${selectedSport.value.toLowerCase()}.userLevel`;
+        updateDbDetails('user', appUserobject.auid, userLevelKey, userLevelInput.value);
+        showToast("Data Updated");
+        event.preventDefault();
+    } else {
+        showToast("Please update the select values");
+    }
 });
 
 const getSignInMethod = () => {
@@ -301,11 +306,11 @@ const getSignInMethod = () => {
     });
 }
 
-function showToast() {
+function showToast(text) {
     // Get the snackbar DIV
     var x = document.getElementById("toast");
     // Add the "show" class to DIV
-    x.innerHTML = "Data Updated"
+    x.innerHTML = text;
 
     x.className = "show";
     // After 3 seconds, remove the show class from DIV

@@ -767,7 +767,7 @@ img {
 }
 
 .user-account-settings-page {
-  padding: 5rem 0;
+  padding-top: 5rem;
 }
 
 .wrapper-sign-up-screen .signup-heading,
@@ -1220,7 +1220,8 @@ button:focus {
   background: #55ACE3;
 }
 
-.wrapper-sign-up-screen .button {
+.wrapper-sign-up-screen .button,
+.login-wrapper .button {
   cursor: pointer;
 }
 
@@ -1407,7 +1408,8 @@ button:focus {
   background: #55ACE3;
 }
 
-.wrapper-sign-up-screen .button {
+.wrapper-sign-up-screen .button,
+.login-wrapper .button {
   cursor: pointer;
 }
 
