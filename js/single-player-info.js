@@ -3,7 +3,8 @@
 //////////////////////////////////////////// 
 const db =firebase.firestore();
 let friendProfile = {}; 
-let userApp = get_appUser();
+let userAppProfile = {}; 
+let userApp = get_appUser(); //common.js
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const friendId = urlParams.get('courtPlayerId');
@@ -12,52 +13,21 @@ const friendId = urlParams.get('courtPlayerId');
 // const playAtPath = `friendProfile.sports.${sport}.challengeCourts.courtName`;
 // const levelPath = `friendProfile.sports.${sport}.userLevel`;
 
-////////////////////////////////////////////
-//  Functions for single-player-info
-//////////////////////////////////////////// 
 
-// db.collection("user").where("userID", "==", friendId).get()
-//     .then((querySnapshot)=>{
-//         querySnapshot.forEach((doc) => {
-//             // console.log(doc.data().name);
-//             friendProfile = doc.data();
-//             printProfile();
-//         });
-//     })
-//     .then(()=>{
-//         db.collection("user").where("userID", "==", userApp.auid).get()
-//         .then((querySnapshot)=>{
-//             querySnapshot.forEach((doc) => {
-//                 myChatId = doc.data().chatId;
-//             });
-//             if(myChatId < friendChatId){
-//                 chatId = "chatId" + myChatId + friendChatId;
-//             }else{
-//                 chatId = "chatId" + friendChatId + myChatId;
-//             }
-//         })
-//     })
-//     .catch((error) => {
-//         console.log("Error getting documents: ", error);
-// });
 
 db.collection("user").where("userID", "==", userApp.auid).get()
     .then((querySnapshot)=>{
         querySnapshot.forEach((doc) => {
-            myChatId = doc.data().chatId;
+            userAppProfile = doc.data();
+            console.log(userAppProfile.userID);
+            console.log(userAppProfile.name);
         })
     })
     .then(()=>{
         db.collection("user").where("userID", "==", friendId).get()
         .then((querySnapshot)=>{
             querySnapshot.forEach((doc) => {
-                // console.log(doc.data().name);
                 friendProfile = doc.data();
-                if(myChatId < friendProfile.chatId){
-                    chatId = "chatID" + myChatId + friendProfile.chatId;
-                }else{
-                    chatId = "chatID" + friendProfile.chatId + myChatId;
-                }
                 printProfile();
             });
         })
@@ -97,10 +67,10 @@ const printProfile = ()=>{
             </div>
                 <div class="buttons">
                     <!-- Buttons for Chat and Challenge -->
-                    <a href="chat-window.html?chatId=${chatId}&friendId=${friendProfile.userID}">
+                    <a href="chat-window.html?chat-window.html?myId=${userAppProfile.userID}&friendId=${friendProfile.userID}">
                     <button class="player-chat-button common-button">Chat</button>
                     </a>
-                    <a href="player-invite.html">
+                    <a href="challenge-invite.html?userAppId=${userAppProfile.userID}&friendId=${friendProfile.userID}">
                     <button class="player-challenge-button common-button">Challenge</button>
                     </a>
                 </div>
@@ -108,9 +78,3 @@ const printProfile = ()=>{
     $(".player-detail-content-wrapper").append(html);
 }
 
-
-
-
-
-
-// "Hi I am Thiago. I like to PLay Tennis on Saturday and Sunday morninngs. text me and lets schedule our next game. Hope to see you soon."
