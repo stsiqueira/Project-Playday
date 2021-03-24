@@ -6,12 +6,13 @@ const db =firebase.firestore();
 ////////////////////////////////////////////
 //grab variable from URL
 //////////////////////////////////////////// 
-
+let friendProfile = {}; 
+let userAppProfile = {}; 
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
-const userAppId = urlParams.get('userAppId');
-const friendId = urlParams.get('friendId');
-console.log(userAppId,friendId);
+let userAppId = urlParams.get("userAppId");
+let friendId = urlParams.get('friendId');
+// console.log(userAppId,friendId);
 
 ////////////////////////////////////////////
 //  DB connection - get Profiles
@@ -77,7 +78,7 @@ setTimeout(() => {
          }
      });
  });
-}, 1000);
+}, 2000);
 const generateDocumentId = ()=>{
     let date = new Date();
     let year = date.getFullYear().toString();
@@ -116,6 +117,6 @@ document.addEventListener('keydown', (e) => {
     if(e.keyCode == 13){
         checkMessages();
     }
-})
+});
 
- 
+
