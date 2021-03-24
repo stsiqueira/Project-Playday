@@ -113,128 +113,128 @@ const checkMessages = () => {
 ////////////////////////////////////////////
 //  Variables
 //////////////////////////////////////////// 
-const db =firebase.firestore(); 
+// const db =firebase.firestore(); 
 
-let friendProfile = {}; 
-let userAppProfile = {}; 
-const urlParams = new URLSearchParams(window.location.search);
-const friendId = urlParams.get('friendId');
-const userAppId = urlParams.get('myId');
+// let friendProfile = {}; 
+// let userAppProfile = {}; 
+// const urlParams = new URLSearchParams(window.location.search);
+// const friendId = urlParams.get('friendId');
+// const userAppId = urlParams.get('myId');
 
-console.log(urlParams.get('myId'));
-
-
-
-////////////////////////////////////////////
-//  Functions
-//////////////////////////////////////////// 
-
-const getChat = ()=>{
-    db.collection(chatId).onSnapshot((snapshot)=>{
-        snapshot.docChanges().forEach((change)=>{
-            if(change.type === "added"){
-                   if(change.doc.data().senderId != userAppProfile.name){
-                       let newLine = `                    
-                           <li> 
-                               <div class="chat-image">
-                                   <img src="${friendProfile.profilePic}" alt="'s picture">
-                               </div>
-                               <div class="chat-message">
-                                   <p class="text-message"> ${change.doc.data().message}</p>
-                               </div>
-                           </li>`;
-                           $("#chat-messages").append(newLine);
-                   }else{
-                       let newLine = `  
-                           <li class="sender">
-                               <div class="chat-image">
-                                   <img src="${userAppProfile.profilePic}" alt="${userAppProfile.name}'s picture">
-                               </div>
-                               <div class="chat-message sender">
-                                   <p class="text-message">${change.doc.data().message}</p>
-                               </div>
-                           </li>`;
-                           $("#chat-messages").append(newLine);
-                   }
-            }
-        });
-    });
-}
+// console.log(urlParams.get('myId'));
 
 
-const generateDocumentId = ()=>{
-    let date = new Date();
-    let year = date.getFullYear().toString();
-    let month = date.getMonth() + 1;
-    let day = date.getDate();
-    let hour = date.getHours();
-    let min = date.getMinutes();
-    let sec = date.getSeconds();
-    return year+month+day+hour+min+sec;
-}
 
-const checkMessages = () => {
-    if($("#chat-message").val() == ""){
-        console.log("invalid")
-    }else{
+// ////////////////////////////////////////////
+// //  Functions
+// //////////////////////////////////////////// 
 
-        db.collection(chatId).doc(generateDocumentId()).set({
-            senderId: userAppProfile.name,
-            receiverId: friendProfile.name, 
-            message: $("#chat-message-input").val(),
-            date: new Date()
-        });
-        $("#chat-message-input").val("");
-    }
-}
-
-////////////////////////////////////////////
-//  DB connection - get Profiles
-//////////////////////////////////////////// 
-db.collection("user").where("userID", "==", userAppId).get()
-    .then((querySnapshot)=>{
-        querySnapshot.forEach((doc) => {
-            userAppProfile = doc.data();
-            console.log(userAppProfile.name);
-        })
-    })
-    .then(()=>{
-        db.collection("user").where("userID", "==", friendId).get()
-        .then((querySnapshot)=>{
-            querySnapshot.forEach((doc) => {
-                friendProfile = doc.data();
-                console.log(friendProfile.name);
-                $(".chat-title").text(`${friendProfile.name}`);
-                if(userAppProfile.chatId < friendProfile.chatId){
-                    chatId = "chatID" + userAppProfile.chatId + friendProfile.chatId;
-                }else{
-                    chatId = "chatID" + friendProfile.chatId + userAppProfile.chatId;
-                }
-            });
-        })
-        .then(()=>{
-            getChat();
-        })
-
-    })
-    .catch((error) => {
-        console.log("Error getting documents: ", error);
-    });
+// const getChat = ()=>{
+//     db.collection(chatId).onSnapshot((snapshot)=>{
+//         snapshot.docChanges().forEach((change)=>{
+//             if(change.type === "added"){
+//                    if(change.doc.data().senderId != userAppProfile.name){
+//                        let newLine = `                    
+//                            <li> 
+//                                <div class="chat-image">
+//                                    <img src="${friendProfile.profilePic}" alt="'s picture">
+//                                </div>
+//                                <div class="chat-message">
+//                                    <p class="text-message"> ${change.doc.data().message}</p>
+//                                </div>
+//                            </li>`;
+//                            $("#chat-messages").append(newLine);
+//                    }else{
+//                        let newLine = `  
+//                            <li class="sender">
+//                                <div class="chat-image">
+//                                    <img src="${userAppProfile.profilePic}" alt="${userAppProfile.name}'s picture">
+//                                </div>
+//                                <div class="chat-message sender">
+//                                    <p class="text-message">${change.doc.data().message}</p>
+//                                </div>
+//                            </li>`;
+//                            $("#chat-messages").append(newLine);
+//                    }
+//             }
+//         });
+//     });
+// }
 
 
-////////////////////////////////////////////
-//  Event Listener
-//////////////////////////////////////////// 
-$("#sendButton").click(()=>{
-    checkMessages();
-});
-////////////////////////////////////////////
-//  Keyboard Listener
-//////////////////////////////////////////// 
-document.addEventListener('keydown', (e) => { 
-    if(e.keyCode == 13){
-        checkMessages();
-    }
-})
+// const generateDocumentId = ()=>{
+//     let date = new Date();
+//     let year = date.getFullYear().toString();
+//     let month = date.getMonth() + 1;
+//     let day = date.getDate();
+//     let hour = date.getHours();
+//     let min = date.getMinutes();
+//     let sec = date.getSeconds();
+//     return year+month+day+hour+min+sec;
+// }
+
+// const checkMessages = () => {
+//     if($("#chat-message").val() == ""){
+//         console.log("invalid")
+//     }else{
+
+//         db.collection(chatId).doc(generateDocumentId()).set({
+//             senderId: userAppProfile.name,
+//             receiverId: friendProfile.name, 
+//             message: $("#chat-message-input").val(),
+//             date: new Date()
+//         });
+//         $("#chat-message-input").val("");
+//     }
+// }
+
+// ////////////////////////////////////////////
+// //  DB connection - get Profiles
+// //////////////////////////////////////////// 
+// db.collection("user").where("userID", "==", userAppId).get()
+//     .then((querySnapshot)=>{
+//         querySnapshot.forEach((doc) => {
+//             userAppProfile = doc.data();
+//             console.log(userAppProfile.name);
+//         })
+//     })
+//     .then(()=>{
+//         db.collection("user").where("userID", "==", friendId).get()
+//         .then((querySnapshot)=>{
+//             querySnapshot.forEach((doc) => {
+//                 friendProfile = doc.data();
+//                 console.log(friendProfile.name);
+//                 $(".chat-title").text(`${friendProfile.name}`);
+//                 if(userAppProfile.chatId < friendProfile.chatId){
+//                     chatId = "chatID" + userAppProfile.chatId + friendProfile.chatId;
+//                 }else{
+//                     chatId = "chatID" + friendProfile.chatId + userAppProfile.chatId;
+//                 }
+//             });
+//         })
+//         .then(()=>{
+//             getChat();
+//         })
+
+//     })
+//     .catch((error) => {
+//         console.log("Error getting documents: ", error);
+//     });
+
+
+// ////////////////////////////////////////////
+// //  Event Listener
+// //////////////////////////////////////////// 
+// $("#sendButton").click(()=>{
+//     checkMessages();
+// });
+// ////////////////////////////////////////////
+// //  Keyboard Listener
+// //////////////////////////////////////////// 
+// document.addEventListener('keydown', (e) => { 
+//     if(e.keyCode == 13){
+//         checkMessages();
+//     }
+// })
 
  

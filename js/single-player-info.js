@@ -67,7 +67,7 @@ const printProfile = ()=>{
             </div>
                 <div class="buttons">
                     <!-- Buttons for Chat and Challenge -->
-                    <a href="chat-window.html?chat-window.html?myId=${userAppProfile.userID}&friendId=${friendProfile.userID}">
+                    <a href="chat-window.html?chat-window.html?userAppId=Thiago&friendId=${friendProfile.userID}">
                     <button class="player-chat-button common-button">Chat</button>
                     </a>
                     <a href="challenge-invite.html?userAppId=${userAppProfile.userID}&friendId=${friendProfile.userID}">
@@ -78,3 +78,4 @@ const printProfile = ()=>{
     $(".player-detail-content-wrapper").append(html);
 }
 
+// ${userAppProfile.userID}

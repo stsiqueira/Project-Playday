@@ -6,39 +6,52 @@ const db =firebase.firestore();
 ////////////////////////////////////////////
 //grab variable from URL
 //////////////////////////////////////////// 
-//grab variable from URL
+
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
-const chatId = urlParams.get('chatId');
+const userAppId = urlParams.get('userAppId');
 const friendId = urlParams.get('friendId');
-
-let appUserobject = get_appUser();
-
+console.log(userAppId,friendId);
 
 ////////////////////////////////////////////
-//  Get Friends information
+//  DB connection - get Profiles
 //////////////////////////////////////////// 
-db.collection("user").where("userID", "==", friendId).get()
+
+db.collection("user").where("userID", "==", userAppId).get()
     .then((querySnapshot)=>{
         querySnapshot.forEach((doc) => {
-            // console.log(doc.data().name);
-            friendProfile = doc.data();
-            $(".chat-title").text(`${friendProfile.name}`);
-        });
+            userAppProfile = doc.data();
+        })
+    })
+    .then(()=>{
+        db.collection("user").where("userID", "==", friendId).get()
+        .then((querySnapshot)=>{
+            querySnapshot.forEach((doc) => {
+                friendProfile = doc.data();
+                $(".chat-title").text(`${friendProfile.name}`);
+                if(userAppProfile.chatId < friendProfile.chatId){
+                    chatId = "chatID" + userAppProfile.chatId + friendProfile.chatId;
+                }else{
+                    chatId = "chatID" + friendProfile.chatId + userAppProfile.chatId;
+                }
+            });
+        })
     })
     .catch((error) => {
         console.log("Error getting documents: ", error);
-});
+    });
 
 ////////////////////////////////////////////
 //  Functions
 //////////////////////////////////////////// 
 
+setTimeout(() => {
+    console.log(chatId);
 
  db.collection(chatId).onSnapshot((snapshot)=>{
      snapshot.docChanges().forEach((change)=>{
          if(change.type === "added"){
-                if(change.doc.data().senderId != appUserobject.firstName){
+                if(change.doc.data().senderId != userAppProfile.name){
                     let newLine = `                    
                         <li> 
                             <div class="chat-image">
@@ -53,7 +66,7 @@ db.collection("user").where("userID", "==", friendId).get()
                     let newLine = `  
                         <li class="sender">
                             <div class="chat-image">
-                                <img src="../img/bg-404-sinatra.jpg" alt="">
+                                <img src="${userAppProfile.profilePic}" alt="${userAppProfile.name}'s picture">
                             </div>
                             <div class="chat-message sender">
                                 <p class="text-message">${change.doc.data().message}</p>
@@ -64,7 +77,7 @@ db.collection("user").where("userID", "==", friendId).get()
          }
      });
  });
-
+}, 1000);
 const generateDocumentId = ()=>{
     let date = new Date();
     let year = date.getFullYear().toString();
@@ -82,7 +95,7 @@ const checkMessages = () => {
     }else{
         // change the chatID 
         db.collection(chatId).doc(generateDocumentId()).set({
-            senderId: get_appUser().firstName,
+            senderId: userAppProfile.name,
             receiverId: friendProfile.name, 
             message: $("#chat-message-input").val(),
             date: new Date()
