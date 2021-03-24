@@ -15,10 +15,14 @@
     height: 75vh;
 }
 .logoimage {
-    height: 100%;
+    // height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    max-width: 100%;
+    width: 11rem;
+    margin: 1rem auto;
+    // height: auto;
 }
 .first-circle {
     background: #ffffff;
@@ -85,6 +89,8 @@
         padding: .5rem 2rem;
         border-radius: 20px;
         background: white;
+        text-transform: uppercase;
+        font-weight: bold;
         color: #FF4C04;
     }
 }
