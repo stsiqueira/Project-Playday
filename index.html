@@ -1,32 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
 
-        <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-app.js"></script>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<!-- <link rel="stylesheet" href="css/common.css"> -->
+	<link rel="stylesheet" href="style.css">
+	<link rel="manifest" href="manifest.json">
+	<script>
+		if (navigator.serviceWorker) {
+			navigator.serviceWorker.register('./sw.js', { scope: '.' }).then(function (registration) {
+				console.log('ServiceWorker registration successful with scope:', registration.scope);
+			}).catch(function (error) {
+				console.log('ServiceWorker registration failed:', error);
+			});
+		}
+	</script>
+</head>
+
+<body class="splash">
+	<div class="wrapper front-page-wrapper">
+		<div class="third-circle">
+			<div class="second-circle">
+				<div class="first-circle">
+					<div class="logo">
+						<img src="img/logo.png" class="logoimage" alt="">
+						<h2>PlayDay</h2>
+					</div>
+				</div>
+			</div>
+		</div>
+		<section class="sign-in-sectio">
+			<a href="html/log-in.html" class="login-button" id="login">Log in</a>
+			<a href="html/sign-up.html" class="Signup-button" id="signup">Sign up</a>
+		</section>
+		<!-- <div class="logo-wrapper">
+			<img src="img/home-screen/badminton-main.png" alt="playday logo">
+		</div> -->
+	</div>
 
 
-        <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-auth.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-analytics.js"></script>
-        
-
-        <script src="https://www.gstatic.com/firebasejs/ui/4.7.1/firebase-ui-auth.js"></script>
-        <script src="login.js" defer></script>
-
-        <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.7.1/firebase-ui-auth.css" />
-
-    </head>
-
-    <body>
-        <h1>Welcome to My Awesome App</h1>
-        <div id="firebaseui-auth-container"></div>
-        <button id="find-me">Show my location</button><br/>
-        <p id = "status"></p>
-        <a id = "map-link" target="_blank"></a>
-    </body>
+</body>
 
 
 </html>
 
+<!-- <section class="container mail-container">
+  <fieldset>
+
+      <a href="html/log-in.html" class="login-button" id="login">Login</a>
+      <a href="html/sign-up.html" class="Signup-button" id="signup">Signup</a>
+  </fieldset>
+</section> -->
+
+<!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 319"><path fill="#0099ff" fill-opacity="1" d="M0,64L120,101.3C240,139,480,213,720,213.3C960,213,1200,139,1320,101.3L1440,64L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path></svg> -->

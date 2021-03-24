@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/ef8606d888.js" crossorigin="anonymous"></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+
+    <!-- <link rel="stylesheet" href="../css/main.css"> -->
+
+    <!-- Firebase CDN  -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-storage.js"></script>
+
+
+    <!-- User javascript Files -->
+    <script src="../js/common.js" defer></script>
+    <script src="../js/player-details.js" defer></script>
+
+    <link rel="stylesheet" href="../style.css">
+    <title>Account Settings</title>
+</head>
+
+<body class="page user-account-settings-page">
+    <main class="page user-account-page">
+        <div class="wrapper user-account-wrapper">
+            <div class="image-about-wrapper">
+                <div class="image-wrapper">
+                    <img src="" alt=" " id="user-image" class="user-img" >
+                    <input type="file" id="imgupload" accept="image/*" style="display:none"/> 
+                </div>
+                <div class="user-bio">
+                    <h2 class="user-name"></h2>
+                    <p class="about-player"></p>
+                </div>
+            </div>
+            <form action="" class="user-location-level-wrapper">
+                <div class="location-info" id="location-info-wrapper">
+                    <label for="location-input">Location</label>
+                    <input type="text" id="location-input" class="location-input-box grey-button">
+                </div>
+                <div class="sport-info">
+                    <label for="change-sport">Change Sport</label>
+                    <select name="sports" class="grey-button sport-change" onchange="updateSport()" id="change-sport">
+                        <option value="NoSelect" selected>Not Selected</option>
+                        <option value="Tennis">Tennis</option>
+                        <option value="Badminton">Badminton</option>
+                        <option value="Volleyball">Volleyball</option>
+                    </select>
+                </div>
+                <div class="user-level-info">
+                    <label for="">User Level</label>
+                    <select name="level" class="grey-button level-info" id="user-level">
+                        <option value="NoSelect" selected disabled>Not Selected</option>
+                        <option value="Beginner">Beginner</option>
+                        <option value="Intermediate">Intermediate</option>
+                        <option value="Advanced">Advanced</option>
+                    </select>
+                </div>
+                <input type="button" id="apply-changes" value="Apply" class="green-button apply">
+            </form>
+
+            <div class="accordion-wrapper" style="display:none">
+                <div class="change-password-wrapper accordion">
+                    <h2 class="change-text-heading">Change Password</h2>
+                </div>
+            </div>
+
+            <!-- <div class="accordion-wrapper"> -->
+                <section class="saved-courts">
+                    <h2 class="saved-courts-heading">Saved Courts</h2>   
+                </section>
+            <!-- </div> -->
+            <section class="challenge-courts">
+                <h2 class="challenge-courts-heading">Challenge Courts</h2>
+            </section>
+            <button id="logout" onclick="signout()" class="logout red-button">Logout</button>
+
+            <!-- The actual toast -->
+            <div id="toast">Some text some message..</div>
+        </div>
+
+        </div>
+    </main>
+
+    <footer>
+		<!-- Bottom Navigation Bar -->
+
+		<ul class="bottom-nav-bar footer-nav">
+			<li class="nav-elements nav-1">
+				<a href="" class="icons-back footer-icons">
+					<i class="fas fa-chevron-circle-left"></i>
+					<div class="button-text">Back</div>
+					<span class="visually-hidden">Back button</span>
+				</a>
+			</li>
+			<li class="nav-elements nav-2">
+				<a href="home.html" class="icons-home footer-icons">
+					<i class="fas fa-home"></i>
+					<div class="button-text">Home</div>
+					<span class="visually-hidden">Home button</span>
+				</a>
+			</li>
+			<li class="nav-elements nav-3">
+				<a href="user-account-settings.html" class="icons-user-setting footer-icons">
+					<i class="far fa-user-circle"></i>
+					<div class="button-text">User setting</div>
+					<span class="visually-hidden">User setting button</span>
+				</a>
+			</li>
+			<li class="nav-elements nav-4">
+				<a href="" class="icons-chat footer-icons">
+					<i class="fas fa-comment-dots"></i>
+					<div class="button-text">Chat</div>
+					<span class="visually-hidden">Chat button</span>
+				</a>
+			</li>
+		</ul>
+	</footer>
+
+</body>
+
+</html>

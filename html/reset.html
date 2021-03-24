@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <title>Document</title>
+
+    <!-- <link rel="manifest" href="manifest.json">
+    <script>
+        if (navigator.serviceWorker) {
+          navigator.serviceWorker.register('./sw.js',{scope:'.'}).then(function (registration) {
+            console.log('ServiceWorker registration successful with scope:', registration.scope);
+          }).catch(function (error) {
+            console.log('ServiceWorker registration failed:', error);
+          });
+        }
+      </script> -->
+    
+
+    <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-app.js"></script>
+	  <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-auth.js"></script>
+
+    <script src="../js/common.js" defer></script>
+    <script src="../js/reset.js" defer></script>
+
+</head>
+
+<body>
+    <div class="wrapper">
+      <section class="container mail-container">
+        <div class="back-arrow-button">x</div>
+        <h1>Forgot password</h1>
+        <fieldset>
+          <div>
+            <label for="mail">Your Email</label> <br>
+            <input type="email" id="mail" name="mail" class="input-text"/>
+          </div>
+            <button id="check-email" class="green-button">Send Email</button><br />
+          <div class="clearfix"></div>
+        </fieldset>
+      </section>
+    </div>
+    <p id="status"></p>
+    <a id="map-link" target="_blank"></a>
+</body>
+
+
+</html>

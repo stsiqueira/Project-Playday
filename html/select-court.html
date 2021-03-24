@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PlayDay - List Courts</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.5.0/maps/maps.css"
+    />
+
+    <style>
+      
+    </style>
+    <script src='https://kit.fontawesome.com/5383a9e9bf.js' crossorigin='anonymous'></script>
+    <link rel="stylesheet" href="../style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.5.0/maps/maps-web.min.js"></script>
+    
+    <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-auth.js"></script>
+    <script src="../js/project-credentials.js" defer></script>
+
+    <script
+      type="text/javascript"
+      src="../js/shared-location-functions.js" defer
+    ></script>
+    <!-- <script type="text/javascript" src="../js/courts-list.js"></script> -->
+    <script type="text/javascript" src="../js/common.js"></script>
+    <script type="text/javascript" src="../js/select-court.js"></script>
+  </head>
+  <body class="select-court">
+    <div class="main-wrapper">
+      <main>
+        <div class="select-court-container">
+          <div class="filters">
+            <div class="sort">
+              <select name="sortby" class="sortby" id="sortby" aria-placeholder="Sort By">
+                <option value="" disabled selected>Sort By</option>
+                <option value="playerscount">No. of players</option>
+                <option value="distance">Closest to my location</option>
+              </select>
+            </div>
+            <div class="radius-container">
+              <select name="radius" id="radius" class="radius" aria-placeholder="Distance">
+                <option value="5" disabled selected>Distance</option>
+                <option value="5">5 Km</option>
+                <option value="10">10 Km</option>
+                <option value="25">25 Km</option>
+                <option value="50">50 Km</option>
+              </select>
+            </div>
+          </div>
+          <div id="api-result">
+            <ul class="sortResult"></ul>
+          </div>
+        </div>
+
+        <div class="single-court-info-container" style="display: none;">
+          <div id="selected-court-id" style="display: none;"></div>
+          <div class="selected-hero">
+            <div class="selected-gallery">
+              <img id="selected-img" src="" alt="selected image">
+            </div>            
+            <div class="selected-players-playing">
+              <span>People play at this court: </span><span id="s-p-playing"></span>
+            </div>
+          </div>
+          <div id="selected-name" class="selected-name"></div>
+          <div class="select-court-meta">            
+            <div id="selected-address" class="selected-address"></div>
+            <div id="selected-distance" class="selected-distance"></div>
+            <div id="selected-phone" class="selected-phone"></div>
+          </div>
+          <div class="user-options">
+            <div id="save-court" class="save-container">Save Court</div>
+            <div id="challenge-court" class="challenge-container">Challenge Players</div>
+          </div>
+          <div class="user-message-display">
+          </div>
+          <div class="players-list-container">
+            <div class="show-players-list" id="show-players-list">Click here to <span id="pl-msg">see</span></div>
+            <h3>Players enrolled at this court</h3>
+            <ul id="players-list">
+
+            </ul> 
+          </div>
+        </div>
+      </main>
+
+      
+    </div>
+    <footer>
+      <!-- Bottom Navigation Bar -->
+
+  <ul class="bottom-nav-bar footer-nav">
+
+      <li id="goBack" class="nav-elements nav-1">
+          <div class="icons-back footer-icons">
+              <i class="fas fa-chevron-circle-left"></i>
+              <div class="button-text">Back</div>
+              <span class="visually-hidden">Back button</span>
+          </div>
+      </li>
+      <li class="nav-elements nav-2">
+          <a href="home.html" class="icons-home footer-icons">
+              <i class="fas fa-home"></i>
+              <div class="button-text">Home</div>
+              <span class="visually-hidden">Home button</span>
+          </a>
+      </li>
+      <li class="nav-elements nav-3">
+          <a href="user-account-settings.html" class="icons-user-setting footer-icons">
+              <i class="far fa-user-circle"></i>
+              <div class="button-text">User setting</div>
+              <span class="visually-hidden">User setting button</span>
+          </a>
+      </li>
+      <li class="nav-elements nav-4">
+          <a href="" class="icons-chat footer-icons">
+              <i class="fas fa-comment-dots"></i>
+              <div class="button-text">Chat</div>
+              <span class="visually-hidden">Chat button</span>
+          </a>
+      </li>
+
+   </ul>
+</footer> 
+  </body>
+</html>

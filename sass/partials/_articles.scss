@@ -1,0 +1,80 @@
+
+.article-section-wrapper{
+    h1{
+        text-align: center;
+        font-family: $font_sans;
+        @include fontWeight(bold);
+        font-size: $font_size_h1;
+    }
+    .all-articles-wrapper{
+        max-width: 1300px;
+        margin: auto;
+    }
+    
+
+}
+
+.single-article-section{
+    font-family: $font_sans;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-between;
+
+    h2{
+        @include fontWeight(semi-bold);
+        font-size: $font_size_h2;
+    }
+    
+
+    ol{
+        margin: 10px;
+        padding: 8px;
+
+        li{
+            @include fontWeight(regular);
+            font-size: $font_size_articles;
+            line-height: $line_height;
+
+        }
+    }
+
+    @include pageMargin;
+
+    img{
+        @include roundImage;
+
+    }
+}
+
+.all-articles-wrapper{
+    @include autoGrid(340px);
+}
+
+
+.tennis-article {
+    header{
+    background: linear-gradient(transparent 70%, rgba(0,0,0,.5) 90%), url(img/articles-section/tennis-hero-image.jpg);
+    background-size: cover;
+    height: 250px;
+}
+}
+.badminton-article {
+    header{
+    background: linear-gradient(transparent 70%, rgba(0,0,0,.5) 90%), url(img/articles-section/badminton-hero-image.jpg);
+    background-size: cover;
+    height: 250px;
+}
+}
+
+.volleyball-article {
+    header{
+    background: linear-gradient(transparent 70%, rgba(0,0,0,.2) 90%), url(img/articles-section/volleyball-hero-image.jpg);
+    background-size: cover;
+    height: 250px;
+}
+}
+
+
+
+
+

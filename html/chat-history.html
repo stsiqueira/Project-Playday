@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/ef8606d888.js" crossorigin="anonymous"></script> 
+    <script src="../js/chat.js" defer></script>
+    <title>Playday</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+            color: black;
+        }
+        header{
+            background-color: #E5E5E5;
+            padding: 1.5rem;
+
+        }
+        h2{
+            text-align: center;
+        }
+        .chat-item a{
+            display: flex;
+            flex-flow: row nowrap;
+            gap: 1rem;
+            margin: 1rem 0 0 0;
+            padding-bottom: .5rem;
+            border-bottom: 2px solid #ccc;
+        }
+        .chat-1{
+            margin-top: 2rem;
+        }
+        .chat-history-number-msgs{
+            display: flex;
+
+        }
+        .chat-history-number-msgs p{
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background-color: rgb(247, 200, 179);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+        }
+        img{
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            margin-left: 1rem;
+        }
+        .chat-history-name{
+            margin-bottom: .7rem;
+        }
+    </style>
+</head>
+
+<body class="page chat-history-page">
+    <header>
+        <!-- chat History Heading -->
+        <h2 class="chat-history-heading page-heading">Chats</h2>
+    </header>
+    <main>
+        <!-- chat History -->
+        <div class="chat-content-wrapper content-wrapper">
+            <ul class="chat-history">
+                <li class="chat-item chat-1">
+                    <a href="">
+                    <div class="chat-history-player-image">
+                        <img src="../img/bg-404-sinatra.jpg" alt="">
+                    </div>
+                    <div class="chat-history-message">
+                        <p class="chat-history-name">Diana</p>
+                        <p class="chat-history-message">We need to focus on our presentation.</p>
+                    </div>
+                    <div class="chat-history-number-msgs">
+                        <p class="chat-history-msg"> 2 </p>
+                    </div>
+                    </a>
+                </li>
+                <li class="chat-item chat-2">
+                    <a href="">
+                    <div class="chat-history-player-image">
+                        <img src="../img/bg-404-sinatra.jpg" alt="">
+                    </div>
+                    <div class="chat-history-message">
+                        <p class="chat-history-name">Amandeep </p>
+                        <p class="chat-history-message">Let me check.</p>
+                    </div>
+                    <!-- <div class="chat-history-number-msgs">
+                        <p class="chat-history-msg"> 5 </p>
+                    </div> -->
+                    </a>
+                </li>
+                <li class="chat-item chat-3">
+                    <a href="">
+                    <div class="chat-history-player-image">
+                        <img src="../img/bg-404-sinatra.jpg" alt="">
+                    </div>
+                    <div class="chat-history-message">
+                        <p class="chat-history-name">Munish</p>
+                        <p class="chat-history-message">Not Today</p>
+                    </div>
+                    <!-- <div class="chat-history-number-msgs">
+                        <p class="chat-history-msg"> 1 </p>
+                    </div> -->
+                    </a>
+                </li>
+                <li class="chat-item chat-4">
+                    <a href="">
+                    <div class="chat-history-player-image">
+                        <img src="../img/bg-404-sinatra.jpg" alt="">
+                    </div>
+                    <div class="chat-history-message">
+                        <p class="chat-history-name">Viet</p>
+                        <p class="chat-history-message">yes, sure.</p>
+                    </div>
+
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+    </main>
+
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!-- JQuery CDN -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-auth.js"></script>
+    <!-- Chat JavaScript file -->   
+    <script src="../js/common.js" defer></script>
+    <script src="../js/chat.js" defer></script>
+        <!-- Thiago FontAwesome Better create our own icons -->  
+    <script src='https://kit.fontawesome.com/ef8606d888.js' crossorigin='anonymous'></script>
+    <link rel="stylesheet" href="../style.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="../css/main.css"> -->
+    <script src="https://kit.fontawesome.com/ef8606d888.js" crossorigin="anonymous"></script> 
+    <title>Playday</title>
+</head>
+<body class="page chat-window">
+    <header>
+        <div class="chat-title-container">
+            <h2 class="chat-title"></h2>
+        </div>
+
+    </header>
+
+    <main>
+        <!-- Chat -->
+        <div class="chat-content-wrapper content-wrapper">
+            <div class="chat-messages-wrapper">
+                <ul id="chat-messages">
+                <!-- inserted code here -->
+                </ul>
+            </div>
+
+
+        </div>
+        <footer>
+            <div class="send-message-wrapper">
+                <input type="text" id="chat-message-input">
+                <button id="sendButton"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </footer>
+    </main>
+
+</body>
+
+</html>
+
+
+

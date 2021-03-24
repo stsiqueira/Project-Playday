@@ -1,0 +1,96 @@
+.splash {
+    margin: 0;
+    padding: 0;
+    background: #ff4c04;
+}
+.logo {
+    height: 25vh;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+.login-section {
+    height: 75vh;
+}
+.logoimage {
+    // height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+    width: 11rem;
+    margin: 1rem auto;
+    // height: auto;
+}
+.first-circle {
+    background: #ffffff;
+    height: 60vh;
+    border-radius: 150%;
+    width: 200%;
+    position: fixed;
+    left: -50%;
+    top: -19%;
+    right: 0px;
+    overflow: hidden;
+    margin: 0 auto;
+    clip-path: inset(0 23%);
+}
+.second-circle {
+    background: #ff993dc7;
+    height: 60vh;
+    border-radius: 150%;
+    width: 200%;
+    position: fixed;
+    left: -50%;
+    top: -12%;
+    right: 0px;
+    overflow: hidden;
+    margin: 0 auto;
+    clip-path: inset(0 23%);
+}
+.third-circle {
+    background: #ff873d;
+    height: 60vh;
+    border-radius: 150%;
+    width: 200%;
+    position: fixed;
+    left: -50%;
+    top: -4%;
+    right: 0px;
+    overflow: hidden;
+    margin: 0 auto;
+    clip-path: inset(0 23%);
+}
+
+.front-page-wrapper {
+    height: 100vh;
+    position: relative;
+}
+
+.sign-in-sectio {
+    position: absolute;
+    bottom: 20%;
+    transform: translateX(-50%);
+    /* right: 38%; */
+    left: 50%;
+    /* left: 0; */
+    /* top: 0; */
+    /* bottom: 0; */
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-flow: column;
+    flex-flow: column;
+    gap: 1rem;
+
+    a {
+        padding: .5rem 2rem;
+        border-radius: 20px;
+        background: white;
+        text-transform: uppercase;
+        font-weight: bold;
+        color: #FF4C04;
+    }
+}

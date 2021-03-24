@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/ef8606d888.js" crossorigin="anonymous"></script> 
+    <link rel="stylesheet" href="../style.css">
+
+    <title>Playday</title>
+</head>
+<style>
+  
+    *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    body{
+        background: #e5e5e5;
+    }
+    .challenge-invite-wrapper{
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+        width: 95%;
+        margin: auto;
+    }
+    .invite-msg-wrapper{
+        margin: 2.5rem 0 1rem;
+    }
+    .player-img-wrapper img{
+        border-radius: 50%;
+        height: 150px;
+        width: 150px;
+
+    }
+    .player-img-wrapper h3{
+        color: #ff7d45 ;
+        text-align: center;
+    }
+    .invite-msg-wrapper textarea{
+        border: none;
+        outline: none;
+        padding: 1rem;
+        border-radius: 20px;
+        font-size: 1.3rem;
+    }
+    .buttons{
+        display: flex;
+        flex-flow: row nowrap;
+        gap: 2rem;
+        justify-content: space-between;
+    }
+  
+    */
+
+</style>
+
+<body class="page player-invite-page">
+
+    <header>
+        <div class="back">
+            <button class="back-button">
+                <a href="">
+                    <i class="fas fa-chevron-left"></i><span class="visually-hidden">Back button</span></i>
+                </a>
+            </button>
+        </div>
+    </header>
+    
+    <main>
+        <!-- Invite Description -->
+        <div class="challenge-invite-wrapper content-wrapper">
+            <div class="player-img-wrapper">
+                <img class="" src="../img/user-default.png" alt="">
+                <h3>Friends name</h3>
+            </div>
+            <!-- Invite Message -->
+            <div class="invite-msg-wrapper">
+               <textarea name="invite-msg" id="invite-msg" cols="30" rows="10">Hi Glen,
+I am looking for a partner to play tennis with, let's connect! My level is intermediate.
+
+Diana
+               </textarea>
+            </div>
+            <div class="buttons">
+                <a href="#">
+                <button class="cancel-button grey-button">Cancel</button>
+                </a>
+                <a href="#">
+                <button class="send-button green-button">Send</button>
+                </a>
+            </div>
+        </div>
+
+
+    </main>
+
+    <footer>
+        <!-- Bottom Navigation Bar -->
+
+    <ul class="bottom-nav-bar footer-nav">
+
+        <li class="nav-elements nav-1">
+            <a href="" class="icons-back footer-icons">
+                <i class="fas fa-chevron-circle-left"></i>
+                <div class="button-text">Back</div>
+                <span class="visually-hidden">Back button</span>
+            </a>
+        </li>
+        <li class="nav-elements nav-2">
+            <a href="home.html" class="icons-home footer-icons">
+                <i class="fas fa-home"></i>
+                <div class="button-text">Home</div>
+                <span class="visually-hidden">Home button</span>
+            </a>
+        </li>
+        <li class="nav-elements nav-3">
+            <a href="user-account-settings.html" class="icons-user-setting footer-icons">
+                <i class="far fa-user-circle"></i>
+                <div class="button-text">User setting</div>
+                <span class="visually-hidden">User setting button</span>
+            </a>
+        </li>
+        <li class="nav-elements nav-4">
+            <a href="" class="icons-chat footer-icons">
+                <i class="fas fa-comment-dots"></i>
+                <div class="button-text">Chat</div>
+                <span class="visually-hidden">Chat button</span>
+            </a>
+        </li>
+
+     </ul>
+</footer> 
+
+
+</body>
+
+</html>

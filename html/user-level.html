@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Level</title>
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+
+    <script src="https://kit.fontawesome.com/ef8606d888.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
+
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-auth.js"></script>
+
+    <script type="text/javascript" src="../js/common.js" defer></script>
+    <script type="text/javascript" src="../js/user-level.js" defer></script>
+
+    <!-- <script type="text/javascript" src="../js/aman-test.js" defer ></script> -->
+
+</head>
+
+<body class=" page user-level hide-up">
+    <main>
+        <div class="main-wrapper">
+            <h2>Select Your Level</h2>
+            <div class="levels">
+                <div id="level-beginner" class="level">Beginner</div>
+                <div id="level-intermediate" class="level">Intermediate</div>
+                <div id="level-advance" class="level">Advance</div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <!-- Bottom Navigation Bar -->
+
+        <ul class="bottom-nav-bar footer-nav">
+
+            <li class="nav-elements nav-1">
+                <a href="home.html" class="icons-back footer-icons">
+                    <i class="fas fa-chevron-circle-left"></i>
+                    <div class="button-text">Back</div>
+                    <span class="visually-hidden">Back button</span>
+                </a>
+            </li>
+            <li class="nav-elements nav-2">
+                <a href="home.html" class="icons-home footer-icons">
+                    <i class="fas fa-home"></i>
+                    <div class="button-text">Home</div>
+                    <span class="visually-hidden">Home button</span>
+                </a>
+            </li>
+            <li class="nav-elements nav-3">
+                <a href="user-account-settings.html" class="icons-user-setting footer-icons">
+                    <i class="far fa-user-circle"></i>
+                    <div class="button-text">User setting</div>
+                    <span class="visually-hidden">User setting button</span>
+                </a>
+            </li>
+            <li class="nav-elements nav-4">
+                <a href="" class="icons-chat footer-icons">
+                    <i class="fas fa-comment-dots"></i>
+                    <div class="button-text">Chat</div>
+                    <span class="visually-hidden">Chat button</span>
+                </a>
+            </li>
+
+        </ul>
+    </footer>
+</body>
+
+</html>

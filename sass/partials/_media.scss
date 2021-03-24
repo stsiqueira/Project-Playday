@@ -1,0 +1,16 @@
+
+img{
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
+.user-account-wrapper .image-wrapper img {
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    top: -4rem;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 50%;
+}

@@ -1,0 +1,140 @@
+// .green-button
+// .orange-button
+// .grey-button
+// .red-button 
+
+button:focus {
+    outline: none;
+}
+
+.fab {
+    padding: .9rem;
+    font-size: 1.3rem;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px 2px;
+    border-radius: 50%;
+    color: white;
+}
+
+.button-wrapper {
+    text-align: right;
+}
+
+.login-wrapper .signin-button,
+.wrapper-sign-up-screen .signup-button {
+    color: #39373A;
+    border: none;
+    padding: .4rem 1.1rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem;
+    border-radius: 50%;
+    cursor: pointer;
+    -webkit-box-shadow: 4px 3px 10px -3px grey;
+    box-shadow: 4px 3px 10px -3px grey;
+}
+
+.wrapper-sign-up-screen .signup-button {
+    background-color: #FF8D5C;
+    color: white;
+}
+
+.fa-chevron-right {
+    font-size: 1.5rem;
+}
+
+.fa-angle-right {
+    background: $color_google_signin;
+}
+
+.fa-google {
+    background: $color_google_signin;
+}
+
+.fa-facebook-square {
+    background: $color_facebook_signin;
+}
+
+.fa-twitter {
+    background: $color_twitter_signin;
+}
+
+.wrapper-sign-up-screen .button,
+.login-wrapper .button {
+    cursor: pointer
+}
+
+button {
+    @include borderRadiusButtons;
+}
+
+.delete-court-wrapper .delete-button {
+    background-color: $color-red-button;
+    color: white;
+    border: none;
+    padding: .4rem 1.1rem;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1rem;
+    border-radius: 20px;
+    // height: 50px;
+    cursor: pointer;
+}
+//green button 
+.green-button{
+    @include basicButtonStyle($color-green-button, $color_buttons_type_white ); 
+}
+
+// grey button
+.grey-button{
+    @include basicButtonStyle($color-grey-button, $color_buttons_type_black); 
+}
+
+.red-button{
+    @include basicButtonStyle($color-red-button, $color_buttons_type_white); 
+    min-width: 115px;
+
+}
+
+.logout {
+    font-size: 1rem;
+    cursor: pointer;
+    align-self: center;
+}
+
+.apply {
+    align-self: center;
+    font-size: 1rem;
+}
+
+
+///// link reset 
+a{
+    text-decoration: none;
+}
+
+
+
+//back button 
+.back{
+
+    button.back-button{
+        border: none;
+        border-radius: 50%;
+        width: 3rem;
+        height: 3rem;
+        background-color: none !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+        background-color: #F0F0F3;
+
+            i{
+                font-size: 1.8rem;
+                color: grey;
+            }
+    }
+}
