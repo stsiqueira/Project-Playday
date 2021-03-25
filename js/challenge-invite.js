@@ -21,9 +21,11 @@ firebase.initializeApp(firebaseConfig);
 const db =firebase.firestore();
 let friendProfile = {}; 
 let userAppProfile = {}; 
+let verifyChallenge = false;
 const urlParams = new URLSearchParams(window.location.search);
 const friendId = urlParams.get('friendId');
 const userAppId = urlParams.get('userAppId');
+
 
 ////////////////////////////////////////////
 //  DB connection - get Profiles
@@ -45,6 +47,17 @@ db.collection("user").where("userID", "==", userAppId).get()
                 }else{
                     chatId = "chatID" + friendProfile.chatId + userAppProfile.chatId;
                 }
+                console.log(friendProfile.chats);
+                friendProfile.chats.forEach(chatid => {
+                    console.log(chatid);
+                    console.log(chatId);
+                    if (chatId === chatid) {
+                        verifyChallenge = true;
+                        console.log(verifyChallenge);
+                    }
+                    console.log(verifyChallenge);
+                });
+
                 printDefaultMessage();
             });
         })
@@ -89,19 +102,23 @@ const generateDocumentId = ()=>{
 }
 const checkMsg = () => {
 
-    if($("#invite-msg").val() == ""){
-        console.log("invalid")
+    if(verifyChallenge == false){
+        if($("#invite-msg").val() == ""){
+            console.log("invalid")
+        }else{
+            console.log($("#invite-msg").val());
+            console.log(chatId);
+            db.collection(chatId).doc(generateDocumentId()).set({
+                senderId: userAppProfile.name,
+                receiverId: friendProfile.name, 
+                message: $("#invite-msg").val(),
+                date: new Date()
+            })
+            setTimeout(() => {
+                window.location.assign(`chat-window.html?userAppId=${userAppId}&friendId=${friendId}`);
+            }, 2000);
+        }
     }else{
-        console.log($("#invite-msg").val());
-        console.log(chatId);
-        db.collection(chatId).doc(generateDocumentId()).set({
-            senderId: userAppProfile.name,
-            receiverId: friendProfile.name, 
-            message: $("#invite-msg").val(),
-            date: new Date()
-        })
-        setTimeout(() => {
-            window.location.assign(`chat-window.html?userAppId=${userAppId}&friendId=${friendId}`);
-        }, 2000);
+        window.location.assign(`chat-window.html?userAppId=${userAppId}&friendId=${friendId}`);
     }
 }
