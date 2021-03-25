@@ -1,26 +1,24 @@
 ////////////////////////////////////////////
 //  Variables
 //////////////////////////////////////////// 
-const db =firebase.firestore();
+
 let friendProfile = {}; 
 let userAppProfile = {}; 
 let userApp = get_appUser(); //common.js
+let playAtPath = [];
+let savedCourtsArray = {};
+let result = [];
+let level = "";
+const db =firebase.firestore();
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const friendId = urlParams.get('courtPlayerId');
-// const sport = urlParams.get('sport');
-// const sport = "tennis";
-// const playAtPath = `friendProfile.sports.${sport}.challengeCourts.courtName`;
-// const levelPath = `friendProfile.sports.${sport}.userLevel`;
-
-
+const sport = urlParams.get('sport');
 
 db.collection("user").where("userID", "==", userApp.auid).get()
     .then((querySnapshot)=>{
         querySnapshot.forEach((doc) => {
             userAppProfile = doc.data();
-            console.log(userAppProfile.userID);
-            console.log(userAppProfile.name);
         })
     })
     .then(()=>{
@@ -28,7 +26,36 @@ db.collection("user").where("userID", "==", userApp.auid).get()
         .then((querySnapshot)=>{
             querySnapshot.forEach((doc) => {
                 friendProfile = doc.data();
+
+                switch (sport) {
+                    case "badminton":
+                        savedCourtsArray = friendProfile.sports.badminton.savedCourts;
+                        break;
+                    case "tennis":
+                        savedCourtsArray = friendProfile.sports.tennis.savedCourts;
+                        break;
+                    case "volleyball":
+                        savedCourtsArray = friendProfile.sports.volleyball.savedCourts;
+                        break;
+                }
+                for(var i in savedCourtsArray)
+                result.push([i, savedCourtsArray [i]]);
+                result.forEach(i => { 
+                    playAtPath.push(i[1].courtName);
+                });
+                switch (sport) {
+                    case "badminton":
+                        level = friendProfile.sports.badminton.userLevel;
+                        break;
+                    case "tennis":
+                        level = friendProfile.sports.tennis.userLevel;
+                        break;
+                    case "volleyball":
+                        level = friendProfile.sports.volleyball.userLevel;
+                        break;
+                }
                 printProfile();
+                
             });
         })
     })
@@ -52,7 +79,7 @@ const printProfile = ()=>{
                     </p>
                     <p class="player-description-location"> 
                         <strong>Level:</strong> 
-                        <span>${friendProfile.sports.tennis.level}</span>
+                        <span>${level}</span>
                     </p>
 
                     <p class="player-description-location"> 
@@ -61,7 +88,7 @@ const printProfile = ()=>{
                     </p>
                     <p class="player-description-location"> 
                         <strong>I play at:</strong> 
-                        <span>${friendProfile.sports.tennis.challengeCourts}</span>
+                        <span>${playAtPath}</span>
                     </p>
                 </div>
             </div>
@@ -77,5 +104,3 @@ const printProfile = ()=>{
     `;
     $(".player-detail-content-wrapper").append(html);
 }
-
-// ${userAppProfile.userID}  &friendId=${friendProfile.userID}

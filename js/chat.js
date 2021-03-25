@@ -66,9 +66,6 @@ setTimeout(() => {
                 }else{
                     let newLine = `  
                         <li class="sender">
-                            <div class="chat-image">
-                                <img src="${userAppProfile.profilePic}" alt="${userAppProfile.name}'s picture">
-                            </div>
                             <div class="chat-message sender">
                                 <p class="text-message">${change.doc.data().message}</p>
                             </div>
