@@ -14,11 +14,14 @@ const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const friendId = urlParams.get('courtPlayerId');
 const sport = urlParams.get('sport');
+console.log(userApp.auid);
 
 db.collection("user").where("userID", "==", userApp.auid).get()
     .then((querySnapshot)=>{
         querySnapshot.forEach((doc) => {
+            console.log("userAppProfile");
             userAppProfile = doc.data();
+            console.log(userAppProfile);
         })
     })
     .then(()=>{

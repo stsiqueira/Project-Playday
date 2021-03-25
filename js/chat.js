@@ -17,11 +17,12 @@ let friendId = urlParams.get('friendId');
 ////////////////////////////////////////////
 //  DB connection - get Profiles
 //////////////////////////////////////////// 
-
+console.log(userAppId);
 db.collection("user").where("userID", "==", userAppId).get()
     .then((querySnapshot)=>{
         querySnapshot.forEach((doc) => {
             userAppProfile = doc.data();
+            // console.log(userAppProfile.chats);
         })
     })
     .then(()=>{
@@ -35,9 +36,72 @@ db.collection("user").where("userID", "==", userAppId).get()
                 }else{
                     chatId = "chatID" + friendProfile.chatId + userAppProfile.chatId;
                 }
+                let pushChatId = true;
+                console.log(userAppProfile.chats);
+                console.log(friendProfile.chats);
+
+                friendProfile.chats.forEach(chatid => {
+                    console.log(chatid);
+                    console.log(chatId);
+                    if (chatId === chatid) {
+                        pushChatId = false;
+                        console.log(pushChatId);
+                        console.log("=========");
+                    }
+                    console.log(pushChatId);
+                });
+
+                if(pushChatId){
+                    console.log(friendProfile.userID);
+                    console.log(friendProfile.chats);
+                    db.collection("user").doc(friendProfile.userID).update({
+                        chats: firebase.firestore.FieldValue.arrayUnion(chatId)
+                    });
+                };
+                userAppProfile.chats.forEach(chatid => {
+                    console.log(chatid);
+                    console.log(chatId);
+                    if (chatId === chatid) {
+                        pushChatId = false;
+                        console.log(pushChatId);
+                        console.log("=========");
+                    }
+                    console.log(pushChatId);
+                });
+
+                if(pushChatId){
+                    console.log(userAppProfile.userID);
+                    console.log(userAppProfile.chats);
+                    db.collection("user").doc(userAppProfile.userID).update({
+                        chats: firebase.firestore.FieldValue.arrayUnion(chatId)
+                    });
+                };
+
             });
         })
     })
+    .then(()=>{
+        // let pushChatId = true;
+        // friendProfile.chats.forEach(chatid => {
+        //     console.log(chatid);
+        //     console.log(chatId);
+        //     if (chatId === chatid) {
+        //         pushChatId = false;
+        //         console.log(pushChatId);
+        //         console.log("=========");
+        //     }
+        //     console.log(pushChatId);
+        // });
+        // if(pushChatId){
+        //     console.log(userAppProfile.userID);
+        //     db.collection("user").doc(userAppProfile.userID).update({
+        //         chats: firebase.firestore.FieldValue.arrayUnion(chatId)
+        //     });
+            
+        //     console.log("pushed")
+        // }
+    })
+
     .catch((error) => {
         console.log("Error getting documents: ", error);
     });
@@ -47,7 +111,7 @@ db.collection("user").where("userID", "==", userAppId).get()
 //////////////////////////////////////////// 
 
 setTimeout(() => {
-    console.log(chatId);
+    // console.log(chatId);
 
  db.collection(chatId).onSnapshot((snapshot)=>{
      snapshot.docChanges().forEach((change)=>{
@@ -75,7 +139,7 @@ setTimeout(() => {
          }
      });
  });
-}, 2000);
+}, 5000);
 const generateDocumentId = ()=>{
     let date = new Date();
     let year = date.getFullYear().toString();
