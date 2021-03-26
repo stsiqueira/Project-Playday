@@ -19,29 +19,148 @@ const firebaseConfig = {
 //////////////////////////////////////////// 
 
 const db =firebase.firestore();
-let chatID = "chatID16163727651441616605589173";
-let chatsArray = [];
-let verifyChallenge = false;
+let chatID = "chatID16163727651441616605589179";
+let MychatID = "chatID16163727651441616605589175";
+let date = new Date;
+let atualizadata = "";
 
-db.collection("user").where("userID", "==", "TrkGWqZSYqfkYrd3jQuThRqIPgp2").get()
-    .then((querySnapshot)=>{
-        querySnapshot.forEach((doc) => {
-            chatsArray = doc.data().chats;
 
-            chatsArray.forEach(chatid => {
-                console.log(chatid);
-                console.log(chatID);
-                if (chatID == chatid) {
-                    verifyChallenge = true;
+array = { chatID, date}
+// console.log(array)
+const envia = () =>{
+        db.collection("user-data-thiago").doc( "RM2slEdpN6mhrmUTwzlE").update({
+        lastCheck: firebase.firestore.FieldValue.arrayUnion(array)
+        });
+        console.log("enviado");
+}
+const updateLastChecka = () =>{
+    date = new Date;
+    console.log(date)
+    // console.log(lastCheck);
+    let test = `lastCheck[5].date`;
+    db.collection("user-data-thiago").doc( "RM2slEdpN6mhrmUTwzlE").update({
+        [test]: date
+    });
+    console.log("data atualizada");
+}
+
+const verifcaMaior = ()=>{
+             let newDate = teste.toDate();
+                
+                console.log(newDate);
+
+                if(date < newDate) {
+                    console.log(date);
+                    console.log(newDate);
+                    console.log("date is bigger");
+
+                }else{
+                    console.log("newDate is Bigger");
                 }
-                console.log(verifyChallenge);
+
+}
+const busca = () =>{
+    db.collection("user-data-thiago").where( "chatId", "==", 2).get()
+        .then((snapshot)=>{
+            snapshot.forEach(doc => {
+                let documento = doc.data();
+                let lastCheckArray = documento.lastCheck;
+                console.log(lastCheckArray);
+                let counter = 0;
+                lastCheckArray.forEach(chatid => {
+                    counter ++;
+                    if(MychatID == chatid.chatID){
+                        console.log(counter);
+                        console.log("final 5");
+                        console.log(chatid)
+                        atualizadata = chatid.date;
+                        console.log(atualizadata.toDate())
+                        updateLastCheck();
+                        console.log(chatid.date.toDate())
+                    }
+                    
+                    
+                });
             });
-        })
-        
+            
+        });
+};
+// envia();
+// busca();
+
+/////////////////
+const updateLastCheck = (chatidtime)=>{
+    date = new Date;
+    // let test = "lastCheckGlen.chatID16163727651441616605589175.date";
+    let test = chatidtime;
+    db.collection("user-data-thiago").doc( "RM2slEdpN6mhrmUTwzlE").update({
+        [test]: new Date
+    })
+    .then(() => {
+        console.log("updated");
     })
     .catch((error) => {
-        console.log("Error getting documents: ", error);
+        console.error("Error updating document: ", error);
     });
+
+}
+
+// async function checkMsg (){
+//  await db.collection("chatid100")
+//     .onSnapshot((querySnapshot) => {
+//       querySnapshot.forEach((doc) => {
+//         console.log("Docs data: ", doc.data());
+//       })
+//     });
+// }
+/////////////////////
+const lastCheck = () =>{
+    db.collection("user-data-thiago").where( "chatId", "==", 2).get()
+        .then((snapshot)=>{
+            snapshot.forEach(doc => {
+                let documento = doc.data();
+                let lastCheckGlen = documento.lastCheckGlen;
+                console.log(lastCheckGlen);
+
+                let lastCheckGlen2 = `lastCheckGlen.${MychatID}.date`;
+                console.log(lastCheckGlen2);
+                updateLastCheck(lastCheckGlen2);
+                // console.log(chatID16163727651441616605589175.date.toDate())
+            });
+        });
+            
+};
+lastCheck()
+
+       
+        // let obj = { chatID, timestamp:firebase.firestore.FieldValue.serverTimestamp() };
+        // console.log(obj);
+    // db.collection("user-data-thiago").where("chatId", "==" , 2 ).get()
+    //     // .then(()=>{
+    //     //     
+    //     // })
+    //     .then((doc)=>{
+    //         console.log(doc.data());
+    //         // doc.data().timestamp; 
+    //         let date = time.toDate(); 
+    //         let shortDate = date.toDateString(); 
+    //         let shortTime = date.toLocaleTimeString();
+    //       // Print date to console 
+    //         console.log(shortDate)
+            // querySnapshot.forEach((doc) => {
+            //    console.log(doc.data());
+            // //    doc.data().lastCheck.forEach((chatTime)=>{
+            // //         console.log(chatTime.chatID);
+            // //         console.log(chatTime.objDate);
+            // //    })
+            // })
+        // })
+
+    // db.collection("user-data-thiago").doc( "RM2slEdpN6mhrmUTwzlE").update({
+    //     lastCheck: firebase.firestore.FieldValue.arrayUnion(obj)
+
+    // });
+
 
 
 ////////////////////////////////////////////
