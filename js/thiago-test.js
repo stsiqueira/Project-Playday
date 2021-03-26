@@ -19,79 +19,30 @@ const firebaseConfig = {
 //////////////////////////////////////////// 
 
 const db =firebase.firestore();
+let chatID = "chatID16163727651441616605589173";
+let chatsArray = [];
+let verifyChallenge = false;
 
+db.collection("user").where("userID", "==", "TrkGWqZSYqfkYrd3jQuThRqIPgp2").get()
+    .then((querySnapshot)=>{
+        querySnapshot.forEach((doc) => {
+            chatsArray = doc.data().chats;
 
-////////////////////////////////////////////
-//  Functions
-////////////////////////////////////////////
-const printData = (fname, lname, dtbirth, about)=>{
-    $(".firstName").text(fname);  
-    $(".lastName").text(lname); 
-    $(".datebirth").text(dtbirth); 
-    $(".about").text(about); 
-}
-////////////////////////////////////////////
-//  Aman
-//////////////////////////////////////////// 
-$("#Amandeep").click(()=>{
-    db.collection("user-data-thiago").add({
-        name: "Amandeep", 
-        dateOfBirth: "1998/20/10", 
-        lastName: "Singh",
-        location: "Turkey",
-        level: "Begginer",
-        playAt: "School court",
-        about: "I am Aman. I am Aman. I am Aman. I am Aman. I am Aman. I am Aman. I am Aman. ",
-        chatId: 0001
+            chatsArray.forEach(chatid => {
+                console.log(chatid);
+                console.log(chatID);
+                if (chatID == chatid) {
+                    verifyChallenge = true;
+                }
+                console.log(verifyChallenge);
+            });
+        })
+        
+    })
+    .catch((error) => {
+        console.log("Error getting documents: ", error);
     });
-});
-////////////////////////////////////////////
-//  Diana
-////////////////////////////////////////////
-$("#Diana").click(()=>{
-    db.collection("user-data-thiago").add({
-        name: "Diana", 
-        dateOfBirth: "1998/10/10", 
-        lastName: "Malynovska",
-        location: "Congo",
-        level: "Begginer",
-        playAt: "College court",
-        about: "I am Diana. I am Diana. I am Diana. I am Diana. I am Diana. I am Diana.",
-        chatId: 0002
-    });
-});
 
-////////////////////////////////////////////
-//  Glen
-////////////////////////////////////////////
-$("#Glen").click(()=>{
-    db.collection("user-data-thiago").add({
-        name: "Glen", 
-        dateOfBirth: "1998/10/10", 
-        lastName: "Thomas",
-        location: "Argentina",
-        level: "Intermediate",
-        playAt: "Street",
-        about: "I am Glen. I am Glen. I am Glen. I am Glen. I am Glen. I am Glen. I am Glen. I am Glen. ",
-        chatId: 0003
-    });
-});
-
-////////////////////////////////////////////
-//  Thiago
-////////////////////////////////////////////
-$("#Thiago").click(()=>{
-    db.collection("user-data-thiago").add({
-        name: "Thiago", 
-        dateOfBirth: "1998/12/09", 
-        lastName: "Siqueira",
-        location: "Japan",
-        level: "Begginer",
-        playAt: "home",
-        about: "I am Thiago. I am Thiago. I am Thiago. I am Thiago. I am Thiago. I am Thiago. ",
-        chatId: 0004
-    });
-});
 
 ////////////////////////////////////////////
 //  Creating chats
