@@ -52,7 +52,7 @@ const getChats = (friendid, chat)=>{
                             
                         });
                         // console.log(lastMsg);
-                        
+                        printChats();
                     });
                     
                 });
@@ -81,7 +81,7 @@ db.collection("user").where("userID", "==", userApp.auid).get()
             }
             console.log(friendId); 
             getChats(friendId, chat);
-            printChats();
+            
         })
     })
 // checkMsg();
