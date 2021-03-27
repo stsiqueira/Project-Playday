@@ -14,12 +14,12 @@
     <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-storage.js"></script>
-
+    
 
     <!-- User javascript Files -->
     <script src="../js/common.js" defer></script>
     <script src="../js/player-details.js" defer></script>
-
+    
     <link rel="stylesheet" href="../style.css">
     <title>Account Settings</title>
 </head>
@@ -44,7 +44,7 @@
                 </div>
                 <div class="sport-info">
                     <label for="change-sport">Change Sport</label>
-                    <select name="sports" class="grey-button sport-change" onchange="updateSport()" id="change-sport">
+                    <select name="sports" class="grey-button sport-change" onchange="updateSport(currentPageFlag=0)" id="change-sport">
                         <option value="NoSelect" selected>Not Selected</option>
                         <option value="Tennis">Tennis</option>
                         <option value="Badminton">Badminton</option>

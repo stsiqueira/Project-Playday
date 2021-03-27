@@ -7,7 +7,7 @@ const forgotPassword = document.getElementById('forgot-pass');
 const gsignup = document.getElementById('gsignup');
 const facebookSignin = document.getElementById("fsignup");
 
-var db = firebase.firestore();
+// var db = firebase.firestore();
 
 //Sign in function with email
 const signInWithEmailFunction = () => {
@@ -19,7 +19,7 @@ const signInWithEmailFunction = () => {
         var user = userCredential.user;
 
         if (user) {
-            var db = firebase.firestore();
+            // var db = firebase.firestore();
             db.collection("user").where("userID", "==", user.uid)
                 .get()
                 .then((querySnapshot) => {

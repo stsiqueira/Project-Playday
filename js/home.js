@@ -1,7 +1,7 @@
 $(document).ready(function () {
+
     $('body.home').removeClass('hide-right');
     $('body.home').addClass('slide-in');
-
     
     let appUserobject = get_appUser();
     $("#user-name").html(appUserobject != null && appUserobject.firstName != "" ? appUserobject.firstName : "Guest");

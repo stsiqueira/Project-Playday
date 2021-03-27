@@ -760,10 +760,16 @@ img {
 
 /* Content ================================================= */
 .wrapper-sign-up-screen,
-.login-wrapper {
+.login-wrapper,
+.reset-wrapper {
   font-family: poppins, helvetica, arial, sans-serif;
   width: 70%;
   margin-bottom: 4rem;
+}
+
+.reset-wrapper {
+  min-height: 100vh;
+  width: unset;
 }
 
 .user-account-settings-page {
@@ -782,7 +788,8 @@ img {
 
 .signup-page,
 .login-page,
-.user-account-page {
+.user-account-page,
+.reset-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -795,12 +802,14 @@ img {
 }
 
 .signup-page,
-.login-page {
+.login-page,
+.reset-page {
   min-height: 100vh;
 }
 
 .wrapper-sign-up-screen .fieldset,
-.login-page .fieldset {
+.login-page .fieldset,
+.reset-wrapper .fieldset {
   border: none;
 }
 
@@ -809,7 +818,8 @@ img {
 }
 
 .wrapper-sign-up-screen .fieldset,
-.login-wrapper .fieldset {
+.login-wrapper .fieldset,
+.reset-wrapper .fieldset {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -856,7 +866,8 @@ img {
 }
 
 .wrapper-sign-up-screen .fieldset input,
-.login-wrapper .fieldset input {
+.login-wrapper .fieldset input,
+.reset-wrapper input {
   border-radius: 1rem;
   outline: none;
   width: 100%;
@@ -871,8 +882,20 @@ img {
   color: #7D7D7D;
 }
 
-.login-wrapper .fieldset {
+.login-wrapper .login-wrapper .fieldset {
   gap: .3rem;
+}
+
+.reset-page .reset-wrapper {
+  gap: 1rem;
+}
+
+.reset-page .reset-wrapper .reset-heading {
+  margin: 0.7rem;
+}
+
+.reset-page .reset-wrapper .green-button {
+  font-size: 1rem;
 }
 
 .login-wrapper .fieldset .forgot-link {
