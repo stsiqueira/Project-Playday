@@ -17,61 +17,65 @@ let friendId = urlParams.get('friendId');
 ////////////////////////////////////////////
 //  DB connection - get Profiles
 //////////////////////////////////////////// 
-console.log(userAppId);
+// console.log(userAppId);
 db.collection("user").where("userID", "==", userAppId).get()
     .then((querySnapshot)=>{
+        // Getting User Profile info
         querySnapshot.forEach((doc) => {
             userAppProfile = doc.data();
-            // console.log(userAppProfile.chats);
         })
     })
     .then(()=>{
         db.collection("user").where("userID", "==", friendId).get()
         .then((querySnapshot)=>{
+        // Getting Friend Profile info
             querySnapshot.forEach((doc) => {
                 friendProfile = doc.data();
                 $(".chat-title").text(`${friendProfile.name}`);
+                // Generating chatID
                 if(userAppProfile.chatId < friendProfile.chatId){
                     chatId = "chatID" + userAppProfile.chatId + friendProfile.chatId;
                 }else{
                     chatId = "chatID" + friendProfile.chatId + userAppProfile.chatId;
                 }
+                // Pushing info to Chats field to create chat-window.html
                 let pushChatId = true;
-                console.log(userAppProfile.chats);
-                console.log(friendProfile.chats);
-
+                // console.log(userAppProfile.chats);
+                // console.log(friendProfile.chats);
+                    // Pushing info to Friends Chats field to create chat-window.html
                 friendProfile.chats.forEach(chatid => {
-                    console.log(chatid);
-                    console.log(chatId);
+                    // console.log(chatid);
+                    // console.log(chatId);
                     if (chatId === chatid) {
                         pushChatId = false;
                         console.log(pushChatId);
-                        console.log("=========");
+                        // console.log("=========");
                     }
-                    console.log(pushChatId);
+                    // console.log(pushChatId);
                 });
 
                 if(pushChatId){
-                    console.log(friendProfile.userID);
-                    console.log(friendProfile.chats);
+                    // console.log(friendProfile.userID);
+                    // console.log(friendProfile.chats);
                     db.collection("user").doc(friendProfile.userID).update({
                         chats: firebase.firestore.FieldValue.arrayUnion(chatId)
                     });
                 };
+                        // Pushing info to User Chats field to create chat-window.html
                 userAppProfile.chats.forEach(chatid => {
-                    console.log(chatid);
-                    console.log(chatId);
+                    // console.log(chatid);
+                    // console.log(chatId);
                     if (chatId === chatid) {
                         pushChatId = false;
-                        console.log(pushChatId);
-                        console.log("=========");
+                        // console.log(pushChatId);
+                        // console.log("=========");
                     }
-                    console.log(pushChatId);
+                    // console.log(pushChatId);
                 });
 
                 if(pushChatId){
-                    console.log(userAppProfile.userID);
-                    console.log(userAppProfile.chats);
+                    // console.log(userAppProfile.userID);
+                    // console.log(userAppProfile.chats);
                     db.collection("user").doc(userAppProfile.userID).update({
                         chats: firebase.firestore.FieldValue.arrayUnion(chatId)
                     });
@@ -81,27 +85,8 @@ db.collection("user").where("userID", "==", userAppId).get()
         })
     })
     .then(()=>{
-        // let pushChatId = true;
-        // friendProfile.chats.forEach(chatid => {
-        //     console.log(chatid);
-        //     console.log(chatId);
-        //     if (chatId === chatid) {
-        //         pushChatId = false;
-        //         console.log(pushChatId);
-        //         console.log("=========");
-        //     }
-        //     console.log(pushChatId);
-        // });
-        // if(pushChatId){
-        //     console.log(userAppProfile.userID);
-        //     db.collection("user").doc(userAppProfile.userID).update({
-        //         chats: firebase.firestore.FieldValue.arrayUnion(chatId)
-        //     });
-            
-        //     console.log("pushed")
-        // }
+        lastCheck();
     })
-
     .catch((error) => {
         console.log("Error getting documents: ", error);
     });
@@ -109,14 +94,38 @@ db.collection("user").where("userID", "==", userAppId).get()
 ////////////////////////////////////////////
 //  Functions
 //////////////////////////////////////////// 
+const lastCheck = () =>{
+    db.collection("user").where("userID", "==", userAppId).get()
+        .then((snapshot)=>{
+            snapshot.forEach(doc => {
+                let lastCheck = doc.data().lastCheck;
+                // console.log(lastCheck);
+                let string = `lastCheck.${chatId}.date`;
+                updateLastCheck(string, userAppId);
+            });
+        });      
+};
+const updateLastCheck = (chatidtime,userid)=>{
+    let field = chatidtime;
+    db.collection("user").doc( userid).update({
+        [field]: new Date
+    })
+    .then(() => {
+        console.log("updated");
+    })
+    .catch((error) => {
+        console.error("Error updating document: ", error);
+    });
 
+}
 setTimeout(() => {
     // console.log(chatId);
 
  db.collection(chatId).onSnapshot((snapshot)=>{
      snapshot.docChanges().forEach((change)=>{
-         if(change.type === "added"){
+        if(change.type === "added"){
                 if(change.doc.data().senderId != userAppProfile.name){
+
                     let newLine = `                    
                         <li> 
                             <div class="chat-image">
@@ -136,10 +145,10 @@ setTimeout(() => {
                         </li>`;
                         $("#chat-messages").append(newLine);
                 }
-         }
+        }
      });
  });
-}, 5000);
+}, 2000);
 const generateDocumentId = ()=>{
     let date = new Date();
     let year = date.getFullYear().toString();
@@ -151,7 +160,7 @@ const generateDocumentId = ()=>{
     return year+month+day+hour+min+sec;
 }
 
-const checkMessages = () => {
+const sendMessage = () => {
     if($("#chat-message").val() == ""){
         console.log("invalid")
     }else{
@@ -164,19 +173,20 @@ const checkMessages = () => {
         });
         $("#chat-message-input").val("");
     }
+    lastCheck();
 }
 ////////////////////////////////////////////
 //  Event Listener
 //////////////////////////////////////////// 
 $("#sendButton").click(()=>{
-    checkMessages();
+    sendMessage();
 });
 ////////////////////////////////////////////
 //  Keyboard Listener
 //////////////////////////////////////////// 
 document.addEventListener('keydown', (e) => { 
     if(e.keyCode == 13){
-        checkMessages();
+        sendMessage();
     }
 });
 

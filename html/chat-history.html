@@ -5,7 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/ef8606d888.js" crossorigin="anonymous"></script> 
-    <script src="../js/chat.js" defer></script>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-auth.js"></script>
+    <script src="../js/common.js" defer></script>
+    <script src="../js/chat-history.js" defer></script>
     <title>Playday</title>
     <style>
         *{
@@ -71,63 +78,16 @@
         <!-- chat History -->
         <div class="chat-content-wrapper content-wrapper">
             <ul class="chat-history">
-                <li class="chat-item chat-1">
-                    <a href="">
-                    <div class="chat-history-player-image">
-                        <img src="../img/bg-404-sinatra.jpg" alt="">
-                    </div>
-                    <div class="chat-history-message">
-                        <p class="chat-history-name">Diana</p>
-                        <p class="chat-history-message">We need to focus on our presentation.</p>
-                    </div>
-                    <div class="chat-history-number-msgs">
-                        <p class="chat-history-msg"> 2 </p>
-                    </div>
-                    </a>
-                </li>
-                <li class="chat-item chat-2">
-                    <a href="">
-                    <div class="chat-history-player-image">
-                        <img src="../img/bg-404-sinatra.jpg" alt="">
-                    </div>
-                    <div class="chat-history-message">
-                        <p class="chat-history-name">Amandeep </p>
-                        <p class="chat-history-message">Let me check.</p>
-                    </div>
-                    <!-- <div class="chat-history-number-msgs">
-                        <p class="chat-history-msg"> 5 </p>
-                    </div> -->
-                    </a>
-                </li>
-                <li class="chat-item chat-3">
-                    <a href="">
-                    <div class="chat-history-player-image">
-                        <img src="../img/bg-404-sinatra.jpg" alt="">
-                    </div>
-                    <div class="chat-history-message">
-                        <p class="chat-history-name">Munish</p>
-                        <p class="chat-history-message">Not Today</p>
-                    </div>
-                    <!-- <div class="chat-history-number-msgs">
-                        <p class="chat-history-msg"> 1 </p>
-                    </div> -->
-                    </a>
-                </li>
-                <li class="chat-item chat-4">
-                    <a href="">
-                    <div class="chat-history-player-image">
-                        <img src="../img/bg-404-sinatra.jpg" alt="">
-                    </div>
-                    <div class="chat-history-message">
-                        <p class="chat-history-name">Viet</p>
-                        <p class="chat-history-message">yes, sure.</p>
-                    </div>
 
-                    </a>
-                </li>
+  
 
             </ul>
 
+        </div>
+        <div class="output-chats">
+            <ul class="chat-history">
+
+            </ul>
         </div>
     </main>
 
