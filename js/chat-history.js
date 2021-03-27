@@ -1,4 +1,4 @@
-const db =firebase.firestore(); 
+// const db =firebase.firestore(); 
 let userApp = get_appUser(); //common.js
 let friendProfile = {}; 
 let lastMsg = "";
@@ -19,7 +19,7 @@ const printChats = () =>{
         </div>
         </a>
     </li>`
-    $(".output-chats").append(html);
+    $(".chat-history").append(html);
 }
 
 const getMessages = (chat) =>{

@@ -1,0 +1,57 @@
+.chat-history-page{
+    *{
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+    a{
+        text-decoration: none;
+        color: black;
+    }
+    header{
+        background-color: #E5E5E5;
+        padding: 1.5rem;
+
+    }
+    h2{
+        text-align: center;
+        color: #123180;
+    }
+    .chat-item a{
+        display: flex;
+        flex-flow: row nowrap;
+        gap: 1rem;
+        margin: 1rem 0 0 0;
+        padding-bottom: .5rem;
+        border-bottom: 2px solid #E5E5E5;
+        .chat-history-message{
+            flex: 1 0 50%;
+            .chat-history-name{
+                font-weight: bold;
+                margin-bottom: .7rem;
+            }
+        }
+        .chat-history-number-msgs{
+            flex: 0 0 15%;
+            display: flex;
+            p{
+                width: 35px;
+                height: 35px;
+                border-radius: 50%;
+                background-color: #3469EE;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-weight: bold;
+                color: white;
+               
+            }
+        }
+        img{
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            margin-left: 1rem;
+        }
+    }
+}
