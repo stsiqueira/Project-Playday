@@ -14,11 +14,11 @@ const selectedSport = document.getElementById("change-sport");
 const userLevelInput = document.getElementById("user-level");
 const submitButton = document.getElementById("apply-changes");
 
-const db = firebase.firestore();
+// const db = firebase.firestore();
 const storageRef = firebase.storage().ref();
 
 let appUserobject = get_appUser();
-
+console.log(appUserobject);
 //update page details ****************************
 
 const updateInnerHtml = (element, value) => {
@@ -31,13 +31,14 @@ updateInnerHtml(userAbout[0], appUserobject.about);
 
 $.getJSON(`https://api.tomtom.com/search/2/reverseGeocode/${appUserobject.userLocation.latitude},${appUserobject.userLocation.longitude}.json?key=${tomtomApiKey}`, function (json) {
     addressString = json.addresses[0].address.municipality;
-    if (addressString) {
-        document.getElementById('location-input').value = addressString;
-    }
-    else {
-        document.getElementById('location-input').value = "default";
+    // if (addressString) {
+    //     document.getElementById('location-input').value = addressString;
+    // }
+    // else {
+    //     document.getElementById('location-input').value = "default";
 
-    }
+    // }
+    document.getElementById('location-input').value = addressString ? addressString : "default";
 });
 
 $( "#location-info-wrapper" ).click(function() {
@@ -46,32 +47,6 @@ $( "#location-info-wrapper" ).click(function() {
 
 // ***************************************************
 
-// function for updating db values
-const updateDbDetails = (collection, user, key, value) => {
-
-    let dbRef = db.collection(collection).doc(user);
-    return dbRef.update({
-        [key]: value
-    })
-    .then(() => {
-        set_appUser();
-    })
-    .catch((error) => {
-        console.error("Error updating document: ", error);
-    });
-}
-
-
-const getDbUserDetails = (collection, key) => {
-    description = about.value;
-    firebase.auth().onAuthStateChanged(function (user) {
-        if (user) {
-            updateDetails(collection, user, key, description);
-        } else {
-            // No user is signed in.
-        }
-    });
-}
 
 // invoking file API *********************************
 imageUser.addEventListener('click', function (event) {
@@ -89,7 +64,6 @@ const getDownloadUrl = (path="/", user, flag=0, googleSignInFlag = 0) => {
         var docRef = db.collection("user").doc(user.uid);
         docRef.get().then((doc) => {
             if (!doc.exists) {
-                // pass
                 console.log("No such document!");
             }
         }).catch((error) => {
@@ -167,13 +141,6 @@ function handleFiles() {
 
 // Changing User Password ***********************************
 
-reauthenticate = (currentPassword) => {
-    var user = firebase.auth().currentUser;
-    var cred = firebase.auth.EmailAuthProvider.credential(
-        user.email, currentPassword);
-    return user.reauthenticateWithCredential(cred);
-}
-
 const updateUserPassword = (currentPassword, confirmPass) => {
     var user = firebase.auth().currentUser;
     var credential =  firebase.auth.EmailAuthProvider.credential(
@@ -190,21 +157,9 @@ const updateUserPassword = (currentPassword, confirmPass) => {
       });
 }
 
-// passUpdate.addEventListener('click', function () {
-//     updatePassword();
-// });
-
-// ***********************************************************
-
-// Signout ***************************************************
-function signout() {
-    firebase.auth().signOut();
-    window.location = '../index.html';
-}
 // ***********************************************************
 
 // Changing details according to the Sports
-
 
 const savedAndChallengeCourtsHtml = (count, courtName, selectedSport, key,destinationHtml, typeOfCourts) => {
     let html = `<div class="courts courts-${count}">
@@ -221,19 +176,22 @@ const savedAndChallengeCourtsHtml = (count, courtName, selectedSport, key,destin
     $(`.${destinationHtml}`).append(html);
 }
 
-function changeSport(typeOfCourts, destinationHtml) {
+function changeSport(typeOfCourts, destinationHtml, currentPageFlag) {
     count = 0;
-    let courts = appUserobject.sports[selectedSport.value.toLowerCase()]['challengeCourts'];
-    var userLevel = appUserobject.sports[selectedSport.value.toLowerCase()]['userLevel'];
-    if (userLevel == "") {
-        userLevelInput.value = "NoSelect";
+
+    const sportSelected = currentPageFlag ? appUserobject.currentPage : selectedSport.value.toLowerCase();
+    if(currentPageFlag) {
+        selectedSport.value = capitalize(appUserobject.currentPage);
     }
-    else {
-        userLevelInput.value = userLevel;
-    }
+
+    let courts = appUserobject.sports[sportSelected]['challengeCourts'];
+    var userLevel = appUserobject.sports[sportSelected]['userLevel'];
+    userLevelInput.value = userLevel  || 'NoSelect';
+
     if ($('.saved-courts').find('.courts')){
         $(".courts").remove();
     }
+
     for (var key in courts) {
         count += 1
         if (courts.hasOwnProperty(key)) {
@@ -258,18 +216,16 @@ const removeSelectOption = (classname) => {
     $(`.${classname} option[value='NoSelect']`).remove();
 }
 
-function updateSport() {
-    changeSport('savedCourts', 'saved-courts');
-    changeSport('challengeCourts', 'challenge-courts');
+function updateSport(currentPageFlag) {
+    changeSport('savedCourts', 'saved-courts', currentPageFlag);
+    changeSport('challengeCourts', 'challenge-courts', currentPageFlag);
     removeSelectOption("sport-change");
 }
 
-// updateSport();
 
 submitButton.addEventListener('click', function (event) {
     // updating user level from select
     if(selectedSport.value != "NoSelect") {
-        console.log(selectedSport.value);
         let userLevelKey = `sports.${selectedSport.value.toLowerCase()}.userLevel`;
         updateDbDetails('user', appUserobject.auid, userLevelKey, userLevelInput.value);
         showToast("Data Updated");
@@ -307,22 +263,18 @@ const getSignInMethod = () => {
 }
 
 function showToast(text) {
-    // Get the snackbar DIV
     var x = document.getElementById("toast");
-    // Add the "show" class to DIV
     x.innerHTML = text;
 
     x.className = "show";
-    // After 3 seconds, remove the show class from DIV
     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-  }
+}
 
 getSignInMethod();
 
 function changePasswordAccordion() {
     var acc = document.getElementsByClassName("accordion");
-    var i;
-    for (i = 0; i < acc.length; i++) {
+    for (let i = 0; i < acc.length; i++) {
         acc[i].addEventListener("click", function() {
             this.classList.toggle('active');
             var panel = this.nextElementSibling;
@@ -335,4 +287,18 @@ function changePasswordAccordion() {
     }
 }
 
-set_appUser();
+const capitalize = (s) => {
+    if (typeof s !== 'string') return ''
+    return s.charAt(0).toUpperCase() + s.slice(1)
+}
+
+function getCurrentPage() {
+    if (document.referrer.includes("home")) {
+        console.log("hii");
+    }
+    else if(appUserobject.currentPage) {
+        updateSport(1);
+    }
+}
+
+getCurrentPage();
