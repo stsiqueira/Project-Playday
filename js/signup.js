@@ -20,7 +20,7 @@ function ValidateEmail(mail) {
   return (false)
 }
 
-var db = firebase.firestore();
+// var db = firebase.firestore();
 
 const signUpWithEmailFunction = () => {
   const email = mailField.value;
