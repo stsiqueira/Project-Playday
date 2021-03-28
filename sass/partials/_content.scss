@@ -1,11 +1,17 @@
 
 // Login Screen Style[
 .wrapper-sign-up-screen,
-.login-wrapper {
+.login-wrapper,
+.reset-wrapper {
     font-family: $font_sans;
     // background-color: blueviolet;
     width: 70%;
     margin-bottom: 4rem;
+}
+
+.reset-wrapper {
+    min-height: 100vh;
+    width: unset;
 }
 
 .user-account-settings-page {
@@ -25,20 +31,22 @@
 
 .signup-page,
 .login-page,
-.user-account-page  {
+.user-account-page,
+.reset-wrapper {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .signup-page,
-.login-page {
+.login-page,
+.reset-page {
     min-height: 100vh;
-
 }
 
 .wrapper-sign-up-screen,
-.login-page {
+.login-page,
+.reset-wrapper {
     .fieldset {
         border: none;
     }
@@ -49,7 +57,8 @@
 }
 
 .wrapper-sign-up-screen .fieldset,
-.login-wrapper .fieldset {
+.login-wrapper .fieldset,
+.reset-wrapper .fieldset {
     display: flex;
     flex-flow: column nowrap;
     gap: 1.7rem;
@@ -80,7 +89,8 @@
 }
 
 .wrapper-sign-up-screen .fieldset input,
-.login-wrapper .fieldset input {
+.login-wrapper .fieldset input,
+.reset-wrapper input {
     border-radius: 1rem;
     outline: none;
     width: 100%;
@@ -94,8 +104,20 @@
     color: $color_sign_in_font;
 }
 
-.login-wrapper .fieldset {
+.login-wrapper .login-wrapper .fieldset {
     gap: .3rem;
+}
+
+.reset-page .reset-wrapper {
+    gap: 1rem;
+
+    .reset-heading {
+        margin: 0.7rem;
+    }
+
+    .green-button {
+        font-size: 1rem;
+    }
 }
 
 .login-wrapper .fieldset .forgot-link{
@@ -104,36 +126,6 @@
     text-decoration: none;
     color: black;
 }
-
-
-// section {
-//     position: relative;
-//     width: 100%;
-//     height: 80vh;
-//     display: flex;
-//     align-items: center;
-//     overflow: hidden;
-// }
-
-// section::before {
-//     content: '';
-//     position: absolute;
-//     top: 0;
-//     left: 0;
-//     width: 100%;
-//     height: 100%;
-//     background-color: #000;
-//     border-radius: 10% 10% 70% 70%/ 0 0 100% 100%;
-//     transform: scaleX(1.5);
-// }
-
-// section .content {
-//     position: relative;
-//     z-index: 1;
-//     margin: 0 auto;
-//     max-width: 900px;
-//     text-align: center;
-// }
 
 //Account Details
 
@@ -225,11 +217,6 @@
             .location-input-box {
                 width: 7rem;
             }
-
-            // input {
-            //     @include inputStyle();
-            //     text-align: center;
-            // }
 
             input:focus {
                 outline: none;

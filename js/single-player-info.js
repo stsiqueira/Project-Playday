@@ -1,64 +1,64 @@
 ////////////////////////////////////////////
 //  Variables
 //////////////////////////////////////////// 
-const db =firebase.firestore();
+
 let friendProfile = {}; 
-let userApp = get_appUser();
+let userAppProfile = {}; 
+let userApp = get_appUser(); //common.js
+let playAtPath = [];
+let savedCourtsArray = {};
+let result = [];
+let level = "";
+// const db =firebase.firestore();
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const friendId = urlParams.get('courtPlayerId');
-// const sport = urlParams.get('sport');
-// const sport = "tennis";
-// const playAtPath = `friendProfile.sports.${sport}.challengeCourts.courtName`;
-// const levelPath = `friendProfile.sports.${sport}.userLevel`;
-
-////////////////////////////////////////////
-//  Functions for single-player-info
-//////////////////////////////////////////// 
-
-// db.collection("user").where("userID", "==", friendId).get()
-//     .then((querySnapshot)=>{
-//         querySnapshot.forEach((doc) => {
-//             // console.log(doc.data().name);
-//             friendProfile = doc.data();
-//             printProfile();
-//         });
-//     })
-//     .then(()=>{
-//         db.collection("user").where("userID", "==", userApp.auid).get()
-//         .then((querySnapshot)=>{
-//             querySnapshot.forEach((doc) => {
-//                 myChatId = doc.data().chatId;
-//             });
-//             if(myChatId < friendChatId){
-//                 chatId = "chatId" + myChatId + friendChatId;
-//             }else{
-//                 chatId = "chatId" + friendChatId + myChatId;
-//             }
-//         })
-//     })
-//     .catch((error) => {
-//         console.log("Error getting documents: ", error);
-// });
+const sport = urlParams.get('sport');
+console.log(userApp.auid);
 
 db.collection("user").where("userID", "==", userApp.auid).get()
     .then((querySnapshot)=>{
         querySnapshot.forEach((doc) => {
-            myChatId = doc.data().chatId;
+            console.log("userAppProfile");
+            userAppProfile = doc.data();
+            console.log(userAppProfile);
         })
     })
     .then(()=>{
         db.collection("user").where("userID", "==", friendId).get()
         .then((querySnapshot)=>{
             querySnapshot.forEach((doc) => {
-                // console.log(doc.data().name);
                 friendProfile = doc.data();
-                if(myChatId < friendProfile.chatId){
-                    chatId = "chatID" + myChatId + friendProfile.chatId;
-                }else{
-                    chatId = "chatID" + friendProfile.chatId + myChatId;
+
+                switch (sport) {
+                    case "badminton":
+                        savedCourtsArray = friendProfile.sports.badminton.savedCourts;
+                        break;
+                    case "tennis":
+                        savedCourtsArray = friendProfile.sports.tennis.savedCourts;
+                        break;
+                    case "volleyball":
+                        savedCourtsArray = friendProfile.sports.volleyball.savedCourts;
+                        break;
+                }
+                for(var i in savedCourtsArray)
+                result.push([i, savedCourtsArray [i]]);
+                result.forEach(i => { 
+                    playAtPath.push(i[1].courtName);
+                });
+                switch (sport) {
+                    case "badminton":
+                        level = friendProfile.sports.badminton.userLevel;
+                        break;
+                    case "tennis":
+                        level = friendProfile.sports.tennis.userLevel;
+                        break;
+                    case "volleyball":
+                        level = friendProfile.sports.volleyball.userLevel;
+                        break;
                 }
                 printProfile();
+                
             });
         })
     })
@@ -82,7 +82,7 @@ const printProfile = ()=>{
                     </p>
                     <p class="player-description-location"> 
                         <strong>Level:</strong> 
-                        <span>${friendProfile.sports.tennis.level}</span>
+                        <span>${level}</span>
                     </p>
 
                     <p class="player-description-location"> 
@@ -91,26 +91,19 @@ const printProfile = ()=>{
                     </p>
                     <p class="player-description-location"> 
                         <strong>I play at:</strong> 
-                        <span>${friendProfile.sports.tennis.challengeCourts}</span>
+                        <span>${playAtPath}</span>
                     </p>
                 </div>
             </div>
                 <div class="buttons">
                     <!-- Buttons for Chat and Challenge -->
-                    <a href="chat-window.html?chatId=${chatId}&friendId=${friendProfile.userID}">
+                    <a href="chat-window.html?userAppId=${userAppProfile.userID}&friendId=${friendProfile.userID}">
                     <button class="player-chat-button common-button">Chat</button>
                     </a>
-                    <a href="player-invite.html">
+                    <a href="challenge-invite.html?userAppId=${userAppProfile.userID}&friendId=${friendProfile.userID}">
                     <button class="player-challenge-button common-button">Challenge</button>
                     </a>
                 </div>
     `;
     $(".player-detail-content-wrapper").append(html);
 }
-
-
-
-
-
-
-// "Hi I am Thiago. I like to PLay Tennis on Saturday and Sunday morninngs. text me and lets schedule our next game. Hope to see you soon."

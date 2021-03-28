@@ -7,7 +7,7 @@ const forgotPassword = document.getElementById('forgot-pass');
 const gsignup = document.getElementById('gsignup');
 const facebookSignin = document.getElementById("fsignup");
 
-var db = firebase.firestore();
+// var db = firebase.firestore();
 
 //Sign in function with email
 const signInWithEmailFunction = () => {
@@ -15,7 +15,6 @@ const signInWithEmailFunction = () => {
 	const password = passwordField.value;
 	firebase.auth().signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
-        // Signed in 
         var user = userCredential.user;
 
         if (user) {
@@ -26,7 +25,7 @@ const signInWithEmailFunction = () => {
                     querySnapshot.forEach((doc) => {
                         if (appUserLocal == null || appUserLocal == "undefined") {
     
-                            let au = new AppUser(doc.data().userID, doc.data().name.substring(0, doc.data().name.indexOf(" ")), doc.data().name.substring(doc.data().name.indexOf(" ") + 1, doc.data().name.length), doc.data().dateOfBirth, doc.data().profilePic, doc.data().about, doc.data().userLocation, doc.data().sports);
+                            let au = new AppUser(doc.data().userID, doc.data().name.substring(0, doc.data().name.indexOf(" ")), doc.data().name.substring(doc.data().name.indexOf(" ") + 1, doc.data().name.length), doc.data().dateOfBirth, doc.data().profilePic, doc.data().about, doc.data().userLocation, doc.data().sports, doc.data().currentPage);
                             appUserLocal = au;
                             localStorage.setItem("appUser", JSON.stringify(au));                                
                         }

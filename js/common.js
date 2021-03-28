@@ -58,17 +58,15 @@ const redirectBasedOnLogin = (user, googleLogin) => {
 
 // Updating the User Database while Signing Up
 const updateDB = (user, flag = 0, googleLogin = 0) => {
-    if (flag) {
-        var displayName = username.value;
-    }
-    else {
-        var displayName = user.displayName;
-    }
+
+    const displayName = flag ? username.value : user.displayName;
+
     var docData = {
         about: "",
         dateOfBirth: "01/31/1800",
         name: displayName,
         profilePic: null,
+        currentPage: "",
         sports: {
             badminton: {
                 userLevel: ""
@@ -88,21 +86,22 @@ const updateDB = (user, flag = 0, googleLogin = 0) => {
         redirectBasedOnLogin(user, googleLogin);
         console.log("document added");
     })
-        .catch((error) => {
-            console.error("Error adding document: ", error);
-        });
+    .catch((error) => {
+        console.error("Error adding document: ", error);
+    });
 }
 
 // Check if the User Already exist in DB
 const checkIfUserExist = (user, flag = 0, googleLogin = 0) => {
     db.collection("user").doc(user.uid).get()
         .then((querySnapshot) => {
-            if (querySnapshot.exists) {
-                redirectBasedOnLogin(user, googleLogin);
-            }
-            else {
-                updateDB(user, flag, googleLogin);
-            }
+            // if (querySnapshot.exists) {
+            //     redirectBasedOnLogin(user, googleLogin);
+            // }
+            // else {
+            //     updateDB(user, flag, googleLogin);
+            // }
+            const answer = querySnapshot.exists ? redirectBasedOnLogin(user, googleLogin) : updateDB(user, flag, googleLogin);
         })
         .catch((error) => {
             console.log("Error getting documents: ", error);
@@ -172,7 +171,7 @@ const updateLevel = (sport = "Unknown", level, redirect = "") => {
 }
 
 class AppUser {
-    constructor(auid, firstName, lastName, dob, profilePhoto, about, userLocation, sports, chatId) {
+    constructor(auid, firstName, lastName, dob, profilePhoto, about, userLocation, sports, chatId, currentPage) {
         this.auid = auid;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -182,6 +181,7 @@ class AppUser {
         this.userLocation = userLocation;
         this.sports = sports;
         this.chatId = chatId;
+        this.currentPage = currentPage;
     }
 }
 
@@ -255,10 +255,8 @@ async function set_appUser (redirect = "")  {
             .get()
             .then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
-                    // doc.data() is never undefined for query doc snapshots
-                    console.log(doc.data());
 
-                    let au = new AppUser(doc.data().userID, doc.data().name.substring(0, doc.data().name.indexOf(" ")), doc.data().name.substring(doc.data().name.indexOf(" ") + 1, doc.data().name.length), doc.data().dateOfBirth, doc.data().profilePic, doc.data().about, doc.data().userLocation, doc.data().sports, doc.data().chatId);
+                    let au = new AppUser(doc.data().userID, doc.data().name.substring(0, doc.data().name.indexOf(" ")), doc.data().name.substring(doc.data().name.indexOf(" ") + 1, doc.data().name.length), doc.data().dateOfBirth, doc.data().profilePic, doc.data().about, doc.data().userLocation, doc.data().sports, doc.data().chatId, doc.data().currentPage);
                     appUserLocal = au;
 
                     localStorage.setItem("appUser", JSON.stringify(au));
@@ -282,6 +280,43 @@ async function set_appUser (redirect = "")  {
         console.log("User not Found ");
     }
 }
-//////////////////////////////////////////////////////////
-// Thiago
-/////////////////////////////////////////////////////////
+
+function signout() {
+    localStorage.removeItem("appUser");
+    firebase.auth().signOut();
+    window.location = '../index.html';
+}
+
+// function for updating db values
+const updateDbDetails = (collection, user, key, value) => {
+
+    let dbRef = db.collection(collection).doc(user);
+    return dbRef.update({
+        [key]: value
+    })
+    .then(() => {
+        set_appUser();
+    })
+    .catch((error) => {
+        console.error("Error updating document: ", error);
+    });
+}
+
+const db = firebase.firestore();
+
+function updateCurrentPage() {
+    // currentPage = window.location.pathname;
+    
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+            const queryString = window.location.search;
+            var searchParams = new URLSearchParams(queryString);
+            const result = searchParams.get("sport") ?? null;
+            if(result) {
+                updateDbDetails('user', user.uid, 'currentPage', result);
+            }
+        }
+    });
+}
+
+updateCurrentPage();
