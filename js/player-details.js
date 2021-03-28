@@ -30,15 +30,10 @@ updateInnerHtml(userAbout[0], appUserobject.about);
 
 
 $.getJSON(`https://api.tomtom.com/search/2/reverseGeocode/${appUserobject.userLocation.latitude},${appUserobject.userLocation.longitude}.json?key=${tomtomApiKey}`, function (json) {
-    addressString = json.addresses[0].address.municipality;
-    // if (addressString) {
-    //     document.getElementById('location-input').value = addressString;
-    // }
-    // else {
-    //     document.getElementById('location-input').value = "default";
 
-    // }
+    addressString = json.addresses[0].address.municipality;
     document.getElementById('location-input').value = addressString ? addressString : "default";
+
 });
 
 $( "#location-info-wrapper" ).click(function() {
@@ -153,7 +148,7 @@ const updateUserPassword = (currentPassword, confirmPass) => {
             alert(error);
         });
       }).catch(function(error) {
-        // An error happened.
+            showToast("Password Updation Failed");
       });
 }
 
@@ -225,7 +220,7 @@ function updateSport(currentPageFlag) {
 
 submitButton.addEventListener('click', function (event) {
     // updating user level from select
-    if(selectedSport.value != "NoSelect") {
+    if(selectedSport.value != "NoSelect" && userLevelInput.value != "NoSelect") {
         let userLevelKey = `sports.${selectedSport.value.toLowerCase()}.userLevel`;
         updateDbDetails('user', appUserobject.auid, userLevelKey, userLevelInput.value);
         showToast("Data Updated");

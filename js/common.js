@@ -66,6 +66,7 @@ const updateDB = (user, flag = 0, googleLogin = 0) => {
         dateOfBirth: "01/31/1800",
         name: displayName,
         profilePic: null,
+        currentPage: "",
         sports: {
             badminton: {
                 userLevel: ""
@@ -254,8 +255,6 @@ async function set_appUser (redirect = "")  {
             .get()
             .then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
-                    // doc.data() is never undefined for query doc snapshots
-                    // console.log(doc.data());
 
                     let au = new AppUser(doc.data().userID, doc.data().name.substring(0, doc.data().name.indexOf(" ")), doc.data().name.substring(doc.data().name.indexOf(" ") + 1, doc.data().name.length), doc.data().dateOfBirth, doc.data().profilePic, doc.data().about, doc.data().userLocation, doc.data().sports, doc.data().chatId, doc.data().currentPage);
                     appUserLocal = au;

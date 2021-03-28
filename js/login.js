@@ -15,18 +15,17 @@ const signInWithEmailFunction = () => {
 	const password = passwordField.value;
 	firebase.auth().signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
-        // Signed in 
         var user = userCredential.user;
 
         if (user) {
-            // var db = firebase.firestore();
+            var db = firebase.firestore();
             db.collection("user").where("userID", "==", user.uid)
                 .get()
                 .then((querySnapshot) => {
                     querySnapshot.forEach((doc) => {
                         if (appUserLocal == null || appUserLocal == "undefined") {
     
-                            let au = new AppUser(doc.data().userID, doc.data().name.substring(0, doc.data().name.indexOf(" ")), doc.data().name.substring(doc.data().name.indexOf(" ") + 1, doc.data().name.length), doc.data().dateOfBirth, doc.data().profilePic, doc.data().about, doc.data().userLocation, doc.data().sports);
+                            let au = new AppUser(doc.data().userID, doc.data().name.substring(0, doc.data().name.indexOf(" ")), doc.data().name.substring(doc.data().name.indexOf(" ") + 1, doc.data().name.length), doc.data().dateOfBirth, doc.data().profilePic, doc.data().about, doc.data().userLocation, doc.data().sports, doc.data().currentPage);
                             appUserLocal = au;
                             localStorage.setItem("appUser", JSON.stringify(au));                                
                         }
