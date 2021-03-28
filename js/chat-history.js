@@ -1,17 +1,8 @@
-const db =firebase.firestore(); 
+// const db =firebase.firestore(); 
 let userApp = get_appUser(); //common.js
 let friendProfile = {}; 
 let lastMsg = "";
-let counterReceivedMessages = 0;
 
-// async function checkMsg (){
-//  await db.collection("chatID16163727651441616708683877")
-//     .onSnapshot((querySnapshot) => {
-//       querySnapshot.forEach((doc) => {
-//         console.log("Docs data: ", doc.data());
-//       })
-//     });
-// }
 const printChats = () =>{
     let html = `            
     <li class="chat-item">
@@ -28,35 +19,32 @@ const printChats = () =>{
         </div>
         </a>
     </li>`
-    $(".output-chats").append(html);
-    // console.log(counterReceivedMessages);
+    $(".chat-history").append(html);
 }
+
+const getMessages = (chat) =>{
+    db.collection(chat).get()
+    .then((snapshot)=>{
+        snapshot.docChanges().forEach((change)=>{ 
+            if(change.doc.data().senderId != userAppProfile.name){
+                lastMsg = change.doc.data().message;
+                console.log(lastMsg);
+            }
+        });
+        // console.log(lastMsg);
+        printChats(); 
+    });
+}
+
 const getChats = (friendid, chat)=>{
     db.collection("user").where("chatId", "==", friendid).get()
-            .then((querySnapshot)=>{
-                querySnapshot.forEach((doc) => {
-                    friendProfile = doc.data();
-                    console.log(friendProfile.name);
-                    db.collection(chat).get()
-                        .then((snapshot)=>{
-                            snapshot.docChanges().forEach((change)=>{
-                            
-                                if(change.doc.data().senderId != userAppProfile.name){
-                                    counterReceivedMessages ++;
-                                    // console.log(change.doc.data().senderId);
-                                    // console.log("==========")
-                                    // console.log(change.doc.data().message);
-                                    lastMsg = change.doc.data().message;
-                                    
-                                }
-                            
-                        });
-                        // console.log(lastMsg);
-                        printChats();
-                    });
-                    
-                });
-            }) 
+        .then((querySnapshot)=>{
+            querySnapshot.forEach((doc) => {
+                friendProfile = doc.data();
+                console.log(friendProfile.name); 
+            });
+        })   
+    getMessages(chat);  
 }
 
 db.collection("user").where("userID", "==", userApp.auid).get()
@@ -84,4 +72,3 @@ db.collection("user").where("userID", "==", userApp.auid).get()
             
         })
     })
-// checkMsg();
