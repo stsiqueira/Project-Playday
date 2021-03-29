@@ -18,7 +18,6 @@ const submitButton = document.getElementById("apply-changes");
 const storageRef = firebase.storage().ref();
 
 let appUserobject = get_appUser();
-console.log(appUserobject);
 //update page details ****************************
 
 const updateInnerHtml = (element, value) => {
@@ -27,7 +26,6 @@ const updateInnerHtml = (element, value) => {
 
 updateInnerHtml(userName[0], appUserobject.lastName);
 updateInnerHtml(userAbout[0], appUserobject.about);
-
 
 $.getJSON(`https://api.tomtom.com/search/2/reverseGeocode/${appUserobject.userLocation.latitude},${appUserobject.userLocation.longitude}.json?key=${tomtomApiKey}`, function (json) {
 
@@ -54,21 +52,10 @@ const setImage = (url) => {
     img.setAttribute('src', url);
 }
 
-const getDownloadUrl = (path="/", user, flag=0, googleSignInFlag = 0) => {
-    if (googleSignInFlag) {
-        var docRef = db.collection("user").doc(user.uid);
-        docRef.get().then((doc) => {
-            if (!doc.exists) {
-                console.log("No such document!");
-            }
-        }).catch((error) => {
-            console.log("Error getting document:", error);
-        });
-    }
+const getDownloadUrl = (path="/", user, flag=0) => {
     const userImageRef = storageRef.child('user_images/' + path);
     userImageRef.getDownloadURL()
     .then((url) => {
-        // inserted into an <img> element
         setImage(url);
         if (flag) {
             updateDbDetails('user', user.uid, 'profilePic', url);
@@ -79,21 +66,31 @@ const getDownloadUrl = (path="/", user, flag=0, googleSignInFlag = 0) => {
     });
 }
 
+// const setDefaultImage = () =>  {
+//     var docRef = db.collection("user").doc(user.uid);
+//     docRef.get()
+//     .then((doc) => {
+//         getDownloadUrl('user-default.png', user, 1);
+
+//     }).catch((error) => {
+//         console.log("Error getting document:", error);
+//     });
+// }
+
 //updating image in html
 const checkImageExist = () => {
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
-            let googleUserImage = user.photoURL;
+            let socialUserImage = user.providerData[0].photoURL;
             if (appUserobject.profilePhoto) {
-                getDownloadUrl(user.uid, user);
+                setImage(appUserobject.profilePhoto);
             }
-            else if(googleUserImage && !appUserobject.profilePhoto) {
-                updateDbDetails('user', user.uid, 'profilePic', googleUserImage);
-                setImage(googleUserImage);
+            else if(socialUserImage && !appUserobject.profilePhoto) {
+                updateDbDetails('user', user.uid, 'profilePic', socialUserImage);
+                setImage(socialUserImage);
             }
-            else if(!googleUserImage && !appUserobject.profilePhoto) {
+            else if(!socialUserImage && !appUserobject.profilePhoto) {
                 getDownloadUrl('user-default.png', user, 1);
-                // updateDbDetails('user', user.uid, 'profilePic', imageUrl);
             }
         }
     });
@@ -289,11 +286,12 @@ const capitalize = (s) => {
 
 function getCurrentPage() {
     if (document.referrer.includes("home")) {
-        console.log("hii");
+        // console.log("");
     }
     else if(appUserobject.currentPage) {
         updateSport(1);
     }
+    // const home = document.referrer.includes("home") ? null : updateSport(1);
 }
 
 getCurrentPage();

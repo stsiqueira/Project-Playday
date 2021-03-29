@@ -19,7 +19,7 @@ let tomtomApiKey = "ctMg0rMDauN3jPf1SOHXHVJNpJnhmGaS";
 // tomtomApiKey = "XOeleMUFVN4TaGSAJwKm8y7IBfy7YeQA";
 
 
-const redirectBasedOnLogin = (user, googleLogin) => {
+const redirectBasedOnLogin = (user, socialLogin) => {
 
     if (user) {
         var db = firebase.firestore();
@@ -35,7 +35,7 @@ const redirectBasedOnLogin = (user, googleLogin) => {
                     }
                 });
             }).then(() => {
-                if (!googleLogin) {
+                if (!socialLogin) {
                     window.location.assign('log-in.html');
                 }
                 else {
@@ -58,7 +58,7 @@ const redirectBasedOnLogin = (user, googleLogin) => {
 }
 
 // Updating the User Database while Signing Up
-const updateDB = (user, flag = 0, googleLogin = 0) => {
+const updateDB = (user, flag = 0, socialLogin = 0) => {
 
     const displayName = flag ? username.value : user.displayName;
 
@@ -84,7 +84,7 @@ const updateDB = (user, flag = 0, googleLogin = 0) => {
         userLocation: new firebase.firestore.GeoPoint(0, 0)
     }
     db.collection("user").doc(user.uid).set(docData).then((docRef) => {
-        redirectBasedOnLogin(user, googleLogin);
+        redirectBasedOnLogin(user, socialLogin);
         console.log("document added");
     })
     .catch((error) => {
@@ -93,16 +93,12 @@ const updateDB = (user, flag = 0, googleLogin = 0) => {
 }
 
 // Check if the User Already exist in DB
-const checkIfUserExist = (user, flag = 0, googleLogin = 0) => {
+const checkIfUserExist = (user, flag = 0, socialLogin = 0) => {
     db.collection("user").doc(user.uid).get()
         .then((querySnapshot) => {
-            // if (querySnapshot.exists) {
-            //     redirectBasedOnLogin(user, googleLogin);
-            // }
-            // else {
-            //     updateDB(user, flag, googleLogin);
-            // }
-            const answer = querySnapshot.exists ? redirectBasedOnLogin(user, googleLogin) : updateDB(user, flag, googleLogin);
+            
+            const answer = querySnapshot.exists ? redirectBasedOnLogin(user, socialLogin) : updateDB(user, flag, socialLogin);
+
         })
         .catch((error) => {
             console.log("Error getting documents: ", error);
@@ -110,50 +106,51 @@ const checkIfUserExist = (user, flag = 0, googleLogin = 0) => {
 }
 
 // Invoking Sign Up function for Sign UP
-const googleSignOn = (flag, googlelogin) => {
+const googleSignOn = (flag, socialLogin) => {
     firebase.auth().signInWithPopup(provider)
     .then((result) => {
         var user = result.user;
-        checkIfUserExist(user, flag, googlelogin);
+        checkIfUserExist(user, flag, socialLogin);
+    }).catch((error) => {
+        var errorCode = error.code;
+        if(errorCode != "auth/popup-closed-by-user") {
+            var errorMessage = error.message;
+            var email = error.email;
+            console.log(error.code);
+            var credential = error.credential;
+            alert(errorMessage);
+        }
+    });
+}
+
+// Invoking Sign Up function for Sign UP
+const fbSignOn = (flag, socialLogin) => {
+    firebase.auth().signInWithPopup(fbProvider)
+    .then((result) => {
+        var user = result.user;
+        checkIfUserExist(user, flag, socialLogin);
+    })
+    .catch((error) => {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        var email = error.email;
+        var credential = error.credential;
+    });
+}
+
+const tSignon = (flag, socialLogin) => {
+    firebase.auth().signInWithPopup(tprovider)
+    .then((result) => {
+        var user = result.user;
+        console.log(user);
+        checkIfUserExist(user, flag, socialLogin);
     }).catch((error) => {
         var errorCode = error.code;
         var errorMessage = error.message;
         var email = error.email;
         var credential = error.credential;
-        alert(errorMessage);
         // ...
     });
-}
-
-// Invoking Sign Up function for Sign UP
-const fbSignOn = (flag, googlelogin) => {
-    firebase.auth().signInWithPopup(fbProvider)
-    .then((result) => {
-    var user = result.user;
-    checkIfUserExist(user, flag, googlelogin);
-  })
-  .catch((error) => {
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    var email = error.email;
-    var credential = error.credential;
-    });
-}
-
-const tSignon = (flag, googlelogin) => {
-    firebase
-  .auth()
-  .signInWithPopup(tprovider)
-  .then((result) => {
-    var user = result.user;
-    checkIfUserExist(user, flag, googlelogin);
-  }).catch((error) => {
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    var email = error.email;
-    var credential = error.credential;
-    // ...
-  });
 }
 
 const urlParam = function (name) {
@@ -334,5 +331,29 @@ function updateCurrentPage() {
         }
     });
 }
+
+function validateEmail(mail) {
+    if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(mail)) {
+        if(confirmPasswordField.value == passwordField.value) {
+          return (true)
+        }
+        else {
+              alert("password does not match");
+              return false;
+        }
+    }
+    alert("You have entered an invalid email address!")
+    return (false)
+  }
+
+function checkPassword(inputtxt) { 
+    var decimal=  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
+    if(inputtxt.match(decimal)) { 
+        return true;
+    }
+    else { 
+        return false;
+    }
+} 
 
 // updateCurrentPage();

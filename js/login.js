@@ -1,9 +1,7 @@
 const mailField = document.getElementById('mail');
 const passwordField = document.getElementById('password');
 const signInWithMail = document.getElementById('signInWithMail');
-// const signUp = document.getElementById('signUp');
 const forgotPassword = document.getElementById('forgot-pass');
-// const googleSignin = document.getElementById("googleSignup");
 const gsignup = document.getElementById('gsignup');
 const facebookSignin = document.getElementById("fsignup");
 const twitterSignin = document.getElementById("tsignup");
@@ -13,6 +11,8 @@ const twitterSignin = document.getElementById("tsignup");
 const signInWithEmailFunction = () => {
 	const email = mailField.value;
 	const password = passwordField.value;
+    // if (!checkPassword(password)) return false;
+
 	firebase.auth().signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
         var user = userCredential.user;
@@ -32,7 +32,7 @@ const signInWithEmailFunction = () => {
                     });
                 }).then(()=>
                 {
-                    if(appUserLocal.userLocation.latitude == "0" && appUserLocal.userLocation.longitude == "0"){
+                    if(appUserLocal.userLocation.latitude == "0" && appUserLocal.userLocation.longitude == "0") {
                         window.location.assign('location-selection.html?isSkip=1')
                     }
                     else window.location.assign('home.html');
