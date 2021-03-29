@@ -139,6 +139,22 @@ const fbSignOn = (flag, googlelogin) => {
     });
 }
 
+const tSignon = (flag, googlelogin) => {
+    firebase
+  .auth()
+  .signInWithPopup(tprovider)
+  .then((result) => {
+    var user = result.user;
+    checkIfUserExist(user, flag, googlelogin);
+  }).catch((error) => {
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    var email = error.email;
+    var credential = error.credential;
+    // ...
+  });
+}
+
 const urlParam = function (name) {
     var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
     if (results == null) {
@@ -305,8 +321,7 @@ const updateDbDetails = (collection, user, key, value) => {
 const db = firebase.firestore();
 
 function updateCurrentPage() {
-    // currentPage = window.location.pathname;
-    
+
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             const queryString = window.location.search;
