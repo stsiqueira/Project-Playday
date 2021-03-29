@@ -196,22 +196,26 @@ $(document).ready(function () {
         let isSavedCourt = await isActiveCourt(sport, "savedCourts", uniqueCourtId);
         let isChallengeCourt = await isActiveCourt(sport, "challengeCourts", uniqueCourtId);
 
-        if(isSavedCourt){
+        if (isSavedCourt) {
             $(".user-options .save-container").addClass('court-active');
         }
+        else{
+            $(".user-options .save-container").removeClass('court-active');
+        }
 
-        if(isChallengeCourt){
-            $(".user-options .challenge-container").addClass('court-active');   
+        if (isChallengeCourt) {
+            $(".user-options .challenge-container").addClass('court-active');
             $(".players-list-container h3").html('Players you can challenge');
             $(".inactive-message").hide();
             $("#players-list").removeClass().addClass("active-players-list");
         }
-        else{
+        else {
+            $(".user-options .challenge-container").removeClass('court-active');
             $(".players-list-container h3").html('Players registered at this Court');
             $(".inactive-message").show();
             $("#players-list").removeClass().addClass("inactive-players-list");
         }
-        
+
     }
 
     $("#save-court").click(function () {
@@ -220,10 +224,18 @@ $(document).ready(function () {
         let courtName = $("#selected-name").html().trim();
 
         if (courtId != null && courtId != undefined && courtId != ""
-            && courtName != null && courtName != undefined && courtName != "") 
-            {
-                setCourts(sports, "savedCourts", courtId, courtName); 
+            && courtName != null && courtName != undefined && courtName != "") {
+            
+            let notSaved = ($(".user-options .save-container").hasClass('court-active')) ?false:true ;
+            if (notSaved)
+                setCourts(sports, "savedCourts", courtId, courtName);
+            else {
+                let deleteCourt = `sports.${sports}.savedCourts.${courtId}`;
+                updateDbDetails('user', appUserobject.auid, deleteCourt, firebase.firestore.FieldValue.delete());
             }
+
+            checkUserCourtStatus(sports, courtId);
+        }
 
     });
     $("#challenge-court").click(function () {
@@ -232,8 +244,17 @@ $(document).ready(function () {
         let courtName = $("#selected-name").html().trim();
 
         if (courtId != null && courtId != undefined && courtId != ""
-            && courtName != null && courtName != undefined && courtName != "") {
-            setCourts(sports, "challengeCourts", courtId, courtName);
+            && courtName != null && courtName != undefined && courtName != "") {            
+
+            let notSaved = ($(".user-options .challenge-container").hasClass('court-active')) ?false:true ;
+            if (notSaved)
+                setCourts(sports, "challengeCourts", courtId, courtName);
+            else {
+                let deleteCourt = `sports.${sports}.challengeCourts.${courtId}`;
+                updateDbDetails('user', appUserobject.auid, deleteCourt, firebase.firestore.FieldValue.delete());
+            }
+
+            checkUserCourtStatus(sports, courtId);
         }
     });
     $("#goBack").click(function () {
@@ -326,7 +347,7 @@ $(document).ready(function () {
 
         let query = `sports.${sport}.${courtType}.${uniqueCourtId}`;
         let db = firebase.firestore();
-        
+
         return db.collection("user").where("userID", "==", user.uid)
             .get()
             .then((querySnapshot) => {
@@ -340,7 +361,7 @@ $(document).ready(function () {
                 });
                 return isActive;
             })
-            .catch((error) => {                
+            .catch((error) => {
                 console.log("Error getting documents: ", error);
                 return false;
             });
