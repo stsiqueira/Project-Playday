@@ -921,7 +921,7 @@ img {
 }
 
 .select-court .single-court-info-container .user-options {
-  margin-top: 1.5rem;
+  margin-top: 2rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -969,6 +969,16 @@ img {
   cursor: pointer;
 }
 
+.select-court .single-court-info-container .inactive-players-list li {
+  pointer-events: none;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
+.select-court .single-court-info-container .active-players-list li {
+  border: 1px solid #12317F;
+}
+
 .select-court .img-wrapper {
   grid-column: 1/-1;
   max-height: 170px;
@@ -1003,7 +1013,7 @@ img {
 }
 
 .select-court .players-list-container {
-  margin-top: 2rem;
+  margin-top: 1.5rem;
 }
 
 .select-court .players-list-container .show-players-list {
@@ -1018,6 +1028,13 @@ img {
   border-bottom: 1px solid #000;
   padding-bottom: 0.5rem;
   margin: 0.5rem auto;
+}
+
+.select-court .players-list-container .inactive-message {
+  text-align: center;
+  font-size: 0.8rem;
+  color: gray;
+  margin-bottom: 1rem;
 }
 
 .select-court .players-list-container ul#players-list {

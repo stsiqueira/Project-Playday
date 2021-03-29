@@ -115,7 +115,7 @@
     }
 
     .user-options {
-      margin-top: 1.5rem;
+      margin-top: 2rem;
       display: flex;
       justify-content: space-evenly;
       color: $color-primary-blue-text;
@@ -150,6 +150,19 @@
     .challenge-container {
       cursor: pointer;
     }
+
+    .inactive-players-list{
+      li{
+        pointer-events: none;
+        box-shadow: none !important;
+      }   
+    }
+    .active-players-list{
+      li{
+        border: 1px solid $color-primary-blue-text;
+      }
+    }
+
   }
 
   .img-wrapper {
@@ -182,7 +195,7 @@
   }
 
   .players-list-container {
-    margin-top: 2rem;
+    margin-top: 1.5rem;
 
     .show-players-list {
       text-align: center;
@@ -193,6 +206,13 @@
       border-bottom: 1px solid #000;
       padding-bottom: 0.5rem;
       margin: 0.5rem auto;
+    }
+
+    .inactive-message{
+      text-align: center;
+      font-size: 0.8rem;
+      color: gray;
+      margin-bottom: 1rem;
     }
 
     ul#players-list {
