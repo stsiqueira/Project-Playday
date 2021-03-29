@@ -1,0 +1,129 @@
+.location-selection{
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  header {
+    min-height: 10vh;
+  }
+  body {
+    background-color: #fffcfa;
+    max-width: 800px;
+    margin: auto;
+    font-family: "Poppins", sans-serif;
+  }
+  .body-wrapper {
+    padding: 0 0.5rem;
+  }
+  main {
+    margin: 0.5rem;
+  }
+  #message {
+    display: none;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .location-map-container {
+    height: fit-content;
+    min-height: 320px;
+  }
+  canvas {
+    width: 100%;
+  }
+
+  .mapboxgl-canvas {
+    border-radius: 8px;
+    box-sizing: border-box;
+  }
+  #locationSearch {
+    width: 100%;
+    font-size: 1.5rem;
+    border: none;
+    background-color: transparent;
+  }
+
+  .location-input-container {
+    display: flex;
+    margin-top: 1rem;
+    align-items: center;
+    background-color: white;
+    border: 2px solid black;
+  }
+  .location-input-container input:focus {
+    outline: none;
+  }
+
+  .icon {
+    padding: 0.5rem;
+    font-size: 1.5rem;
+    color: gray;
+  }
+
+  .location-buttons-container {
+    margin-top: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+  }
+  .location-buttons-container button,
+  .skip-now button {
+    min-width: 110px;
+    padding: 0.5rem;
+    border-radius: 20px;
+    font-size: 1rem;
+    border: 1px solid transparent;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    outline: none;
+  }
+
+  #manual,
+  #auto {
+    background-color: #ffdfd1;
+  }
+  #continue {
+    background-color: #ffb494;
+  }
+
+  .skip-now {
+    margin-top: 2rem;
+    text-align: right;
+  }
+
+  /* IMPORTANT */
+  .mapboxgl-map {
+    overflow: visible !important;
+  }
+
+  .mapboxgl-canvas-container {
+    display: flex !important;
+    flex-flow: column nowrap;
+    gap: 1rem;
+    /* position: relative; */
+  }
+
+  .mapboxgl-popup-content {
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5) !important;
+  }
+
+  .tt-search-box {
+    /* margin: 0 0.5rem; */
+  }
+
+  .tt-search-box-input-container {
+    border-radius: 8px;
+    border: 1px solid black !important;
+  }
+
+  .tomtomAttribution {
+    display: none;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+
+}
+

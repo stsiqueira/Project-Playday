@@ -148,7 +148,7 @@ $(document).ready(function () {
             });
         }
     }
-    
+
     $(document.body).on('click', '.apiResultRow', function () {
 
         let selectedRow = $(this).attr('id').substr($(this).attr('id').indexOf("-") + 1);
@@ -177,6 +177,12 @@ $(document).ready(function () {
         setTimeout(() => {
             $(".single-court-info-container").slideDown(1000);
             window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            let sport = urlParam("sport");
+            let uniqueCourtId = $("#selected-court-id").html().trim();
+            getCourtPlayers(sport, uniqueCourtId);
+
+
         }, 1000);
     });
 
@@ -213,13 +219,13 @@ $(document).ready(function () {
         }
     });
 
-    $("#show-players-list").click(function () {
+    // $("#show-players-list").click(function () {
 
-        let sport = urlParam("sport");
-        let uniqueCourtId = $("#selected-court-id").html().trim();
-        getCourtPlayers(sport, uniqueCourtId);
+    //     let sport = urlParam("sport");
+    //     let uniqueCourtId = $("#selected-court-id").html().trim();
+    //     getCourtPlayers(sport, uniqueCourtId);
 
-    });
+    // });
 
     const getCourtPlayers = (sport, uniqueCourtId, divId = "", countOnly = true) => {
 
@@ -264,9 +270,12 @@ $(document).ready(function () {
                                 playerLevel = i.data().sports.volleyball.userLevel;
                                 break;
                         }
-                        playersList += `<li id="courtPlayer-${playerCount}" class="court-player"><b>${playerName}</b>
-                                            <div>Player Level: ${playerLevel}</div>
-                                            <div>Player Pic: ${playerPic}</div>
+                        playersList += `<li id="courtPlayer-${playerCount}" class="court-player">
+                                            <div class="cp-img">
+                                                <img src="${playerPic}" alt="court player profile pic"></img>
+                                            </div>
+                                            <div class="cp-name">${playerName}</div>
+                                            <div class="cp-level">Player Level: ${playerLevel}</div>                                            
                                             <div id ="courtPlayerId-${playerCount}" style="display:none">${playerId}</div>
                                         </li>`
                     }

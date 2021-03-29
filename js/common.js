@@ -238,7 +238,7 @@ const goToSportCourts = (sport) => {
 
 const get_appUser = () => {
     if (appUserLocal == undefined || appUserLocal == "") {
-        if (localStorage.getItem("appUser") === null || localStorage.getItem("appUser") === null) {
+        if (localStorage.getItem("appUser") === undefined || localStorage.getItem("appUser") === null) {
             set_appUser();
         }
         else
