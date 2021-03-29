@@ -20,12 +20,13 @@
 }
 
 @mixin select-options{
-    height: 50px;
+    height: 32px;
     font-family: $font_sans;
     font-weight: medium;
-    border-radius: 25px;
+    border-radius: 20px;
     outline: transparent;
-    
+
+    padding: 0 0 0 0.5rem;
 }
 @mixin inputStyle($width:25%, $color: #EEF0F6) {
     overflow: visible;
