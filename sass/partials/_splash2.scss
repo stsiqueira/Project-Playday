@@ -1,4 +1,9 @@
 
+$color_light_orange: #FFF8F4;
+$color_darker_orange: #FFDFD1;
+$color_more_darker_orange: #FFB494;
+$color_the_darkest_orange: #FF7D45;
+
 .splash {
     margin: 0;
     padding: 0;
@@ -15,7 +20,7 @@
         flex-flow: column nowrap;
         overflow: hidden;
         border-radius: 0;
-        background-color: #FF7D45;
+        background-color: $color_the_darkest_orange;
     }
     .logo{
         width: 100%;
@@ -29,7 +34,7 @@
     .first-circle{
         width: 100%;
         height: 100%;
-        background-color: #FFF8F4;
+        background-color: $color_light_orange;
         clip-path: $circle-basic-clip-path;
         position: absolute;
         top: -4rem;
@@ -38,7 +43,7 @@
     .second-circle{
         width: 100%;
         height: 100%;
-        background-color: #FFDFD1;
+        background-color: $color_darker_orange;
         clip-path: $circle-basic-clip-path;
         position: absolute;
         top: -4rem;
@@ -47,7 +52,7 @@
     .third-circle{
         width: 100%;
         height: 100%;
-        background-color: #FFB494;
+        background-color: $color_more_darker_orange;
         clip-path: $circle-basic-clip-path;
         position: absolute;
         top: -2rem;

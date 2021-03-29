@@ -18,6 +18,7 @@ let appUserLocal;
 let tomtomApiKey = "ctMg0rMDauN3jPf1SOHXHVJNpJnhmGaS";
 // tomtomApiKey = "XOeleMUFVN4TaGSAJwKm8y7IBfy7YeQA";
 
+
 const redirectBasedOnLogin = (user, googleLogin) => {
 
     if (user) {
@@ -319,4 +320,4 @@ function updateCurrentPage() {
     });
 }
 
-updateCurrentPage();
+// updateCurrentPage();

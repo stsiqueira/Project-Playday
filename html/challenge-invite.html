@@ -17,64 +17,19 @@
     <link rel="stylesheet" href="../style.css">
     <title>Playday</title>
 </head>
-<style>
-  
-    *{
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
-    }
-    body{
-        background: #e5e5e5;
-    }
-    .challenge-invite-wrapper{
-        display: flex;
-        flex-flow: column nowrap;
-        align-items: center;
-        width: 95%;
-        margin: auto;
-    }
-    .invite-msg-wrapper{
-        margin: 2.5rem 0 1rem;
-    }
-    .player-img-wrapper img{
-        border-radius: 50%;
-        height: 150px;
-        width: 150px;
 
-    }
-    .player-img-wrapper h3{
-        color: #ff7d45 ;
-        text-align: center;
-    }
-    .invite-msg-wrapper textarea{
-        border: none;
-        outline: none;
-        padding: 1rem;
-        border-radius: 20px;
-        font-size: 1.3rem;
-    }
-    .buttons{
-        display: flex;
-        flex-flow: row nowrap;
-        gap: 2rem;
-        justify-content: space-between;
-    }
-  
-    */
 
-</style>
-
-<body class="page player-invite-page">
+<body class="page challenge-invite-page">
 
     <header>
-        <div class="back">
-            <button class="back-button">
-                <a href="">
-                    <i class="fas fa-chevron-left"></i><span class="visually-hidden">Back button</span></i>
-                </a>
-            </button>
-        </div>
+        <div class="back-button">
+			<a href="javascript:history.go(-1)">
+				<i class="fas fa-angle-left"> <span class="visually-hidden">back-button</span></i>
+			</a>
+		</div>
+		<div class="title">
+			<h2>Challenge invitation</h2>
+		</div>
     </header>
     
     <main>
@@ -84,41 +39,33 @@
         </div>
     </main>
     <footer>
-        <!-- Bottom Navigation Bar -->
+		<!-- Bottom Navigation Bar -->
 
-    <ul class="bottom-nav-bar footer-nav">
-
-        <li class="nav-elements nav-1">
-            <a href="" class="icons-back footer-icons">
-                <i class="fas fa-chevron-circle-left"></i>
-                <div class="button-text">Back</div>
-                <span class="visually-hidden">Back button</span>
-            </a>
-        </li>
-        <li class="nav-elements nav-2">
-            <a href="home.html" class="icons-home footer-icons">
-                <i class="fas fa-home"></i>
-                <div class="button-text">Home</div>
-                <span class="visually-hidden">Home button</span>
-            </a>
-        </li>
-        <li class="nav-elements nav-3">
-            <a href="user-account-settings.html" class="icons-user-setting footer-icons">
-                <i class="far fa-user-circle"></i>
-                <div class="button-text">User setting</div>
-                <span class="visually-hidden">User setting button</span>
-            </a>
-        </li>
-        <li class="nav-elements nav-4">
-            <a href="" class="icons-chat footer-icons">
-                <i class="fas fa-comment-dots"></i>
-                <div class="button-text">Chat</div>
-                <span class="visually-hidden">Chat button</span>
-            </a>
-        </li>
-
-     </ul>
-</footer> 
+		<ul class="bottom-nav-bar footer-nav">
+			<li class="nav-elements nav-2">
+				<a href="home.html" class="icons-home footer-icons">
+					<i class="fas fa-home"></i>
+					<div class="button-text">Home</div>
+					<span class="visually-hidden">Home button</span>
+				</a>
+			</li>
+			<li class="nav-elements nav-4">
+				<a href="chat-history.html" class="icons-chat footer-icons">
+					<i class="fas fa-comment-alt"></i>
+					<div class="button-text">Chat</div>
+					<span class="visually-hidden">Chat button</span>
+				</a>
+			</li>
+			<li class="nav-elements nav-3">
+				<a href="user-account-settings.html" class="icons-user-setting footer-icons">
+					<i class="far fa-user-circle"></i>
+					<div class="button-text">User setting</div>
+					<span class="visually-hidden">User setting button</span>
+				</a>
+			</li>
+			
+		</ul>
+	</footer>
 
 
 </body>

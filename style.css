@@ -365,6 +365,40 @@ template {
 /* Mixins ================================================= */
 /* Typography  =================================================== */
 /* Header ======================================================== */
+header {
+  background-color: #F0F0F3;
+  display: flex;
+  flex-flow: row nowrap;
+}
+header .back-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  position: absolute;
+  left: 0.7rem;
+  top: 0.7rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 2px 2px 5px 5px #cbcbda;
+}
+header .back-button a {
+  padding: 0;
+  margin: 0;
+}
+header .back-button a i {
+  font-size: 1.5rem;
+  color: #12317F;
+}
+header .title {
+  flex: 1 0 50%;
+  display: flex;
+  justify-content: center;
+  margin: 1.2rem;
+  color: #12317F;
+}
+
 /* Footer ======================================================== */
 footer {
   height: 90px;
@@ -390,7 +424,7 @@ footer li {
 }
 footer a {
   text-decoration: none;
-  color: #9094AA;
+  color: #12317F;
   font-size: 1.2rem;
   transition: 0.5s;
 }
@@ -1606,14 +1640,13 @@ body.home .blogs section:nth-of-type(3) .graphic-inner {
   height: 150px;
   border-radius: 50%;
   object-fit: cover;
-  margin-top: 2rem;
   border: 3px solid #000;
   box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.2);
 }
 .single-player-info h2.player-name {
-  color: #fc5007;
-  margin-top: 1.5rem;
-  font-size: 2.3rem;
+  color: #12317F;
+  margin-top: 1rem;
+  font-size: 2rem;
 }
 .single-player-info .player-detail-wrapper {
   background-color: #fff;
@@ -1626,10 +1659,11 @@ body.home .blogs section:nth-of-type(3) .graphic-inner {
   border-radius: 20px;
   padding: 0.5rem 1rem;
   width: 100%;
+  background-color: #F0F0F3;
 }
 .single-player-info .player-description p {
   margin: 0.5rem 0;
-  font-size: 1.4rem;
+  font-size: 18px;
 }
 .single-player-info .player-description p:nth-of-type(3) {
   margin: 2rem 0;
@@ -1637,6 +1671,7 @@ body.home .blogs section:nth-of-type(3) .graphic-inner {
 .single-player-info div.buttons {
   display: flex;
   flex-flow: column nowrap;
+  margin-bottom: 3rem;
 }
 .single-player-info .common-button {
   margin-top: 2rem;
@@ -1656,8 +1691,8 @@ body.home .blogs section:nth-of-type(3) .graphic-inner {
 }
 .single-player-info .report-button button {
   background-color: #d4d4d4;
-  padding: 0.7rem;
-  font-size: 1.3rem;
+  padding: 0.2rem 0.7rem;
+  font-size: 0.855rem;
   border-radius: 20px;
   border: none;
   outline: none;
@@ -1672,25 +1707,6 @@ body.home .blogs section:nth-of-type(3) .graphic-inner {
 }
 .chat-window main {
   padding: 1rem 2%;
-}
-.chat-window .chat-content-wrapper {
-  /* border: 1px solid black; */
-  min-height: 45vh;
-  display: flex;
-  flex-flow: column nowrap;
-}
-.chat-window .chat-messages-wrapper {
-  min-height: 50vh;
-}
-.chat-window .chat-title-container {
-  position: sticky;
-  left: 0;
-  right: 0;
-  top: 0;
-  padding: 1rem 2.5% 1rem;
-  background-color: #F0F0F3;
-  display: flex;
-  justify-content: center;
 }
 .chat-window .send-message-wrapper {
   display: flex;
@@ -1711,6 +1727,7 @@ body.home .blogs section:nth-of-type(3) .graphic-inner {
   outline: none;
   font-size: 1.1rem;
   padding-left: 0.7rem;
+  border: 1px solid #12317F;
 }
 .chat-window #sendButton {
   border: none;
@@ -1720,18 +1737,46 @@ body.home .blogs section:nth-of-type(3) .graphic-inner {
   padding: 0;
 }
 .chat-window .fa-paper-plane {
-  color: #007AFF;
+  color: #12317F;
   font-size: 1.3rem;
   padding-bottom: 0.3rem;
 }
-.chat-window .pullRight {
-  text-align: right;
+.chat-window .chat-content-wrapper {
+  /* border: 1px solid black; */
+  min-height: 85vh;
+  display: flex;
+  flex-flow: column nowrap;
+}
+.chat-window #chat-messages {
+  padding: 0.5rem;
+  border-radius: 6px;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 0.8rem;
 }
 .chat-window #chat-messages li {
   display: flex;
   flex-flow: row nowrap;
   margin-bottom: 0.4rem;
   gap: 0.5rem;
+}
+.chat-window #chat-messages li div {
+  padding: 0.5rem 0.7rem;
+  border-radius: 15px;
+}
+.chat-window #chat-messages li div.receiver {
+  background-color: #EAEAEA;
+  margin-right: 1rem;
+  border-top-left-radius: 0;
+}
+.chat-window #chat-messages li div.sender {
+  background-color: #3469EE;
+  color: #fff;
+  margin-left: 1rem;
+  border-top-right-radius: 0;
+}
+.chat-window #chat-messages p {
+  font-size: 1.1rem;
 }
 .chat-window #chat-messages li.sender {
   display: flex;
@@ -1742,20 +1787,52 @@ body.home .blogs section:nth-of-type(3) .graphic-inner {
   height: 30px;
   border-radius: 50%;
   border: 1px solid black;
+  margin-left: 0.5rem;
 }
-.chat-window .chat-message-image {
-  flex: 0 0 8%;
+
+/* Chat-History========================================= */
+.challenge-invite-page .title {
+  margin: 0;
 }
-.chat-window .chat-message {
-  padding: 0.5rem;
-  background-color: rgba(246, 180, 152, 0.701);
-  border-radius: 6px;
+.challenge-invite-page .challenge-invite-wrapper {
+  padding-top: 2rem;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
 }
-.chat-window .chat-message p {
-  font-size: 1.1rem;
+.challenge-invite-page .challenge-invite-wrapper .player-image img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #000;
+  box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.2);
 }
-.chat-window div.sender {
-  background-color: rgba(255, 125, 69, 0.7);
+.challenge-invite-page h3 {
+  color: #12317F;
+}
+.challenge-invite-page .invite-msg-wrapper {
+  width: 90%;
+  margin: auto;
+  overflow: hidden;
+}
+.challenge-invite-page .invite-msg-wrapper textarea {
+  width: 90%;
+  resize: none;
+  border: none;
+  outline: none;
+  background-color: #F0F0F3;
+  padding: 1rem;
+  border-radius: 15px;
+  margin-bottom: 2rem;
+}
+.challenge-invite-page .buttons {
+  width: 90%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  margin-bottom: 2rem;
 }
 
 /* Toast ========================================= */
