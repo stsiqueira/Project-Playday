@@ -2,8 +2,11 @@
 let userApp = get_appUser(); //common.js
 let friendProfile = {}; 
 let lastMsg = "";
+let counterMsg = 0
+
 
 const printChats = () =>{
+
     let html = `            
     <li class="chat-item">
         <a href="chat-window.html?userAppId=${userAppProfile.userID}&friendId=${friendProfile.userID}"">
@@ -13,26 +16,48 @@ const printChats = () =>{
         <div class="chat-history-message">
             <p class="chat-history-name">${friendProfile.name}</p>
             <p class="chat-history-message">${lastMsg}</p>
-        </div>
-        <div class="chat-history-number-msgs">
-            <p class="chat-history-msg"> 2 </p>
-        </div>
+        </div>`
+        if (counterMsg != 0 ){
+            html += `
+            <div class="chat-history-number-msgs">
+                <p class="chat-history-msg"> ${counterMsg} </p>
+            </div>`
+        }
+        html += `
         </a>
     </li>`
     $(".chat-history").append(html);
 }
 
 const getMessages = (chat) =>{
+ 
     db.collection(chat).get()
     .then((snapshot)=>{
         snapshot.docChanges().forEach((change)=>{ 
+            lastMsg = change.doc.data().message;
+            // console.log(lastMsg);
             if(change.doc.data().senderId != userAppProfile.name){
-                lastMsg = change.doc.data().message;
-                console.log(lastMsg);
+                // console.log(change.doc.data().date.toDate());
+                let lastCheck = userAppProfile.lastCheck[chat].date.toDate();
+                    console.log(chat);
+                    console.log("========================================");  
+                    console.log(change.doc.data().date.toDate());
+                    console.log(lastCheck);
+                    console.log("=========");
+                if(change.doc.data().date.toDate() > lastCheck){
+                    console.log(change.doc.data().date.toDate());
+                    counterMsg++;
+                    console.log("contador = " + counterMsg);
+                }else{
+                    console.log(lastCheck);
+                }
+
             }
         });
         // console.log(lastMsg);
-        printChats(); 
+        printChats();
+        lastMsg = ""; 
+        counterMsg = 0;
     });
 }
 
@@ -41,7 +66,7 @@ const getChats = (friendid, chat)=>{
         .then((querySnapshot)=>{
             querySnapshot.forEach((doc) => {
                 friendProfile = doc.data();
-                console.log(friendProfile.name); 
+                // console.log(friendProfile.name); 
             });
         })   
     getMessages(chat);  
@@ -51,9 +76,12 @@ db.collection("user").where("userID", "==", userApp.auid).get()
     .then((querySnapshot)=>{
         querySnapshot.forEach((doc) => {
             userAppProfile = doc.data();
+            lastCheck = userAppProfile
+            // console.log(lastCheck);
+
             // console.log(userAppProfile.chatId);
         });
-        console.log(userAppProfile.chats)
+        // console.log(userAppProfile.chats)
         userAppProfile.chats.forEach( (chat)=>{
             let id1 = parseInt(chat.slice(-13));
             // console.log(id1);
@@ -67,7 +95,7 @@ db.collection("user").where("userID", "==", userApp.auid).get()
             }else{
                 friendId =id1;
             }
-            console.log(friendId); 
+            // console.log(friendId); 
             getChats(friendId, chat);
             
         })
