@@ -27,6 +27,8 @@ $(document).ready(function () {
     $("#message").html();
     $('#manual,#auto,#continue,#skip').hide();
     $("#map,#autoSearchBox").html("");
+    $("#continue").prop('disabled', true).removeClass("continue-active");
+
   }
 
   let showButtons = () => {
@@ -94,6 +96,7 @@ $(document).ready(function () {
     // latitude = 49.2176865;    // longitude = -123.09937450000001;
 
     showMap(hiddenCoordinates.lat, hiddenCoordinates.lon, "map", "Your Selected Location");
+    $("#continue").prop('disabled', false).addClass("continue-active");
     $("#hidden").html(JSON.stringify(hiddenCoordinates));
   }
 
@@ -105,11 +108,13 @@ $(document).ready(function () {
     if (option == "Disabled") {
       $("#message").html("Auto selection feature to locate you is disabled. You can set location manually.");
       $("#message").show();
+      $("#continue").prop('disabled', true).removeClass("continue-active");
       searchBoxShow();
     }
     else if (option == "Not Supported") {
       $("#message").html("Auto selection feature to locate you is not supported by your browser. You can set location manually.")
       $("#message").show();
+      $("#continue").prop('disabled', true).removeClass("continue-active");
       searchBoxShow();
     }
     else if (option == "Voluntary") {
@@ -196,14 +201,17 @@ $(document).ready(function () {
         hiddenCoordinates.lon = poiList[0].position.lng;
         $("#hidden").html(JSON.stringify(hiddenCoordinates));
         $("#message").hide();
+        $("#continue").prop('disabled', false).addClass("continue-active");
       }
       else if (poiList.length > 1) {
         $("#message").html("More than one result. Please refine your search")
         $("#message").show();
+        $("#continue").prop('disabled', true).removeClass("continue-active");
       }
       else {
         $("#message").html("No results found!")
         $("#message").show();
+        $("#continue").prop('disabled', true).removeClass("continue-active");
       }
 
     };

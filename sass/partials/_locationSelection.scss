@@ -1,28 +1,36 @@
 .location-selection{
 
+  background-color: $color-main-bg;
+    max-width: 800px;
+    min-height: 100vh;
+    margin: auto;
+    font-family: "Poppins", sans-serif;
+
+
   img {
     max-width: 100%;
     height: auto;
   }
-  header {
-    min-height: 10vh;
-  }
-  body {
-    background-color: #fffcfa;
-    max-width: 800px;
-    margin: auto;
-    font-family: "Poppins", sans-serif;
-  }
+ 
   .body-wrapper {
-    padding: 0 0.5rem;
+    padding: 10vh 0.5rem 0  0.5rem;
   }
   main {
+    
     margin: 0.5rem;
   }
   #message {
     display: none;
     text-align: center;
-    margin-bottom: 1rem;
+    margin: 1rem 0;
+    line-height: 1.4;
+    color: darkred;
+    font-size: 0.8rem;
+  }
+  #title-message{
+    text-align: center;
+    margin: 1rem;
+    line-height: 1.4;
   }
 
   .location-map-container {
@@ -67,10 +75,11 @@
     gap: 1rem;
     justify-content: space-between;
   }
-  .location-buttons-container button,
-  .skip-now button {
+  .location-buttons-container button
+   {
     min-width: 110px;
-    padding: 0.5rem;
+    height: 40px;
+    padding: 0 1rem;
     border-radius: 20px;
     font-size: 1rem;
     border: 1px solid transparent;
@@ -78,17 +87,28 @@
     outline: none;
   }
 
-  #manual,
-  #auto {
-    background-color: #ffdfd1;
-  }
-  #continue {
-    background-color: #ffb494;
+  .skip-now {
+    margin-top: 5rem;
+    text-align: center;
+    text-decoration: underline;
   }
 
-  .skip-now {
-    margin-top: 2rem;
-    text-align: right;
+  .skip-now button{
+
+  }
+
+  #manual,
+  #auto{
+    background-color: $color-sender-bg;
+    color: white;
+  }
+  #continue {
+    background-color: lightgray;
+  }
+
+  .continue-active{
+    background-color: $color-sender-bg !important;
+    color: white;
   }
 
   /* IMPORTANT */

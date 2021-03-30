@@ -623,6 +623,11 @@ img {
 
 /* Location-Selection ================================================= */
 .location-selection {
+  background-color: #F0F0F3;
+  max-width: 800px;
+  min-height: 100vh;
+  margin: auto;
+  font-family: "Poppins", sans-serif;
   /* IMPORTANT */
 }
 
@@ -631,19 +636,8 @@ img {
   height: auto;
 }
 
-.location-selection header {
-  min-height: 10vh;
-}
-
-.location-selection body {
-  background-color: #fffcfa;
-  max-width: 800px;
-  margin: auto;
-  font-family: "Poppins", sans-serif;
-}
-
 .location-selection .body-wrapper {
-  padding: 0 0.5rem;
+  padding: 10vh 0.5rem 0  0.5rem;
 }
 
 .location-selection main {
@@ -653,7 +647,16 @@ img {
 .location-selection #message {
   display: none;
   text-align: center;
-  margin-bottom: 1rem;
+  margin: 1rem 0;
+  line-height: 1.4;
+  color: darkred;
+  font-size: 0.8rem;
+}
+
+.location-selection #title-message {
+  text-align: center;
+  margin: 1rem;
+  line-height: 1.4;
 }
 
 .location-selection .location-map-container {
@@ -713,10 +716,10 @@ img {
           justify-content: space-between;
 }
 
-.location-selection .location-buttons-container button,
-.location-selection .skip-now button {
+.location-selection .location-buttons-container button {
   min-width: 110px;
-  padding: 0.5rem;
+  height: 40px;
+  padding: 0 1rem;
   border-radius: 20px;
   font-size: 1rem;
   border: 1px solid transparent;
@@ -725,18 +728,25 @@ img {
   outline: none;
 }
 
+.location-selection .skip-now {
+  margin-top: 5rem;
+  text-align: center;
+  text-decoration: underline;
+}
+
 .location-selection #manual,
 .location-selection #auto {
-  background-color: #ffdfd1;
+  background-color: #3469EE;
+  color: white;
 }
 
 .location-selection #continue {
-  background-color: #ffb494;
+  background-color: lightgray;
 }
 
-.location-selection .skip-now {
-  margin-top: 2rem;
-  text-align: right;
+.location-selection .continue-active {
+  background-color: #3469EE !important;
+  color: white;
 }
 
 .location-selection .mapboxgl-map {
