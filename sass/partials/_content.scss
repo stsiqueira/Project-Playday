@@ -162,7 +162,11 @@
     .user-location-level-wrapper {
         display: flex;
         flex-flow: column nowrap;
-        gap: 1rem;
+        -webkit-box-shadow: 4px 3px 10px -3px grey;
+        box-shadow: 4px 3px 10px -3px grey;
+        border-radius: 8px;
+        background: white;
+        // gap: 1rem;
 
         .apply {
             align-self: center;
@@ -170,6 +174,7 @@
             -webkit-box-shadow: 4px 3px 10px -3px grey;
             box-shadow: 4px 3px 10px -3px grey;
             cursor: pointer;
+            margin-bottom: .5rem;
         }
 
         .apply:focus {
@@ -185,11 +190,8 @@
             flex-flow: row nowrap;
             padding: 1rem;
             align-items: center;
-            border-radius: 8px;
             background: white;
             justify-content: space-between;
-            -webkit-box-shadow: 4px 3px 10px -3px grey;
-            box-shadow: 4px 3px 10px -3px grey;
 
             label {
                 font-weight: 600;
