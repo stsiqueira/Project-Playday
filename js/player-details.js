@@ -176,12 +176,12 @@ function changeSport(typeOfCourts, destinationHtml, currentPageFlag) {
         selectedSport.value = capitalize(appUserobject.currentPage);
     }
 
-    let courts = appUserobject.sports[sportSelected]['challengeCourts'];
+    let courts = appUserobject.sports[sportSelected][typeOfCourts];
     var userLevel = appUserobject.sports[sportSelected]['userLevel'];
     userLevelInput.value = userLevel  || 'NoSelect';
 
-    if ($('.saved-courts').find('.courts')){
-        $(".courts").remove();
+    if ($(`.${destinationHtml}`).find('.courts')){
+        $(`.${destinationHtml} .courts`).remove();
     }
 
     for (var key in courts) {

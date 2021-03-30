@@ -356,4 +356,4 @@ function checkPassword(inputtxt) {
     }
 } 
 
-// updateCurrentPage();
+updateCurrentPage();
