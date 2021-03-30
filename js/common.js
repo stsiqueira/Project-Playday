@@ -80,6 +80,8 @@ const updateDB = (user, flag = 0, socialLogin = 0) => {
             }
         },
         chatId:Date.now(),
+        chats:[],
+        lastCheck:{},
         userID: user.uid,
         userLocation: new firebase.firestore.GeoPoint(0, 0)
     }
