@@ -183,8 +183,40 @@ $(document).ready(function () {
             getCourtPlayers(sport, uniqueCourtId);
 
 
+            // let savedCourt = isActiveCourt(sport, "savedCourts", uniqueCourtId);
+            // console.log(savedCourt);
+
+            checkUserCourtStatus(sport, uniqueCourtId);
+
         }, 1000);
     });
+
+    async function checkUserCourtStatus(sport, uniqueCourtId) {
+
+        let isSavedCourt = await isActiveCourt(sport, "savedCourts", uniqueCourtId);
+        let isChallengeCourt = await isActiveCourt(sport, "challengeCourts", uniqueCourtId);
+
+        if (isSavedCourt) {
+            $(".user-options .save-container").addClass('court-active');
+        }
+        else{
+            $(".user-options .save-container").removeClass('court-active');
+        }
+
+        if (isChallengeCourt) {
+            $(".user-options .challenge-container").addClass('court-active');
+            $(".players-list-container h3").html('Players you can challenge');
+            $(".inactive-message").hide();
+            $("#players-list").removeClass().addClass("active-players-list");
+        }
+        else {
+            $(".user-options .challenge-container").removeClass('court-active');
+            $(".players-list-container h3").html('Players registered at this Court');
+            $(".inactive-message").show();
+            $("#players-list").removeClass().addClass("inactive-players-list");
+        }
+
+    }
 
     $("#save-court").click(function () {
 
@@ -192,7 +224,18 @@ $(document).ready(function () {
         let courtName = $("#selected-name").html().trim();
 
         if (courtId != null && courtId != undefined && courtId != ""
-            && courtName != null && courtName != undefined && courtName != "") { setCourts(sports, "savedCourts", courtId, courtName); }
+            && courtName != null && courtName != undefined && courtName != "") {
+            
+            let notSaved = ($(".user-options .save-container").hasClass('court-active')) ?false:true ;
+            if (notSaved)
+                setCourts(sports, "savedCourts", courtId, courtName);
+            else {
+                let deleteCourt = `sports.${sports}.savedCourts.${courtId}`;
+                updateDbDetails('user', appUserobject.auid, deleteCourt, firebase.firestore.FieldValue.delete());
+            }
+
+            checkUserCourtStatus(sports, courtId);
+        }
 
     });
     $("#challenge-court").click(function () {
@@ -201,11 +244,19 @@ $(document).ready(function () {
         let courtName = $("#selected-name").html().trim();
 
         if (courtId != null && courtId != undefined && courtId != ""
-            && courtName != null && courtName != undefined && courtName != "") {
-            setCourts(sports, "challengeCourts", courtId, courtName);
+            && courtName != null && courtName != undefined && courtName != "") {            
+
+            let notSaved = ($(".user-options .challenge-container").hasClass('court-active')) ?false:true ;
+            if (notSaved)
+                setCourts(sports, "challengeCourts", courtId, courtName);
+            else {
+                let deleteCourt = `sports.${sports}.challengeCourts.${courtId}`;
+                updateDbDetails('user', appUserobject.auid, deleteCourt, firebase.firestore.FieldValue.delete());
+            }
+
+            checkUserCourtStatus(sports, courtId);
         }
     });
-
     $("#goBack").click(function () {
 
         if ($(".single-court-info-container").is(":visible")) {
@@ -214,6 +265,7 @@ $(document).ready(function () {
 
             setTimeout(() => {
                 $(".select-court-container").fadeIn(1000);
+                $(".save-container, .challenge-container").removeClass('court-active');
             }, 1000);
             $("#players-list").html("");
         }
@@ -287,6 +339,65 @@ $(document).ready(function () {
             });
 
     };
+
+    const isActiveCourt = async (sport, courtType, uniqueCourtId) => {
+
+        let isActive = false;
+        let user = firebase.auth().currentUser;
+
+        let query = `sports.${sport}.${courtType}.${uniqueCourtId}`;
+        let db = firebase.firestore();
+
+        return db.collection("user").where("userID", "==", user.uid)
+            .get()
+            .then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    if (doc.get(query) != null) { //check if the selected court exists in saved court array.
+                        isActive = true;
+                    }
+                    else {
+                        isActive = false;
+                    }
+                });
+                return isActive;
+            })
+            .catch((error) => {
+                console.log("Error getting documents: ", error);
+                return false;
+            });
+
+
+    }
+
+    const isActiveCourtCheck = function (sport, courtType, uniqueCourtId) {
+        let isActive = false;
+        return new Promise(function (resolve, reject) {
+
+            let user = firebase.auth().currentUser;
+
+            let query = `sports.${sport}.${courtType}.${uniqueCourtId}`;
+            let db = firebase.firestore();
+
+            db.collection("user").where("userID", "==", user.uid)
+                .get()
+                .then((querySnapshot) => {
+                    querySnapshot.forEach((doc) => {
+                        if (doc.get(query) != null) { //check if the selected court exists in saved court array.
+                            isActive = true;
+                        }
+                        else {
+                            isActive = false;
+                        }
+                    });
+                }).then(() => {
+                    resolve(isActive);
+                })
+                .catch((error) => {
+                    reject(Error("Whatever!"));
+                    console.log("Error getting documents: ", error);
+                });
+        });
+    }
 
     $(document.body).on('click', '.court-player', function () {
 
