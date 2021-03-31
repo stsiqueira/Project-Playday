@@ -1112,6 +1112,10 @@ img {
           align-items: center;
 }
 
+.select-court .fa-user {
+  padding: 0 0.3rem;
+}
+
 /* Content ================================================= */
 .wrapper-sign-up-screen,
 .login-wrapper,

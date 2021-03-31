@@ -296,7 +296,7 @@ $(document).ready(function () {
                 });
             }).then(() => {
                 if (divId != "" && countOnly) {
-                    $(`#${divId}`).html(courtPlayers.length);
+                    $(`#${divId}`).html("<i class='far fa-user'></i>"  + courtPlayers.length);
                     let rowCount = divId.substring(divId.lastIndexOf("-") + 1, divId.length);
                     $(`#entry-${rowCount}`).attr("data-playersCount", courtPlayers.length);
                 }
