@@ -745,8 +745,8 @@ img {
 }
 
 .location-selection .continue-active {
-  background-color: #3469EE !important;
-  color: white;
+  background-color: #6CC8A6 !important;
+  color: azure;
 }
 
 .location-selection .mapboxgl-map {
@@ -2071,6 +2071,19 @@ body.home .sports-cards {
   width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
+}
+
+@media screen and (min-width: 450px) {
+  body.home .sports-cards {
+    margin: auto;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: row nowrap;
+            flex-flow: row nowrap;
+    gap: 1rem;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+  }
 }
 
 body.home .sport-card {

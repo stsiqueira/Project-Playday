@@ -58,11 +58,20 @@ body.home {
     overflow-y: hidden;
     max-width: 100%;
     padding-bottom: 2rem;
+   
+    
   }
   .sports-cards {
     display: flex;
     gap: 0.5rem;
     width: max-content;
+
+    @media screen and (min-width: 450px) {
+      margin: auto;
+      flex-flow: row nowrap;
+      gap: 1rem;
+      justify-content: space-around;
+    }
   }
 
   .sport-card {
