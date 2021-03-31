@@ -22,10 +22,10 @@ self.addEventListener( 'activate', ( event ) => {
     );
 });
 
-this.addEventListener('fetch', function (event) {
-    console.log( `SW: Fetching ${event.request.url}` );
-    // it can be empty if you just want to get rid of that error
-});
+// this.addEventListener('fetch', function (event) {
+//     console.log( `SW: Fetching ${event.request.url}` );
+//     // it can be empty if you just want to get rid of that error
+// });
 
 self.addEventListener( 'fetch', ( event ) => {
     console.log(`SW: Fetch handler`, event.request.url );
