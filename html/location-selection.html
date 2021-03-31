@@ -13,7 +13,7 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
       rel="stylesheet"
     />
-
+    <link rel="stylesheet" href="../style.css">
     <link
       rel="stylesheet"
       type="text/css"
@@ -52,9 +52,9 @@
   </head>
   <body class="page location-selection">
     <div class="body-wrapper">
-      <header></header>
       <main>
-        <div id="message"></div>
+        <div id="title-message">To suggest nearby courts, please select a preferred location</div>
+        <div id="message">To suggest nearby courts, please select a preferred location</div>
         <div class="map-wrapper location-map-container">
           <div id="map" class="map"></div>
         </div>
@@ -62,13 +62,11 @@
         <div class="location-buttons-container">
           <button id="manual">Choose Manual</button>
           <button id="auto">Locate Me</button>
-          <button id="continue">Continue</button>
+          <button id="continue" disabled>Continue</button>
         </div>
-        <div class="skip-now"><button id="skip">Skip</button></div>
+        <div class="skip-now"><div id="skip">Skip</div></div>
         <div id="hidden" class="hidden"></div>
       </main>
     </div>
-    <footer></footer>
-    <script></script>
   </body>
 </html>
