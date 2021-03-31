@@ -15,8 +15,8 @@ firebase.initializeApp(firebaseConfig);
 let appUserLocal;
 
 // const tomtomApiKey = "lDNGOihuwicB9jy3du63gNr5gUGwCAZC";
-let tomtomApiKey = "ctMg0rMDauN3jPf1SOHXHVJNpJnhmGaS";
-// tomtomApiKey = "XOeleMUFVN4TaGSAJwKm8y7IBfy7YeQA";
+// let tomtomApiKey = "ctMg0rMDauN3jPf1SOHXHVJNpJnhmGaS";
+let tomtomApiKey = "XOeleMUFVN4TaGSAJwKm8y7IBfy7YeQA";
 
 
 const redirectBasedOnLogin = (user, socialLogin) => {

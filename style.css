@@ -2942,8 +2942,8 @@ body.home footer li {
   max-width: 130px;
   background-color: #FFECE1;
   border-radius: 50%;
-  -webkit-animation: logo-image-rotate 4s infinite;
-          animation: logo-image-rotate 4s infinite;
+  -webkit-animation: logo-image-rotate 4s;
+          animation: logo-image-rotate 4s;
 }
 
 .splash h1 {
