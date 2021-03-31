@@ -4,8 +4,13 @@ const update = document.getElementById('update');
 // user data
 const locationInfo = document.getElementsByClassName("location-info");
 const imageUser = document.getElementById('user-image');
+const editIcon = document.getElementById('edit-icon');
+var modal = document.getElementById("myModal");
 const imageContainer = document.getElementById('image-container');
 
+var span = document.getElementsByClassName("close")[0];
+const aboutApply = document.getElementById('about-save');
+const aboutInput = document.getElementById('about-input');
 const locationInput = document.getElementById('location-input'); 
 const imgUpload = document.getElementById("imgupload")
 const userName = document.getElementsByClassName("user-name");
@@ -18,6 +23,20 @@ const submitButton = document.getElementById("apply-changes");
 const storageRef = firebase.storage().ref();
 
 let appUserobject = get_appUser();
+
+editIcon.onclick = function() {
+    modal.style.display = "block";
+}
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+}
+
+span.onclick = function() {
+    modal.style.display = "none";
+  }
 //update page details ****************************
 
 const updateInnerHtml = (element, value) => {
@@ -37,6 +56,14 @@ $.getJSON(`https://api.tomtom.com/search/2/reverseGeocode/${appUserobject.userLo
 $( "#location-info-wrapper" ).click(function() {
     window.location.href = "location-selection.html";
 });
+
+
+console.log()
+aboutApply.addEventListener('click', function () {
+    console.log(aboutInput.value);
+    updateDbDetails('user', appUserobject.auid, 'about', aboutInput.value);
+    updateInnerHtml(userAbout[0], aboutInput.value);
+})
 
 // ***************************************************
 
@@ -66,16 +93,6 @@ const getDownloadUrl = (path="/", user, flag=0) => {
     });
 }
 
-// const setDefaultImage = () =>  {
-//     var docRef = db.collection("user").doc(user.uid);
-//     docRef.get()
-//     .then((doc) => {
-//         getDownloadUrl('user-default.png', user, 1);
-
-//     }).catch((error) => {
-//         console.log("Error getting document:", error);
-//     });
-// }
 
 //updating image in html
 const checkImageExist = () => {
@@ -172,6 +189,7 @@ function changeSport(typeOfCourts, destinationHtml, currentPageFlag) {
     count = 0;
 
     const sportSelected = currentPageFlag ? appUserobject.currentPage : selectedSport.value.toLowerCase();
+
     if(currentPageFlag) {
         selectedSport.value = capitalize(appUserobject.currentPage);
     }
