@@ -24,10 +24,10 @@ const signUpWithEmailFunction = () => {
 				var errorCode = error.code;
 				var errorMessage = error.message;
 				if(errorCode == "auth/email-already-in-use") {
-					alert(errorMessage);
+					showToast(errorMessage);
 				}
 				else {
-					alert(errorMessage);
+					showToast(errorMessage);
 				}
 		});
 	}

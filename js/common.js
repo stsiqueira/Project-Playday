@@ -63,7 +63,7 @@ const updateDB = (user, flag = 0, socialLogin = 0) => {
     const displayName = flag ? username.value : user.displayName;
 
     var docData = {
-        about: "",
+        about: "Hi, I am new to the PlayDay app!",
         dateOfBirth: "01/31/1800",
         name: displayName,
         profilePic: null,
@@ -340,11 +340,11 @@ function validateEmail(mail) {
           return (true)
         }
         else {
-              alert("password does not match");
+              showToast("password does not match");
               return false;
         }
     }
-    alert("You have entered an invalid email address!")
+    showToast("You have entered an invalid email address!")
     return (false)
   }
 
@@ -357,5 +357,13 @@ function checkPassword(inputtxt) {
         return false;
     }
 } 
+
+function showToast(text) {
+    var x = document.getElementById("toast");
+    x.innerHTML = text;
+
+    x.className = "show";
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
 
 updateCurrentPage();

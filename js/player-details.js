@@ -43,7 +43,7 @@ const updateInnerHtml = (element, value) => {
     element.innerHTML = value;
 }
 
-updateInnerHtml(userName[0], appUserobject.lastName);
+updateInnerHtml(userName[0], `${appUserobject.firstName} ${appUserobject.lastName}`);
 updateInnerHtml(userAbout[0], appUserobject.about);
 
 $.getJSON(`https://api.tomtom.com/search/2/reverseGeocode/${appUserobject.userLocation.latitude},${appUserobject.userLocation.longitude}.json?key=${tomtomApiKey}`, function (json) {
@@ -58,11 +58,11 @@ $( "#location-info-wrapper" ).click(function() {
 });
 
 
-console.log()
 aboutApply.addEventListener('click', function () {
     console.log(aboutInput.value);
     updateDbDetails('user', appUserobject.auid, 'about', aboutInput.value);
     updateInnerHtml(userAbout[0], aboutInput.value);
+    modal.style.display = "none";
 })
 
 // ***************************************************
@@ -179,7 +179,7 @@ const savedAndChallengeCourtsHtml = (count, courtName, selectedSport, key,destin
                         </div>
                     </div>
                     <div class="delete-court-wrapper">
-                        <button id="${key}-${typeOfCourts}" class="delete-button red-button delete-button-${count}">Delete</button>
+                        <button id="${key}-${typeOfCourts}" class="delete-button red-button delete-button-${count}"><i class="fas fa-minus"></i></button>
                     </div>
                 </div>`
     $(`.${destinationHtml}`).append(html);
@@ -270,14 +270,6 @@ const getSignInMethod = () => {
             }
         }
     });
-}
-
-function showToast(text) {
-    var x = document.getElementById("toast");
-    x.innerHTML = text;
-
-    x.className = "show";
-    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
 
 getSignInMethod();

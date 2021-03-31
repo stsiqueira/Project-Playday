@@ -143,8 +143,10 @@
     gap: 1.5rem;
 
     .image-about-wrapper {
-        background: $color_about_description;
+        background: #fff;
         border-radius: 20px;
+        -webkit-box-shadow: 4px 3px 10px -3px grey;
+        box-shadow: 4px 3px 10px -3px grey;
     }
 
     .image-wrapper {
@@ -164,7 +166,9 @@
             position: absolute;
             right: 1%;
             top: 6%;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
+            color: #FF7D45;
+            cursor: pointer;    
         }
 
         .modal {
