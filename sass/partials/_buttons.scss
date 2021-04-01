@@ -32,14 +32,10 @@ button:focus {
     font-size: 1rem;
     border-radius: 50%;
     cursor: pointer;
-    -webkit-box-shadow: 4px 3px 10px -3px grey;
-    box-shadow: 4px 3px 10px -3px grey;
+    background: #F0F0F3;
+    box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.2), -4px -4px 15px #FFFFFF, 6px 6px 36px rgba(0, 0, 0, 0.1);
 }
 
-.wrapper-sign-up-screen .signup-button {
-    background-color: #FF8D5C;
-    color: white;
-}
 
 .fa-chevron-right {
     font-size: 1.5rem;
@@ -75,21 +71,21 @@ button {
     @include borderRadiusButtons;
 }
 
-.delete-court-wrapper .delete-button {
-    background-color: $color-red-button;
-    color: white;
-    border: none;
-    padding: unset;
-    text-align: center;
-    text-decoration: none;
-    font-size: 1rem;
-    border-radius: 20px;
-    // height: 50px;
-    cursor: pointer;
-    border-radius: 50%;
-    padding: 1rem;
-    min-width: 50px;
-}
+// .delete-court-wrapper .delete-button {
+//     background-color: $color-red-button;
+//     color: white;
+//     border: none;
+//     padding: unset;
+//     text-align: center;
+//     text-decoration: none;
+//     font-size: 1rem;
+//     border-radius: 20px;
+//     cursor: pointer;
+//     border-radius: 50%;
+//     padding: 1rem;
+//     min-width: 50px;
+// }
+
 //green button 
 .green-button{
     @include basicButtonStyle($color-green-button, $color_buttons_type_white ); 
@@ -119,6 +115,7 @@ button {
 
 
 ///// link reset 
+
 a{
     text-decoration: none;
 }
@@ -126,6 +123,7 @@ a{
 
 
 //back button 
+
 .back{
 
     button.back-button{

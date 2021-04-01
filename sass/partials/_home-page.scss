@@ -6,10 +6,16 @@
 }
 
 body.home {
-  max-width: 1000px;
+  max-width: 500px;
   margin: auto;
   font-family: $font_sans;
   transition: all 0.5s ease-in-out;
+
+  .promotion {
+    background-color: #ECF1FF;
+    
+  }
+
 
   img,
   svg {
@@ -21,10 +27,31 @@ body.home {
     //   color: black;
   }
 
-  .brand-title {
-    color: $color_footer_nav_link;
-    font-weight: bold;
+  .app-branding {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
   }
+
+  .brand-title {
+
+   h1{
+    font-size: 1.5rem;
+    font-family: "Damion";
+    font-weight: 700;
+    color: #FF4D00;
+    margin-top: .5rem;
+    margin: 0;
+   }
+
+   h1 span {
+    font-family: "Raleway";
+    color: #12317F;
+   }
+
+  }
+
   .hero-section {
     position: relative;
   }
@@ -45,6 +72,9 @@ body.home {
   .user-display {
     h2 {
       margin-bottom: 0.5rem;
+      font-size: 1.9rem;
+      @include fontWeight(medium);
+      color: #12317F;
     }
     p {
       font-size: 0.9rem;
@@ -90,15 +120,18 @@ body.home {
     background: radial-gradient(circle, #6cc8a6 40%, #e9fff3 41%);
   }
   .sport-card:nth-of-type(2) {
-    background: radial-gradient(circle, #ffc098 40%, #ffeee2 41%);
+    background: radial-gradient(circle, #8FCCF9 40%, #CDF3FF 41%);
   }
   .sport-card:nth-of-type(3) {
     background: radial-gradient(circle, #f2746d 40%, #ffd5d2 41%);
   }
 
   .promotions-container h3 {
-    margin-top: 0;
+    margin-top: 1rem;
+    font-size: 1.3rem;
+    @include fontWeight(medium);
   }
+
   .promotion {
     position: relative;
     border-radius: 10px;
@@ -111,23 +144,32 @@ body.home {
     font-size: 1.5rem;
     font-weight: bold;
   }
-  .discount-image img {
-    display: block;
-    border-radius: 10px;
-    box-shadow: 6px 10px 22px -7px rgba(0, 0, 0, 0.58);
+  .discount-image{
+    padding: 1rem;
   }
+  
+// ========= Blogs 
 
   .blogs {
     margin-top: 1.5rem;
+    h3{
+  
+        margin-top: 0;
+        font-size: 1.3rem;
+        @include fontWeight(medium);
+    
+    }
   }
 
   .blogs h4 {
-    margin: 1rem;
+    margin: 0rem 1rem;
     font-size: large;
     padding-bottom: 0.15rem;
     border-bottom: 3px white solid;
     width: fit-content;
     color: white;
+    @include fontWeight(medium);
+
   }
 
   .blogs h4 a {
@@ -141,40 +183,43 @@ body.home {
     justify-content: space-between;
     margin-top: 1.2rem;
   }
+
   .blog-sport-name {
-    margin-top: 1.5rem;
+    margin-top: 1rem;
   }
   .left .blog-sport-name {
     order: 2;
   }
   .blogs .left {
     margin-top: 40px;
-    padding: 0 0 1rem 1rem;
+    padding: 0 0 3rem 1rem;
   }
   .blogs .right {
     margin-top: 40px;
-    padding: 0 1rem 1rem 0;
+    padding: 0 1rem 3rem 0;
   }
 
   .graphic{
     margin-top: -22px;
   }
+
   .graphic-outer {
-    width: 160px;
-    height: 160px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
     position: relative;
   }
 
   .graphic-inner {
-    width: 140px;
-    height: 140px;
+    width: 180px;
+    height: 180px;
     border-radius: 50%;
     margin: 0;
-
     position: absolute;
   }
-  .blogs section:nth-of-type(1) {
+
+
+  .blogs a:nth-of-type(1) section{
     background-image: linear-gradient(
       180deg,
       transparent 0%,
@@ -185,34 +230,34 @@ body.home {
     background-color: #ff918b;
   }
 
-  .blogs section:nth-of-type(2) {
+  .blogs a:nth-of-type(2) section {
     background-color: #6cc8a6;
   }
 
-  .blogs section:nth-of-type(3) {    
+  .blogs a:nth-of-type(3) section{    
     background-color: #ffc098 ;
   }
 
-  .blogs section:nth-of-type(1) .graphic-outer {
+  .blogs a:nth-of-type(1) section .graphic-outer {
     background-color: #ffd5d2;
   }
-  .blogs section:nth-of-type(1) .graphic-inner {
+  .blogs a:nth-of-type(1) section .graphic-inner {
     background-color: #fffbfb;
     top: 5px;
     left: 15px;
   }
-  .blogs section:nth-of-type(2) .graphic-outer {
+  .blogs a:nth-of-type(2) section .graphic-outer {
     background-color: #a0dbc5;
   }
-  .blogs section:nth-of-type(2) .graphic-inner {
+  .blogs a:nth-of-type(2) section .graphic-inner {
     background-color: #e9fff4;
     top: 13px;
     left: 15px;
   }
-  .blogs section:nth-of-type(3) .graphic-outer {
+  .blogs a:nth-of-type(3) section .graphic-outer {
     background-color: #ffd8bf;
   }
-  .blogs section:nth-of-type(3) .graphic-inner {
+  .blogs a:nth-of-type(3) section .graphic-inner {
     background-color: #fff3eb;
     top: 5px;
     left: 5px;
