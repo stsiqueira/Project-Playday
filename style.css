@@ -1227,9 +1227,8 @@ img {
   width: 100%;
   border: none;
   padding: 0.6rem 1rem;
+  height: 43px;
   -webkit-box-sizing: border-box;
-  /* Safari/Chrome, other WebKit */
-  /* Firefox, other Gecko */
   box-sizing: border-box;
   font-size: .8rem;
   background: #FFDFD1;
@@ -1339,11 +1338,13 @@ img {
   /* 15% from the top and centered */
   padding: 20px;
   border: 1px solid #888;
-  width: 80%;
+  width: 50%;
 }
 
 .user-account-wrapper .user-bio .modal-content .about-button {
   margin-top: 1rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .user-account-wrapper .user-bio .close {
@@ -1441,6 +1442,21 @@ img {
 
 .user-account-wrapper .user-location-level-wrapper > div input:focus {
   outline: none;
+}
+
+.user-account-wrapper .modal-content #about-input {
+  border-radius: 1rem;
+  outline: none;
+  width: 100%;
+  border: none;
+  padding: 0.6rem 1rem;
+  height: 43px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-size: .8rem;
+  background: #FFDFD1;
+  color: #7D7D7D;
+  resize: none;
 }
 
 .user-account-wrapper .change-password-wrapper {

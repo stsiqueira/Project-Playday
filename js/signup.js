@@ -9,6 +9,14 @@ const twitterSignin = document.getElementById("tsignup");
 
 
 // var db = firebase.firestore();
+let appUserobject = get_appUser();
+console.log(appUserobject);
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user && appUserobject) {
+        window.location.href = "home.html";
+    }
+});
+
 
 const signUpWithEmailFunction = () => {
 	const email = mailField.value;
@@ -18,7 +26,6 @@ const signUpWithEmailFunction = () => {
 			.then((userCredential) => {
 				var user = userCredential.user;
 				checkIfUserExist(user, 1, 0);
-				// window.location.assign('log-in.html');
 			})
 			.catch((error) => {
 				var errorCode = error.code;
@@ -50,5 +57,4 @@ facebookSignin.addEventListener('click',function(){
 twitterSignin.addEventListener('click',function(){
     tSignon(0, 2);
 });
-
 

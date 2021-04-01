@@ -7,6 +7,19 @@ const facebookSignin = document.getElementById("fsignup");
 const twitterSignin = document.getElementById("tsignup");
 // var db = firebase.firestore();
 
+let appUserobject = get_appUser();
+console.log(appUserobject);
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        const queryString = window.location.search;
+        var searchParams = new URLSearchParams(queryString);
+        const result = searchParams.get("signup") ?? null;
+        if(!result && appUserobject) {
+            window.location.href = "home.html";
+        }
+    }
+});
+
 //Sign in function with email
 const signInWithEmailFunction = () => {
 	const email = mailField.value;

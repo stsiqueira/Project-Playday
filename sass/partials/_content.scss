@@ -91,17 +91,7 @@
 .wrapper-sign-up-screen .fieldset input,
 .login-wrapper .fieldset input,
 .reset-wrapper input {
-    border-radius: 1rem;
-    outline: none;
-    width: 100%;
-    border: none;
-    padding: 0.6rem 1rem;
-    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-    box-sizing: border-box; 
-    font-size: .8rem;
-    background: $color_about_description;
-    color: $color_sign_in_font;
+    @include inputBoxStyle($color_about_description);
 }
 
 .login-wrapper .login-wrapper .fieldset {
@@ -190,10 +180,12 @@
             margin: 15% auto; /* 15% from the top and centered */
             padding: 20px;
             border: 1px solid #888;
-            width: 80%; 
+            width: 50%; 
 
             .about-button {
                 margin-top: 1rem;
+                margin-left: auto;
+                margin-right: auto;
             }
           }
           
@@ -277,6 +269,11 @@
                 outline: none;
             }
         }
+    }
+
+    .modal-content #about-input{
+        @include inputBoxStyle($color_about_description);
+        resize: none;
     }
 
     .change-password-wrapper {
