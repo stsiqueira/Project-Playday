@@ -24,7 +24,7 @@
 <body class="page signup-page">
 
     <div class="wrapper-sign-up-screen">
-        <fieldset class="fieldset">
+        <form action="" method="POST" class="fieldset">
             <h2 class="signup-heading">Sign Up</h2>
             <div>
                 <label for="username" class="visually-hidden">User Name</label>
@@ -42,13 +42,10 @@
                 <label for="confirm-password" class="visually-hidden">Password</label>
                 <input type="password" placeholder="Confirm Password" id="confirm-password" name="password" />
             </div>
-            <div class="button-wrapper">
-                <button class="signup-button" id="signUp">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-            </div>
+            
+           
             <!-- <a href="../index.html" class="login-page">Back to Login</a> -->
-        </fieldset>
+            
         <div class="social-sign-up-wrapper">
             <p class="social-text">
                 or Sign Up With
@@ -59,6 +56,12 @@
                 <a id="gsignup" class="google-button button"><i class="fab fa-google"></i></a>
             </div>
         </div>
+        <div class="button-wrapper">
+            <button type="submit" onclick="signUpWithEmailFunction(event)" class="signup-button" id="signUp">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+        </form>
         <div id="toast">Some text some message..</div>
     </div>
 </body>

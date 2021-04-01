@@ -18,9 +18,14 @@ firebase.auth().onAuthStateChanged(function(user) {
 });
 
 
-const signUpWithEmailFunction = () => {
+const signUpWithEmailFunction = (e) => {
+	e.preventDefault();
 	const email = mailField.value;
 	const password = passwordField.value;
+	if(!email || !password || !confirmPasswordField.value || !passwordField.value) {
+        showToast("input all the fields")
+        return false;
+    }
 	if (validateEmail(email)) {
 		firebase.auth().createUserWithEmailAndPassword(email, password)
 			.then((userCredential) => {
