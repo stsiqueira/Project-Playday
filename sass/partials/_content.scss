@@ -1,12 +1,51 @@
 
-// Login Screen Style[
+// =============== Log In Screen Style  =============== //
+.login-page{
+    max-width: 500px;
+    margin: auto;
+
+    #mail,
+    #password
+    {
+        background-color: white;
+        @include shadow()
+    }
+
+}
+
+// =============== Sign Up Screen Style  =============== //
+.signup-page{
+    background-color: #F0F0F3;
+    max-width: 500px;
+    margin: auto;
+
+    #mail,
+    #password,
+    #confirm-password,
+    #username{
+        background-color: white;
+       
+        @include shadow()
+    
+    }
+    #password{
+        background-color: white;
+          @include shadow()
+
+        
+    }    
+
+}
+
+
 .wrapper-sign-up-screen,
 .login-wrapper,
 .reset-wrapper {
     font-family: $font_sans;
-    // background-color: blueviolet;
     width: 70%;
     margin-bottom: 4rem;
+
+
 }
 
 .reset-wrapper {
@@ -14,12 +53,54 @@
     width: unset;
 }
 
-.user-account-settings-page {
-    padding-top: 5rem;
-}
 
+
+
+// ======================== User Account Settings ================= //
+
+
+
+.user-account-settings-page {
+   max-width: 500px;
+   margin: auto;
+
+    header{
+        z-index: 5;
+        position: sticky;
+        top: 0;
+        left: 0;
+        right: 0;
+
+        .title-user-settings{
+          font-size: 1.5em;
+          @include fontWeight(medium);
+          display: flex;
+          justify-content: center;
+          margin: 1.2rem;
+          color: #12317F;
+          flex: 1 0 100%;
+        
+       
+        }
+
+    }
+
+    .user-account-page{
+        padding-top: 6rem;
+    }
+
+    .user-name {
+        margin: 1rem;
+        color: #12317F;
+        text-align: center;
+        font-weight: 500;
+        font-size: 1.3rem;
+    
+}
+}
 .wrapper-sign-up-screen .signup-heading,
 .login-wrapper .login-heading {
+
     color: #000;
     margin: 1rem 0 0 0;
     // margin-bottom: .8rem;
@@ -125,6 +206,10 @@
 .user-account-settings-page {
     font-family: $font_sans;
     background: #E5E5E5;
+
+    #location-info-wrapper{
+        border-radius: 10px;
+    }
 }
 
 .user-account-wrapper {
@@ -137,7 +222,7 @@
 
     .image-about-wrapper {
         background: #fff;
-        border-radius: 20px;
+        border-radius: 10px;
         -webkit-box-shadow: 4px 3px 10px -3px grey;
         box-shadow: 4px 3px 10px -3px grey;
     }
@@ -148,20 +233,19 @@
     .user-bio {
         padding: 2rem 1rem 1rem 1rem;
         position: relative;
-        .user-name {
-            text-align: center;
-            margin-top: .5rem;
-            font-weight: 500;
-            font-size: 1.3rem;
-        }
+        
 
         .edit {
             position: absolute;
-            right: 1%;
+            right: 2%;
             top: 6%;
+            padding: .5rem;
             font-size: 1.3rem;
-            color: #FF7D45;
+            color: 767676;
             cursor: pointer;    
+        }
+        .edit:hover{
+            color: #FF7D45;
         }
 
         .modal {
@@ -212,8 +296,8 @@
         flex-flow: column nowrap;
         -webkit-box-shadow: 4px 3px 10px -3px grey;
         box-shadow: 4px 3px 10px -3px grey;
-        border-radius: 8px;
         background: white;
+        border-radius: 10px;
         // gap: 1rem;
 
         .apply {

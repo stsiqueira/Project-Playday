@@ -1,30 +1,35 @@
 
-
 .splash {
     margin: 0;
     padding: 0;
     overflow: hidden;
+    max-width: 500px;
+    margin: auto;
+    background-color: whitesmoke;
+
     .front-page-wrapper {
         height: 100vh;
         position: relative;
     }
+
     .wrapper{
-        max-width: 700px;
+        max-width: 500px;
         margin: auto;
-        // border: 2px solid black;
         display: flex;
         flex-flow: column nowrap;
         overflow: hidden;
         border-radius: 0;
         background-color: $color_the_darkest_orange;
+        // background-image: linear-gradient(rgb(255, 98, 0), $color_the_darkest_orange); 
     }
+
     .logo{
         width: 100%;
         height: 100%;
         background-color: #FFF;
         clip-path: $circle-basic-clip-path;
         position: absolute;
-        top: -4rem;
+        top: -2rem;
         animation: circles 4s;
     }
     
@@ -34,7 +39,7 @@
         background-color: $color_light_orange;
         clip-path: $circle-basic-clip-path;
         position: absolute;
-        top: -4rem;
+        top: -3rem;
         animation: circles 3s;
     }
     .second-circle{
@@ -43,8 +48,8 @@
         background-color: $color_darker_orange;
         clip-path: $circle-basic-clip-path;
         position: absolute;
-        top: -4rem;
-        animation: circles 2s;
+        top: -4.5rem;
+        animation: circles 1s;
     }
     .third-circle{
         width: 100%;
@@ -52,11 +57,8 @@
         background-color: $color_more_darker_orange;
         clip-path: $circle-basic-clip-path;
         position: absolute;
-        top: -2rem;
+        top: 2rem;
         animation: slideIn-third-circle 1s;
-        @media  screen and (max-width:550px) {
-            top: 1rem; 
-        }
 
     }
     .sign-in-section {
@@ -73,27 +75,30 @@
 
         a {
             margin-top: 2rem;
-            width: 150px;
+            width: 145px;
             display: flex;
             justify-content: center;
-            padding: .5rem 1rem;
+            padding: .5rem 0rem;
             border-radius: 20px;
             background: white;
             text-transform: uppercase;
             font-weight: bold;
-            font-size: 24px;
+            font-size: 20px;
             color: #FF4D00;
+            @include fontWeight(semi-bold);
+        }
+
+        a:hover{
+            color: #12317F;
         }
     }
     .logo-content{
         position: fixed;
-        top: 4rem;
-        @media  screen and (max-width:550px) {
-            top: 3.2rem; 
-        }
+        top: 6rem;
+       
        
         width: 100%;
-        max-width: 700px;
+        max-width: 500px;
         display: flex;
         flex-flow: column nowrap;
         justify-content: center;
@@ -102,17 +107,18 @@
         animation: logo-image-slideIn 2s;
     }
     .logoimage {
-        max-width: 130px;
+        max-width: 100px;
         background-color: #FFECE1;
         border-radius: 50%;
-
         animation: logo-image-rotate 4s;
     }
+
     h1{
-        font-size: 3rem;
+        font-size: 3.5rem;
         font-family: $logo-play;
         font-weight: 700;
         color: #FF4D00;
+        margin-top: .5rem;
         span{
             font-family: $logo-day; 
             color: #12317F;
@@ -129,7 +135,10 @@
         background-color: #fff;
         animation: vanish 2s;
     }
+
+
     /*Animation=========================*/
+
     @keyframes vanish {
         0% { opacity: 1;}
         50% { opacity: 1;}
@@ -402,6 +411,7 @@
         100% {top:-4rem;}
     }
     @keyframes logo-image-slideIn {
+
         0%{transform: translateX(-100rem);}
         1%{transform: translateX(-99rem);}
         2%{transform: translateX(-98rem);}
@@ -504,6 +514,7 @@
         99%{transform: translateX(-1rem);}
         100%{transform: translateX(0rem);}
     }
+    
     @keyframes logo-text{
         0%   {opacity: 0;}
         25%  {opacity: 0;}

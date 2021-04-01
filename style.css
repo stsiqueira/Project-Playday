@@ -1121,6 +1121,45 @@ img {
 }
 
 /* Content ================================================= */
+.login-page {
+  max-width: 500px;
+  margin: auto;
+}
+
+.login-page #mail,
+.login-page #password {
+  background-color: white;
+  /* Reverse Neumorphism */
+  -webkit-box-shadow: -4px -4px 16px rgba(255, 255, 255, 0.25), 4px 4px 8px rgba(66, 83, 107, 0.09), inset 0px -4px 14px #FFFFFF, inset 0px 2px 6px rgba(66, 83, 107, 0.22);
+          box-shadow: -4px -4px 16px rgba(255, 255, 255, 0.25), 4px 4px 8px rgba(66, 83, 107, 0.09), inset 0px -4px 14px #FFFFFF, inset 0px 2px 6px rgba(66, 83, 107, 0.22);
+  border-radius: 25px;
+}
+
+.signup-page {
+  background-color: #F0F0F3;
+  max-width: 500px;
+  margin: auto;
+}
+
+.signup-page #mail,
+.signup-page #password,
+.signup-page #confirm-password,
+.signup-page #username {
+  background-color: white;
+  /* Reverse Neumorphism */
+  -webkit-box-shadow: -4px -4px 16px rgba(255, 255, 255, 0.25), 4px 4px 8px rgba(66, 83, 107, 0.09), inset 0px -4px 14px #FFFFFF, inset 0px 2px 6px rgba(66, 83, 107, 0.22);
+          box-shadow: -4px -4px 16px rgba(255, 255, 255, 0.25), 4px 4px 8px rgba(66, 83, 107, 0.09), inset 0px -4px 14px #FFFFFF, inset 0px 2px 6px rgba(66, 83, 107, 0.22);
+  border-radius: 25px;
+}
+
+.signup-page #password {
+  background-color: white;
+  /* Reverse Neumorphism */
+  -webkit-box-shadow: -4px -4px 16px rgba(255, 255, 255, 0.25), 4px 4px 8px rgba(66, 83, 107, 0.09), inset 0px -4px 14px #FFFFFF, inset 0px 2px 6px rgba(66, 83, 107, 0.22);
+          box-shadow: -4px -4px 16px rgba(255, 255, 255, 0.25), 4px 4px 8px rgba(66, 83, 107, 0.09), inset 0px -4px 14px #FFFFFF, inset 0px 2px 6px rgba(66, 83, 107, 0.22);
+  border-radius: 25px;
+}
+
 .wrapper-sign-up-screen,
 .login-wrapper,
 .reset-wrapper {
@@ -1135,7 +1174,45 @@ img {
 }
 
 .user-account-settings-page {
-  padding-top: 5rem;
+  max-width: 500px;
+  margin: auto;
+}
+
+.user-account-settings-page header {
+  z-index: 5;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.user-account-settings-page header .title-user-settings {
+  font-size: 1.5em;
+  font-weight: 500;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 1.2rem;
+  color: #12317F;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 100%;
+          flex: 1 0 100%;
+}
+
+.user-account-settings-page .user-account-page {
+  padding-top: 6rem;
+}
+
+.user-account-settings-page .user-name {
+  margin: 1rem;
+  color: #12317F;
+  text-align: center;
+  font-weight: 500;
+  font-size: 1.3rem;
 }
 
 .wrapper-sign-up-screen .signup-heading,
@@ -1275,6 +1352,10 @@ img {
   background: #E5E5E5;
 }
 
+.user-account-settings-page #location-info-wrapper {
+  border-radius: 10px;
+}
+
 .user-account-wrapper {
   margin-top: 2rem;
   width: 90%;
@@ -1291,7 +1372,7 @@ img {
 
 .user-account-wrapper .image-about-wrapper {
   background: #fff;
-  border-radius: 20px;
+  border-radius: 10px;
   -webkit-box-shadow: 4px 3px 10px -3px grey;
   box-shadow: 4px 3px 10px -3px grey;
 }
@@ -1307,20 +1388,18 @@ img {
   /* The Close Button */
 }
 
-.user-account-wrapper .user-bio .user-name {
-  text-align: center;
-  margin-top: .5rem;
-  font-weight: 500;
-  font-size: 1.3rem;
-}
-
 .user-account-wrapper .user-bio .edit {
   position: absolute;
-  right: 1%;
+  right: 2%;
   top: 6%;
+  padding: .5rem;
   font-size: 1.3rem;
-  color: #FF7D45;
+  color: 767676;
   cursor: pointer;
+}
+
+.user-account-wrapper .user-bio .edit:hover {
+  color: #FF7D45;
 }
 
 .user-account-wrapper .user-bio .modal {
@@ -1383,8 +1462,8 @@ img {
           flex-flow: column nowrap;
   -webkit-box-shadow: 4px 3px 10px -3px grey;
   box-shadow: 4px 3px 10px -3px grey;
-  border-radius: 8px;
   background: white;
+  border-radius: 10px;
 }
 
 .user-account-wrapper .user-location-level-wrapper .apply {
@@ -1658,8 +1737,9 @@ button:focus {
   font-size: 1rem;
   border-radius: 50%;
   cursor: pointer;
-  -webkit-box-shadow: 4px 3px 10px -3px grey;
-  box-shadow: 4px 3px 10px -3px grey;
+  background: #F0F0F3;
+  -webkit-box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.2), -4px -4px 15px #FFFFFF, 6px 6px 36px rgba(0, 0, 0, 0.1);
+          box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.2), -4px -4px 15px #FFFFFF, 6px 6px 36px rgba(0, 0, 0, 0.1);
 }
 
 .wrapper-sign-up-screen .signup-button {
@@ -1702,21 +1782,6 @@ button {
   font-family: poppins, helvetica, arial, sans-serif;
   font-weight: medium;
   border-radius: 25px;
-}
-
-.delete-court-wrapper .delete-button {
-  background-color: #FF8188;
-  color: white;
-  border: none;
-  padding: unset;
-  text-align: center;
-  text-decoration: none;
-  font-size: 1rem;
-  border-radius: 20px;
-  cursor: pointer;
-  border-radius: 50%;
-  padding: 1rem;
-  min-width: 50px;
 }
 
 .green-button {
@@ -1854,8 +1919,9 @@ button:focus {
   font-size: 1rem;
   border-radius: 50%;
   cursor: pointer;
-  -webkit-box-shadow: 4px 3px 10px -3px grey;
-  box-shadow: 4px 3px 10px -3px grey;
+  background: #F0F0F3;
+  -webkit-box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.2), -4px -4px 15px #FFFFFF, 6px 6px 36px rgba(0, 0, 0, 0.1);
+          box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.2), -4px -4px 15px #FFFFFF, 6px 6px 36px rgba(0, 0, 0, 0.1);
 }
 
 .wrapper-sign-up-screen .signup-button {
@@ -1898,21 +1964,6 @@ button {
   font-family: poppins, helvetica, arial, sans-serif;
   font-weight: medium;
   border-radius: 25px;
-}
-
-.delete-court-wrapper .delete-button {
-  background-color: #FF8188;
-  color: white;
-  border: none;
-  padding: unset;
-  text-align: center;
-  text-decoration: none;
-  font-size: 1rem;
-  border-radius: 20px;
-  cursor: pointer;
-  border-radius: 50%;
-  padding: 1rem;
-  min-width: 50px;
 }
 
 .green-button {
@@ -2037,12 +2088,16 @@ a {
 }
 
 body.home {
-  max-width: 1000px;
+  max-width: 500px;
   margin: auto;
   font-family: poppins, helvetica, arial, sans-serif;
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
   /* Main */
+}
+
+body.home .promotion {
+  background-color: #ECF1FF;
 }
 
 body.home img,
@@ -2055,9 +2110,34 @@ body.home a {
   text-decoration: none;
 }
 
-body.home .brand-title {
+body.home .app-branding {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body.home .brand-title h1 {
+  font-size: 1.5rem;
+  font-family: "Damion";
+  font-weight: 700;
+  color: #FF4D00;
+  margin-top: .5rem;
+  margin: 0;
+}
+
+body.home .brand-title h1 span {
+  font-family: "Raleway";
   color: #12317F;
-  font-weight: bold;
 }
 
 body.home .hero-section {
@@ -2079,6 +2159,9 @@ body.home main {
 
 body.home .user-display h2 {
   margin-bottom: 0.5rem;
+  font-size: 1.9rem;
+  font-weight: 500;
+  color: #12317F;
 }
 
 body.home .user-display p {
@@ -2135,7 +2218,7 @@ body.home .sport-card:nth-of-type(1) {
 }
 
 body.home .sport-card:nth-of-type(2) {
-  background: radial-gradient(circle, #ffc098 40%, #ffeee2 41%);
+  background: radial-gradient(circle, #8FCCF9 40%, #CDF3FF 41%);
 }
 
 body.home .sport-card:nth-of-type(3) {
@@ -2143,7 +2226,9 @@ body.home .sport-card:nth-of-type(3) {
 }
 
 body.home .promotions-container h3 {
-  margin-top: 0;
+  margin-top: 1rem;
+  font-size: 1.3rem;
+  font-weight: 500;
 }
 
 body.home .promotion {
@@ -2161,19 +2246,22 @@ body.home .discount-rate {
   font-weight: bold;
 }
 
-body.home .discount-image img {
-  display: block;
-  border-radius: 10px;
-  -webkit-box-shadow: 6px 10px 22px -7px rgba(0, 0, 0, 0.58);
-          box-shadow: 6px 10px 22px -7px rgba(0, 0, 0, 0.58);
+body.home .discount-image {
+  padding: 1rem;
 }
 
 body.home .blogs {
   margin-top: 1.5rem;
 }
 
+body.home .blogs h3 {
+  margin-top: 0;
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
 body.home .blogs h4 {
-  margin: 1rem;
+  margin: 0rem 1rem;
   font-size: large;
   padding-bottom: 0.15rem;
   border-bottom: 3px white solid;
@@ -2181,6 +2269,7 @@ body.home .blogs h4 {
   width: -moz-fit-content;
   width: fit-content;
   color: white;
+  font-weight: 500;
 }
 
 body.home .blogs h4 a {
@@ -2203,7 +2292,7 @@ body.home .blogs section {
 }
 
 body.home .blog-sport-name {
-  margin-top: 1.5rem;
+  margin-top: 1rem;
 }
 
 body.home .left .blog-sport-name {
@@ -2214,12 +2303,12 @@ body.home .left .blog-sport-name {
 
 body.home .blogs .left {
   margin-top: 40px;
-  padding: 0 0 1rem 1rem;
+  padding: 0 0 3rem 1rem;
 }
 
 body.home .blogs .right {
   margin-top: 40px;
-  padding: 0 1rem 1rem 0;
+  padding: 0 1rem 3rem 0;
 }
 
 body.home .graphic {
@@ -2227,59 +2316,59 @@ body.home .graphic {
 }
 
 body.home .graphic-outer {
-  width: 160px;
-  height: 160px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
   position: relative;
 }
 
 body.home .graphic-inner {
-  width: 140px;
-  height: 140px;
+  width: 180px;
+  height: 180px;
   border-radius: 50%;
   margin: 0;
   position: absolute;
 }
 
-body.home .blogs section:nth-of-type(1) {
+body.home .blogs a:nth-of-type(1) section {
   background-image: -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(15%, transparent), color-stop(15%, #ff918b));
   background-image: linear-gradient(180deg, transparent 0%, transparent 15%, #ff918b 15%);
   background-color: #ff918b;
 }
 
-body.home .blogs section:nth-of-type(2) {
+body.home .blogs a:nth-of-type(2) section {
   background-color: #6cc8a6;
 }
 
-body.home .blogs section:nth-of-type(3) {
+body.home .blogs a:nth-of-type(3) section {
   background-color: #ffc098;
 }
 
-body.home .blogs section:nth-of-type(1) .graphic-outer {
+body.home .blogs a:nth-of-type(1) section .graphic-outer {
   background-color: #ffd5d2;
 }
 
-body.home .blogs section:nth-of-type(1) .graphic-inner {
+body.home .blogs a:nth-of-type(1) section .graphic-inner {
   background-color: #fffbfb;
   top: 5px;
   left: 15px;
 }
 
-body.home .blogs section:nth-of-type(2) .graphic-outer {
+body.home .blogs a:nth-of-type(2) section .graphic-outer {
   background-color: #a0dbc5;
 }
 
-body.home .blogs section:nth-of-type(2) .graphic-inner {
+body.home .blogs a:nth-of-type(2) section .graphic-inner {
   background-color: #e9fff4;
   top: 13px;
   left: 15px;
 }
 
-body.home .blogs section:nth-of-type(3) .graphic-outer {
+body.home .blogs a:nth-of-type(3) section .graphic-outer {
   background-color: #ffd8bf;
 }
 
-body.home .blogs section:nth-of-type(3) .graphic-inner {
+body.home .blogs a:nth-of-type(3) section .graphic-inner {
   background-color: #fff3eb;
   top: 5px;
   left: 5px;
@@ -2517,7 +2606,7 @@ body.home footer li {
       -ms-flex-align: center;
           align-items: center;
   min-height: 100vh;
-  max-width: 650px;
+  max-width: 500px;
 }
 
 .single-player-info .player-image img {
@@ -2920,6 +3009,9 @@ body.home footer li {
   margin: 0;
   padding: 0;
   overflow: hidden;
+  max-width: 500px;
+  margin: auto;
+  background-color: whitesmoke;
   /*Animation=========================*/
 }
 
@@ -2929,7 +3021,7 @@ body.home footer li {
 }
 
 .splash .wrapper {
-  max-width: 700px;
+  max-width: 500px;
   margin: auto;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2950,7 +3042,7 @@ body.home footer li {
   -webkit-clip-path: circle(80% at 50% 0);
           clip-path: circle(80% at 50% 0);
   position: absolute;
-  top: -4rem;
+  top: -2rem;
   -webkit-animation: circles 4s;
           animation: circles 4s;
 }
@@ -2962,7 +3054,7 @@ body.home footer li {
   -webkit-clip-path: circle(80% at 50% 0);
           clip-path: circle(80% at 50% 0);
   position: absolute;
-  top: -4rem;
+  top: -3rem;
   -webkit-animation: circles 3s;
           animation: circles 3s;
 }
@@ -2974,9 +3066,9 @@ body.home footer li {
   -webkit-clip-path: circle(80% at 50% 0);
           clip-path: circle(80% at 50% 0);
   position: absolute;
-  top: -4rem;
-  -webkit-animation: circles 2s;
-          animation: circles 2s;
+  top: -4.5rem;
+  -webkit-animation: circles 1s;
+          animation: circles 1s;
 }
 
 .splash .third-circle {
@@ -2986,15 +3078,9 @@ body.home footer li {
   -webkit-clip-path: circle(80% at 50% 0);
           clip-path: circle(80% at 50% 0);
   position: absolute;
-  top: -2rem;
+  top: 2rem;
   -webkit-animation: slideIn-third-circle 1s;
           animation: slideIn-third-circle 1s;
-}
-
-@media screen and (max-width: 550px) {
-  .splash .third-circle {
-    top: 1rem;
-  }
 }
 
 .splash .sign-in-section {
@@ -3016,27 +3102,32 @@ body.home footer li {
 
 .splash .sign-in-section a {
   margin-top: 2rem;
-  width: 150px;
+  width: 145px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding: .5rem 1rem;
+  padding: .5rem 0rem;
   border-radius: 20px;
   background: white;
   text-transform: uppercase;
   font-weight: bold;
-  font-size: 24px;
+  font-size: 20px;
   color: #FF4D00;
+  font-weight: 600;
+}
+
+.splash .sign-in-section a:hover {
+  color: #12317F;
 }
 
 .splash .logo-content {
   position: fixed;
-  top: 4rem;
+  top: 6rem;
   width: 100%;
-  max-width: 700px;
+  max-width: 500px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -3054,14 +3145,8 @@ body.home footer li {
           animation: logo-image-slideIn 2s;
 }
 
-@media screen and (max-width: 550px) {
-  .splash .logo-content {
-    top: 3.2rem;
-  }
-}
-
 .splash .logoimage {
-  max-width: 130px;
+  max-width: 100px;
   background-color: #FFECE1;
   border-radius: 50%;
   -webkit-animation: logo-image-rotate 4s;
@@ -3069,10 +3154,11 @@ body.home footer li {
 }
 
 .splash h1 {
-  font-size: 3rem;
+  font-size: 3.5rem;
   font-family: "Damion";
   font-weight: 700;
   color: #FF4D00;
+  margin-top: .5rem;
   -webkit-animation: logo-text 3s;
           animation: logo-text 3s;
 }
@@ -5747,4 +5833,6 @@ body.home footer li {
     opacity: 1;
   }
 }
+
+/* User Account Settings ========================================= */
 /*# sourceMappingURL=style.css.map */

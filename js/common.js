@@ -83,7 +83,8 @@ const updateDB = (user, flag = 0, socialLogin = 0) => {
         chats:[],
         lastCheck:{},
         userID: user.uid,
-        userLocation: new firebase.firestore.GeoPoint(0, 0)
+        userLocation: new firebase.firestore.GeoPoint(0, 0),
+        userLocationCity:"Location Not Set"
     }
     db.collection("user").doc(user.uid).set(docData).then((docRef) => {
         redirectBasedOnLogin(user, socialLogin);
@@ -187,7 +188,7 @@ const updateLevel = (sport = "Unknown", level, redirect = "") => {
 }
 
 class AppUser {
-    constructor(auid, firstName, lastName, dob, profilePhoto, about, userLocation, sports, chatId, currentPage) {
+    constructor(auid, firstName, lastName, dob, profilePhoto, about, userLocation, sports, chatId, currentPage, userLocationCity = "Location Not Set") {
         this.auid = auid;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -198,6 +199,7 @@ class AppUser {
         this.sports = sports;
         this.chatId = chatId;
         this.currentPage = currentPage;
+        this.userLocationCity = userLocationCity;
     }
 }
 
@@ -272,7 +274,7 @@ async function set_appUser (redirect = "")  {
             .then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
 
-                    let au = new AppUser(doc.data().userID, doc.data().name.substring(0, doc.data().name.indexOf(" ")), doc.data().name.substring(doc.data().name.indexOf(" ") + 1, doc.data().name.length), doc.data().dateOfBirth, doc.data().profilePic, doc.data().about, doc.data().userLocation, doc.data().sports, doc.data().chatId, doc.data().currentPage);
+                    let au = new AppUser(doc.data().userID, doc.data().name.substring(0, doc.data().name.indexOf(" ")), doc.data().name.substring(doc.data().name.indexOf(" ") + 1, doc.data().name.length), doc.data().dateOfBirth, doc.data().profilePic, doc.data().about, doc.data().userLocation, doc.data().sports, doc.data().chatId, doc.data().currentPage,doc.data().userLocationCity);
                     appUserLocal = au;
 
                     localStorage.setItem("appUser", JSON.stringify(au));
