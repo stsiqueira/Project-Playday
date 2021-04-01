@@ -1,7 +1,7 @@
 const cacheName = "v1";
 const urlsToCache = [ "./index.html", "./style.css", "./"];
 self.addEventListener( 'install', ( event ) => {
-    console.log(`SW: Event fired: ${ event.type }`);
+    // console.log(`SW: Event fired: ${ event.type }`);
     event.waitUntil(// waitUntil tells the browser to wait for this to finish
         caches.open( cacheName )//caches is a global object representing CacheStorage
         .then( ( cache ) => { // open the cache with the name cacheName*
@@ -10,7 +10,7 @@ self.addEventListener( 'install', ( event ) => {
 });
 
 self.addEventListener( 'activate', ( event ) => {
-    console.log(`SW: Event fired: ${ event.type }`);
+    // console.log(`SW: Event fired: ${ event.type }`);
     event.waitUntil(
         caches.keys().then( ( keyList ) => {
             return Promise.all( keyList.map( ( key ) => {
@@ -28,7 +28,7 @@ self.addEventListener( 'activate', ( event ) => {
 // });
 
 self.addEventListener( 'fetch', ( event ) => {
-    console.log(`SW: Fetch handler`, event.request.url );
+    // console.log(`SW: Fetch handler`, event.request.url );
     event.respondWith(
         caches.match( event.request ).then( ( response ) => { //check the caches
             return response ||  fetch( event.request ); //

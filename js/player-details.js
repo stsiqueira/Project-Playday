@@ -24,6 +24,8 @@ const storageRef = firebase.storage().ref();
 
 let appUserobject = get_appUser();
 
+// Modal Code ***********************************
+
 editIcon.onclick = function() {
     modal.style.display = "block";
 }
@@ -36,7 +38,10 @@ window.onclick = function(event) {
 
 span.onclick = function() {
     modal.style.display = "none";
-  }
+}
+
+// ***********************************************
+
 //update page details ****************************
 
 const updateInnerHtml = (element, value) => {
@@ -49,7 +54,7 @@ updateInnerHtml(userAbout[0], appUserobject.about);
 $.getJSON(`https://api.tomtom.com/search/2/reverseGeocode/${appUserobject.userLocation.latitude},${appUserobject.userLocation.longitude}.json?key=${tomtomApiKey}`, function (json) {
 
     addressString = json.addresses[0].address.municipality;
-    document.getElementById('location-input').value = addressString ? addressString : "default";
+    document.getElementById('location-input').value = addressString ? addressString : "Not Selected";
 
 });
 
@@ -179,7 +184,7 @@ const savedAndChallengeCourtsHtml = (count, courtName, selectedSport, key,destin
                         </div>
                     </div>
                     <div class="delete-court-wrapper">
-                        <button id="${key}-${typeOfCourts}" class="delete-button red-button delete-button-${count}"><i class="fas fa-minus"></i></button>
+                        <button id="${key}-${typeOfCourts}" class="delete-button red-button delete-button-${count}"><i class="fas fa-trash"></i></button>
                     </div>
                 </div>`
     $(`.${destinationHtml}`).append(html);
@@ -244,6 +249,8 @@ submitButton.addEventListener('click', function (event) {
         showToast("Please update the select values");
     }
 });
+
+// ************************************************
 
 const getSignInMethod = () => {
     firebase.auth().onAuthStateChanged(function (user) {

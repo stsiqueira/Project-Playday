@@ -36,7 +36,7 @@ const redirectBasedOnLogin = (user, socialLogin) => {
                 });
             }).then(() => {
                 if (!socialLogin) {
-                    window.location.assign('log-in.html');
+                    window.location.assign('log-in.html?signup=true');
                 }
                 else {
                     if (appUserLocal && appUserLocal.userLocation.latitude == "0" && appUserLocal.userLocation.longitude == "0") {
