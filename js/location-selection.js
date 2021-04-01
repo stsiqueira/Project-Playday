@@ -127,11 +127,22 @@ $(document).ready(function () {
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
         let document = db.collection("user").doc(appUserobject.auid);
-        document.set({
-          userLocation: new firebase.firestore.GeoPoint(hiddenCoordinates.lat, hiddenCoordinates.lon)
-        }, { merge: true }).then(() => {
 
-          
+        let reversecodeUrl = `https://api.tomtom.com/search/2/reverseGeocode/${hiddenCoordinates.lat},${hiddenCoordinates.lon}.json?key=${tomtomApiKey}`;
+        let addressString = "Location not Selectedddd";   
+        $.ajax({
+          url: reversecodeUrl,
+          dataType: 'json',
+          async: false,
+          success: function(data) {
+            addressString = data.addresses[0].address.municipality;   
+          }
+        });       
+
+        document.set({
+          userLocation: new firebase.firestore.GeoPoint(hiddenCoordinates.lat, hiddenCoordinates.lon),
+          userLocationCity: addressString
+        }, { merge: true }).then(() => {          
 
           if(routeTo != ""){   
             // set_appUser().then(()=>{goToSportCourts(routeTo);});

@@ -1283,7 +1283,8 @@ img {
   border: none;
 }
 
-.login-page {
+.login-page,
+.signup-page {
   background-color: #F0F0F3;
 }
 
@@ -1312,7 +1313,6 @@ img {
           flex-flow: column;
   gap: 1rem;
   padding: 0 1rem;
-  margin: auto;
 }
 
 .social-sign-up-wrapper .social-text {
@@ -1329,6 +1329,7 @@ img {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  margin: 0rem 4rem;
 }
 
 .button-wrapper {
@@ -1347,8 +1348,10 @@ img {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   font-size: .8rem;
-  background: #FFDFD1;
+  background: #fff;
   color: #7D7D7D;
+  -webkit-box-shadow: 4px 3px 10px -3px grey;
+  box-shadow: 4px 3px 6px -3px grey;
 }
 
 .login-wrapper .login-wrapper .fieldset {
@@ -1372,6 +1375,7 @@ img {
   font-style: italic;
   text-decoration: none;
   color: black;
+  text-align: center;
 }
 
 .user-account-settings-page {
@@ -1574,6 +1578,8 @@ img {
   font-size: .8rem;
   background: #FFDFD1;
   color: #7D7D7D;
+  -webkit-box-shadow: 4px 3px 10px -3px grey;
+  box-shadow: 4px 3px 6px -3px grey;
   resize: none;
 }
 
@@ -1645,6 +1651,7 @@ img {
   padding: .2rem;
   text-align: left;
   padding: .5rem 1rem;
+  height: 43px;
 }
 
 .user-account-wrapper .accordion-wrapper .change-password-form input:focus {
@@ -1764,6 +1771,11 @@ button:focus {
   background: #F0F0F3;
   -webkit-box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.2), -4px -4px 15px #FFFFFF, 6px 6px 36px rgba(0, 0, 0, 0.1);
           box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.2), -4px -4px 15px #FFFFFF, 6px 6px 36px rgba(0, 0, 0, 0.1);
+}
+
+.wrapper-sign-up-screen .signup-button {
+  background-color: #F0F0F3;
+  color: #39373A;
 }
 
 .fa-chevron-right {
@@ -1941,6 +1953,11 @@ button:focus {
   background: #F0F0F3;
   -webkit-box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.2), -4px -4px 15px #FFFFFF, 6px 6px 36px rgba(0, 0, 0, 0.1);
           box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.2), -4px -4px 15px #FFFFFF, 6px 6px 36px rgba(0, 0, 0, 0.1);
+}
+
+.wrapper-sign-up-screen .signup-button {
+  background-color: #F0F0F3;
+  color: #39373A;
 }
 
 .fa-chevron-right {

@@ -157,7 +157,8 @@
     }
 }
 
-.login-page {
+.login-page,
+.signup-page {
     background-color: #F0F0F3;
 }
 
@@ -176,7 +177,7 @@
     flex-flow: column;
     gap: 1rem;
     padding: 0 1rem;
-    margin: auto;
+    // margin: auto;
 
     .social-text {
         align-self: center;
@@ -186,6 +187,7 @@
     .social-sign-up {
         display: flex;
         justify-content: space-between;
+        margin: 0rem 4rem;
     }   
 }
 
@@ -196,7 +198,7 @@
 .wrapper-sign-up-screen .fieldset input,
 .login-wrapper .fieldset input,
 .reset-wrapper input {
-    @include inputBoxStyle($color_about_description);
+    @include inputBoxStyle(#fff);
 }
 
 .login-wrapper .login-wrapper .fieldset {
@@ -220,6 +222,7 @@
     font-style: italic;
     text-decoration: none;
     color: black;
+    text-align: center;
 }
 
 //Account Details
@@ -411,8 +414,6 @@
             flex-flow: column;
             gap: 1.2rem;
             padding: 1rem;
-
-            
         }
     }
 
@@ -431,6 +432,7 @@
                 padding: .2rem;
                 text-align: left;
                 padding: .5rem 1rem;
+                height: 43px;
             }
 
             input:focus {

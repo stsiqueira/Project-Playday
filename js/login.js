@@ -8,7 +8,6 @@ const twitterSignin = document.getElementById("tsignup");
 // var db = firebase.firestore();
 
 let appUserobject = get_appUser();
-console.log(appUserobject);
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
         const queryString = window.location.search;
@@ -21,9 +20,14 @@ firebase.auth().onAuthStateChanged(function(user) {
 });
 
 //Sign in function with email
-const signInWithEmailFunction = () => {
+const signInWithEmailFunction = (e) => {
+    e.preventDefault();
 	const email = mailField.value;
 	const password = passwordField.value;
+    if(!email || !password) {
+        showToast("input all the fields")
+        return false;
+    }
     // if (!checkPassword(password)) return false;
 
 	firebase.auth().signInWithEmailAndPassword(email, password)
