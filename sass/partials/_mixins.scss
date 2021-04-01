@@ -111,3 +111,18 @@
 
 
 
+// ========= Shadows  ========= // 
+
+@mixin shadow(){
+     /* Reverse Neumorphism */
+    box-shadow: -4px -4px 16px rgba(255, 255, 255, 0.25), 4px 4px 8px rgba(66, 83, 107, 0.09), inset 0px -4px 14px #FFFFFF, inset 0px 2px 6px rgba(66, 83, 107, 0.22);
+    border-radius: 25px;
+}
+
+// ============= Back Button   ============= //
+
+@mixin backBtn() {
+
+background: #F0F0F3;
+box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.2), -4px -4px 15px #FFFFFF, 6px 6px 36px rgba(0, 0, 0, 0.1);
+}
