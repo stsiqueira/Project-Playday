@@ -368,6 +368,10 @@ template {
 /* Variables ===================================================== */
 /* Mixins ================================================= */
 /* Typography  =================================================== */
+* {
+  font-family: poppins, helvetica, arial, sans-serif;
+}
+
 /* Header ======================================================== */
 header {
   background-color: #F0F0F3;
@@ -745,8 +749,8 @@ img {
 }
 
 .location-selection .continue-active {
-  background-color: #3469EE !important;
-  color: white;
+  background-color: #6CC8A6 !important;
+  color: azure;
 }
 
 .location-selection .mapboxgl-map {
@@ -1110,6 +1114,10 @@ img {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.select-court .fa-user {
+  padding: 0 0.3rem;
 }
 
 /* Content ================================================= */
@@ -1705,7 +1713,7 @@ button {
 }
 
 .green-button {
-  height: 50px;
+  height: 43px;
   width: auto;
   border: none;
   font-size: 24px;
@@ -1725,7 +1733,7 @@ button {
 }
 
 .grey-button {
-  height: 50px;
+  height: 43px;
   width: auto;
   border: none;
   font-size: 24px;
@@ -1745,7 +1753,7 @@ button {
 }
 
 .red-button {
-  height: 50px;
+  height: 43px;
   width: auto;
   border: none;
   font-size: 24px;
@@ -1901,7 +1909,7 @@ button {
 }
 
 .green-button {
-  height: 50px;
+  height: 43px;
   width: auto;
   border: none;
   font-size: 24px;
@@ -1921,7 +1929,7 @@ button {
 }
 
 .grey-button {
-  height: 50px;
+  height: 43px;
   width: auto;
   border: none;
   font-size: 24px;
@@ -1941,7 +1949,7 @@ button {
 }
 
 .red-button {
-  height: 50px;
+  height: 43px;
   width: auto;
   border: none;
   font-size: 24px;
@@ -2087,6 +2095,19 @@ body.home .sports-cards {
   width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
+}
+
+@media screen and (min-width: 450px) {
+  body.home .sports-cards {
+    margin: auto;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: row nowrap;
+            flex-flow: row nowrap;
+    gap: 1rem;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+  }
 }
 
 body.home .sport-card {
@@ -2445,6 +2466,17 @@ body.home footer li {
 
 .single-player-info body {
   background-color: #E5E5E5;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  font-family: poppins, helvetica, arial, sans-serif;
 }
 
 .single-player-info main {
@@ -2477,6 +2509,8 @@ body.home footer li {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  min-height: 100vh;
+  max-width: 650px;
 }
 
 .single-player-info .player-image img {
@@ -2485,9 +2519,6 @@ body.home footer li {
   border-radius: 50%;
   -o-object-fit: cover;
      object-fit: cover;
-  border: 3px solid #000;
-  -webkit-box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.2);
-          box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.2);
 }
 
 .single-player-info h2.player-name {
@@ -2978,20 +3009,20 @@ body.home footer li {
 
 .splash .sign-in-section a {
   margin-top: 2rem;
-  width: 230px;
+  width: 150px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding: .5rem 2rem;
+  padding: .5rem 1rem;
   border-radius: 20px;
   background: white;
   text-transform: uppercase;
   font-weight: bold;
   font-size: 24px;
-  color: #12317F;
+  color: #FF4D00;
 }
 
 .splash .logo-content {
@@ -3035,8 +3066,8 @@ body.home footer li {
   font-family: "Damion";
   font-weight: 700;
   color: #FF4D00;
-  -webkit-animation: test 3s;
-          animation: test 3s;
+  -webkit-animation: logo-text 3s;
+          animation: logo-text 3s;
 }
 
 .splash h1 span {
@@ -5668,7 +5699,7 @@ body.home footer li {
   }
 }
 
-@-webkit-keyframes test {
+@-webkit-keyframes logo-text {
   0% {
     opacity: 0;
   }
@@ -5689,7 +5720,7 @@ body.home footer li {
   }
 }
 
-@keyframes test {
+@keyframes logo-text {
   0% {
     opacity: 0;
   }
