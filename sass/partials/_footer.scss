@@ -1,5 +1,6 @@
 
 footer{
+    
     height: 90px;
     background-color: $footer-background;
     display: flex;
@@ -53,6 +54,7 @@ footer{
 }
 
 //code for selected foot item
+
 .selected-foot-item a i{
     color: $color_the_darkest_orange;
     box-shadow: -4px -4px 16px rgba(255, 255, 255, 0.25), inset 0px -4px 14px #FFFFFF, inset 0px 3px 6px rgba(18, 49, 127, 0.51);
@@ -62,5 +64,3 @@ footer{
 }
 
 
-
-    

@@ -1,22 +1,21 @@
-.location-selection{
-
+.location-selection {
   background-color: $color-main-bg;
-    max-width: 800px;
-    min-height: 100vh;
-    margin: auto;
-    font-family: "Poppins", sans-serif;
-
+  max-width: 800px;
+  min-height: 100vh;
+  margin: auto;
+  font-family: "Poppins", sans-serif;
 
   img {
     max-width: 100%;
     height: auto;
   }
- 
+
   .body-wrapper {
-    padding: 10vh 0.5rem 0  0.5rem;
+    
   }
   main {
-    
+    min-height: 100vh;
+    padding: 10vh 0.5rem 0 0.5rem;
     margin: 0.5rem;
   }
   #message {
@@ -27,7 +26,7 @@
     color: darkred;
     font-size: 0.8rem;
   }
-  #title-message{
+  #title-message {
     text-align: center;
     margin: 1rem;
     line-height: 1.4;
@@ -75,8 +74,7 @@
     gap: 1rem;
     justify-content: space-between;
   }
-  .location-buttons-container button
-   {
+  .location-buttons-container button {
     min-width: 110px;
     height: 40px;
     padding: 0 1rem;
@@ -91,14 +89,17 @@
     margin-top: 5rem;
     text-align: center;
     text-decoration: underline;
+    
   }
 
-  .skip-now button{
-
+  #skip {
+    width: fit-content;
+    margin: auto;
+    cursor: pointer;
   }
 
   #manual,
-  #auto{
+  #auto {
     background-color: $color-sender-bg;
     color: white;
   }
@@ -106,7 +107,7 @@
     background-color: lightgray;
   }
 
-  .continue-active{
+  .continue-active {
     background-color: $color-green-button !important;
     color: azure;
   }
@@ -144,6 +145,19 @@
     display: none;
   }
 
+  .blur{
+    filter: blur(2px);
+    background-color: transparent !important;
+    pointer-events: none;
+  }
 
+  .loader {
+    position: fixed;
+    top: 50vh;
+    left: 50vw;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+
+    color: $color_the_darkest_orange;
+  }
 }
-

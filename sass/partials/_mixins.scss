@@ -128,3 +128,18 @@
 background: #F0F0F3;
 box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.2), -4px -4px 15px #FFFFFF, 6px 6px 36px rgba(0, 0, 0, 0.1);
 }
+
+// ============= Making the screen 100vh  ============= //
+
+
+@mixin screenHeight() {
+    
+max-width: 500px;
+margin: auto;
+display: flex;
+flex-flow: column nowrap;
+justify-content: space-between;
+align-content: space-between;
+height: 100vh;
+
+}

@@ -1,3 +1,8 @@
+//home-bg color (big size)
+.html-home{
+  background-color: whitesmoke;
+}
+
 .home.hide-right {
   transform: translateX(100%);
 }
@@ -10,6 +15,7 @@ body.home {
   margin: auto;
   font-family: $font_sans;
   transition: all 0.5s ease-in-out;
+  background-color: white;
 
   .promotion {
     background-color: #ECF1FF;
@@ -150,8 +156,20 @@ body.home {
   
 // ========= Blogs 
 
+.home{
+  img,
+  svg {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
   .blogs {
+
     margin-top: 1.5rem;
+
+ 
+
     h3{
   
         margin-top: 0;
@@ -268,4 +286,36 @@ body.home {
       text-align: center;
     }
   }
+}
+
+
+/* Responsive design for phone, blogs section*/
+
+
+@media only screen and (max-width : 360px) {
+
+ 
+  body.home {
+
+  .blogs{
+    .graphic-outer {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      position: relative;
+    }
+
+    .graphic-inner {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      margin: 0;
+      position: absolute;
+    }
+
+    }
+
+    }
+
+
 }

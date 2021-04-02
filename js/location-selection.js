@@ -63,7 +63,8 @@ $(document).ready(function () {
   });
 
   $('#continue').click(function () {
-
+    $('.body-wrapper').addClass("blur");
+    $('.loader').removeClass("hidden");
     routeTo != null ? updateUserLocation(routeTo) : updateUserLocation();  
     
   });
