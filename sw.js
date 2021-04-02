@@ -1,11 +1,18 @@
 const cacheName = "v1";
-const urlsToCache = [ "./index.html", "./style.css", "./"];
+const urlsToCache = [ 
+    "./index.html",
+    "./style.css",
+    "./js/home.js",
+    "./html/home.html",
+    "./html/badminton-article.html"
+    ];
+
 self.addEventListener( 'install', ( event ) => {
     // console.log(`SW: Event fired: ${ event.type }`);
-    event.waitUntil(// waitUntil tells the browser to wait for this to finish
-        caches.open( cacheName )//caches is a global object representing CacheStorage
-        .then( ( cache ) => { // open the cache with the name cacheName*
-            return cache.addAll( urlsToCache );      // pass the array of URLs to cache**
+    event.waitUntil(
+        caches.open(cacheName)
+        .then( cache => {
+            return cache.addAll( urlsToCache ); 
         }));
 });
 
@@ -22,16 +29,20 @@ self.addEventListener( 'activate', ( event ) => {
     );
 });
 
-// this.addEventListener('fetch', function (event) {
-//     console.log( `SW: Fetching ${event.request.url}` );
-//     // it can be empty if you just want to get rid of that error
-// });
-
 self.addEventListener( 'fetch', ( event ) => {
-    // console.log(`SW: Fetch handler`, event.request.url );
+    // console.log(window.localStorage);
+    
     event.respondWith(
         caches.match( event.request ).then( ( response ) => { //check the caches
             return response ||  fetch( event.request ); //
         })
     );
 });
+
+// self.addEventListener('fetch', function(event) {
+//     event.respondWith(
+//         fetch(event.request).catch(function() {
+//             return caches.match(event.request);
+//         })
+//     );
+// });

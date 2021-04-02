@@ -163,7 +163,6 @@
     .social-sign-up {
         display: flex;
         justify-content: space-between;
-        margin: 0rem 4rem;
     }   
 }
 
@@ -190,6 +189,8 @@
 
     .green-button {
         font-size: 1rem;
+        align-self: center;
+        cursor: pointer;
     }
 }
 
@@ -359,7 +360,7 @@
     }
 
     .modal-content #about-input{
-        @include inputBoxStyle($color_about_description);
+        @include inputBoxStyle(#fff);
         resize: none;
     }
 

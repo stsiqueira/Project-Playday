@@ -1298,7 +1298,6 @@ img {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  margin: 0rem 4rem;
 }
 
 .button-wrapper {
@@ -1337,6 +1336,10 @@ img {
 
 .reset-page .reset-wrapper .green-button {
   font-size: 1rem;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  cursor: pointer;
 }
 
 .login-wrapper .fieldset .forgot-link {
@@ -1545,7 +1548,7 @@ img {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   font-size: .8rem;
-  background: #FFDFD1;
+  background: #fff;
   color: #7D7D7D;
   -webkit-box-shadow: 4px 3px 10px -3px grey;
   box-shadow: 4px 3px 6px -3px grey;
