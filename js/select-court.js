@@ -29,9 +29,15 @@ $(document).ready(function () {
             output = "";
 
             if (response.hasOwnProperty("results")) {
+                $(".message-container").addClass("hidden");
                 courtsRetrieved = response.results.filter(data => data.poi.categories.filter(c => c === 'sports center'));
                 let count = 0;
                 let players = 0;
+
+                if (courtsRetrieved.length == 0) {
+                    $(".message-container").removeClass("hidden");
+                    return;
+                }
 
                 courtsRetrieved.forEach(element => {
                     count++;
@@ -199,7 +205,7 @@ $(document).ready(function () {
         if (isSavedCourt) {
             $(".user-options .save-container").addClass('court-active');
         }
-        else{
+        else {
             $(".user-options .save-container").removeClass('court-active');
         }
 
@@ -225,8 +231,8 @@ $(document).ready(function () {
 
         if (courtId != null && courtId != undefined && courtId != ""
             && courtName != null && courtName != undefined && courtName != "") {
-            
-            let notSaved = ($(".user-options .save-container").hasClass('court-active')) ?false:true ;
+
+            let notSaved = ($(".user-options .save-container").hasClass('court-active')) ? false : true;
             if (notSaved)
                 setCourts(sports, "savedCourts", courtId, courtName);
             else {
@@ -244,9 +250,9 @@ $(document).ready(function () {
         let courtName = $("#selected-name").html().trim();
 
         if (courtId != null && courtId != undefined && courtId != ""
-            && courtName != null && courtName != undefined && courtName != "") {            
+            && courtName != null && courtName != undefined && courtName != "") {
 
-            let notSaved = ($(".user-options .challenge-container").hasClass('court-active')) ?false:true ;
+            let notSaved = ($(".user-options .challenge-container").hasClass('court-active')) ? false : true;
             if (notSaved)
                 setCourts(sports, "challengeCourts", courtId, courtName);
             else {
@@ -296,7 +302,7 @@ $(document).ready(function () {
                 });
             }).then(() => {
                 if (divId != "" && countOnly) {
-                    $(`#${divId}`).html("<i class='far fa-user'></i>"  + courtPlayers.length);
+                    $(`#${divId}`).html("<i class='far fa-user'></i>" + courtPlayers.length);
                     let rowCount = divId.substring(divId.lastIndexOf("-") + 1, divId.length);
                     $(`#entry-${rowCount}`).attr("data-playersCount", courtPlayers.length);
                 }

@@ -269,4 +269,15 @@
   .fa-user{
     padding: 0 0.3rem;
   }
+
+.hidden{
+  display: none;
+}
+
+.message-container{
+  position: fixed;
+  top: 50vh; left: 50vw;
+  transform: translate(-50%,-50%);
+}
+
 }
