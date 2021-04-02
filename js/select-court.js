@@ -29,9 +29,15 @@ $(document).ready(function () {
             output = "";
 
             if (response.hasOwnProperty("results")) {
+                $(".message-container").addClass("hidden");
                 courtsRetrieved = response.results.filter(data => data.poi.categories.filter(c => c === 'sports center'));
                 let count = 0;
                 let players = 0;
+
+                if (courtsRetrieved.length == 0) {
+                    $(".message-container").removeClass("hidden");
+                    return;
+                }
 
                 courtsRetrieved.forEach(element => {
                     count++;
@@ -148,7 +154,7 @@ $(document).ready(function () {
             });
         }
     }
-    
+
     $(document.body).on('click', '.apiResultRow', function () {
 
         let selectedRow = $(this).attr('id').substr($(this).attr('id').indexOf("-") + 1);
@@ -177,8 +183,46 @@ $(document).ready(function () {
         setTimeout(() => {
             $(".single-court-info-container").slideDown(1000);
             window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            let sport = urlParam("sport");
+            let uniqueCourtId = $("#selected-court-id").html().trim();
+            getCourtPlayers(sport, uniqueCourtId);
+
+
+            // let savedCourt = isActiveCourt(sport, "savedCourts", uniqueCourtId);
+            // console.log(savedCourt);
+
+            checkUserCourtStatus(sport, uniqueCourtId);
+
         }, 1000);
     });
+
+    async function checkUserCourtStatus(sport, uniqueCourtId) {
+
+        let isSavedCourt = await isActiveCourt(sport, "savedCourts", uniqueCourtId);
+        let isChallengeCourt = await isActiveCourt(sport, "challengeCourts", uniqueCourtId);
+
+        if (isSavedCourt) {
+            $(".user-options .save-container").addClass('court-active');
+        }
+        else {
+            $(".user-options .save-container").removeClass('court-active');
+        }
+
+        if (isChallengeCourt) {
+            $(".user-options .challenge-container").addClass('court-active');
+            $(".players-list-container h3").html('Players you can challenge');
+            $(".inactive-message").hide();
+            $("#players-list").removeClass().addClass("active-players-list");
+        }
+        else {
+            $(".user-options .challenge-container").removeClass('court-active');
+            $(".players-list-container h3").html('Players registered at this Court');
+            $(".inactive-message").show();
+            $("#players-list").removeClass().addClass("inactive-players-list");
+        }
+
+    }
 
     $("#save-court").click(function () {
 
@@ -186,7 +230,18 @@ $(document).ready(function () {
         let courtName = $("#selected-name").html().trim();
 
         if (courtId != null && courtId != undefined && courtId != ""
-            && courtName != null && courtName != undefined && courtName != "") { setCourts(sports, "savedCourts", courtId, courtName); }
+            && courtName != null && courtName != undefined && courtName != "") {
+
+            let notSaved = ($(".user-options .save-container").hasClass('court-active')) ? false : true;
+            if (notSaved)
+                setCourts(sports, "savedCourts", courtId, courtName);
+            else {
+                let deleteCourt = `sports.${sports}.savedCourts.${courtId}`;
+                updateDbDetails('user', appUserobject.auid, deleteCourt, firebase.firestore.FieldValue.delete());
+            }
+
+            checkUserCourtStatus(sports, courtId);
+        }
 
     });
     $("#challenge-court").click(function () {
@@ -196,10 +251,18 @@ $(document).ready(function () {
 
         if (courtId != null && courtId != undefined && courtId != ""
             && courtName != null && courtName != undefined && courtName != "") {
-            setCourts(sports, "challengeCourts", courtId, courtName);
+
+            let notSaved = ($(".user-options .challenge-container").hasClass('court-active')) ? false : true;
+            if (notSaved)
+                setCourts(sports, "challengeCourts", courtId, courtName);
+            else {
+                let deleteCourt = `sports.${sports}.challengeCourts.${courtId}`;
+                updateDbDetails('user', appUserobject.auid, deleteCourt, firebase.firestore.FieldValue.delete());
+            }
+
+            checkUserCourtStatus(sports, courtId);
         }
     });
-
     $("#goBack").click(function () {
 
         if ($(".single-court-info-container").is(":visible")) {
@@ -208,18 +271,22 @@ $(document).ready(function () {
 
             setTimeout(() => {
                 $(".select-court-container").fadeIn(1000);
+                $(".save-container, .challenge-container").removeClass('court-active');
             }, 1000);
             $("#players-list").html("");
         }
+        else{
+            window.location.href = "home.html";
+        }
     });
 
-    $("#show-players-list").click(function () {
+    // $("#show-players-list").click(function () {
 
-        let sport = urlParam("sport");
-        let uniqueCourtId = $("#selected-court-id").html().trim();
-        getCourtPlayers(sport, uniqueCourtId);
+    //     let sport = urlParam("sport");
+    //     let uniqueCourtId = $("#selected-court-id").html().trim();
+    //     getCourtPlayers(sport, uniqueCourtId);
 
-    });
+    // });
 
     const getCourtPlayers = (sport, uniqueCourtId, divId = "", countOnly = true) => {
 
@@ -238,7 +305,7 @@ $(document).ready(function () {
                 });
             }).then(() => {
                 if (divId != "" && countOnly) {
-                    $(`#${divId}`).html(courtPlayers.length);
+                    $(`#${divId}`).html("<i class='far fa-user'></i>" + courtPlayers.length);
                     let rowCount = divId.substring(divId.lastIndexOf("-") + 1, divId.length);
                     $(`#entry-${rowCount}`).attr("data-playersCount", courtPlayers.length);
                 }
@@ -252,6 +319,11 @@ $(document).ready(function () {
                         playerName = i.data().name;
                         playerId = i.data().userID;
                         playerPic = i.data().profilePic;
+                        let self = false;
+
+                        if(playerId == appUserobject.auid){
+                            self= true;
+                        }
 
                         switch (sport) {
                             case "badminton":
@@ -264,9 +336,12 @@ $(document).ready(function () {
                                 playerLevel = i.data().sports.volleyball.userLevel;
                                 break;
                         }
-                        playersList += `<li id="courtPlayer-${playerCount}" class="court-player"><b>${playerName}</b>
-                                            <div>Player Level: ${playerLevel}</div>
-                                            <div>Player Pic: ${playerPic}</div>
+                        playersList += `<li id="courtPlayer-${playerCount}" class="court-player ${self?"self":"other"}">
+                                            <div class="cp-img">
+                                                <img src="${playerPic}" alt="court player profile pic"></img>
+                                            </div>
+                                            <div class="cp-name">${playerName}</div>
+                                            <div class="cp-level">Player Level: ${playerLevel}</div>                                            
                                             <div id ="courtPlayerId-${playerCount}" style="display:none">${playerId}</div>
                                         </li>`
                     }
@@ -279,6 +354,65 @@ $(document).ready(function () {
 
     };
 
+    const isActiveCourt = async (sport, courtType, uniqueCourtId) => {
+
+        let isActive = false;
+        let user = firebase.auth().currentUser;
+
+        let query = `sports.${sport}.${courtType}.${uniqueCourtId}`;
+        let db = firebase.firestore();
+
+        return db.collection("user").where("userID", "==", user.uid)
+            .get()
+            .then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    if (doc.get(query) != null) { //check if the selected court exists in saved court array.
+                        isActive = true;
+                    }
+                    else {
+                        isActive = false;
+                    }
+                });
+                return isActive;
+            })
+            .catch((error) => {
+                console.log("Error getting documents: ", error);
+                return false;
+            });
+
+
+    }
+
+    const isActiveCourtCheck = function (sport, courtType, uniqueCourtId) {
+        let isActive = false;
+        return new Promise(function (resolve, reject) {
+
+            let user = firebase.auth().currentUser;
+
+            let query = `sports.${sport}.${courtType}.${uniqueCourtId}`;
+            let db = firebase.firestore();
+
+            db.collection("user").where("userID", "==", user.uid)
+                .get()
+                .then((querySnapshot) => {
+                    querySnapshot.forEach((doc) => {
+                        if (doc.get(query) != null) { //check if the selected court exists in saved court array.
+                            isActive = true;
+                        }
+                        else {
+                            isActive = false;
+                        }
+                    });
+                }).then(() => {
+                    resolve(isActive);
+                })
+                .catch((error) => {
+                    reject(Error("Whatever!"));
+                    console.log("Error getting documents: ", error);
+                });
+        });
+    }
+
     $(document.body).on('click', '.court-player', function () {
 
         let selectedRow = $(this).attr('id').substr($(this).attr('id').indexOf("-") + 1);
@@ -288,7 +422,7 @@ $(document).ready(function () {
             window.location.href = `single-player-info.html?courtPlayerId=${cPlayerId}&sport=${sports}`;
         }
         else {
-            console.log("Why you wanna chat with yourself!");
+            console.log("Self chat isn't allowed!");
         }
 
     });

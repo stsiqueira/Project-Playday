@@ -72,7 +72,7 @@ db.collection("user").where("userID", "==", userAppId).get()
 
 const printDefaultMessage = ()=>{
     
-    let html =` <div class="player-img-wrapper">
+    let html =` <div class="player-image">
                     <img class="" src="${friendProfile.profilePic}" alt="${friendProfile.name}'s picture">
                     <h3>${friendProfile.name}</h3>
                 </div>            

@@ -1,8 +1,21 @@
 .select-court {
   max-width: 600px;
   margin: auto;
-  background: #e5e5e5;
+  background: white;
   font-family: $font_sans;
+
+  header {
+    z-index: 5;
+    .title,
+    i {
+      font-size: 1.5em;
+      font-weight: bold;
+      color: $color_footer_nav_link;
+    }
+
+    position: sticky;
+    top: 0;
+  }
 
   .main-wrapper {
     padding: 0 1rem;
@@ -55,7 +68,6 @@
   }
 
   .single-court-info-container {
-
     margin-top: 3rem;
     .selected-gallery {
       max-height: 200px;
@@ -72,14 +84,13 @@
       color: white;
       width: calc(100% - 1rem);
 
-     
       display: flex;
       justify-content: space-between;
 
       border-radius: 0 0 10px 10px;
     }
 
-    .selected-name{
+    .selected-name {
       margin: 1rem auto;
       text-align: center;
       width: fit-content;
@@ -89,33 +100,80 @@
       font-weight: bold;
       font-size: 1.3rem;
     }
-    .select-court-meta{
+    .select-court-meta {
       margin-top: 2rem;
       display: flex;
       flex-flow: column nowrap;
       gap: 1rem;
     }
 
-    .selected-address span, .selected-distance span, .selected-phone span{
+    .selected-address span,
+    .selected-distance span,
+    .selected-phone span {
       padding-right: 0.5rem;
       font-weight: bold;
     }
 
-    .user-options{
-      margin-top: 1.5rem;
+    .user-options {
+      margin-top: 2rem;
       display: flex;
       justify-content: space-evenly;
-      color: #FF7D45;
+      color: $color-primary-blue-text;
+
+      div {
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+
+        i {
+          color: lightgray;
+          font-size: 1.75rem;
+
+          background: #eef0f6;
+          box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.2), -4px -4px 13px #ffffff,
+            6px 6px 36px rgba(0, 0, 0, 0.1);
+          border-radius: 5px;
+          padding: 0.5rem;
+          min-width: 32px;
+          text-align: center;
+        }
+      }
     }
 
-    .save-container, .challenge-container{
+    .court-active i {
+      color: $color_the_darkest_orange !important;
+    }
+
+    .save-container,
+    .challenge-container {
       cursor: pointer;
     }
+
+    .inactive-players-list{
+      li{
+        pointer-events: none;
+        box-shadow: none !important;
+      }   
+    }
+    .active-players-list{
+      li{
+        border: 1px solid $color-primary-blue-text;
+      }
+
+      .self{
+        pointer-events: none;
+        box-shadow: none !important;
+        border: none;
+      }
+    }
+
   }
 
   .img-wrapper {
     grid-column: 1/-1;
-    max-height: 200px;
+    max-height: 170px;
     overflow: hidden;
   }
   .img-wrapper img {
@@ -142,14 +200,67 @@
     border-radius: 0 0 10px 0;
   }
 
-  .players-list-container{
-    margin-top: 2rem;
+  .players-list-container {
+    margin-top: 1.5rem;
 
-    .show-players-list, h3{
+    .show-players-list {
       text-align: center;
-    }
-    h3{
       margin-top: 0.5rem;
+    }
+    h3 {
+      width: fit-content;
+      border-bottom: 1px solid #000;
+      padding-bottom: 0.5rem;
+      margin: 0.5rem auto;
+    }
+
+    .inactive-message{
+      text-align: center;
+      font-size: 0.8rem;
+      color: gray;
+      margin-bottom: 1rem;
+    }
+
+    ul#players-list {
+      list-style-type: none;
+      margin: 0;padding: 0;
+    }
+    li.court-player {
+      background: #f0f0f3;
+
+      /* Neumorphism */
+      box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.2), -4px -4px 13px #ffffff,
+        6px 6px 36px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+
+      padding: 0.8rem;
+      margin-top: 1rem;
+
+      display: grid;
+      grid-template-columns: 2.5fr 7.5fr;
+      grid-gap: 0.5rem;
+
+      cursor: pointer;
+
+      .cp-img{
+        grid-row: 1/-1;
+        img{
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+        }
+      }
+      .cp-name{
+        grid-row: 1;
+        grid-column: 2;
+        font-weight: bold;
+        color: $color-primary-blue-text;
+      }
+      .cp-level{
+        grid-row: 1;
+        grid-column: 2;
+        margin-top: 1.5rem;
+      }
     }
   }
   .hidden {
@@ -161,4 +272,20 @@
     justify-content: space-between;
     align-items: center;
   }
+
+  
+  .fa-user{
+    padding: 0 0.3rem;
+  }
+
+.hidden{
+  display: none;
+}
+
+.message-container{
+  position: fixed;
+  top: 50vh; left: 50vw;
+  transform: translate(-50%,-50%);
+}
+
 }

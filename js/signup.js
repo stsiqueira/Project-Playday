@@ -5,51 +5,61 @@ const passwordField = document.getElementById('password');
 const confirmPasswordField = document.getElementById('confirm-password');
 const gsignup = document.getElementById('gsignup');
 const facebookSignin = document.getElementById("fsignup");
+const twitterSignin = document.getElementById("tsignup");
 
-function ValidateEmail(mail) {
-  if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(mail)) {
-	  if(confirmPasswordField.value == passwordField.value) {
-		return (true)
-	  }
-	  else {
-			alert("password does not match");
-			return false;
-	  }
-  }
-  alert("You have entered an invalid email address!")
-  return (false)
-}
 
 // var db = firebase.firestore();
+let appUserobject = get_appUser();
+console.log(appUserobject);
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user && appUserobject) {
+        window.location.href = "home.html";
+    }
+});
 
-const signUpWithEmailFunction = () => {
-  const email = mailField.value;
-  const password = passwordField.value;
-  if (ValidateEmail(email)) {
-	firebase.auth().createUserWithEmailAndPassword(email, password)
-      .then((userCredential) => {
-        var user = userCredential.user;
-      checkIfUserExist(user, 1, 0);
-      // window.location.assign('log-in.html');
-      })
-      .catch((error) => {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-		if(errorCode == "auth/email-already-in-use") {
-			alert(errorMessage);
-		}
-		else {
-			alert(errorMessage);
-		}
-    });
-  }
+
+const signUpWithEmailFunction = (e) => {
+	e.preventDefault();
+	const email = mailField.value;
+	const password = passwordField.value;
+	if(!email || !password || !confirmPasswordField.value || !passwordField.value) {
+        showToast("input all the fields")
+        return false;
+    }
+	if (validateEmail(email)) {
+		firebase.auth().createUserWithEmailAndPassword(email, password)
+			.then((userCredential) => {
+				var user = userCredential.user;
+				checkIfUserExist(user, 1, 0);
+			})
+			.catch((error) => {
+				var errorCode = error.code;
+				var errorMessage = error.message;
+				if(errorCode == "auth/email-already-in-use") {
+					showToast(errorMessage);
+				}
+				else {
+					showToast(errorMessage);
+				}
+		});
+	}
 }
 
 var provider = new firebase.auth.GoogleAuthProvider();
+var fbProvider = new firebase.auth.FacebookAuthProvider();
+var tprovider = new firebase.auth.TwitterAuthProvider();
 
 signUp.addEventListener('click', signUpWithEmailFunction);
+
 gsignup.addEventListener('click',function(){
     googleSignOn(0, 2);
 });
 
+facebookSignin.addEventListener('click',function(){
+    fbSignOn(0, 2);
+});
+
+twitterSignin.addEventListener('click',function(){
+    tSignon(0, 2);
+});
 

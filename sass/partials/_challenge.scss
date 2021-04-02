@@ -1,0 +1,54 @@
+
+.challenge-invite-page{
+    
+    
+    .title{
+        margin: 0;
+    }
+
+    .challenge-invite-wrapper{
+        padding-top: 2rem;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+
+        .player-image img{
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #000;
+            box-shadow: 2px 2px 5px 5px rgba(0,0,0,.2);
+        }
+    }
+    h3{
+        color: $color-footer-nav-link;
+    }
+    .invite-msg-wrapper{
+        width: 90%;
+        margin: auto;
+
+        overflow: hidden;
+        textarea{
+            width: 90%;
+            resize: none;
+            border: none;
+            outline: none;
+            background-color: $color-main-bg;
+            padding: 1rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+
+        }
+    }
+    .buttons{
+        width: 90%;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        margin-bottom: 2rem;
+    }
+  
+
+}

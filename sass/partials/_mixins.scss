@@ -20,12 +20,13 @@
 }
 
 @mixin select-options{
-    height: 50px;
+    height: 32px;
     font-family: $font_sans;
     font-weight: medium;
-    border-radius: 25px;
+    border-radius: 20px;
     outline: transparent;
-    
+
+    padding: 0 0 0 0.5rem;
 }
 @mixin inputStyle($width:25%, $color: #EEF0F6) {
     overflow: visible;
@@ -65,7 +66,7 @@
 
 // grid 
 
-@mixin autoGrid($minWidth){
+@mixin autoGrid($minWidth) {
     display: grid;
     grid-gap: 1rem;
     padding: 1rem;
@@ -74,8 +75,25 @@
     // grid-auto-flow: dense;
 }
 
-@mixin basicButtonStyle($bgColor, $fontColor){
-    height: 50px;
+@mixin inputBoxStyle($backgroundColor) {
+    border-radius: 1rem;
+    outline: none;
+    width: 100%;
+    border: none;
+    padding: 0.6rem 1rem;
+    height: 43px;
+    -webkit-box-sizing: border-box; 
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; 
+    font-size: .8rem;
+    background: $backgroundColor;
+    color: $color_sign_in_font;
+    -webkit-box-shadow: 4px 3px 10px -3px grey;
+    box-shadow: 4px 3px 6px -3px grey;
+}
+
+@mixin basicButtonStyle($bgColor, $fontColor) {
+    height: 43px;
     width: auto;
     border: none;
     font-size: $font_size_buttons;
@@ -95,3 +113,33 @@
 
 
 
+// ========= Shadows  ========= // 
+
+@mixin shadow(){
+     /* Reverse Neumorphism */
+    box-shadow: -4px -4px 16px rgba(255, 255, 255, 0.25), 4px 4px 8px rgba(66, 83, 107, 0.09), inset 0px -4px 14px #FFFFFF, inset 0px 2px 6px rgba(66, 83, 107, 0.22);
+    border-radius: 25px;
+}
+
+// ============= Back Button   ============= //
+
+@mixin backBtn() {
+
+background: #F0F0F3;
+box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.2), -4px -4px 15px #FFFFFF, 6px 6px 36px rgba(0, 0, 0, 0.1);
+}
+
+// ============= Making the screen 100vh  ============= //
+
+
+@mixin screenHeight() {
+    
+max-width: 500px;
+margin: auto;
+display: flex;
+flex-flow: column nowrap;
+justify-content: space-between;
+align-content: space-between;
+height: 100vh;
+
+}

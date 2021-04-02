@@ -30,6 +30,7 @@
   }
   
   @keyframes fadein {
+
     from {bottom: 0; opacity: 0;}
     to {bottom: 30px; opacity: 1;}
   }
@@ -45,7 +46,7 @@
   }
 
   .accordion {
-    	background-color: white;
+    background-color: white;
 		color: #444;
 		cursor: pointer;
 		padding: 18px;

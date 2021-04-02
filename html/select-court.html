@@ -10,6 +10,8 @@
       type="text/css"
       href="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.5.0/maps/maps.css"
     />
+	  <link rel="manifest" href="../manifest.json">
+
 
     <style>
       
@@ -34,9 +36,20 @@
     <script type="text/javascript" src="../js/select-court.js"></script>
   </head>
   <body class="select-court">
+
+    <header>   
+      <div id="goBack" class="back-button">
+          <i class="fas fa-angle-left"> <span class="visually-hidden">back-button</span></i>
+      </div>
+      <div class="title">
+        Court Info
+      </div>
+      </header>
+
     <div class="main-wrapper">
       <main>
         <div class="select-court-container">
+          <!-- <div>Choose a court</div> -->
           <div class="filters">
             <div class="sort">
               <select name="sortby" class="sortby" id="sortby" aria-placeholder="Sort By">
@@ -77,14 +90,15 @@
             <div id="selected-phone" class="selected-phone"></div>
           </div>
           <div class="user-options">
-            <div id="save-court" class="save-container">Save Court</div>
-            <div id="challenge-court" class="challenge-container">Challenge Players</div>
+            <div id="save-court" class="save-container"><i class="fas fa-bookmark"></i>Save Court</div>
+            <div id="challenge-court" class="challenge-container"><i class="fas fa-trophy"></i>Register to Challenge</div>
           </div>
           <div class="user-message-display">
           </div>
           <div class="players-list-container">
-            <div class="show-players-list" id="show-players-list">Click here to <span id="pl-msg">see</span></div>
-            <h3>Players enrolled at this court</h3>
+            <!-- <div class="show-players-list" id="show-players-list">Click here to <span id="pl-msg">see</span></div> -->
+            <div class="inactive-message" style="display: none;">"Register to challenge" at this court enables you to chat with other players</div>
+            <h3>Players you can challenge</h3>            
             <ul id="players-list">
 
             </ul> 
@@ -92,41 +106,37 @@
         </div>
       </main>
 
-      
+      <div class="message-container hidden">
+        No courts nearby, please increase the distance radius.
+      </div>
+
     </div>
     <footer>
       <!-- Bottom Navigation Bar -->
 
   <ul class="bottom-nav-bar footer-nav">
-
-      <li id="goBack" class="nav-elements nav-1">
-          <div class="icons-back footer-icons">
-              <i class="fas fa-chevron-circle-left"></i>
-              <div class="button-text">Back</div>
-              <span class="visually-hidden">Back button</span>
-          </div>
-      </li>
-      <li class="nav-elements nav-2">
-          <a href="home.html" class="icons-home footer-icons">
-              <i class="fas fa-home"></i>
-              <div class="button-text">Home</div>
-              <span class="visually-hidden">Home button</span>
-          </a>
-      </li>
-      <li class="nav-elements nav-3">
-          <a href="user-account-settings.html" class="icons-user-setting footer-icons">
-              <i class="far fa-user-circle"></i>
-              <div class="button-text">User setting</div>
-              <span class="visually-hidden">User setting button</span>
-          </a>
-      </li>
-      <li class="nav-elements nav-4">
-          <a href="" class="icons-chat footer-icons">
-              <i class="fas fa-comment-dots"></i>
-              <div class="button-text">Chat</div>
-              <span class="visually-hidden">Chat button</span>
-          </a>
-      </li>
+      
+      <li class="nav-elements nav-1 ">
+				<a href="home.html" class="icons-home footer-icons">
+					<i class="fas fa-home"></i>
+					<div class="button-text">Home</div>
+					<span class="visually-hidden">Home button</span>
+				</a>
+			</li>			
+			<li class="nav-elements nav-2">
+				<a href="chat-history.html" class="icons-chat footer-icons">
+					<i class="fas fa-comment-alt"></i>
+					<div class="button-text">Chat</div>
+					<span class="visually-hidden">Chat button</span>
+				</a>
+			</li>
+			<li class="nav-elements nav-3">
+				<a href="user-account-settings.html" class="icons-user-setting footer-icons">
+					<i class="fas fa-user-circle"></i>
+					<div class="button-text">User setting</div>
+					<span class="visually-hidden">User setting button</span>
+				</a>
+			</li>
 
    </ul>
 </footer> 

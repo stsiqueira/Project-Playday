@@ -32,6 +32,12 @@ db.collection("user").where("userID", "==", userAppId).get()
             querySnapshot.forEach((doc) => {
                 friendProfile = doc.data();
                 $(".chat-title").text(`${friendProfile.name}`);
+                let img = 
+                    `<div class="chat-image">
+                        <img src="${friendProfile.profilePic}" alt="'s picture">
+                    </div>`;
+                $(".title").append(img);
+
                 // Generating chatID
                 if(userAppProfile.chatId < friendProfile.chatId){
                     chatId = "chatID" + userAppProfile.chatId + friendProfile.chatId;
@@ -127,11 +133,8 @@ setTimeout(() => {
                 if(change.doc.data().senderId != userAppProfile.name){
 
                     let newLine = `                    
-                        <li> 
-                            <div class="chat-image">
-                                <img src="${friendProfile.profilePic}" alt="'s picture">
-                            </div>
-                            <div class="chat-message">
+                        <li class="receiver"> 
+                            <div class="chat-message receiver">
                                 <p class="text-message"> ${change.doc.data().message}</p>
                             </div>
                         </li>`;

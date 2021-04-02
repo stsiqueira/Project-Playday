@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/ef8606d888.js" crossorigin="anonymous"></script> 
+	<link rel="manifest" href="../manifest.json">
+
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
     <!-- The core Firebase JS SDK is always required and must be listed first -->
@@ -14,13 +16,15 @@
     <script src="../js/common.js" defer></script>
     <script src="../js/chat-history.js" defer></script>
 
+
     <link rel="stylesheet" href="../style.css">
-    <title>Playday</title>
+
+    <title>PlayDay</title>
 
 </head>
 
-<body class="page chat-history-page">
-    <header>
+<body class="page chat-history-page" id="chat-history-page">
+    <header id="header-top">
         <!-- chat History Heading -->
         <h2 class="chat-history-heading page-heading">Chats</h2>
     </header>
@@ -32,6 +36,35 @@
             </ul>
         </div>
     </main>
+    
+    <footer>
+		<!-- Bottom Navigation Bar -->
+
+		<ul class="bottom-nav-bar footer-nav">
+			<li class="nav-elements nav-2">
+				<a href="home.html" class="icons-home footer-icons">
+					<i class="fas fa-home"></i>
+					<div class="button-text">Home</div>
+					<span class="visually-hidden">Home button</span>
+				</a>
+			</li>
+			<li class="nav-elements nav-4 selected-foot-item">
+				<a href="chat-history.html" class="icons-chat footer-icons">
+					<i class="fas fa-comment-alt"></i>
+					<div class="button-text">Chat</div>
+					<span class="visually-hidden">Chat button</span>
+				</a>
+			</li>
+			<li class="nav-elements nav-3">
+				<a href="user-account-settings.html" class="icons-user-setting footer-icons">
+					<i class="far fa-user-circle"></i>
+					<div class="button-text">User setting</div>
+					<span class="visually-hidden">User setting button</span>
+				</a>
+			</li>
+			
+		</ul>
+	</footer>
 
 </body>
 

@@ -1,0 +1,55 @@
+header{
+    background-color: $color-main-bg;
+    display: flex;
+    flex-flow: row nowrap;  
+
+    .back-button{
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        position:absolute;
+        left: .7rem; top: .7rem;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 2px 2px 5px 5px #cbcbda;
+
+        a{
+            padding: 0;
+            margin: 0;
+
+            i{
+                font-size: 1.5rem;
+                color:$color_footer_nav_link;
+                
+            }
+        }
+    }
+    .title{
+        flex: 1 0 50%;
+        display: flex;
+        justify-content: center;
+        margin:1.2rem;
+        color:$color_footer_nav_link;
+
+    }
+}
+
+
+#chat-history-page{
+
+#header-top{
+        height: 30px;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+    
+    h2{
+        margin: 0;
+        text-align: center;
+        font-weight: 500;
+        font-size: 1.5rem;
+        }
+    }
+}

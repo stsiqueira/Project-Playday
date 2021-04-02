@@ -27,6 +27,8 @@ $(document).ready(function () {
     $("#message").html();
     $('#manual,#auto,#continue,#skip').hide();
     $("#map,#autoSearchBox").html("");
+    $("#continue").prop('disabled', true).removeClass("continue-active");
+
   }
 
   let showButtons = () => {
@@ -61,13 +63,15 @@ $(document).ready(function () {
   });
 
   $('#continue').click(function () {
-
+    $('.body-wrapper').addClass("blur");
+    $('.loader').removeClass("hidden");
     routeTo != null ? updateUserLocation(routeTo) : updateUserLocation();  
     
   });
 
   if (storedDBpositions) {
     showMap(hiddenCoordinates.lat, hiddenCoordinates.lon, "map", "Your Selected Location");
+    $("#continue").prop('disabled', false).addClass("continue-active");
     showButtons();
   } else {
     getCurrentLocation();    
@@ -94,6 +98,7 @@ $(document).ready(function () {
     // latitude = 49.2176865;    // longitude = -123.09937450000001;
 
     showMap(hiddenCoordinates.lat, hiddenCoordinates.lon, "map", "Your Selected Location");
+    $("#continue").prop('disabled', false).addClass("continue-active");
     $("#hidden").html(JSON.stringify(hiddenCoordinates));
   }
 
@@ -105,11 +110,13 @@ $(document).ready(function () {
     if (option == "Disabled") {
       $("#message").html("Auto selection feature to locate you is disabled. You can set location manually.");
       $("#message").show();
+      $("#continue").prop('disabled', true).removeClass("continue-active");
       searchBoxShow();
     }
     else if (option == "Not Supported") {
       $("#message").html("Auto selection feature to locate you is not supported by your browser. You can set location manually.")
       $("#message").show();
+      $("#continue").prop('disabled', true).removeClass("continue-active");
       searchBoxShow();
     }
     else if (option == "Voluntary") {
@@ -122,11 +129,22 @@ $(document).ready(function () {
     firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
         let document = db.collection("user").doc(appUserobject.auid);
-        document.set({
-          userLocation: new firebase.firestore.GeoPoint(hiddenCoordinates.lat, hiddenCoordinates.lon)
-        }, { merge: true }).then(() => {
 
-          
+        let reversecodeUrl = `https://api.tomtom.com/search/2/reverseGeocode/${hiddenCoordinates.lat},${hiddenCoordinates.lon}.json?key=${tomtomApiKey}`;
+        let addressString = "Location not Selectedddd";   
+        $.ajax({
+          url: reversecodeUrl,
+          dataType: 'json',
+          async: false,
+          success: function(data) {
+            addressString = data.addresses[0].address.municipality;   
+          }
+        });       
+
+        document.set({
+          userLocation: new firebase.firestore.GeoPoint(hiddenCoordinates.lat, hiddenCoordinates.lon),
+          userLocationCity: addressString
+        }, { merge: true }).then(() => {          
 
           if(routeTo != ""){   
             // set_appUser().then(()=>{goToSportCourts(routeTo);});
@@ -196,14 +214,17 @@ $(document).ready(function () {
         hiddenCoordinates.lon = poiList[0].position.lng;
         $("#hidden").html(JSON.stringify(hiddenCoordinates));
         $("#message").hide();
+        $("#continue").prop('disabled', false).addClass("continue-active");
       }
       else if (poiList.length > 1) {
         $("#message").html("More than one result. Please refine your search")
         $("#message").show();
+        $("#continue").prop('disabled', true).removeClass("continue-active");
       }
       else {
         $("#message").html("No results found!")
         $("#message").show();
+        $("#continue").prop('disabled', true).removeClass("continue-active");
       }
 
     };
@@ -310,6 +331,7 @@ $(document).ready(function () {
 
     function handleResultClearing() {
       searchMarkersManager.clear();
+      $("#continue").prop('disabled', true).removeClass("continue-active");
     }
 
     if (hiddenCoordinates.lon == 0 && hiddenCoordinates.lat == 0) {

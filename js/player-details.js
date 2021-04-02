@@ -4,8 +4,13 @@ const update = document.getElementById('update');
 // user data
 const locationInfo = document.getElementsByClassName("location-info");
 const imageUser = document.getElementById('user-image');
+const editIcon = document.getElementById('edit-icon');
+var modal = document.getElementById("myModal");
 const imageContainer = document.getElementById('image-container');
 
+var span = document.getElementsByClassName("close")[0];
+const aboutApply = document.getElementById('about-save');
+const aboutInput = document.getElementById('about-input');
 const locationInput = document.getElementById('location-input'); 
 const imgUpload = document.getElementById("imgupload")
 const userName = document.getElementsByClassName("user-name");
@@ -18,27 +23,52 @@ const submitButton = document.getElementById("apply-changes");
 const storageRef = firebase.storage().ref();
 
 let appUserobject = get_appUser();
-console.log(appUserobject);
+
+// Modal Code ***********************************
+
+editIcon.onclick = function() {
+    modal.style.display = "block";
+}
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+}
+
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// ***********************************************
+
 //update page details ****************************
 
 const updateInnerHtml = (element, value) => {
     element.innerHTML = value;
 }
 
-updateInnerHtml(userName[0], appUserobject.lastName);
+updateInnerHtml(userName[0], `${appUserobject.firstName} ${appUserobject.lastName}`);
 updateInnerHtml(userAbout[0], appUserobject.about);
-
 
 $.getJSON(`https://api.tomtom.com/search/2/reverseGeocode/${appUserobject.userLocation.latitude},${appUserobject.userLocation.longitude}.json?key=${tomtomApiKey}`, function (json) {
 
     addressString = json.addresses[0].address.municipality;
-    document.getElementById('location-input').value = addressString ? addressString : "default";
+    document.getElementById('location-input').value = addressString ? addressString : "Not Selected";
 
 });
 
 $( "#location-info-wrapper" ).click(function() {
     window.location.href = "location-selection.html";
 });
+
+
+aboutApply.addEventListener('click', function () {
+    console.log(aboutInput.value);
+    updateDbDetails('user', appUserobject.auid, 'about', aboutInput.value);
+    updateInnerHtml(userAbout[0], aboutInput.value);
+    modal.style.display = "none";
+})
 
 // ***************************************************
 
@@ -54,21 +84,10 @@ const setImage = (url) => {
     img.setAttribute('src', url);
 }
 
-const getDownloadUrl = (path="/", user, flag=0, googleSignInFlag = 0) => {
-    if (googleSignInFlag) {
-        var docRef = db.collection("user").doc(user.uid);
-        docRef.get().then((doc) => {
-            if (!doc.exists) {
-                console.log("No such document!");
-            }
-        }).catch((error) => {
-            console.log("Error getting document:", error);
-        });
-    }
+const getDownloadUrl = (path="/", user, flag=0) => {
     const userImageRef = storageRef.child('user_images/' + path);
     userImageRef.getDownloadURL()
     .then((url) => {
-        // inserted into an <img> element
         setImage(url);
         if (flag) {
             updateDbDetails('user', user.uid, 'profilePic', url);
@@ -79,21 +98,21 @@ const getDownloadUrl = (path="/", user, flag=0, googleSignInFlag = 0) => {
     });
 }
 
+
 //updating image in html
 const checkImageExist = () => {
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
-            let googleUserImage = user.photoURL;
+            let socialUserImage = user.providerData[0].photoURL;
             if (appUserobject.profilePhoto) {
-                getDownloadUrl(user.uid, user);
+                setImage(appUserobject.profilePhoto);
             }
-            else if(googleUserImage && !appUserobject.profilePhoto) {
-                updateDbDetails('user', user.uid, 'profilePic', googleUserImage);
-                setImage(googleUserImage);
+            else if(socialUserImage && !appUserobject.profilePhoto) {
+                updateDbDetails('user', user.uid, 'profilePic', socialUserImage);
+                setImage(socialUserImage);
             }
-            else if(!googleUserImage && !appUserobject.profilePhoto) {
+            else if(!socialUserImage && !appUserobject.profilePhoto) {
                 getDownloadUrl('user-default.png', user, 1);
-                // updateDbDetails('user', user.uid, 'profilePic', imageUrl);
             }
         }
     });
@@ -165,7 +184,7 @@ const savedAndChallengeCourtsHtml = (count, courtName, selectedSport, key,destin
                         </div>
                     </div>
                     <div class="delete-court-wrapper">
-                        <button id="${key}-${typeOfCourts}" class="delete-button red-button delete-button-${count}">Delete</button>
+                        <button id="${key}-${typeOfCourts}" class="delete-button red-button delete-button-${count}"><i class="fas fa-trash"></i></button>
                     </div>
                 </div>`
     $(`.${destinationHtml}`).append(html);
@@ -175,16 +194,17 @@ function changeSport(typeOfCourts, destinationHtml, currentPageFlag) {
     count = 0;
 
     const sportSelected = currentPageFlag ? appUserobject.currentPage : selectedSport.value.toLowerCase();
+
     if(currentPageFlag) {
         selectedSport.value = capitalize(appUserobject.currentPage);
     }
 
-    let courts = appUserobject.sports[sportSelected]['challengeCourts'];
+    let courts = appUserobject.sports[sportSelected][typeOfCourts];
     var userLevel = appUserobject.sports[sportSelected]['userLevel'];
     userLevelInput.value = userLevel  || 'NoSelect';
 
-    if ($('.saved-courts').find('.courts')){
-        $(".courts").remove();
+    if ($(`.${destinationHtml}`).find('.courts')){
+        $(`.${destinationHtml} .courts`).remove();
     }
 
     for (var key in courts) {
@@ -230,6 +250,8 @@ submitButton.addEventListener('click', function (event) {
     }
 });
 
+// ************************************************
+
 const getSignInMethod = () => {
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
@@ -257,14 +279,6 @@ const getSignInMethod = () => {
     });
 }
 
-function showToast(text) {
-    var x = document.getElementById("toast");
-    x.innerHTML = text;
-
-    x.className = "show";
-    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-}
-
 getSignInMethod();
 
 function changePasswordAccordion() {
@@ -289,11 +303,12 @@ const capitalize = (s) => {
 
 function getCurrentPage() {
     if (document.referrer.includes("home")) {
-        console.log("hii");
+        // console.log("");
     }
     else if(appUserobject.currentPage) {
         updateSport(1);
     }
+    // const home = document.referrer.includes("home") ? null : updateSport(1);
 }
 
 getCurrentPage();

@@ -51,6 +51,9 @@
 /* Articles ================================================= */
 @import "partials/articles";
 
+/* Location-Selection ================================================= */
+@import "partials/locationSelection";
+
 /* Select Court Specification */
 @import "partials/select-courts";
 
@@ -74,15 +77,23 @@
 
 /* Chat-History========================================= */
 @import "partials/chat-history";
+
 /* Single Player Info========================================= */
 @import "partials/single-player-info";
+
 /* Chat Window ========================================= */
 @import "partials/chat-window";
+
+/* Chat-History========================================= */
+@import "partials/challenge";
+
 /* Toast ========================================= */
 @import "partials/toast";
 
 /* Splash ========================================= */
-@import "partials/splash2";
+@import "partials/splash";
+
+
 
 
 

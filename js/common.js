@@ -15,10 +15,11 @@ firebase.initializeApp(firebaseConfig);
 let appUserLocal;
 
 // const tomtomApiKey = "lDNGOihuwicB9jy3du63gNr5gUGwCAZC";
-let tomtomApiKey = "ctMg0rMDauN3jPf1SOHXHVJNpJnhmGaS";
-// tomtomApiKey = "XOeleMUFVN4TaGSAJwKm8y7IBfy7YeQA";
+// let tomtomApiKey = "ctMg0rMDauN3jPf1SOHXHVJNpJnhmGaS";
+let tomtomApiKey = "XOeleMUFVN4TaGSAJwKm8y7IBfy7YeQA";
 
-const redirectBasedOnLogin = (user, googleLogin) => {
+
+const redirectBasedOnLogin = (user, socialLogin) => {
 
     if (user) {
         var db = firebase.firestore();
@@ -34,8 +35,8 @@ const redirectBasedOnLogin = (user, googleLogin) => {
                     }
                 });
             }).then(() => {
-                if (!googleLogin) {
-                    window.location.assign('log-in.html');
+                if (!socialLogin) {
+                    window.location.assign('log-in.html?signup=true');
                 }
                 else {
                     if (appUserLocal && appUserLocal.userLocation.latitude == "0" && appUserLocal.userLocation.longitude == "0") {
@@ -57,12 +58,12 @@ const redirectBasedOnLogin = (user, googleLogin) => {
 }
 
 // Updating the User Database while Signing Up
-const updateDB = (user, flag = 0, googleLogin = 0) => {
+const updateDB = (user, flag = 0, socialLogin = 0) => {
 
     const displayName = flag ? username.value : user.displayName;
 
     var docData = {
-        about: "",
+        about: "Hi, I am new to the PlayDay app!",
         dateOfBirth: "01/31/1800",
         name: displayName,
         profilePic: null,
@@ -79,11 +80,14 @@ const updateDB = (user, flag = 0, googleLogin = 0) => {
             }
         },
         chatId:Date.now(),
+        chats:[],
+        lastCheck:{},
         userID: user.uid,
-        userLocation: new firebase.firestore.GeoPoint(0, 0)
+        userLocation: new firebase.firestore.GeoPoint(0, 0),
+        userLocationCity:"Location Not Set"
     }
     db.collection("user").doc(user.uid).set(docData).then((docRef) => {
-        redirectBasedOnLogin(user, googleLogin);
+        redirectBasedOnLogin(user, socialLogin);
         console.log("document added");
     })
     .catch((error) => {
@@ -92,16 +96,12 @@ const updateDB = (user, flag = 0, googleLogin = 0) => {
 }
 
 // Check if the User Already exist in DB
-const checkIfUserExist = (user, flag = 0, googleLogin = 0) => {
+const checkIfUserExist = (user, flag = 0, socialLogin = 0) => {
     db.collection("user").doc(user.uid).get()
         .then((querySnapshot) => {
-            // if (querySnapshot.exists) {
-            //     redirectBasedOnLogin(user, googleLogin);
-            // }
-            // else {
-            //     updateDB(user, flag, googleLogin);
-            // }
-            const answer = querySnapshot.exists ? redirectBasedOnLogin(user, googleLogin) : updateDB(user, flag, googleLogin);
+            
+            const answer = querySnapshot.exists ? redirectBasedOnLogin(user, socialLogin) : updateDB(user, flag, socialLogin);
+
         })
         .catch((error) => {
             console.log("Error getting documents: ", error);
@@ -109,33 +109,50 @@ const checkIfUserExist = (user, flag = 0, googleLogin = 0) => {
 }
 
 // Invoking Sign Up function for Sign UP
-const googleSignOn = (flag, googlelogin) => {
+const googleSignOn = (flag, socialLogin) => {
     firebase.auth().signInWithPopup(provider)
     .then((result) => {
         var user = result.user;
-        checkIfUserExist(user, flag, googlelogin);
+        checkIfUserExist(user, flag, socialLogin);
+    }).catch((error) => {
+        var errorCode = error.code;
+        if(errorCode != "auth/popup-closed-by-user") {
+            var errorMessage = error.message;
+            var email = error.email;
+            console.log(error.code);
+            var credential = error.credential;
+            alert(errorMessage);
+        }
+    });
+}
+
+// Invoking Sign Up function for Sign UP
+const fbSignOn = (flag, socialLogin) => {
+    firebase.auth().signInWithPopup(fbProvider)
+    .then((result) => {
+        var user = result.user;
+        checkIfUserExist(user, flag, socialLogin);
+    })
+    .catch((error) => {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        var email = error.email;
+        var credential = error.credential;
+    });
+}
+
+const tSignon = (flag, socialLogin) => {
+    firebase.auth().signInWithPopup(tprovider)
+    .then((result) => {
+        var user = result.user;
+        console.log(user);
+        checkIfUserExist(user, flag, socialLogin);
     }).catch((error) => {
         var errorCode = error.code;
         var errorMessage = error.message;
         var email = error.email;
         var credential = error.credential;
-        alert(errorMessage);
         // ...
-    });
-}
-
-// Invoking Sign Up function for Sign UP
-const fbSignOn = (flag, googlelogin) => {
-    firebase.auth().signInWithPopup(fbProvider)
-    .then((result) => {
-    var user = result.user;
-    checkIfUserExist(user, flag, googlelogin);
-  })
-  .catch((error) => {
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    var email = error.email;
-    var credential = error.credential;
     });
 }
 
@@ -171,7 +188,7 @@ const updateLevel = (sport = "Unknown", level, redirect = "") => {
 }
 
 class AppUser {
-    constructor(auid, firstName, lastName, dob, profilePhoto, about, userLocation, sports, chatId, currentPage) {
+    constructor(auid, firstName, lastName, dob, profilePhoto, about, userLocation, sports, chatId, currentPage, userLocationCity = "Location Not Set") {
         this.auid = auid;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -182,6 +199,7 @@ class AppUser {
         this.sports = sports;
         this.chatId = chatId;
         this.currentPage = currentPage;
+        this.userLocationCity = userLocationCity;
     }
 }
 
@@ -237,7 +255,7 @@ const goToSportCourts = (sport) => {
 
 const get_appUser = () => {
     if (appUserLocal == undefined || appUserLocal == "") {
-        if (localStorage.getItem("appUser") === null || localStorage.getItem("appUser") === null) {
+        if (localStorage.getItem("appUser") === undefined || localStorage.getItem("appUser") === null) {
             set_appUser();
         }
         else
@@ -256,7 +274,7 @@ async function set_appUser (redirect = "")  {
             .then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
 
-                    let au = new AppUser(doc.data().userID, doc.data().name.substring(0, doc.data().name.indexOf(" ")), doc.data().name.substring(doc.data().name.indexOf(" ") + 1, doc.data().name.length), doc.data().dateOfBirth, doc.data().profilePic, doc.data().about, doc.data().userLocation, doc.data().sports, doc.data().chatId, doc.data().currentPage);
+                    let au = new AppUser(doc.data().userID, doc.data().name.substring(0, doc.data().name.indexOf(" ")), doc.data().name.substring(doc.data().name.indexOf(" ") + 1, doc.data().name.length), doc.data().dateOfBirth, doc.data().profilePic, doc.data().about, doc.data().userLocation, doc.data().sports, doc.data().chatId, doc.data().currentPage,doc.data().userLocationCity);
                     appUserLocal = au;
 
                     localStorage.setItem("appUser", JSON.stringify(au));
@@ -305,8 +323,7 @@ const updateDbDetails = (collection, user, key, value) => {
 const db = firebase.firestore();
 
 function updateCurrentPage() {
-    // currentPage = window.location.pathname;
-    
+
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             const queryString = window.location.search;
@@ -317,6 +334,38 @@ function updateCurrentPage() {
             }
         }
     });
+}
+
+function validateEmail(mail) {
+    if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(mail)) {
+        if(confirmPasswordField.value == passwordField.value) {
+          return (true)
+        }
+        else {
+              showToast("password does not match");
+              return false;
+        }
+    }
+    showToast("You have entered an invalid email address!")
+    return (false)
+  }
+
+function checkPassword(inputtxt) { 
+    var decimal=  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
+    if(inputtxt.match(decimal)) { 
+        return true;
+    }
+    else { 
+        return false;
+    }
+} 
+
+function showToast(text) {
+    var x = document.getElementById("toast");
+    x.innerHTML = text;
+
+    x.className = "show";
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
 
 updateCurrentPage();

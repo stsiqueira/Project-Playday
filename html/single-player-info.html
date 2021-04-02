@@ -11,38 +11,48 @@
     <script src="https://www.gstatic.com/firebasejs/8.2.8/firebase-firestore.js"></script>
     <!-- Chat JavaScript file -->   
     <script src="https://kit.fontawesome.com/ef8606d888.js" crossorigin="anonymous"></script> 
-    <title>Playday</title>
+    <title>PlayDay</title>
     <script src="../js/common.js" defer></script>
     <script src="../js/single-player-info.js" defer></script>
     <link rel="stylesheet" href="../style.css">
+	<link rel="manifest" href="../manifest.json">
+
 </head>
 <body class="page single-player-info">
     <header>   
+		<div class="back-button">
+			<a href="javascript:history.go(-1)">
+				<i class="fas fa-angle-left"> <span class="visually-hidden">back-button</span></i>
+			</a>
+		</div>
+		<div class="title">
+			<h2>User Details</h2>
+		</div>
     </header>
     <main>
         <div class="report-button">
-            <button>Report</button>
+            <button><i class="fas fa-exclamation-triangle">  <span class="visually-hidden" >alert icon</span> </i> Report</button>
         </div>
         <div class="player-detail-content-wrapper content-wrapper">
             <!-- Inserted code here -->
-        
+        </div>
     </main>	
     <footer>
 		<!-- Bottom Navigation Bar -->
 
 		<ul class="bottom-nav-bar footer-nav">
-			<li class="nav-elements nav-1">
-				<a href="" class="icons-back footer-icons">
-					<i class="fas fa-chevron-circle-left"></i>
-					<div class="button-text">Back</div>
-					<span class="visually-hidden">Back button</span>
-				</a>
-			</li>
 			<li class="nav-elements nav-2">
 				<a href="home.html" class="icons-home footer-icons">
 					<i class="fas fa-home"></i>
 					<div class="button-text">Home</div>
 					<span class="visually-hidden">Home button</span>
+				</a>
+			</li>
+			<li class="nav-elements nav-4">
+				<a href="chat-history.html" class="icons-chat footer-icons">
+					<i class="fas fa-comment-alt"></i>
+					<div class="button-text">Chat</div>
+					<span class="visually-hidden">Chat button</span>
 				</a>
 			</li>
 			<li class="nav-elements nav-3">
@@ -52,13 +62,7 @@
 					<span class="visually-hidden">User setting button</span>
 				</a>
 			</li>
-			<li class="nav-elements nav-4">
-				<a href="chat-history.html" class="icons-chat footer-icons">
-					<i class="fas fa-comment-dots"></i>
-					<div class="button-text">Chat</div>
-					<span class="visually-hidden">Chat button</span>
-				</a>
-			</li>
+			
 		</ul>
 	</footer>
 </body>

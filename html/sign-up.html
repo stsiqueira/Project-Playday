@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+	<link rel="icon" href="../img/logo.png" />
     <!-- <script defer src="/__/firebase/8.2.9/firebase-app.js"></script>
     <script defer src="/__/firebase/8.2.9/firebase-auth.js"></script> -->
     <script src='https://kit.fontawesome.com/ca9db79fed.js' crossorigin='anonymous'></script>
@@ -16,13 +18,15 @@
     <script src="../js/signup.js" defer></script>
 
     <link rel="stylesheet" href="../style.css">
+	<link rel="manifest" href="../manifest.json">
+
     <title>Playday - Sign Up</title>
 </head>
 
 <body class="page signup-page">
 
     <div class="wrapper-sign-up-screen">
-        <fieldset class="fieldset">
+        <form action="" method="POST" class="fieldset">
             <h2 class="signup-heading">Sign Up</h2>
             <div>
                 <label for="username" class="visually-hidden">User Name</label>
@@ -40,13 +44,10 @@
                 <label for="confirm-password" class="visually-hidden">Password</label>
                 <input type="password" placeholder="Confirm Password" id="confirm-password" name="password" />
             </div>
-            <div class="button-wrapper">
-                <button class="signup-button" id="signUp">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-            </div>
+            
+           
             <!-- <a href="../index.html" class="login-page">Back to Login</a> -->
-        </fieldset>
+            
         <div class="social-sign-up-wrapper">
             <p class="social-text">
                 or Sign Up With
@@ -57,6 +58,13 @@
                 <a id="gsignup" class="google-button button"><i class="fab fa-google"></i></a>
             </div>
         </div>
+        <div class="button-wrapper">
+            <button type="submit" onclick="signUpWithEmailFunction(event)" class="signup-button" id="signUp">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+        </form>
+        <div id="toast">Some text some message..</div>
     </div>
 </body>
 
