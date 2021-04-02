@@ -275,6 +275,9 @@ $(document).ready(function () {
             }, 1000);
             $("#players-list").html("");
         }
+        else{
+            window.location.href = "home.html";
+        }
     });
 
     // $("#show-players-list").click(function () {
@@ -419,7 +422,7 @@ $(document).ready(function () {
             window.location.href = `single-player-info.html?courtPlayerId=${cPlayerId}&sport=${sports}`;
         }
         else {
-            console.log("Why you wanna chat with yourself!");
+            console.log("Self chat isn't allowed!");
         }
 
     });
