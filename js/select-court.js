@@ -316,6 +316,11 @@ $(document).ready(function () {
                         playerName = i.data().name;
                         playerId = i.data().userID;
                         playerPic = i.data().profilePic;
+                        let self = false;
+
+                        if(playerId == appUserobject.auid){
+                            self= true;
+                        }
 
                         switch (sport) {
                             case "badminton":
@@ -328,7 +333,7 @@ $(document).ready(function () {
                                 playerLevel = i.data().sports.volleyball.userLevel;
                                 break;
                         }
-                        playersList += `<li id="courtPlayer-${playerCount}" class="court-player">
+                        playersList += `<li id="courtPlayer-${playerCount}" class="court-player ${self?"self":"other"}">
                                             <div class="cp-img">
                                                 <img src="${playerPic}" alt="court player profile pic"></img>
                                             </div>

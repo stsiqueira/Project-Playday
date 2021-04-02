@@ -852,6 +852,11 @@ img {
 .select-court .single-court-info-container .active-players-list li {
   border: 1px solid #12317F;
 }
+.select-court .single-court-info-container .active-players-list .self {
+  pointer-events: none;
+  box-shadow: none !important;
+  border: none;
+}
 .select-court .img-wrapper {
   grid-column: 1/-1;
   max-height: 170px;
@@ -916,6 +921,7 @@ img {
   display: grid;
   grid-template-columns: 2.5fr 7.5fr;
   grid-gap: 0.5rem;
+  cursor: pointer;
 }
 .select-court .players-list-container li.court-player .cp-img {
   grid-row: 1/-1;
@@ -1860,6 +1866,7 @@ body.home .sport-card {
   border-radius: 10px;
   min-width: 100px;
   box-shadow: 6px 10px 22px -7px rgba(0, 0, 0, 0.58);
+  cursor: pointer;
 }
 body.home .sport-name {
   text-align: center;
