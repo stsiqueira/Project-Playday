@@ -2129,6 +2129,10 @@ a {
 }
 
 /* Home-page ================================================= */
+.html-home {
+  background-color: whitesmoke;
+}
+
 .home.hide-right {
   -webkit-transform: translateX(100%);
           transform: translateX(100%);
@@ -2145,6 +2149,7 @@ body.home {
   font-family: poppins, helvetica, arial, sans-serif;
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
+  background-color: white;
   /* Main */
 }
 
