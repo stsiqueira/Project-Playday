@@ -1,1 +1,9 @@
-{"version":3,"sources":[],"names":[],"mappings":"","file":"user-account-settings.css"}
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "sass/partials/user-account-settings.scss"
+    ],
+    "names": [],
+    "file": "user-account-settings.css"
+}
