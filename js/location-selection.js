@@ -71,6 +71,7 @@ $(document).ready(function () {
 
   if (storedDBpositions) {
     showMap(hiddenCoordinates.lat, hiddenCoordinates.lon, "map", "Your Selected Location");
+    $("#continue").prop('disabled', false).addClass("continue-active");
     showButtons();
   } else {
     getCurrentLocation();    
@@ -330,6 +331,7 @@ $(document).ready(function () {
 
     function handleResultClearing() {
       searchMarkersManager.clear();
+      $("#continue").prop('disabled', true).removeClass("continue-active");
     }
 
     if (hiddenCoordinates.lon == 0 && hiddenCoordinates.lat == 0) {
