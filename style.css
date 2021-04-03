@@ -1683,11 +1683,18 @@ img {
 .user-account-wrapper .accordions-wrapper .challenge-courts-heading:after {
   float: right;
   margin-right: .2rem;
-  font-size: 1rem;
   color: gray;
-  font-family: "Font Awesome 5 Free";
   font-weight: 400;
   content: "\f078";
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: 1.2em;
+}
+
+.user-account-wrapper .accordion-wrapper .activeHeading:after,
+.user-account-wrapper .accordions-wrapper .activeHeading:after {
+  content: "\f077";
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: 1.2em;
 }
 
 .user-account-wrapper .accordion-wrapper .change-password-form,

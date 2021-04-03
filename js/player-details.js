@@ -315,8 +315,11 @@ function getCurrentPage() {
 getCurrentPage();
 
 
-const courtAccordion = (id, classname) => {
+const courtAccordion = (id, classname, headingClassName) => {
     var acc = document.getElementById(id);
+    heading = document.getElementsByClassName(headingClassName)[0];
+    heading.classList.toggle("activeHeading");
+    console.log(heading);
     acc.classList.toggle("active");
     panel = acc.getElementsByClassName(classname);
     if (panel[0].style.maxHeight) {
@@ -327,9 +330,9 @@ const courtAccordion = (id, classname) => {
 }
 
 $("#courtSaved").click(function() {
-    courtAccordion(this.id, 'saved-courts')
+    courtAccordion(this.id, 'saved-courts', 'saved-courts-heading');
 });
 
 $("#courtChallenged").click(function() {
-    courtAccordion(this.id, 'challenge-courts')
+    courtAccordion(this.id, 'challenge-courts', 'challenge-courts-heading');
 });
