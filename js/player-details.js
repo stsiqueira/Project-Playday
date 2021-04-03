@@ -266,7 +266,7 @@ const getSignInMethod = () => {
                 </form>
             </div>` 
             $(".accordion-wrapper").css("display", "block");
-            $( ".accordion-wrapper" ).append(changePasswordHtml);
+            $( ".accordion-wrapper").append(changePasswordHtml);
             const passUpdate = document.getElementById('pass-update');
             const currentPass = document.getElementById('current-password');
             const confirmPass = document.getElementById('confirm-password');
@@ -285,6 +285,7 @@ function changePasswordAccordion() {
     var acc = document.getElementsByClassName("accordion");
     for (let i = 0; i < acc.length; i++) {
         acc[i].addEventListener("click", function() {
+            $( ".accordion-wrapper").toggleClass("padded")
             this.classList.toggle('active');
             var panel = this.nextElementSibling;
             if (panel.style.maxHeight) {
@@ -312,3 +313,23 @@ function getCurrentPage() {
 }
 
 getCurrentPage();
+
+
+const courtAccordion = (id, classname) => {
+    var acc = document.getElementById(id);
+    acc.classList.toggle("active");
+    panel = acc.getElementsByClassName(classname);
+    if (panel[0].style.maxHeight) {
+        panel[0].style.maxHeight = null;
+    } else {
+        panel[0].style.maxHeight = panel[0].scrollHeight + "px";
+    }
+}
+
+$("#courtSaved").click(function() {
+    courtAccordion(this.id, 'saved-courts')
+});
+
+$("#courtChallenged").click(function() {
+    courtAccordion(this.id, 'challenge-courts')
+});

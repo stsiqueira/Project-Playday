@@ -59,17 +59,17 @@
 
   .active {
     display: block;
-	border-bottom-left-radius: 0;
-	border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
   }
   
   .change-password {
-    padding: 0 18px;
+    padding: 0 1rem;
     background-color: white;
     // display: none;
     max-height: 0;
     overflow: hidden;
-	transition: max-height 0.2s ease-out;
-	border-bottom-left-radius: 20px;
-	border-bottom-right-radius: 20px;
+    transition: max-height 0.2s ease-out;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
   }
