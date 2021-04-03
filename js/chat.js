@@ -12,6 +12,7 @@ const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 let userAppId = urlParams.get("userAppId");
 let friendId = urlParams.get('friendId');
+let fieldData = new Date;
 // console.log(userAppId,friendId);
 
 ////////////////////////////////////////////
@@ -84,7 +85,14 @@ db.collection("user").where("userID", "==", userAppId).get()
                     // console.log(userAppProfile.chats);
                     db.collection("user").doc(userAppProfile.userID).update({
                         chats: firebase.firestore.FieldValue.arrayUnion(chatId)
+                         
+
                     });
+                    console.log(chatId);
+                    let string = `lastCheck.${chatId}.date`;
+                    console.log(string);
+                    console.log(friendProfile.userID);
+                    updateLastCheck(string, friendProfile.userID);
                 };
 
             });
@@ -113,8 +121,15 @@ const lastCheck = () =>{
 };
 const updateLastCheck = (chatidtime,userid)=>{
     let field = chatidtime;
+    if(userid == userAppProfile.userID){
+        fieldData = new Date;
+    }else{
+        fieldData = new Date(20201204);
+        console.log("lastcheck friend atualizado");
+    }
+    console.log(fieldData);
     db.collection("user").doc( userid).update({
-        [field]: new Date
+        [field]: fieldData
     })
     .then(() => {
         console.log("updated");
@@ -164,7 +179,7 @@ const generateDocumentId = ()=>{
 }
 
 const sendMessage = () => {
-    if($("#chat-message").val() == ""){
+    if($("#chat-message").val() == " "){
         console.log("invalid")
     }else{
         // change the chatID 

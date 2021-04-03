@@ -29,9 +29,15 @@ $(document).ready(function () {
             output = "";
 
             if (response.hasOwnProperty("results")) {
+                $(".message-container").addClass("hidden");
                 courtsRetrieved = response.results.filter(data => data.poi.categories.filter(c => c === 'sports center'));
                 let count = 0;
                 let players = 0;
+
+                if (courtsRetrieved.length == 0) {
+                    $(".message-container").removeClass("hidden");
+                    return;
+                }
 
                 courtsRetrieved.forEach(element => {
                     count++;
@@ -199,7 +205,7 @@ $(document).ready(function () {
         if (isSavedCourt) {
             $(".user-options .save-container").addClass('court-active');
         }
-        else{
+        else {
             $(".user-options .save-container").removeClass('court-active');
         }
 
@@ -225,8 +231,8 @@ $(document).ready(function () {
 
         if (courtId != null && courtId != undefined && courtId != ""
             && courtName != null && courtName != undefined && courtName != "") {
-            
-            let notSaved = ($(".user-options .save-container").hasClass('court-active')) ?false:true ;
+
+            let notSaved = ($(".user-options .save-container").hasClass('court-active')) ? false : true;
             if (notSaved)
                 setCourts(sports, "savedCourts", courtId, courtName);
             else {
@@ -244,9 +250,9 @@ $(document).ready(function () {
         let courtName = $("#selected-name").html().trim();
 
         if (courtId != null && courtId != undefined && courtId != ""
-            && courtName != null && courtName != undefined && courtName != "") {            
+            && courtName != null && courtName != undefined && courtName != "") {
 
-            let notSaved = ($(".user-options .challenge-container").hasClass('court-active')) ?false:true ;
+            let notSaved = ($(".user-options .challenge-container").hasClass('court-active')) ? false : true;
             if (notSaved)
                 setCourts(sports, "challengeCourts", courtId, courtName);
             else {
@@ -268,6 +274,9 @@ $(document).ready(function () {
                 $(".save-container, .challenge-container").removeClass('court-active');
             }, 1000);
             $("#players-list").html("");
+        }
+        else{
+            window.location.href = "home.html";
         }
     });
 
@@ -296,7 +305,7 @@ $(document).ready(function () {
                 });
             }).then(() => {
                 if (divId != "" && countOnly) {
-                    $(`#${divId}`).html("<i class='far fa-user'></i>"  + courtPlayers.length);
+                    $(`#${divId}`).html("<i class='far fa-user'></i>" + courtPlayers.length);
                     let rowCount = divId.substring(divId.lastIndexOf("-") + 1, divId.length);
                     $(`#entry-${rowCount}`).attr("data-playersCount", courtPlayers.length);
                 }
@@ -310,6 +319,11 @@ $(document).ready(function () {
                         playerName = i.data().name;
                         playerId = i.data().userID;
                         playerPic = i.data().profilePic;
+                        let self = false;
+
+                        if(playerId == appUserobject.auid){
+                            self= true;
+                        }
 
                         switch (sport) {
                             case "badminton":
@@ -322,7 +336,7 @@ $(document).ready(function () {
                                 playerLevel = i.data().sports.volleyball.userLevel;
                                 break;
                         }
-                        playersList += `<li id="courtPlayer-${playerCount}" class="court-player">
+                        playersList += `<li id="courtPlayer-${playerCount}" class="court-player ${self?"self":"other"}">
                                             <div class="cp-img">
                                                 <img src="${playerPic}" alt="court player profile pic"></img>
                                             </div>
@@ -408,7 +422,7 @@ $(document).ready(function () {
             window.location.href = `single-player-info.html?courtPlayerId=${cPlayerId}&sport=${sports}`;
         }
         else {
-            console.log("Why you wanna chat with yourself!");
+            console.log("Self chat isn't allowed!");
         }
 
     });

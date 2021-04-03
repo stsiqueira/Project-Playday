@@ -161,6 +161,12 @@
       li{
         border: 1px solid $color-primary-blue-text;
       }
+
+      .self{
+        pointer-events: none;
+        box-shadow: none !important;
+        border: none;
+      }
     }
 
   }
@@ -234,6 +240,8 @@
       grid-template-columns: 2.5fr 7.5fr;
       grid-gap: 0.5rem;
 
+      cursor: pointer;
+
       .cp-img{
         grid-row: 1/-1;
         img{
@@ -269,4 +277,15 @@
   .fa-user{
     padding: 0 0.3rem;
   }
+
+.hidden{
+  display: none;
+}
+
+.message-container{
+  position: fixed;
+  top: 50vh; left: 50vw;
+  transform: translate(-50%,-50%);
+}
+
 }
