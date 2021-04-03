@@ -26,19 +26,19 @@ let appUserobject = get_appUser();
 
 // Modal Code ***********************************
 
-editIcon.onclick = function() {
-    modal.style.display = "block";
-}
+// editIcon.onclick = function() {
+//     modal.style.display = "block";
+// }
 
-window.onclick = function(event) {
-    if (event.target == modal) {
-      modal.style.display = "none";
-    }
-}
+// window.onclick = function(event) {
+//     if (event.target == modal) {
+//       modal.style.display = "none";
+//     }
+// }
 
-span.onclick = function() {
-    modal.style.display = "none";
-}
+// span.onclick = function() {
+//     modal.style.display = "none";
+// }
 
 // ***********************************************
 
@@ -218,9 +218,11 @@ function changeSport(typeOfCourts, destinationHtml, currentPageFlag) {
         let id = `#${this.id}`;
         let courtId = this.id.split('-');
         let className = $(id).attr('class');
+        $(id).closest(".courts");
         if(className.startsWith('delete')) {
             $(id).closest(".courts").remove();
-            let deleteCourt = `sports.${selectedSport.value.toLowerCase()}.challengeCourts.${courtId[0]}`;
+            let deleteCourt = `sports.${selectedSport.value.toLowerCase()}.${courtId[1]}.${courtId[0]}`;
+            console.log(deleteCourt);
             updateDbDetails('user', appUserobject.auid, deleteCourt, firebase.firestore.FieldValue.delete())  
             set_appUser();
         }
@@ -309,19 +311,17 @@ function getCurrentPage() {
     else if(appUserobject.currentPage) {
         updateSport(1);
     }
-    // const home = document.referrer.includes("home") ? null : updateSport(1);
 }
 
 getCurrentPage();
 
 
-const courtAccordion = (id, classname, headingClassName) => {
+const courtAccordion = (id, classnames, headingClassName) => {
     var acc = document.getElementById(id);
     heading = document.getElementsByClassName(headingClassName)[0];
     heading.classList.toggle("activeHeading");
-    console.log(heading);
     acc.classList.toggle("active");
-    panel = acc.getElementsByClassName(classname);
+    panel = acc.getElementsByClassName(classnames);
     if (panel[0].style.maxHeight) {
         panel[0].style.maxHeight = null;
     } else {
@@ -329,10 +329,12 @@ const courtAccordion = (id, classname, headingClassName) => {
     }
 }
 
-$("#courtSaved").click(function() {
-    courtAccordion(this.id, 'saved-courts', 'saved-courts-heading');
+$(".saved-courts-heading").click(function() {
+    let id = $(".saved-courts-heading").parent().attr('id');
+    courtAccordion(id, 'saved-courts', 'saved-courts-heading');
 });
 
-$("#courtChallenged").click(function() {
-    courtAccordion(this.id, 'challenge-courts', 'challenge-courts-heading');
+$(".challenge-courts-heading").click(function() {
+    let id = $(".challenge-courts-heading").parent().attr('id');
+    courtAccordion(id, 'challenge-courts', 'challenge-courts-heading');
 });
