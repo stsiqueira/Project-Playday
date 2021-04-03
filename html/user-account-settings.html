@@ -46,7 +46,7 @@
         <div class="wrapper user-account-wrapper">
             <div class="image-about-wrapper">
                 <div class="image-wrapper">
-                    <img src="" alt=" " id="user-image" class="user-img">
+                    <img src="" alt="image" id="user-image" class="user-img">
                     <input type="file" id="imgupload" accept="image/*" style="display:none" />
                 </div>
                 <div class="user-bio">
@@ -66,7 +66,7 @@
                     </div>
                 </div>
             </div>
-            <form action="" class="user-location-level-wrapper">
+            <form action="/" class="user-location-level-wrapper">
                 <div class="location-info" id="location-info-wrapper">
                     <label for="location-input">Location</label>
                     <input type="text" id="location-input" class="location-input-box grey-button">
@@ -82,7 +82,7 @@
                     </select>
                 </div>
                 <div class="user-level-info">
-                    <label for="">User Level</label>
+                    <label for="user-level">User Level</label>
                     <select name="level" class="grey-button level-info" id="user-level">
                         <option value="NoSelect" selected disabled>Not Selected</option>
                         <option value="Beginner">Beginner</option>
@@ -93,24 +93,24 @@
                 <input type="button" id="apply-changes" value="Save" class="green-button apply">
             </form>
 
-            <div class="accordion-wrapper" style="display:none">
-                <div class="change-password-wrapper accordion">
-                    <h2 class="change-text-heading">Change Password</h2>
+            <div class="accordions-wrapper change-password-accordion" id="changePasswordWrapper">
+                <h2 class="change-text-heading">Change Password</h2>
+                <div class="change-password">
+                    
                 </div>
             </div>
 
-            <div class="accordions-wrapper" id="courtSaved">
+            <section class="accordions-wrapper" id="courtSaved">
                 <h2 class="saved-courts-heading">Saved Courts</h2>
-                <section class="saved-courts">
+                <div class="saved-courts">
+                </div>
+            </section>
 
-                </section>
-            </div>
-
-            <div class="accordions-wrapper" id="courtChallenged">
+            <section class="accordions-wrapper" id="courtChallenged">
                 <h2 class="challenge-courts-heading">Challenge Courts</h2>
-                <section class="challenge-courts">
-                </section>
-            </div>
+                <div class="challenge-courts">
+                </div>
+            </section>
 
             <button id="logout" onclick="signout()" class="logout red-button">Logout</button>
 
@@ -118,7 +118,6 @@
             <div id="toast">Some text some message..</div>
         </div>
 
-        </div>
     </main>
 
     <footer id="user-account-settings-footer">

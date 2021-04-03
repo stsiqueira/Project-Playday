@@ -387,22 +387,20 @@
         resize: none;
     }
 
-    .accordions-wrapper {
-        padding: .7rem 0;
-    }
 
     .padded {
         padding-bottom: 1rem;
     }
 
-    .accordion-wrapper,
     .accordions-wrapper {
         box-shadow: 4px 3px 10px -3px grey;
         background: white;
         border-radius: 20px;
+        padding: .7rem 0;
 
         .saved-courts-heading,
-        .challenge-courts-heading {
+        .challenge-courts-heading,
+        .change-text-heading {
             font-weight: 500;
             margin: 0;
             padding: .5rem 1rem;
@@ -452,6 +450,7 @@
                 font-size: 1rem;
                 -webkit-box-shadow: 4px 3px 10px -3px grey;
                 box-shadow: 4px 3px 10px -3px grey;
+                cursor: pointer;
                 // padding: .6rem 1rem;
             }
         }
@@ -472,14 +471,6 @@
             flex-flow: column;
             background: white;
             border-radius: 20px;
-        }
-
-        .change-text-heading {
-            margin: 0;
-            font-weight: 500;
-            // padding: 0 1rem;
-            font-size: 1.3rem;
-            padding: .3rem 0;
         }
 
         .change-password-form {
@@ -538,9 +529,14 @@
 }
 
 .saved-courts,
-.challenge-courts {
+.challenge-courts,
+.change-password {
     background-color: white;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
+}
+
+.change-password {
+    padding: 0 1rem;
 }

@@ -26,19 +26,19 @@ let appUserobject = get_appUser();
 
 // Modal Code ***********************************
 
-// editIcon.onclick = function() {
-//     modal.style.display = "block";
-// }
+editIcon.onclick = function() {
+    modal.style.display = "block";
+}
 
-// window.onclick = function(event) {
-//     if (event.target == modal) {
-//       modal.style.display = "none";
-//     }
-// }
+window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+}
 
-// span.onclick = function() {
-//     modal.style.display = "none";
-// }
+span.onclick = function() {
+    modal.style.display = "none";
+}
 
 // ***********************************************
 
@@ -163,6 +163,7 @@ const updateUserPassword = (currentPassword, confirmPass) => {
     );
     user.reauthenticateWithCredential(credential).then(function() {
         user.updatePassword(confirmPass.value).then(function () {
+            showToast("Password Updated");
         }).catch(function (error) {
             alert(error);
         });
@@ -214,7 +215,7 @@ function changeSport(typeOfCourts, destinationHtml, currentPageFlag) {
         }
     }   
 
-    $("button").click(function() {
+    $("button").unbind().click(function() {
         let id = `#${this.id}`;
         let courtId = this.id.split('-');
         let className = $(id).attr('class');
@@ -254,25 +255,39 @@ submitButton.addEventListener('click', function (event) {
 
 // ************************************************
 
+const courtAccordion = (id, classnames, headingClassName) => {
+    var acc = document.getElementById(id);
+    heading = document.getElementsByClassName(headingClassName)[0];
+    heading.classList.toggle("activeHeading");
+    acc.classList.toggle("active");
+    panel = acc.getElementsByClassName(classnames);
+    if (panel[0].style.maxHeight) {
+        panel[0].style.maxHeight = null;
+    } else {
+        panel[0].style.maxHeight = panel[0].scrollHeight + "px";
+    }
+}
+
 const getSignInMethod = () => {
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             let currentSignIn = user.providerData[0].providerId;
             if(currentSignIn == "password") {
-                let changePasswordHtml = `
-                <div class="change-password">
+                let changePasswordHtml = `          
                 <form action="/" class="change-password-form">
                         <input type="password" id="current-password" placeholder="Current Password" class="current-password">
                         <input type="password" id="confirm-password"  placeholder="New Password" class="confirm-password">
                         <input type="button" id="pass-update" value="Change Password" class="green-button">
-                </form>
-            </div>` 
-            $(".accordion-wrapper").css("display", "block");
-            $( ".accordion-wrapper").append(changePasswordHtml);
+                </form>` 
+            // $(".accordion-wrapper").css("display", "block");
+            $( ".change-password-accordion .change-password").append(changePasswordHtml);
             const passUpdate = document.getElementById('pass-update');
             const currentPass = document.getElementById('current-password');
             const confirmPass = document.getElementById('confirm-password');
-            changePasswordAccordion();
+            $(".change-text-heading").click(function() {
+                let id = $(".change-text-heading").parent().attr('id');
+                courtAccordion(id, 'change-password', 'change-text-heading');
+            });
             passUpdate.addEventListener('click', function () {
                 updateUserPassword(currentPass, confirmPass);
                 });
@@ -282,22 +297,6 @@ const getSignInMethod = () => {
 }
 
 getSignInMethod();
-
-function changePasswordAccordion() {
-    var acc = document.getElementsByClassName("accordion");
-    for (let i = 0; i < acc.length; i++) {
-        acc[i].addEventListener("click", function() {
-            $( ".accordion-wrapper").toggleClass("padded")
-            this.classList.toggle('active');
-            var panel = this.nextElementSibling;
-            if (panel.style.maxHeight) {
-                panel.style.maxHeight = null;
-              } else {
-                panel.style.maxHeight = panel.scrollHeight + "px";
-              }
-        });
-    }
-}
 
 const capitalize = (s) => {
     if (typeof s !== 'string') return ''
@@ -314,20 +313,6 @@ function getCurrentPage() {
 }
 
 getCurrentPage();
-
-
-const courtAccordion = (id, classnames, headingClassName) => {
-    var acc = document.getElementById(id);
-    heading = document.getElementsByClassName(headingClassName)[0];
-    heading.classList.toggle("activeHeading");
-    acc.classList.toggle("active");
-    panel = acc.getElementsByClassName(classnames);
-    if (panel[0].style.maxHeight) {
-        panel[0].style.maxHeight = null;
-    } else {
-        panel[0].style.maxHeight = panel[0].scrollHeight + "px";
-    }
-}
 
 $(".saved-courts-heading").click(function() {
     let id = $(".saved-courts-heading").parent().attr('id');

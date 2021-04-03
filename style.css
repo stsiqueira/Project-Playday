@@ -1650,26 +1650,21 @@ img {
   resize: none;
 }
 
-.user-account-wrapper .accordions-wrapper {
-  padding: .7rem 0;
-}
-
 .user-account-wrapper .padded {
   padding-bottom: 1rem;
 }
 
-.user-account-wrapper .accordion-wrapper,
 .user-account-wrapper .accordions-wrapper {
   -webkit-box-shadow: 4px 3px 10px -3px grey;
           box-shadow: 4px 3px 10px -3px grey;
   background: white;
   border-radius: 20px;
+  padding: .7rem 0;
 }
 
-.user-account-wrapper .accordion-wrapper .saved-courts-heading,
-.user-account-wrapper .accordion-wrapper .challenge-courts-heading,
 .user-account-wrapper .accordions-wrapper .saved-courts-heading,
-.user-account-wrapper .accordions-wrapper .challenge-courts-heading {
+.user-account-wrapper .accordions-wrapper .challenge-courts-heading,
+.user-account-wrapper .accordions-wrapper .change-text-heading {
   font-weight: 500;
   margin: 0;
   padding: .5rem 1rem;
@@ -1677,10 +1672,9 @@ img {
   cursor: pointer;
 }
 
-.user-account-wrapper .accordion-wrapper .saved-courts-heading:after,
-.user-account-wrapper .accordion-wrapper .challenge-courts-heading:after,
 .user-account-wrapper .accordions-wrapper .saved-courts-heading:after,
-.user-account-wrapper .accordions-wrapper .challenge-courts-heading:after {
+.user-account-wrapper .accordions-wrapper .challenge-courts-heading:after,
+.user-account-wrapper .accordions-wrapper .change-text-heading:after {
   float: right;
   margin-right: .2rem;
   color: gray;
@@ -1690,14 +1684,12 @@ img {
   font-size: 1.2em;
 }
 
-.user-account-wrapper .accordion-wrapper .activeHeading:after,
 .user-account-wrapper .accordions-wrapper .activeHeading:after {
   content: "\f077";
   font: normal normal normal 14px/1 FontAwesome;
   font-size: 1.2em;
 }
 
-.user-account-wrapper .accordion-wrapper .change-password-form,
 .user-account-wrapper .accordions-wrapper .change-password-form {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1709,7 +1701,6 @@ img {
   gap: 1.2rem;
 }
 
-.user-account-wrapper .accordion-wrapper .change-password-form input,
 .user-account-wrapper .accordions-wrapper .change-password-form input {
   overflow: visible;
   width: 100%;
@@ -1726,12 +1717,10 @@ img {
   height: 43px;
 }
 
-.user-account-wrapper .accordion-wrapper .change-password-form input:focus,
 .user-account-wrapper .accordions-wrapper .change-password-form input:focus {
   outline: none;
 }
 
-.user-account-wrapper .accordion-wrapper .change-password-form input[type=button],
 .user-account-wrapper .accordions-wrapper .change-password-form input[type=button] {
   width: unset;
   -ms-flex-item-align: center;
@@ -1742,6 +1731,7 @@ img {
   font-size: 1rem;
   -webkit-box-shadow: 4px 3px 10px -3px grey;
   box-shadow: 4px 3px 10px -3px grey;
+  cursor: pointer;
 }
 
 .user-account-wrapper .change-password-wrapper {
@@ -1760,13 +1750,6 @@ img {
           flex-flow: column;
   background: white;
   border-radius: 20px;
-}
-
-.user-account-wrapper .change-password-wrapper .change-text-heading {
-  margin: 0;
-  font-weight: 500;
-  font-size: 1.3rem;
-  padding: .3rem 0;
 }
 
 .user-account-wrapper .change-password-wrapper .change-password-form {
@@ -1856,12 +1839,17 @@ img {
 }
 
 .saved-courts,
-.challenge-courts {
+.challenge-courts,
+.change-password {
   background-color: white;
   max-height: 0;
   overflow: hidden;
   -webkit-transition: max-height 0.2s ease-out;
   transition: max-height 0.2s ease-out;
+}
+
+.change-password {
+  padding: 0 1rem;
 }
 
 /* Content ================================================= */
@@ -3209,17 +3197,6 @@ body.home footer li {
   display: block;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
-}
-
-.change-password {
-  padding: 0 1rem;
-  background-color: white;
-  max-height: 0;
-  overflow: hidden;
-  -webkit-transition: max-height 0.2s ease-out;
-  transition: max-height 0.2s ease-out;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
 }
 
 /* Splash ========================================= */
