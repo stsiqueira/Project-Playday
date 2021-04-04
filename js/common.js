@@ -88,7 +88,6 @@ const updateDB = (user, flag = 0, socialLogin = 0) => {
     }
     db.collection("user").doc(user.uid).set(docData).then((docRef) => {
         redirectBasedOnLogin(user, socialLogin);
-        console.log("document added");
     })
     .catch((error) => {
         console.error("Error adding document: ", error);
@@ -99,7 +98,7 @@ const updateDB = (user, flag = 0, socialLogin = 0) => {
 const checkIfUserExist = (user, flag = 0, socialLogin = 0) => {
     db.collection("user").doc(user.uid).get()
         .then((querySnapshot) => {
-            
+            console.log("hey");
             const answer = querySnapshot.exists ? redirectBasedOnLogin(user, socialLogin) : updateDB(user, flag, socialLogin);
 
         })
@@ -348,7 +347,7 @@ function validateEmail(mail) {
     }
     showToast("You have entered an invalid email address!")
     return (false)
-  }
+}
 
 function checkPassword(inputtxt) { 
     var decimal=  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;

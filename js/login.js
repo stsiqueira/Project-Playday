@@ -65,7 +65,7 @@ const signInWithEmailFunction = (e) => {
     })
     .catch(error => {
         if(error.code == "auth/wrong-password") {
-            showToast(error.message);
+            showToast("please check your credentials");
         }
         else if(error.code == "auth/user-not-found") {
             showToast("user not found");
