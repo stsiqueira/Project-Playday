@@ -12,7 +12,7 @@ var span = document.getElementsByClassName("close")[0];
 const aboutApply = document.getElementById('about-save');
 const aboutInput = document.getElementById('about-input');
 const locationInput = document.getElementById('location-input'); 
-const imgUpload = document.getElementById("imgupload")
+const imgUpload = document.getElementById("imgupload");
 const userName = document.getElementsByClassName("user-name");
 const userAbout = document.getElementsByClassName("about-player");
 const selectedSport = document.getElementById("change-sport");
@@ -68,13 +68,13 @@ aboutApply.addEventListener('click', function () {
     updateDbDetails('user', appUserobject.auid, 'about', aboutInput.value);
     updateInnerHtml(userAbout[0], aboutInput.value);
     modal.style.display = "none";
-})
+});
 
 // ***************************************************
 
 
 // invoking file API *********************************
-imageUser.addEventListener('click', function (event) {
+imageUser.addEventListener('click', function () {
     imgUpload.addEventListener("change", handleFiles, false);
     imgUpload.click();
 });
@@ -163,6 +163,7 @@ const updateUserPassword = (currentPassword, confirmPass) => {
     );
     user.reauthenticateWithCredential(credential).then(function() {
         user.updatePassword(confirmPass.value).then(function () {
+            showToast("Password Updated");
         }).catch(function (error) {
             alert(error);
         });
@@ -186,13 +187,13 @@ const savedAndChallengeCourtsHtml = (count, courtName, selectedSport, key,destin
                     <div class="delete-court-wrapper">
                         <button id="${key}-${typeOfCourts}" class="delete-button red-button delete-button-${count}"><i class="fas fa-trash"></i></button>
                     </div>
-                </div>`
+                </div>`;
     $(`.${destinationHtml}`).append(html);
 }
 
 function changeSport(typeOfCourts, destinationHtml, currentPageFlag) {
     count = 0;
-
+    console.log(currentPageFlag)
     const sportSelected = currentPageFlag ? appUserobject.currentPage : selectedSport.value.toLowerCase();
 
     if(currentPageFlag) {
@@ -208,20 +209,21 @@ function changeSport(typeOfCourts, destinationHtml, currentPageFlag) {
     }
 
     for (var key in courts) {
-        count += 1
+        count += 1;
         if (courts.hasOwnProperty(key)) {
             savedAndChallengeCourtsHtml(count, courts[key]['courtName'], selectedSport.value, key, destinationHtml, typeOfCourts);
         }
-    }   
+    } 
 
-    $("button").click(function() {
+    $("button").unbind().click(function() {
         let id = `#${this.id}`;
         let courtId = this.id.split('-');
         let className = $(id).attr('class');
+        $(id).closest(".courts");
         if(className.startsWith('delete')) {
             $(id).closest(".courts").remove();
-            let deleteCourt = `sports.${selectedSport.value.toLowerCase()}.challengeCourts.${courtId[0]}`;
-            updateDbDetails('user', appUserobject.auid, deleteCourt, firebase.firestore.FieldValue.delete())  
+            let deleteCourt = `sports.${selectedSport.value.toLowerCase()}.${courtId[1]}.${courtId[0]}`;
+            updateDbDetails('user', appUserobject.auid, deleteCourt, firebase.firestore.FieldValue.delete()); 
             set_appUser();
         }
     });
@@ -232,11 +234,10 @@ const removeSelectOption = (classname) => {
 }
 
 function updateSport(currentPageFlag) {
-    changeSport('savedCourts', 'saved-courts', currentPageFlag);
     changeSport('challengeCourts', 'challenge-courts', currentPageFlag);
+    changeSport('savedCourts', 'saved-courts', currentPageFlag);
     removeSelectOption("sport-change");
 }
-
 
 submitButton.addEventListener('click', function (event) {
     // updating user level from select
@@ -252,25 +253,38 @@ submitButton.addEventListener('click', function (event) {
 
 // ************************************************
 
+const courtAccordion = (id, classnames, headingClassName) => {
+    var acc = document.getElementById(id);
+    heading = document.getElementsByClassName(headingClassName)[0];
+    heading.classList.toggle("activeHeading");
+    acc.classList.toggle("active");
+    panel = acc.getElementsByClassName(classnames);
+    if (panel[0].style.maxHeight) {
+        panel[0].style.maxHeight = null;
+    } else {
+        panel[0].style.maxHeight = panel[0].scrollHeight + "px";
+    }
+}
+
 const getSignInMethod = () => {
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             let currentSignIn = user.providerData[0].providerId;
             if(currentSignIn == "password") {
-                let changePasswordHtml = `
-                <div class="change-password">
+                let changePasswordHtml = `          
                 <form action="/" class="change-password-form">
                         <input type="password" id="current-password" placeholder="Current Password" class="current-password">
                         <input type="password" id="confirm-password"  placeholder="New Password" class="confirm-password">
                         <input type="button" id="pass-update" value="Change Password" class="green-button">
-                </form>
-            </div>` 
-            $(".accordion-wrapper").css("display", "block");
-            $( ".accordion-wrapper" ).append(changePasswordHtml);
+                </form>`;
+            $( ".change-password-accordion .change-password").append(changePasswordHtml);
             const passUpdate = document.getElementById('pass-update');
             const currentPass = document.getElementById('current-password');
             const confirmPass = document.getElementById('confirm-password');
-            changePasswordAccordion();
+            $(".change-text-heading").click(function() {
+                let id = $(".change-text-heading").parent().attr('id');
+                courtAccordion(id, 'change-password', 'change-text-heading');
+            });
             passUpdate.addEventListener('click', function () {
                 updateUserPassword(currentPass, confirmPass);
                 });
@@ -281,34 +295,25 @@ const getSignInMethod = () => {
 
 getSignInMethod();
 
-function changePasswordAccordion() {
-    var acc = document.getElementsByClassName("accordion");
-    for (let i = 0; i < acc.length; i++) {
-        acc[i].addEventListener("click", function() {
-            this.classList.toggle('active');
-            var panel = this.nextElementSibling;
-            if (panel.style.maxHeight) {
-                panel.style.maxHeight = null;
-              } else {
-                panel.style.maxHeight = panel.scrollHeight + "px";
-              }
-        });
-    }
-}
-
 const capitalize = (s) => {
     if (typeof s !== 'string') return ''
     return s.charAt(0).toUpperCase() + s.slice(1)
 }
 
 function getCurrentPage() {
-    if (document.referrer.includes("home")) {
-        // console.log("");
-    }
-    else if(appUserobject.currentPage) {
+    if(appUserobject.currentPage) {
         updateSport(1);
     }
-    // const home = document.referrer.includes("home") ? null : updateSport(1);
 }
 
 getCurrentPage();
+
+$(".saved-courts-heading").click(function() {
+    let id = $(".saved-courts-heading").parent().attr('id');
+    courtAccordion(id, 'saved-courts', 'saved-courts-heading');
+});
+
+$(".challenge-courts-heading").click(function() {
+    let id = $(".challenge-courts-heading").parent().attr('id');
+    courtAccordion(id, 'challenge-courts', 'challenge-courts-heading');
+});

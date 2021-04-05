@@ -8,6 +8,7 @@
             position: absolute;
             top: 70px;
             width: 100%;
+            padding-bottom: 5rem;
     }
 
     .output-chats{
@@ -28,6 +29,9 @@
     header{
         background-color: #E5E5E5;
         padding: 1.5rem;
+        position: sticky;
+        top: 0;
+        z-index: 5;
         // height: 40px;
     }
 
@@ -76,5 +80,19 @@
             border-radius: 50%;
             margin-left: 1rem;
         }
+    }
+
+    .hidden{
+        display: none;
+    }
+    .message-container{
+        position: fixed;
+        top: 50vh; left: 50vw;
+        transform: translate(-50%,-50%);
+      }
+
+    footer{
+        position: fixed;
+        bottom: 0;left: 0;right: 0;
     }
 }

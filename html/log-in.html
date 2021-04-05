@@ -25,9 +25,9 @@
 	<script src="../js/login.js" defer></script>
 </head>
 
-<body class="page login-page">
+<body class="page login-page" id="login-page">
 	<main class="wrapper login-wrapper">
-		<form action="" method="POST" class="fieldset">
+		<form action="/" method="POST" class="fieldset">
 			<h2 class="login-heading">Log in</h2>
 			<div>
 				<label class="visually-hidden" for="mail">Email</label> <br>
@@ -37,32 +37,33 @@
 				<label class="visually-hidden" for="password">Password</label> <br>
 				<input type="password" placeholder="Password" id="password" name="password" />
 			</div>
-			<a href="reset.html" class="forgot-link" id="forgot-pass">Forgot your password ?</a>
+			<a href="reset.html" class="forgot-link" id="forgot-pass">Forgot your password ?</a>		
 			
-		<div class="social-sign-up-wrapper">
-			<!-- <p class="social-text">
+			<div class="social-sign-up-wrapper">
+				<!-- <p class="social-text">
 				or Log In With
 			</p> -->
-			<div class="social-sign-up">
-				<a id="fsignup" class="facebook-button button"><i class="fab fa-facebook-square fa"></i></a>
-				<a id="tsignup" class="twitter-button button"><i class="fab fa-twitter"></i></a>
-				<a id="gsignup" class="google-button button"><i class="fab fa-google"></i></a>
+				<div class="social-sign-up">
+					<a id="fsignup" class="facebook-button button"><i class="fab fa-facebook-square fa"></i></a>
+					<a id="tsignup" class="twitter-button button"><i class="fab fa-twitter"></i></a>
+					<a id="gsignup" class="google-button button"><i class="fab fa-google"></i></a>
+				</div>
 			</div>
-		</div>
-		<div class="button-wrapper">
+			<div class="button-wrapper">
 
-			<button id="signInWithMail" type="submit" onsubmit=" signInWithEmailFunction(event)"
-				class="signin-button button">
-				<i class="fas fa-chevron-right"></i>
+				<button id="signInWithMail" type="submit" onsubmit=" signInWithEmailFunction(event)"
+					class="signin-button button">
+					<i class="fas fa-chevron-right"></i>
 
-			</button>
-			<!-- <button id="signUp" class="signup-button button">Signup</button>
+				</button>
+				<!-- <button id="signUp" class="signup-button button">Signup</button>
 			<a id="googleSignup" class="google-button button"><i class="fab fa-google"></i></a> -->
-		</div>
+			</div>
+
+			<a href="sign-up.html" class="sign-up-link">Go to Sign-up</a>
 		</form>
 
 		<div id="toast">Some text some message..</div>
-		</section>
 	</main>
 </body>
 

@@ -20,6 +20,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 const signUpWithEmailFunction = (e) => {
 	e.preventDefault();
+	console.log("clicked");
 	const email = mailField.value;
 	const password = passwordField.value;
 	if(!email || !password || !confirmPasswordField.value || !passwordField.value) {
@@ -49,7 +50,7 @@ var provider = new firebase.auth.GoogleAuthProvider();
 var fbProvider = new firebase.auth.FacebookAuthProvider();
 var tprovider = new firebase.auth.TwitterAuthProvider();
 
-signUp.addEventListener('click', signUpWithEmailFunction);
+// signUp.addEventListener('click', signUpWithEmailFunction);
 
 gsignup.addEventListener('click',function(){
     googleSignOn(0, 2);
