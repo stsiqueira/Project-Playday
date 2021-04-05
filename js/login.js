@@ -98,4 +98,11 @@ twitterSignin.addEventListener('click',function(){
 // 	window.location.assign('sign-up.html');
 // });
 
+document.getElementById("login-page")
+    .addEventListener("keyup", function(event) {
+    event.preventDefault();
+    if (event.keyCode === 13) {
+        signInWithEmailFunction();
+    }
+});
 

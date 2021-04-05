@@ -58,6 +58,12 @@
     text-align: center;
     line-height: 1.8;
   }
+
+  #user-account-settings-footer{
+    position: fixed;
+    bottom: 0;left: 0;right: 0;
+  }
+
   #user-account-settings-footer .bottom-nav-bar.footer-nav {
     margin-top: 1rem;
   }
@@ -91,7 +97,13 @@
   }
 
   .user-account-page {
+    header{
+      position: sticky;
+      top: 0;
+      z-index: 5;
+    }
     padding-top: 6rem;
+    padding-bottom: 6rem;;
   }
 
   .user-name {

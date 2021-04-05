@@ -1,7 +1,10 @@
 
 .challenge-invite-page{
-    
-    
+    min-height: 100vh;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+
     .title{
         margin: 0;
     }
@@ -18,7 +21,7 @@
             height: 150px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid #000;
+            // border: 3px solid #000;
             box-shadow: 2px 2px 5px 5px rgba(0,0,0,.2);
         }
     }
@@ -48,6 +51,10 @@
         flex-flow: row nowrap;
         justify-content: space-between;
         margin-bottom: 2rem;
+    }
+
+    .cancel-button, .send-button{
+        min-width: 100px;
     }
   
 

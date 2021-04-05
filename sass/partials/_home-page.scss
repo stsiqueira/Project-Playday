@@ -204,18 +204,33 @@ body.home {
   }
 
   .blog-sport-name {
+    width: fit-content;
     margin-top: 1rem;
+
+    h4{
+      margin:0;
+    }
   }
   .left .blog-sport-name {
     order: 2;
   }
   .blogs .left {
     margin-top: 40px;
-    padding: 0 0 3rem 1rem;
+    padding: 0 0 1rem 1rem;
+
+    h4{
+      margin-right: 1rem;
+    }
+    @media screen and (min-width: 450px) {
+      padding: 0 0 3rem 1rem;
+    }
   }
   .blogs .right {
     margin-top: 40px;
-    padding: 0 1rem 3rem 0;
+    padding: 0 1rem 1rem 1rem;
+    @media screen and (min-width: 450px) {
+      padding: 0 1rem 3rem 1rem;
+    }
   }
 
   .graphic{
@@ -223,18 +238,26 @@ body.home {
   }
 
   .graphic-outer {
-    width: 200px;
-    height: 200px;
+    width: 170px;
+    height: 170px;
     border-radius: 50%;
     position: relative;
+    @media screen and (min-width: 450px) {
+      width: 200px;
+      height: 200px;
+    }
   }
 
   .graphic-inner {
-    width: 180px;
-    height: 180px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     margin: 0;
     position: absolute;
+    @media screen and (min-width: 450px) {
+      width: 180px;
+      height: 180px;
+    }
   }
 
 
@@ -317,6 +340,4 @@ body.home {
     }
 
     }
-
-
 }
