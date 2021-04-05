@@ -2356,6 +2356,25 @@ body.home footer li {
   margin: 0;
   line-height: 1.4;
 }
+.chat-window header {
+  align-items: center;
+  padding: 1rem;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+.chat-window .back-button {
+  position: relative;
+  top: 0;
+}
+.chat-window .back-button i {
+  font-size: 1.3rem;
+  color: #12317F;
+}
+.chat-window .title {
+  margin: 0;
+}
 .chat-window main {
   padding: 1rem 2%;
 }

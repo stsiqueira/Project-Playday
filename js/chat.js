@@ -166,7 +166,7 @@ setTimeout(() => {
         }
      });
  });
-}, 2000);
+}, 3000);
 const generateDocumentId = ()=>{
     let date = new Date();
     let year = date.getFullYear().toString();
@@ -206,6 +206,18 @@ document.addEventListener('keydown', (e) => {
     if(e.keyCode == 13){
         sendMessage();
     }
+});
+$("#back-button").click(function () {
+
+    if (userAppProfile.chatId < friendProfile.chatId) {
+        chatId = "chatID" + userAppProfile.chatId + friendProfile.chatId;
+    } else {
+        chatId = "chatID" + friendProfile.chatId + userAppProfile.chatId;
+    }
+    let updatePath = `lastCheck.${chatId}.date`;
+
+    updateLastCheck(updatePath, userAppProfile.userID);
+    window.history.go(-1);
 });
 
 
