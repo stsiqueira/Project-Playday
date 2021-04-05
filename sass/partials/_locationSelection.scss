@@ -147,7 +147,7 @@
 
   .blur{
     filter: blur(2px);
-    background-color: transparent !important;
+    background-color: rgba(0,0,0,0.4) !important;
     pointer-events: none;
   }
 

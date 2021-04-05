@@ -44,7 +44,7 @@ const signInWithEmailFunction = (e) => {
     
                             let au = new AppUser(doc.data().userID, doc.data().name.substring(0, doc.data().name.indexOf(" ")), doc.data().name.substring(doc.data().name.indexOf(" ") + 1, doc.data().name.length), doc.data().dateOfBirth, doc.data().profilePic, doc.data().about, doc.data().userLocation, doc.data().sports,doc.data().chatId ,doc.data().currentPage);
                             appUserLocal = au;
-                            localStorage.setItem("appUser", JSON.stringify(au));                                
+                            sessionStorage.setItem("appUser", JSON.stringify(au));                                
                         }
                     });
                 }).then(()=>
