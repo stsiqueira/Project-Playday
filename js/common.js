@@ -98,7 +98,6 @@ const updateDB = (user, flag = 0, socialLogin = 0) => {
 const checkIfUserExist = (user, flag = 0, socialLogin = 0) => {
     db.collection("user").doc(user.uid).get()
         .then((querySnapshot) => {
-            console.log("hey");
             const answer = querySnapshot.exists ? redirectBasedOnLogin(user, socialLogin) : updateDB(user, flag, socialLogin);
 
         })

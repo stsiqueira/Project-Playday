@@ -537,6 +537,9 @@
     transition: max-height 0.2s ease-out;
 }
 
-.change-password {
-    padding: 0 1rem;
+.change-password-accordion {
+    display: none;
+    .change-password {
+        padding: 0 1rem;
+    }
 }
