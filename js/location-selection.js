@@ -1,6 +1,7 @@
 $(document).ready(function () {
 
-
+  isLoggedIn();
+  
   let appUserobject = get_appUser();
 
   let storedDBpositions = false;
@@ -154,11 +155,11 @@ $(document).ready(function () {
           set_appUser("../html/home.html");
           
         });
-        //update local storage variable too LATER
+        //update local storage variable too LATERSS
       } else {
         // No user is signed in.
         window.location.assign('../index.html');
-        localStorage.removeItem("appUser");
+        sessionStorage.removeItem("appUser");
       }
     });
 

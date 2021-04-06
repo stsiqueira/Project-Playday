@@ -1,6 +1,7 @@
 $(document).ready(function () {
 
     let appUserobject = get_appUser();
+    isLoggedIn();
 
     let userSelectedLocation = { lat: appUserobject.userLocation.latitude, lon: appUserobject.userLocation.longitude }
 

@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    const isLoggedIn = () => {
+    function isLoggedIn()  {
         firebase.auth().onAuthStateChanged(function(user) {
             if (!user) {
                 window.location.href = "log-in.html";
@@ -14,7 +14,7 @@ $(document).ready(function () {
     $('body.home').addClass('slide-in');
     
     let appUserobject = get_appUser();
-    $("#user-name").html(appUserobject != null && appUserobject.firstName != "" ? appUserobject.firstName : "Guest");
+    $("#user-name").html((appUserobject != null && appUserobject.firstName != "") ? appUserobject.firstName : appUserobject.lastName != ""  ? appUserobject.lastName : "Guest");
 
     $('#badminton').click(function () {
             goToSportCourts("badminton");

@@ -31,7 +31,7 @@ const redirectBasedOnLogin = (user, socialLogin) => {
 
                         let au = new AppUser(doc.data().userID, doc.data().name.substring(0, doc.data().name.indexOf(" ")), doc.data().name.substring(doc.data().name.indexOf(" ") + 1, doc.data().name.length), doc.data().dateOfBirth, doc.data().profilePic, doc.data().about, doc.data().userLocation, doc.data().sports);
                         appUserLocal = au;
-                        localStorage.setItem("appUser", JSON.stringify(au));
+                        sessionStorage.setItem("appUser", JSON.stringify(au));
                     }
                 });
             }).then(() => {
@@ -119,7 +119,7 @@ const googleSignOn = (flag, socialLogin) => {
             var email = error.email;
             console.log(error.code);
             var credential = error.credential;
-            alert(errorMessage);
+            showToast("Google Sign In Failed")
         }
     });
 }
@@ -136,6 +136,8 @@ const fbSignOn = (flag, socialLogin) => {
         var errorMessage = error.message;
         var email = error.email;
         var credential = error.credential;
+        showToast("Facebook Sign In Failed")
+
     });
 }
 
@@ -150,6 +152,8 @@ const tSignon = (flag, socialLogin) => {
         var errorMessage = error.message;
         var email = error.email;
         var credential = error.credential;
+        showToast("Twitter Sign In Failed")
+
         // ...
     });
 }
@@ -180,7 +184,7 @@ const updateLevel = (sport = "Unknown", level, redirect = "") => {
         } else {
             // No user is signed in.
             window.location.assign('../index.html');
-            localStorage.removeItem("appUser");
+            sessionStorage.removeItem("appUser");
         }
     });
 }
@@ -217,7 +221,7 @@ const setCourts = (sport, courtType, courtId, courtName) => {
         } else {
             // No user is signed in.
             window.location.assign('../index.html');
-            localStorage.removeItem("appUser");
+            sessionStorage.removeItem("appUser");
         }
     });
 }
@@ -253,11 +257,11 @@ const goToSportCourts = (sport) => {
 
 const get_appUser = () => {
     if (appUserLocal == undefined || appUserLocal == "") {
-        if (localStorage.getItem("appUser") === undefined || localStorage.getItem("appUser") === null) {
+        if (sessionStorage.getItem("appUser") === undefined || sessionStorage.getItem("appUser") === null) {
             set_appUser();
         }
         else
-            appUserLocal = JSON.parse(localStorage.getItem('appUser'));
+            appUserLocal = JSON.parse(sessionStorage.getItem('appUser'));
     }
     return appUserLocal;
 }
@@ -275,7 +279,7 @@ async function set_appUser (redirect = "")  {
                     let au = new AppUser(doc.data().userID, doc.data().name.substring(0, doc.data().name.indexOf(" ")), doc.data().name.substring(doc.data().name.indexOf(" ") + 1, doc.data().name.length), doc.data().dateOfBirth, doc.data().profilePic, doc.data().about, doc.data().userLocation, doc.data().sports, doc.data().chatId, doc.data().currentPage,doc.data().userLocationCity);
                     appUserLocal = au;
 
-                    localStorage.setItem("appUser", JSON.stringify(au));
+                    sessionStorage.setItem("appUser", JSON.stringify(au));
                 });
             }).then(() => {
                 console.log('appUserLocal set!')
@@ -298,7 +302,7 @@ async function set_appUser (redirect = "")  {
 }
 
 function signout() {
-    localStorage.removeItem("appUser");
+    sessionStorage.removeItem("appUser");
     firebase.auth().signOut();
     window.location = '../index.html';
 }
@@ -367,3 +371,11 @@ function showToast(text) {
 }
 
 updateCurrentPage();
+
+function isLoggedIn()  {
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (!user) {
+            window.location.href = "log-in.html";
+        }
+    });
+}

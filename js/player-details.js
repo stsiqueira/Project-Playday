@@ -24,12 +24,7 @@ const storageRef = firebase.storage().ref();
 
 let appUserobject = get_appUser();
 
-firebase.auth().onAuthStateChanged(function(user) {
-    if (!user) {
-        window.location.href = "log-in.html";
-    }
-});
-
+isLoggedIn();
 
 // Modal Code ***********************************
 

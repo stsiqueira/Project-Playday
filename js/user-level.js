@@ -2,6 +2,7 @@ $(document).ready(function () {
 
     $('main').removeClass('hide-up'); 
     $('main').addClass('slide-in');
+    isLoggedIn();
     
     let sport = urlParam("sport"); // fetched from url
 

@@ -30,7 +30,7 @@ const signInWithEmailFunction = (e) => {
     }
     // if (!checkPassword(password)) return false;
 
-	firebase.auth().signInWithEmailAndPassword(email, password)
+firebase.auth().signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
         var user = userCredential.user;
 
@@ -44,7 +44,7 @@ const signInWithEmailFunction = (e) => {
     
                             let au = new AppUser(doc.data().userID, doc.data().name.substring(0, doc.data().name.indexOf(" ")), doc.data().name.substring(doc.data().name.indexOf(" ") + 1, doc.data().name.length), doc.data().dateOfBirth, doc.data().profilePic, doc.data().about, doc.data().userLocation, doc.data().sports,doc.data().chatId ,doc.data().currentPage);
                             appUserLocal = au;
-                            localStorage.setItem("appUser", JSON.stringify(au));                                
+                            sessionStorage.setItem("appUser", JSON.stringify(au));                                
                         }
                     });
                 }).then(()=>
@@ -98,4 +98,11 @@ twitterSignin.addEventListener('click',function(){
 // 	window.location.assign('sign-up.html');
 // });
 
+document.getElementById("login-page")
+    .addEventListener("keyup", function(event) {
+    event.preventDefault();
+    if (event.keyCode === 13) {
+        signInWithEmailFunction();
+    }
+});
 
