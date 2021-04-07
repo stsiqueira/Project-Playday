@@ -97,18 +97,29 @@ body.home {
    
     
   }
-  .sports-cards {
+
+  // support for Safari gap 
+
+  .sports-cards{
     display: flex;
-    gap: 0.5rem;
+    justify-content: space-around;
+  }
+
+  .sports-cards > * + *{
+    // gap: 0.5rem;
+    margin: .5rem 0 0 0;
     width: max-content;
 
     @media screen and (min-width: 450px) {
       margin: auto;
       flex-flow: row nowrap;
-      gap: 1rem;
+      // gap: 1rem;
+      margin: 0 0 0 1rem;
       justify-content: space-around;
     }
   }
+
+  // support for safari gap end 
 
   .sport-card {
     padding: 0.5rem 0rem;
