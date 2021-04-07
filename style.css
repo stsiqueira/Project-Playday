@@ -2299,9 +2299,8 @@ body.home footer li {
 .single-player-info .player-detail-content-wrapper {
   display: flex;
   flex-flow: column nowrap;
-  justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  min-height: 90vh;
   max-width: 500px;
 }
 .single-player-info .player-image img {
@@ -2343,28 +2342,25 @@ body.home footer li {
 }
 .single-player-info .common-button {
   margin-top: 2rem;
-  width: 300px;
+  width: 150px;
   height: 50px;
   font-size: 1.4rem;
   border-radius: 30px;
   border: none;
   outline: none;
   background: #f2ae8e;
-  box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 5px 5px 7px -6px rgba(0, 0, 0, 0.5);
 }
 .single-player-info .report-button {
-  padding: 1rem 0 0 0;
   align-self: flex-end;
-  margin-right: 1rem;
+  width: 90%;
+  text-align: right;
+  margin: 1rem 0.5rem 0 0.5rem;
+  text-decoration: underline;
 }
-.single-player-info .report-button button {
-  background-color: #d4d4d4;
-  padding: 0.2rem 0.7rem;
-  font-size: 0.855rem;
-  border-radius: 20px;
-  border: none;
-  outline: none;
-  box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.2);
+.single-player-info .report-button div .fa-exclamation-triangle {
+  color: goldenrod;
+  margin-right: 0.2rem;
 }
 
 /* Chat Window ========================================= */
@@ -2544,7 +2540,9 @@ body.home footer li {
   padding: 16px;
   position: fixed;
   z-index: 100;
+  left: 50%;
   top: 5%;
+  transform: translateX(-50%);
 }
 
 /* Show the toast when clicking on a button (class added with JavaScript) */
