@@ -27,7 +27,8 @@ db.collection("user").where("userID", "==", userAppId).get()
         // Getting User Profile info
         querySnapshot.forEach((doc) => {
             userAppProfile = doc.data();
-        })
+        });
+        // console.log("1");
     })
     .then(()=>{
         db.collection("user").where("userID", "==", friendId).get()
@@ -99,11 +100,18 @@ db.collection("user").where("userID", "==", userAppId).get()
                 };
 
             });
-        })
+            // console.log("2");
+        }).then(()=>{
+            // console.log("3");
+            lastCheck();
+            getMessages(chatId);
+        });
     })
-    .then(()=>{
-        lastCheck();
-    })
+    // .then(()=>{
+    //     console.log("3");
+    //     lastCheck();
+    //     getMessages(chatId);
+    // })
     .catch((error) => {
         console.log("Error getting documents: ", error);
     });
@@ -142,43 +150,66 @@ const updateLastCheck = (chatidtime,userid)=>{
     });
 
 }
-setTimeout(() => {
+// setTimeout(() => {
     // console.log(chatId);
+    // getMessages(chatId); 
+// }, 3000);
 
- db.collection(chatId).onSnapshot((snapshot)=>{
-     snapshot.docChanges().forEach((change)=>{
-        if(change.type === "added"){
-                if(change.doc.data().senderId != userAppProfile.name){
+const getMessages = (chatIdentifier) => {
+    db.collection(chatIdentifier).onSnapshot((snapshot)=>{
+        snapshot.docChanges().forEach((change)=>{
+           if(change.type === "added"){
+                   if(change.doc.data().senderId != userAppProfile.name){
+   
+                       let newLine = `                    
+                           <li class="receiver"> 
+                               <div class="chat-message receiver">
+                                   <p class="text-message"> ${change.doc.data().message}</p>
+                               </div>
+                           </li>`;
+                           $("#chat-messages").append(newLine);
+                   }else{
+                       let newLine = `  
+                           <li class="sender">
+                               <div class="chat-message sender">
+                                   <p class="text-message">${change.doc.data().message}</p>
+                               </div>
+                           </li>`;
+                           $("#chat-messages").append(newLine);
+                   }
+           }
+        });
+    });
+}
 
-                    let newLine = `                    
-                        <li class="receiver"> 
-                            <div class="chat-message receiver">
-                                <p class="text-message"> ${change.doc.data().message}</p>
-                            </div>
-                        </li>`;
-                        $("#chat-messages").append(newLine);
-                }else{
-                    let newLine = `  
-                        <li class="sender">
-                            <div class="chat-message sender">
-                                <p class="text-message">${change.doc.data().message}</p>
-                            </div>
-                        </li>`;
-                        $("#chat-messages").append(newLine);
-                }
-        }
-     });
- });
-}, 3000);
 const generateDocumentId = ()=>{
     let date = new Date();
     let year = date.getFullYear().toString();
-    let month = date.getMonth() + 1;
-    let day = date.getDate();
-    let hour = date.getHours();
-    let min = date.getMinutes();
-    let sec = date.getSeconds();
-    return year+month+day+hour+min+sec;
+    let month = pad(date.getMonth() + 1);
+    let day = pad(date.getDate());
+    let hour = pad(date.getHours());
+    let min = pad(date.getMinutes());
+    let sec = pad(date.getSeconds());
+    let millisec = pad(date.getMilliseconds(),3);
+    return year+month+day+hour+min+sec+millisec;
+}
+
+function pad(n, numberofDigits = 2) {
+
+    if(numberofDigits == 2){
+        return  ((n < 10) ? ("0" + n) : n);
+    }
+    else if(numberofDigits == 3){
+
+        if(n<10){
+            return "00" + n;
+        }
+        else if(n<100){
+            return "0" + n;
+        }
+        else return n;
+    }
+    
 }
 
 const sendMessage = () => {

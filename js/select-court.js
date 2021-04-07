@@ -24,8 +24,8 @@ $(document).ready(function () {
 
     let courtsRetrieved = [];
 
-    const loadResult = () => {
-        $.getJSON(`https://api.tomtom.com/search/2/poiSearch/${sports}.JSON?key=${tomtomApiKey}&typeahead=true&lat=${userSelectedLocation.lat}&lon=${userSelectedLocation.lon}&limit=20&radius=${radius}`, function (response) {
+    const loadResult = async () => {
+        return $.getJSON(`https://api.tomtom.com/search/2/poiSearch/${sports}.JSON?key=${tomtomApiKey}&typeahead=true&lat=${userSelectedLocation.lat}&lon=${userSelectedLocation.lon}&limit=20&radius=${radius}`, function (response) {
             let output = $('#api-result ul').html();
             output = "";
 
@@ -89,7 +89,6 @@ $(document).ready(function () {
                     getCourtPlayers(sports, element.id, `entry-players-${count}`, true);
 
                 });
-
             }
             $("#api-result ul").html(output);
         });
@@ -128,14 +127,20 @@ $(document).ready(function () {
 
     loadResult();
     $("#radius").on('change', function () {
-        radius = $("#radius").val() * 1000;
-        loadResult();
+        radiusChange();
+        $("#sortby").val("none");
     });
+
+    async function radiusChange(){
+        radius = $("#radius").val() * 1000;
+        await loadResult();
+    }
 
     $("#sortby").on('change', function () {
         let sortBy = $("#sortby").val();
-        sort(sortBy);
-
+        if (sortBy != "none") {
+            sort(sortBy);
+        }
     });
 
     function sort(sortBy) {
@@ -276,7 +281,7 @@ $(document).ready(function () {
             }, 1000);
             $("#players-list").html("");
         }
-        else{
+        else {
             window.location.href = "home.html";
         }
     });
@@ -322,8 +327,8 @@ $(document).ready(function () {
                         playerPic = i.data().profilePic;
                         let self = false;
 
-                        if(playerId == appUserobject.auid){
-                            self= true;
+                        if (playerId == appUserobject.auid) {
+                            self = true;
                         }
 
                         switch (sport) {
@@ -337,7 +342,7 @@ $(document).ready(function () {
                                 playerLevel = i.data().sports.volleyball.userLevel;
                                 break;
                         }
-                        playersList += `<li id="courtPlayer-${playerCount}" class="court-player ${self?"self":"other"}">
+                        playersList += `<li id="courtPlayer-${playerCount}" class="court-player ${self ? "self" : "other"}">
                                             <div class="cp-img">
                                                 <img src="${playerPic}" alt="court player profile pic"></img>
                                             </div>
