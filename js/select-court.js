@@ -170,14 +170,16 @@ $(document).ready(function () {
         $("#s-p-playing").html($(`#entry-players-${selectedRow}`).html());
 
         $("#selected-name").html($(`#entry-court-name-${selectedRow}`).html());
-        $("#selected-address").html("<span>Address: </span>" + $(`#entry-address-${selectedRow}`).html());
+        let selectedAddress =  $(`#entry-address-${selectedRow}`).html().trim().slice(0,-7);
+        $("#selected-address").html("<span>Address: </span>" + selectedAddress);
 
         $("#selected-distance").html("<span>Distance: </span>" + ($(`#entry-distance-${selectedRow}`).html() / 1000).toFixed(2) + " Km");
 
 
 
         if ($(`#entry-phone-${selectedRow}`).html() != "" && $(`#entry-phone-${selectedRow}`).html().trim() != "Not Available") {
-            $("#selected-phone").html("<span>Contact: </span>" + $(`#entry-phone-${selectedRow}`).html().trim());
+            let phoneNumber = $(`#entry-phone-${selectedRow}`).html().trim().replace(/['"]+/g, '');
+            $("#selected-phone").html(`<span>Contact: </span> <a href="${phoneNumber}">${phoneNumber}</a>` );
             $("#selected-phone").show();
         }
         else {

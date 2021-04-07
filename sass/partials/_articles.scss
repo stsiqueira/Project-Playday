@@ -23,6 +23,7 @@
     h2{
         @include fontWeight(semi-bold);
         font-size: $font_size_h2;
+        margin-bottom: 0;
     }
     
 
@@ -48,6 +49,11 @@
 
 .all-articles-wrapper{
     @include autoGrid(340px);
+    padding-top: 0;
+}
+
+.articles-image{
+    margin-bottom: 1rem;
 }
 
 
