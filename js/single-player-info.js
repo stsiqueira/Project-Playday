@@ -15,6 +15,7 @@ const urlParams = new URLSearchParams(queryString);
 const friendId = urlParams.get('courtPlayerId');
 const sport = urlParams.get('sport');
 console.log(userApp.auid);
+isLoggedIn();
 
 db.collection("user").where("userID", "==", userApp.auid).get()
     .then((querySnapshot)=>{

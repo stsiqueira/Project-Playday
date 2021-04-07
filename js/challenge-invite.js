@@ -18,6 +18,8 @@
 //  Variables
 //////////////////////////////////////////// 
 
+isLoggedIn();
+
 // let db =firebase.firestore();
 let friendProfile = {}; 
 let userAppProfile = {}; 

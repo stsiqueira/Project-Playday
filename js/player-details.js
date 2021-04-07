@@ -24,6 +24,8 @@ const storageRef = firebase.storage().ref();
 
 let appUserobject = get_appUser();
 
+isLoggedIn();
+
 // Modal Code ***********************************
 
 editIcon.onclick = function() {
@@ -64,7 +66,6 @@ $( "#location-info-wrapper" ).click(function() {
 
 
 aboutApply.addEventListener('click', function () {
-    console.log(aboutInput.value);
     updateDbDetails('user', appUserobject.auid, 'about', aboutInput.value);
     updateInnerHtml(userAbout[0], aboutInput.value);
     modal.style.display = "none";
@@ -193,7 +194,6 @@ const savedAndChallengeCourtsHtml = (count, courtName, selectedSport, key,destin
 
 function changeSport(typeOfCourts, destinationHtml, currentPageFlag) {
     count = 0;
-    console.log(currentPageFlag)
     const sportSelected = currentPageFlag ? appUserobject.currentPage : selectedSport.value.toLowerCase();
 
     if(currentPageFlag) {
@@ -213,7 +213,7 @@ function changeSport(typeOfCourts, destinationHtml, currentPageFlag) {
         if (courts.hasOwnProperty(key)) {
             savedAndChallengeCourtsHtml(count, courts[key]['courtName'], selectedSport.value, key, destinationHtml, typeOfCourts);
         }
-    } 
+    }
 
     $("button").unbind().click(function() {
         let id = `#${this.id}`;
@@ -278,6 +278,7 @@ const getSignInMethod = () => {
                         <input type="button" id="pass-update" value="Change Password" class="green-button">
                 </form>`;
             $( ".change-password-accordion .change-password").append(changePasswordHtml);
+            $(".change-password-accordion").css("display", "block");
             const passUpdate = document.getElementById('pass-update');
             const currentPass = document.getElementById('current-password');
             const confirmPass = document.getElementById('confirm-password');

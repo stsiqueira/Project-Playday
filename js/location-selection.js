@@ -1,6 +1,7 @@
 $(document).ready(function () {
 
-
+  isLoggedIn();
+  
   let appUserobject = get_appUser();
 
   let storedDBpositions = false;
@@ -217,7 +218,7 @@ $(document).ready(function () {
         $("#continue").prop('disabled', false).addClass("continue-active");
       }
       else if (poiList.length > 1) {
-        $("#message").html("More than one result. Please refine your search")
+        $("#message").html("More than one result. Please refine your search.")
         $("#message").show();
         $("#continue").prop('disabled', true).removeClass("continue-active");
       }

@@ -1,5 +1,15 @@
 $(document).ready(function () {
 
+    function isLoggedIn()  {
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (!user) {
+                window.location.href = "log-in.html";
+            }
+        });
+    }
+    
+    isLoggedIn();
+
     $('body.home').removeClass('hide-right');
     $('body.home').addClass('slide-in');
     

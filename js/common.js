@@ -16,7 +16,8 @@ let appUserLocal;
 
 // const tomtomApiKey = "lDNGOihuwicB9jy3du63gNr5gUGwCAZC";
 // let tomtomApiKey = "ctMg0rMDauN3jPf1SOHXHVJNpJnhmGaS";
-let tomtomApiKey = "XOeleMUFVN4TaGSAJwKm8y7IBfy7YeQA";
+// let tomtomApiKey = "XOeleMUFVN4TaGSAJwKm8y7IBfy7YeQA";
+let tomtomApiKey = "btLyAfWjgUeCnADorxtv6lVysyov8M0l";
 
 
 const redirectBasedOnLogin = (user, socialLogin) => {
@@ -98,7 +99,6 @@ const updateDB = (user, flag = 0, socialLogin = 0) => {
 const checkIfUserExist = (user, flag = 0, socialLogin = 0) => {
     db.collection("user").doc(user.uid).get()
         .then((querySnapshot) => {
-            console.log("hey");
             const answer = querySnapshot.exists ? redirectBasedOnLogin(user, socialLogin) : updateDB(user, flag, socialLogin);
 
         })
@@ -120,7 +120,7 @@ const googleSignOn = (flag, socialLogin) => {
             var email = error.email;
             console.log(error.code);
             var credential = error.credential;
-            alert(errorMessage);
+            showToast("Google Sign In Failed")
         }
     });
 }
@@ -137,6 +137,8 @@ const fbSignOn = (flag, socialLogin) => {
         var errorMessage = error.message;
         var email = error.email;
         var credential = error.credential;
+        showToast("Facebook Sign In Failed")
+
     });
 }
 
@@ -151,6 +153,8 @@ const tSignon = (flag, socialLogin) => {
         var errorMessage = error.message;
         var email = error.email;
         var credential = error.credential;
+        showToast("Twitter Sign In Failed")
+
         // ...
     });
 }
@@ -368,3 +372,11 @@ function showToast(text) {
 }
 
 updateCurrentPage();
+
+function isLoggedIn()  {
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (!user) {
+            window.location.href = "log-in.html";
+        }
+    });
+}

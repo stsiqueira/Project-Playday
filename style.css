@@ -524,6 +524,7 @@ img {
 .single-article-section h2 {
   font-weight: 600;
   font-size: 18px;
+  margin-bottom: 0;
 }
 .single-article-section ol {
   margin: 10px;
@@ -543,6 +544,11 @@ img {
   grid-gap: 1rem;
   padding: 1rem;
   grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  padding-top: 0;
+}
+
+.articles-image {
+  margin-bottom: 1rem;
 }
 
 .tennis-article header {
@@ -816,6 +822,10 @@ img {
   padding-right: 0.5rem;
   font-weight: bold;
 }
+.select-court .single-court-info-container .selected-phone a {
+  color: #FF7D45;
+  text-decoration: underline;
+}
 .select-court .single-court-info-container .user-options {
   margin-top: 2rem;
   display: flex;
@@ -866,6 +876,7 @@ img {
 .select-court .img-wrapper img {
   display: block;
   border-radius: 10px 10px 0 0;
+  width: 100%;
 }
 .select-court .court-name,
 .select-court .players-playing-count {
@@ -887,7 +898,7 @@ img {
   border-radius: 0 0 10px 0;
 }
 .select-court .players-list-container {
-  margin-top: 1.5rem;
+  margin-top: 2.5rem;
 }
 .select-court .players-list-container .show-players-list {
   text-align: center;
@@ -897,7 +908,6 @@ img {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  border-bottom: 1px solid #000;
   padding-bottom: 0.5rem;
   margin: 0.5rem auto;
 }
@@ -1481,7 +1491,10 @@ img {
   transition: max-height 0.2s ease-out;
 }
 
-.change-password {
+.change-password-accordion {
+  display: none;
+}
+.change-password-accordion .change-password {
   padding: 0 1rem;
 }
 
@@ -1551,6 +1564,7 @@ button:focus {
 
 .social-sign-up i {
   box-shadow: 4px 3px 10px -3px grey;
+  box-shadow: none;
 }
 
 button {
@@ -1716,6 +1730,7 @@ button:focus {
 
 .social-sign-up i {
   box-shadow: 4px 3px 10px -3px grey;
+  box-shadow: none;
 }
 
 button {
@@ -1919,7 +1934,7 @@ body.home .sport-card {
   padding: 0.5rem 0rem;
   border-radius: 10px;
   min-width: 100px;
-  box-shadow: 6px 10px 22px -7px rgba(0, 0, 0, 0.58);
+  box-shadow: 5px 5px 10px -8px rgba(0, 0, 0, 0.6);
   cursor: pointer;
 }
 body.home .sport-name {
@@ -2257,6 +2272,8 @@ body.home footer li {
   bottom: 0;
   left: 0;
   right: 0;
+  max-width: 600px;
+  margin: auto;
 }
 
 /* Single Player Info========================================= */
@@ -2282,9 +2299,8 @@ body.home footer li {
 .single-player-info .player-detail-content-wrapper {
   display: flex;
   flex-flow: column nowrap;
-  justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  min-height: 90vh;
   max-width: 500px;
 }
 .single-player-info .player-image img {
@@ -2326,28 +2342,25 @@ body.home footer li {
 }
 .single-player-info .common-button {
   margin-top: 2rem;
-  width: 300px;
+  width: 150px;
   height: 50px;
   font-size: 1.4rem;
   border-radius: 30px;
   border: none;
   outline: none;
   background: #f2ae8e;
-  box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 5px 5px 7px -6px rgba(0, 0, 0, 0.5);
 }
 .single-player-info .report-button {
-  padding: 1rem 0 0 0;
   align-self: flex-end;
-  margin-right: 1rem;
+  width: 90%;
+  text-align: right;
+  margin: 1rem 0.5rem 0 0.5rem;
+  text-decoration: underline;
 }
-.single-player-info .report-button button {
-  background-color: #d4d4d4;
-  padding: 0.2rem 0.7rem;
-  font-size: 0.855rem;
-  border-radius: 20px;
-  border: none;
-  outline: none;
-  box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.2);
+.single-player-info .report-button div .fa-exclamation-triangle {
+  color: goldenrod;
+  margin-right: 0.2rem;
 }
 
 /* Chat Window ========================================= */
@@ -2518,29 +2531,18 @@ body.home footer li {
 /* The toast - position it at the bottom and in the middle of the screen */
 #toast {
   visibility: hidden;
-  /* Hidden by default. Visible on click */
-  min-width: 200px;
-  /* Set a default minimum width */
-  margin-left: -125px;
-  /* Divide value of min-width by 2 */
+  min-width: 20px;
+  max-width: 250px;
   background-color: #333;
-  /* Black background color */
   color: #fff;
-  /* White text color */
   text-align: center;
-  /* Centered text */
   border-radius: 25px;
-  /* Rounded borders */
   padding: 16px;
-  /* Padding */
   position: fixed;
-  /* Sit on top of the screen */
-  z-index: 1;
-  /* Add a z-index if needed */
+  z-index: 100;
   left: 50%;
-  /* Center the toast */
-  bottom: 30px;
-  /* 30px from the bottom */
+  top: 5%;
+  transform: translateX(-50%);
 }
 
 /* Show the toast when clicking on a button (class added with JavaScript) */
@@ -2556,41 +2558,41 @@ body.home footer li {
 /* Animations to fade the toast in and out */
 @-webkit-keyframes fadein {
   from {
-    bottom: 0;
+    top: 0;
     opacity: 0;
   }
   to {
-    bottom: 30px;
+    top: 5%;
     opacity: 1;
   }
 }
 @keyframes fadein {
   from {
-    bottom: 0;
+    top: 0;
     opacity: 0;
   }
   to {
-    bottom: 30px;
+    top: 5%;
     opacity: 1;
   }
 }
 @-webkit-keyframes fadeout {
   from {
-    bottom: 30px;
+    top: 5%;
     opacity: 1;
   }
   to {
-    bottom: 0;
+    top: 0;
     opacity: 0;
   }
 }
 @keyframes fadeout {
   from {
-    bottom: 30px;
+    top: 5%;
     opacity: 1;
   }
   to {
-    bottom: 0;
+    top: 0;
     opacity: 0;
   }
 }

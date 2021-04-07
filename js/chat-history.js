@@ -4,6 +4,8 @@ let friendProfile = {};
 let lastMsg = "";
 let counterMsg = 0
 
+isLoggedIn();
+
 
 const printChats = () => {
 

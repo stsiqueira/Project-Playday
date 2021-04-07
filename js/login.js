@@ -30,7 +30,7 @@ const signInWithEmailFunction = (e) => {
     }
     // if (!checkPassword(password)) return false;
 
-	firebase.auth().signInWithEmailAndPassword(email, password)
+firebase.auth().signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
         var user = userCredential.user;
 
