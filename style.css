@@ -715,7 +715,7 @@ img {
 
 /* Select Court Specification */
 .select-court {
-  max-width: 600px;
+  max-width: 500px;
   margin: auto;
   background: white;
   font-family: poppins, helvetica, arial, sans-serif;
@@ -1027,7 +1027,6 @@ img {
   margin: auto;
   display: flex;
   flex-flow: column nowrap;
-  justify-content: space-between;
   align-content: space-between;
   height: 100vh;
 }
@@ -1035,12 +1034,6 @@ img {
   margin: 1.5rem 1rem;
   text-align: center;
   line-height: 1.8;
-}
-.user-account-settings-page #user-account-settings-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
 }
 .user-account-settings-page #user-account-settings-footer .bottom-nav-bar.footer-nav {
   margin-top: 1rem;
@@ -2180,7 +2173,12 @@ body.home footer li {
 }
 
 /* Chat-History========================================= */
+.chat-history-html {
+  background-color: whitesmoke;
+}
+
 #chat-history-page {
+  background-color: white;
   max-width: 500px;
   margin: auto;
   display: flex;
@@ -2272,11 +2270,15 @@ body.home footer li {
   bottom: 0;
   left: 0;
   right: 0;
-  max-width: 600px;
+  max-width: 500px;
   margin: auto;
 }
 
 /* Single Player Info========================================= */
+.single-player-info {
+  max-width: 500px;
+  margin: auto;
+}
 .single-player-info * {
   margin: 0;
   padding: 0;
@@ -2289,6 +2291,9 @@ body.home footer li {
   flex-flow: column nowrap;
   justify-content: space-between;
   font-family: poppins, helvetica, arial, sans-serif;
+}
+.single-player-info .back-button {
+  position: relative;
 }
 .single-player-info main {
   display: flex;
@@ -2469,7 +2474,6 @@ body.home footer li {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  border: 1px solid black;
   margin-left: 0.5rem;
 }
 

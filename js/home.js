@@ -14,7 +14,7 @@ $(document).ready(function () {
     $('body.home').addClass('slide-in');
     
     let appUserobject = get_appUser();
-    $("#user-name").html((appUserobject != null && appUserobject.firstName != "") ? appUserobject.firstName : appUserobject.lastName != ""  ? appUserobject.lastName : "Guest");
+    $("#user-name").html((appUserobject != null && appUserobject.firstName != "") ? appUserobject.firstName : appUserobject && appUserobject.lastName != "" ? appUserobject.lastName : "Guest");
 
     $('#badminton').click(function () {
             goToSportCourts("badminton");
@@ -48,11 +48,11 @@ $(document).ready(function () {
         firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
                 let socialUserImage = user.providerData[0].photoURL;
-                if(socialUserImage && !appUserobject.profilePhoto) {
+                if(socialUserImage && appUserobject && !appUserobject.profilePhoto) {
                     updateDbDetails('user', user.uid, 'profilePic', socialUserImage);
                     setImage(socialUserImage);
                 }
-                else if(!socialUserImage && !appUserobject.profilePhoto) {
+                else if(!socialUserImage && appUserobject && !appUserobject.profilePhoto) {
                     getDownloadUrl('user-default.png', user, 1);
                 }
             }

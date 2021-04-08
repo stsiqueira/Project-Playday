@@ -1,4 +1,8 @@
 .single-player-info{
+
+    max-width: $max-width-screens;
+    margin: auto;
+
     *{
         margin: 0;
         padding: 0;
@@ -13,6 +17,9 @@
         justify-content: space-between;
         font-family: $font_sans;
        
+    }
+    .back-button{
+        position: relative;
     }
     main{
         display: flex;
