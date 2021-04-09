@@ -1,8 +1,8 @@
 
 .article-section-wrapper{
 
-    // max-width: $max-width-screens;
-    // margin: auto;
+    max-width: $max-width-screens;
+    margin: auto;
 
     h1{
         text-align: center;
@@ -33,6 +33,7 @@
 
     ol{
         margin: 10px;
+        margin-top: 0;
         padding: 8px;
 
         li{

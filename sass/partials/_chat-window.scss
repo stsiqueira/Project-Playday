@@ -1,4 +1,6 @@
 .chat-window {
+  max-width: $max-width-screens;
+  margin: auto;
   * {
     padding: 0;
     margin: 0;
@@ -23,7 +25,7 @@
     }
   }
   .title {
-      margin: 0;
+    margin: 0;
   }
   main {
     padding: 1rem 2%;
@@ -33,7 +35,7 @@
     display: flex;
     flex-flow: row nowrap;
     gap: 0.5rem;
-    position: fixed;
+    position: sticky;
     left: 0;
     right: 0;
     bottom: 0;
@@ -42,7 +44,7 @@
   }
   .send-message-wrapper input {
     flex: 1 0 35%;
-    margin-right: 0.5rem;
+    
     border-radius: 20px;
     height: 35px;
     outline: none;
@@ -58,9 +60,10 @@
     padding: 0;
   }
   .fa-paper-plane {
-    color: $color_footer_nav_link;
-    font-size: 1.3rem;
-    padding-bottom: 0.3rem;
+    // color: $color_footer_nav_link;
+    color: $color-user-level-advance;
+    font-size: 1.5rem;
+    padding-bottom: 0.5rem;
   }
   .chat-content-wrapper {
     /* border: 1px solid black; */
@@ -110,5 +113,10 @@
     border-radius: 50%;
     // border: 1px solid black;
     margin-left: 0.5rem;
+  }
+
+  footer{
+    justify-content: flex-end;
+    height: auto;
   }
 }

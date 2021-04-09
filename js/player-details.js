@@ -52,8 +52,6 @@ const updateInnerHtml = (element, value) => {
 
 updateInnerHtml(userName[0], `${appUserobject.firstName} ${appUserobject.lastName}`);
 updateInnerHtml(userAbout[0], appUserobject.about);
-updateInnerHtml(userAbout[0], appUserobject.userLocationCity );
-
 document.getElementById('location-input').value = appUserobject.userLocationCity ? appUserobject.userLocationCity : "Not Selected";
 
 // $.getJSON(`https://api.tomtom.com/search/2/reverseGeocode/${appUserobject.userLocation.latitude},${appUserobject.userLocation.longitude}.json?key=${tomtomApiKey}`, function (json) {
