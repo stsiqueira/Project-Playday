@@ -1,5 +1,5 @@
 .select-court {
-  max-width: 600px;
+  max-width: $max-width-screens;
   margin: auto;
   background: white;
   font-family: $font_sans;
@@ -114,6 +114,11 @@
       font-weight: bold;
     }
 
+    .selected-phone a{
+      color: $color_the_darkest_orange;
+      text-decoration: underline;
+    }
+
     .user-options {
       margin-top: 2rem;
       display: flex;
@@ -179,6 +184,7 @@
   .img-wrapper img {
     display: block;
     border-radius: 10px 10px 0 0;
+    width: 100%;
   }
   .court-name,
   .players-playing-count {
@@ -201,7 +207,7 @@
   }
 
   .players-list-container {
-    margin-top: 1.5rem;
+    margin-top: 2.5rem;
 
     .show-players-list {
       text-align: center;
@@ -209,7 +215,6 @@
     }
     h3 {
       width: fit-content;
-      border-bottom: 1px solid #000;
       padding-bottom: 0.5rem;
       margin: 0.5rem auto;
     }

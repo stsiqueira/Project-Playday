@@ -1,6 +1,9 @@
+.chat-history-html{
+    background-color: whitesmoke;
+}
 
 #chat-history-page{
-
+    background-color: white;
     // making header at the top and footer at the bottom 
     @include screenHeight();
   
@@ -94,5 +97,7 @@
     footer{
         position: fixed;
         bottom: 0;left: 0;right: 0;
+        max-width: $max-width-screens;
+        margin: auto;
     }
 }

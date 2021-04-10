@@ -2,7 +2,8 @@
 #toast {
     visibility: hidden;
     min-width: 20px;
-    margin-left: -125px;
+    max-width: 250px;
+    // margin-left: -125px;
     background-color: #333;
     color: #fff;
     text-align: center;
@@ -11,8 +12,10 @@
     position: fixed;
     z-index: 1;
     max-width: 14rem;
+    z-index: 100;
     left: 50%;
     top: 5%;
+    transform: translateX(-50%);
   }
   
   /* Show the toast when clicking on a button (class added with JavaScript) */

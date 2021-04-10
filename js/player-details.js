@@ -52,13 +52,16 @@ const updateInnerHtml = (element, value) => {
 
 updateInnerHtml(userName[0], `${appUserobject.firstName} ${appUserobject.lastName}`);
 updateInnerHtml(userAbout[0], appUserobject.about);
+updateInnerHtml(userAbout[0], appUserobject.userLocationCity );
 
-$.getJSON(`https://api.tomtom.com/search/2/reverseGeocode/${appUserobject.userLocation.latitude},${appUserobject.userLocation.longitude}.json?key=${tomtomApiKey}`, function (json) {
+document.getElementById('location-input').value = appUserobject.userLocationCity ? appUserobject.userLocationCity : "Not Selected";
 
-    addressString = json.addresses[0].address.municipality;
-    document.getElementById('location-input').value = addressString ? addressString : "Not Selected";
+// $.getJSON(`https://api.tomtom.com/search/2/reverseGeocode/${appUserobject.userLocation.latitude},${appUserobject.userLocation.longitude}.json?key=${tomtomApiKey}`, function (json) {
 
-});
+//     addressString = json.addresses[0].address.municipality;
+//     document.getElementById('location-input').value = addressString ? addressString : "Not Selected";
+
+// });
 
 $( "#location-info-wrapper" ).click(function() {
     window.location.href = "location-selection.html";

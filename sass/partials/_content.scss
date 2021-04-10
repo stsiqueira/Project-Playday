@@ -1,6 +1,6 @@
 // =============== Log In Screen Style  =============== //
 .login-page {
-  max-width: 500px;
+  max-width: $max-width-screens;
   margin: auto;
 
   #mail,
@@ -50,7 +50,7 @@
   margin: auto;
   display: flex;
   flex-flow: column nowrap;
-  justify-content: space-between;
+  // justify-content: space-between;
   align-content: space-between;
   height: 100vh;
   p.about-player {
@@ -59,10 +59,10 @@
     line-height: 1.8;
   }
 
-  #user-account-settings-footer{
-    position: fixed;
-    bottom: 0;left: 0;right: 0;
-  }
+  // #user-account-settings-footer{
+  //   position: fixed;
+  //   bottom: 0;left: 0;right: 0;
+  // }
 
   #user-account-settings-footer .bottom-nav-bar.footer-nav {
     margin-top: 1rem;
