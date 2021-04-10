@@ -503,6 +503,10 @@ img {
 }
 
 /* Articles ================================================= */
+.article-section-wrapper {
+  max-width: 500px;
+  margin: auto;
+}
 .article-section-wrapper h1 {
   text-align: center;
   font-family: poppins, helvetica, arial, sans-serif;
@@ -528,6 +532,7 @@ img {
 }
 .single-article-section ol {
   margin: 10px;
+  margin-top: 0;
   padding: 8px;
 }
 .single-article-section ol li {
@@ -1945,6 +1950,7 @@ body.home .sport-card:nth-of-type(3) {
 }
 body.home .promotions-container h3 {
   margin-top: 1rem;
+  margin-bottom: 0.5rem;
   font-size: 1.3rem;
   font-weight: 500;
 }
@@ -2369,6 +2375,10 @@ body.home footer li {
 }
 
 /* Chat Window ========================================= */
+.chat-window {
+  max-width: 500px;
+  margin: auto;
+}
 .chat-window * {
   padding: 0;
   margin: 0;
@@ -2400,7 +2410,8 @@ body.home footer li {
   display: flex;
   flex-flow: row nowrap;
   gap: 0.5rem;
-  position: fixed;
+  position: -webkit-sticky;
+  position: sticky;
   left: 0;
   right: 0;
   bottom: 0;
@@ -2409,7 +2420,6 @@ body.home footer li {
 }
 .chat-window .send-message-wrapper input {
   flex: 1 0 35%;
-  margin-right: 0.5rem;
   border-radius: 20px;
   height: 35px;
   outline: none;
@@ -2425,9 +2435,9 @@ body.home footer li {
   padding: 0;
 }
 .chat-window .fa-paper-plane {
-  color: #12317F;
-  font-size: 1.3rem;
-  padding-bottom: 0.3rem;
+  color: #F2746D;
+  font-size: 1.5rem;
+  padding-bottom: 0.5rem;
 }
 .chat-window .chat-content-wrapper {
   /* border: 1px solid black; */
@@ -2475,6 +2485,10 @@ body.home footer li {
   height: 30px;
   border-radius: 50%;
   margin-left: 0.5rem;
+}
+.chat-window footer {
+  justify-content: flex-end;
+  height: auto;
 }
 
 /* Chat-History========================================= */
