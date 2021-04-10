@@ -39,28 +39,37 @@ importScripts('https://www.gstatic.com/firebasejs/8.2.3/firebase-auth.js');
 // https://firebase.google.com/docs/web/setup#config-object
 firebase.initializeApp({
 	apiKey: "AIzaSyCVfkLdpaLZUwFN8eMVMSptFoZfOpp1pZ8",
-    authDomain: "playday-f43e6.firebaseapp.com",
-    databaseURL: "https://playday-f43e6-default-rtdb.firebaseio.com",
-    storageBucket: "https://console.firebase.google.com/project/playday-f43e6/storage/playday-f43e6.appspot.com/files",
-    projectId: "playday-f43e6",
-    storageBucket: "playday-f43e6.appspot.com",
-    messagingSenderId: "732773100147",
-    appId: "1:732773100147:web:13f7a6804851ac8486d806",
-    measurementId: "G-TZB3NY5S6W"
+	authDomain: "playday-f43e6.firebaseapp.com",
+	databaseURL: "https://playday-f43e6-default-rtdb.firebaseio.com",
+	storageBucket: "https://console.firebase.google.com/project/playday-f43e6/storage/playday-f43e6.appspot.com/files",
+	projectId: "playday-f43e6",
+	storageBucket: "playday-f43e6.appspot.com",
+	messagingSenderId: "732773100147",
+	appId: "1:732773100147:web:13f7a6804851ac8486d806",
+	measurementId: "G-TZB3NY5S6W"
 });
 
 var offline;
 
-firebase.auth().onAuthStateChanged(function (user) {
-	if (user) {
-		offline = "/html/offline.html";
-		console.log(offline);
-	} else {
-		offline = "/html/log-in.html";
-		console.log(offline);
+// const getIdToken = () => {
+// 	return new Promise((resolve, reject) => {
+// 		const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+// 			unsubscribe();
+// 			if (user) {
+// 				console.log(user);
+// 				offline = true;
+// 				user.getIdToken().then((idToken) => {
+// 					resolve(idToken);
+// 				}, (error) => {
+// 					resolve(null);
+// 				});
+// 			} else {
+// 				resolve(null);
+// 			}
+// 		});
+// 	});
+// };
 
-	}
-});
 
 
 // install event
@@ -88,7 +97,7 @@ self.addEventListener('activate', evt => {
 	);
 });
 
-// // fetch event
+// fetch event
 self.addEventListener('fetch', evt => {
 	if(evt.request.url.indexOf('firestore.googleapis.com') === -1){
 	  evt.respondWith(
@@ -99,5 +108,5 @@ self.addEventListener('fetch', evt => {
 			  return caches.match("./html/offline.html");
 			}
 		})
-  )}	 
+  	)}	 
 });

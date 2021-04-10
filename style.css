@@ -3241,6 +3241,7 @@ body.home footer li {
   padding: 16px;
   position: fixed;
   z-index: 1;
+  max-width: 14rem;
   left: 50%;
   top: 5%;
 }
