@@ -6,6 +6,8 @@
 }
 
 .user-level {
+  max-width: $max-width-screens;
+  margin: auto;
   font-family: $font_sans;
   background-color: white;
 
@@ -15,13 +17,16 @@
   flex-flow: column;
   justify-content: space-between;
 
-header{
-  z-index: 5;
-  .title{
-    font-size: 1.5em;
-    font-weight: bold;
+  header {
+    z-index: 5;
+    .title {
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+    .back-button{
+      position: relative;
+    }
   }
-}
 
   main {
     // min-height: 100vh;
@@ -49,7 +54,7 @@ header{
     padding: 1.5rem;
     border-radius: 10px;
     box-shadow: 6px 10px 22px -7px rgba(0, 0, 0, 0.58);
-
+    cursor: pointer;
     text-transform: uppercase;
   }
   .level:nth-of-type(1) {

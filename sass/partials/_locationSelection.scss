@@ -1,8 +1,8 @@
 .location-selection {
   background-color: $color-main-bg;
-  max-width: 800px;
-  min-height: 100vh;
+  max-width: $max-width-screens;
   margin: auto;
+  min-height: 100vh;
   font-family: "Poppins", sans-serif;
 
   img {

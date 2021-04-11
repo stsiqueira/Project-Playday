@@ -1,5 +1,5 @@
 //home-bg color (big size)
-.html-home{
+.html-home {
   background-color: whitesmoke;
 }
 
@@ -11,17 +11,15 @@
 }
 
 body.home {
-  max-width: 500px;
+  max-width: $max-width-screens;
   margin: auto;
   font-family: $font_sans;
   transition: all 0.5s ease-in-out;
   background-color: white;
 
   .promotion {
-    background-color: #ECF1FF;
-    
+    background-color: #ecf1ff;
   }
-
 
   img,
   svg {
@@ -41,21 +39,19 @@ body.home {
   }
 
   .brand-title {
+    h1 {
+      font-size: 1.5rem;
+      font-family: "Damion";
+      font-weight: 700;
+      color: #ff4d00;
+      margin-top: 0.5rem;
+      margin: 0;
+    }
 
-   h1{
-    font-size: 1.5rem;
-    font-family: "Damion";
-    font-weight: 700;
-    color: #FF4D00;
-    margin-top: .5rem;
-    margin: 0;
-   }
-
-   h1 span {
-    font-family: "Raleway";
-    color: #12317F;
-   }
-
+    h1 span {
+      font-family: "Raleway";
+      color: #12317f;
+    }
   }
 
   .hero-section {
@@ -80,7 +76,7 @@ body.home {
       margin-bottom: 0.5rem;
       font-size: 1.9rem;
       @include fontWeight(medium);
-      color: #12317F;
+      color: #12317f;
     }
     p {
       font-size: 0.9rem;
@@ -94,8 +90,6 @@ body.home {
     overflow-y: hidden;
     max-width: 100%;
     padding-bottom: 2rem;
-   
-    
   }
   .sports-cards {
     display: flex;
@@ -127,7 +121,7 @@ body.home {
     background: radial-gradient(circle, #6cc8a6 40%, #e9fff3 41%);
   }
   .sport-card:nth-of-type(2) {
-    background: radial-gradient(circle, #8FCCF9 40%, #CDF3FF 41%);
+    background: radial-gradient(circle, #8fccf9 40%, #cdf3ff 41%);
   }
   .sport-card:nth-of-type(3) {
     background: radial-gradient(circle, #f2746d 40%, #ffd5d2 41%);
@@ -152,32 +146,27 @@ body.home {
     font-size: 1.5rem;
     font-weight: bold;
   }
-  .discount-image{
+  .discount-image {
     padding: 1rem;
   }
-  
-// ========= Blogs 
 
-.home{
-  img,
-  svg {
-    max-width: 100%;
-    height: auto;
+  // ========= Blogs
+
+  .home {
+    img,
+    svg {
+      max-width: 100%;
+      height: auto;
+    }
   }
-}
 
   .blogs {
-
     margin-top: 1.5rem;
 
- 
-
-    h3{
-  
-        margin-top: 0;
-        font-size: 1.3rem;
-        @include fontWeight(medium);
-    
+    h3 {
+      margin-top: 0;
+      font-size: 1.3rem;
+      @include fontWeight(medium);
     }
   }
 
@@ -189,7 +178,6 @@ body.home {
     width: fit-content;
     color: white;
     @include fontWeight(medium);
-
   }
 
   .blogs h4 a {
@@ -208,8 +196,8 @@ body.home {
     width: fit-content;
     margin-top: 1rem;
 
-    h4{
-      margin:0;
+    h4 {
+      margin: 0;
     }
   }
   .left .blog-sport-name {
@@ -219,7 +207,7 @@ body.home {
     margin-top: 40px;
     padding: 0 0 1rem 1rem;
 
-    h4{
+    h4 {
       margin-right: 1rem;
     }
     @media screen and (min-width: 450px) {
@@ -234,7 +222,7 @@ body.home {
     }
   }
 
-  .graphic{
+  .graphic {
     margin-top: -22px;
   }
 
@@ -261,8 +249,7 @@ body.home {
     }
   }
 
-
-  .blogs a:nth-of-type(1) section{
+  .blogs a:nth-of-type(1) section {
     background-image: linear-gradient(
       180deg,
       transparent 0%,
@@ -277,8 +264,8 @@ body.home {
     background-color: #6cc8a6;
   }
 
-  .blogs a:nth-of-type(3) section{    
-    background-color: #ffc098 ;
+  .blogs a:nth-of-type(3) section {
+    background-color: #ffc098;
   }
 
   .blogs a:nth-of-type(1) section .graphic-outer {
@@ -313,32 +300,25 @@ body.home {
   }
 }
 
-
 /* Responsive design for phone, blogs section*/
 
-
-@media only screen and (max-width : 360px) {
-
- 
+@media only screen and (max-width: 360px) {
   body.home {
+    .blogs {
+      .graphic-outer {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        position: relative;
+      }
 
-  .blogs{
-    .graphic-outer {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      position: relative;
+      .graphic-inner {
+        width: 130px;
+        height: 130px;
+        border-radius: 50%;
+        margin: 0;
+        position: absolute;
+      }
     }
-
-    .graphic-inner {
-      width: 130px;
-      height: 130px;
-      border-radius: 50%;
-      margin: 0;
-      position: absolute;
-    }
-
-    }
-
-    }
+  }
 }

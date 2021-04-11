@@ -1,5 +1,7 @@
 
 .challenge-invite-page{
+    max-width: $max-width-screens;
+    margin: auto;
     min-height: 100vh;
     display: flex;
     flex-flow: column nowrap;

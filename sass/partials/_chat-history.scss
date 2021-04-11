@@ -4,6 +4,8 @@
 
 #chat-history-page{
     background-color: white;
+    max-width: $max-width-screens;
+    margin: auto;
     // making header at the top and footer at the bottom 
     @include screenHeight();
   
