@@ -1069,7 +1069,7 @@ img {
 }
 .user-account-settings-page .user-account-page {
   padding-top: 6rem;
-  padding-bottom: 6rem;
+  padding-bottom: 1rem;
 }
 .user-account-settings-page .user-account-page header {
   position: -webkit-sticky;
