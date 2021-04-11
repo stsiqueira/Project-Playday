@@ -1,47 +1,47 @@
 // =============== Log In Screen Style  =============== //
-.login-page {
-  max-width: $max-width-screens;
-  margin: auto;
+// .login-page {
+//   max-width: $max-width-screens;
+//   margin: auto;
 
-  #mail,
-  #password {
-    background-color: white;
-    @include shadow();
-  }
-}
+//   #mail,
+//   #password {
+//     background-color: white;
+//     @include shadow();
+//   }
+// }
 
 // =============== Sign Up Screen Style  =============== //
-.signup-page {
-  background-color: #f0f0f3;
-  max-width: 500px;
-  margin: auto;
+// .signup-page {
+//   background-color: #f0f0f3;
+//   max-width: 500px;
+//   margin: auto;
 
-  #mail,
-  #password,
-  #confirm-password,
-  #username {
-    background-color: white;
+//   #mail,
+//   #password,
+//   #confirm-password,
+//   #username {
+//     background-color: white;
 
-    @include shadow();
-  }
-  #password {
-    background-color: white;
-    @include shadow();
-  }
-}
+//     @include shadow();
+//   }
+//   #password {
+//     background-color: white;
+//     @include shadow();
+//   }
+// }
 
-.wrapper-sign-up-screen,
-.login-wrapper,
-.reset-wrapper {
-  font-family: $font_sans;
-  width: 70%;
-  margin-bottom: 4rem;
-}
+// .wrapper-sign-up-screen,
+// .login-wrapper,
+// .reset-wrapper {
+//   font-family: $font_sans;
+//   width: 70%;
+//   margin-bottom: 4rem;
+// }
 
-.reset-wrapper {
-  min-height: 100vh;
-  width: unset;
-}
+// .reset-wrapper {
+//   min-height: 100vh;
+//   width: unset;
+// }
 
 // ======================== User Account Settings ================= //
 
@@ -116,113 +116,113 @@
     font-size: 1.6rem;
   }
 }
-.wrapper-sign-up-screen .signup-heading,
-.login-wrapper .login-heading {
-  color: #000;
-  margin: 1rem 0 0 0;
-  // margin-bottom: .8rem;
-}
+// .wrapper-sign-up-screen .signup-heading,
+// .login-wrapper .login-heading {
+//   color: #000;
+//   margin: 1rem 0 0 0;
+//   // margin-bottom: .8rem;
+// }
 
-.login-wrapper .login-heading {
-  margin-bottom: 1rem;
-}
+// .login-wrapper .login-heading {
+//   margin-bottom: 1rem;
+// }
 
-.signup-page,
-.login-page,
-.user-account-page,
-.reset-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+// .signup-page,
+// .login-page,
+// .user-account-page,
+// .reset-wrapper {
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+// }
 
-.signup-page,
-.login-page,
-.reset-page {
-  min-height: 100vh;
-}
+// .signup-page,
+// .login-page,
+// .reset-page {
+//   min-height: 100vh;
+// }
 
-.wrapper-sign-up-screen,
-.login-page,
-.reset-wrapper {
-  .fieldset {
-    border: none;
-  }
-}
+// .wrapper-sign-up-screen,
+// .login-page,
+// .reset-wrapper {
+//   .fieldset {
+//     border: none;
+//   }
+// }
 
-.login-page,
-.signup-page {
-  background-color: #f0f0f3;
-}
+// .login-page,
+// .signup-page {
+//   background-color: #f0f0f3;
+// }
 
-.wrapper-sign-up-screen .fieldset,
-.login-wrapper .fieldset,
-.reset-wrapper .fieldset {
-  display: flex;
-  flex-flow: column nowrap;
-  gap: 1.7rem;
-  padding: 0 1rem;
-  margin: auto;
-}
+// .wrapper-sign-up-screen .fieldset,
+// .login-wrapper .fieldset,
+// .reset-wrapper .fieldset {
+//   display: flex;
+//   flex-flow: column nowrap;
+//   gap: 1.7rem;
+//   padding: 0 1rem;
+//   margin: auto;
+// }
 
-.social-sign-up-wrapper {
-  display: flex;
-  flex-flow: column;
-  gap: 1rem;
-  // padding: 0 1rem;
-  // margin: auto;
+// .social-sign-up-wrapper {
+//   display: flex;
+//   flex-flow: column;
+//   gap: 1rem;
+//   // padding: 0 1rem;
+//   // margin: auto;
 
-  .social-text {
-    align-self: center;
-    margin: 0;
-  }
+//   .social-text {
+//     align-self: center;
+//     margin: 0;
+//   }
 
-  .social-sign-up {
-    display: flex;
-    justify-content: space-between;
-  }
-}
+//   .social-sign-up {
+//     display: flex;
+//     justify-content: space-between;
+//   }
+// }
 
-.button-wrapper {
-  margin-top: 1rem;
-}
+// .button-wrapper {
+//   margin-top: 1rem;
+// }
 
-.wrapper-sign-up-screen .fieldset input,
-.login-wrapper .fieldset input,
-.reset-wrapper input {
-  @include inputBoxStyle(#fff);
-}
+// .wrapper-sign-up-screen .fieldset input,
+// .login-wrapper .fieldset input,
+// .reset-wrapper input {
+//   @include inputBoxStyle(#fff);
+// }
 
-.login-wrapper .login-wrapper .fieldset {
-  gap: 0.3rem;
-}
+// .login-wrapper .login-wrapper .fieldset {
+//   gap: 0.3rem;
+// }
 
-.reset-page .reset-wrapper {
-  gap: 1rem;
+// .reset-page .reset-wrapper {
+//   gap: 1rem;
 
-  .reset-heading {
-    margin: 0.7rem;
-  }
+//   .reset-heading {
+//     margin: 0.7rem;
+//   }
 
-  .green-button {
-    font-size: 1rem;
-    align-self: center;
-    cursor: pointer;
-  }
-}
+//   .green-button {
+//     font-size: 1rem;
+//     align-self: center;
+//     cursor: pointer;
+//   }
+// }
 
-.login-wrapper .fieldset .forgot-link {
-  margin: 0.5rem 0;
-  font-style: italic;
-  text-decoration: none;
-  color: black;
-  text-align: center;
-}
+// .login-wrapper .fieldset .forgot-link {
+//   margin: 0.5rem 0;
+//   font-style: italic;
+//   text-decoration: none;
+//   color: black;
+//   text-align: center;
+// }
 
-.login-wrapper .fieldset .sign-up-link {
-  text-align: center;
-  text-decoration: underline;
-}
+// .login-wrapper .fieldset .sign-up-link {
+//   text-align: center;
+//   text-decoration: underline;
+// }
 
 //Account Details
 

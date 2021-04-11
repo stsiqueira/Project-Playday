@@ -981,52 +981,6 @@ img {
 }
 
 /* Content ================================================= */
-.login-page {
-  max-width: 500px;
-  margin: auto;
-}
-.login-page #mail,
-.login-page #password {
-  background-color: white;
-  /* Reverse Neumorphism */
-  box-shadow: -4px -4px 16px rgba(255, 255, 255, 0.25), 4px 4px 8px rgba(66, 83, 107, 0.09), inset 0px -4px 14px #FFFFFF, inset 0px 2px 6px rgba(66, 83, 107, 0.22);
-  border-radius: 25px;
-}
-
-.signup-page {
-  background-color: #f0f0f3;
-  max-width: 500px;
-  margin: auto;
-}
-.signup-page #mail,
-.signup-page #password,
-.signup-page #confirm-password,
-.signup-page #username {
-  background-color: white;
-  /* Reverse Neumorphism */
-  box-shadow: -4px -4px 16px rgba(255, 255, 255, 0.25), 4px 4px 8px rgba(66, 83, 107, 0.09), inset 0px -4px 14px #FFFFFF, inset 0px 2px 6px rgba(66, 83, 107, 0.22);
-  border-radius: 25px;
-}
-.signup-page #password {
-  background-color: white;
-  /* Reverse Neumorphism */
-  box-shadow: -4px -4px 16px rgba(255, 255, 255, 0.25), 4px 4px 8px rgba(66, 83, 107, 0.09), inset 0px -4px 14px #FFFFFF, inset 0px 2px 6px rgba(66, 83, 107, 0.22);
-  border-radius: 25px;
-}
-
-.wrapper-sign-up-screen,
-.login-wrapper,
-.reset-wrapper {
-  font-family: poppins, helvetica, arial, sans-serif;
-  width: 70%;
-  margin-bottom: 4rem;
-}
-
-.reset-wrapper {
-  min-height: 100vh;
-  width: unset;
-}
-
 .user-account-settings-page {
   max-width: 500px;
   margin: auto;
@@ -1091,115 +1045,6 @@ img {
   text-align: center;
   font-weight: 500;
   font-size: 1.6rem;
-}
-
-.wrapper-sign-up-screen .signup-heading,
-.login-wrapper .login-heading {
-  color: #000;
-  margin: 1rem 0 0 0;
-}
-
-.login-wrapper .login-heading {
-  margin-bottom: 1rem;
-}
-
-.signup-page,
-.login-page,
-.user-account-page,
-.reset-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.signup-page,
-.login-page,
-.reset-page {
-  min-height: 100vh;
-}
-
-.wrapper-sign-up-screen .fieldset,
-.login-page .fieldset,
-.reset-wrapper .fieldset {
-  border: none;
-}
-
-.login-page,
-.signup-page {
-  background-color: #f0f0f3;
-}
-
-.wrapper-sign-up-screen .fieldset,
-.login-wrapper .fieldset,
-.reset-wrapper .fieldset {
-  display: flex;
-  flex-flow: column nowrap;
-  gap: 1.7rem;
-  padding: 0 1rem;
-  margin: auto;
-}
-
-.social-sign-up-wrapper {
-  display: flex;
-  flex-flow: column;
-  gap: 1rem;
-}
-.social-sign-up-wrapper .social-text {
-  align-self: center;
-  margin: 0;
-}
-.social-sign-up-wrapper .social-sign-up {
-  display: flex;
-  justify-content: space-between;
-}
-
-.button-wrapper {
-  margin-top: 1rem;
-}
-
-.wrapper-sign-up-screen .fieldset input,
-.login-wrapper .fieldset input,
-.reset-wrapper input {
-  border-radius: 1rem;
-  outline: none;
-  width: 100%;
-  border: none;
-  padding: 0.6rem 1rem;
-  height: 43px;
-  box-sizing: border-box;
-  font-size: 0.8rem;
-  background: #fff;
-  color: #7D7D7D;
-  box-shadow: 4px 3px 6px -3px grey;
-}
-
-.login-wrapper .login-wrapper .fieldset {
-  gap: 0.3rem;
-}
-
-.reset-page .reset-wrapper {
-  gap: 1rem;
-}
-.reset-page .reset-wrapper .reset-heading {
-  margin: 0.7rem;
-}
-.reset-page .reset-wrapper .green-button {
-  font-size: 1rem;
-  align-self: center;
-  cursor: pointer;
-}
-
-.login-wrapper .fieldset .forgot-link {
-  margin: 0.5rem 0;
-  font-style: italic;
-  text-decoration: none;
-  color: black;
-  text-align: center;
-}
-
-.login-wrapper .fieldset .sign-up-link {
-  text-align: center;
-  text-decoration: underline;
 }
 
 .user-account-settings-page {
@@ -5048,4 +4893,154 @@ body.home footer li {
   100% {
     opacity: 1;
   }
+}
+
+/* Login ========================================= */
+.login-page,
+.signup-page {
+  max-width: 500px;
+  margin: auto;
+  background-color: #FF7D45;
+}
+.login-page header,
+.signup-page header {
+  background-color: #FFB494;
+  min-height: 90vh;
+  -webkit-clip-path: circle(99.6% at 50% 0);
+          clip-path: circle(99.6% at 50% 0);
+}
+.login-page header .branding,
+.signup-page header .branding {
+  width: 100%;
+  margin-top: 6rem;
+  text-align: center;
+}
+.login-page header .branding h1,
+.signup-page header .branding h1 {
+  font-size: 2.5rem;
+  font-family: "Damion";
+  font-weight: 700;
+  color: #ff4d00;
+  margin-top: 0.5rem;
+}
+.login-page header .branding h1 span,
+.signup-page header .branding h1 span {
+  font-family: "Raleway";
+  color: #12317f;
+}
+.login-page main,
+.signup-page main {
+  padding: 1rem;
+  background-color: white;
+  border-radius: 20px;
+  position: absolute;
+  top: 55vh;
+  left: 50vw;
+  transform: translate(-50%, -40%);
+  z-index: 10;
+  width: 60%;
+  max-width: 300px;
+}
+.login-page main h2,
+.signup-page main h2 {
+  text-align: center;
+}
+.login-page main input,
+.signup-page main input {
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: solid;
+  border-color: black;
+  border-width: 1px;
+  height: 30px;
+  width: 100%;
+  padding: 0 0.5rem;
+  box-sizing: border-box;
+}
+.login-page main input:focus,
+.signup-page main input:focus {
+  outline: none;
+  background: transparent;
+  color: #12317f;
+  border-color: #12317f;
+}
+.login-page main .forgot-link-wrapper,
+.signup-page main .forgot-link-wrapper {
+  margin-top: 1rem;
+  font-size: 0.8rem;
+}
+.login-page main .sign-in-wrapper,
+.signup-page main .sign-in-wrapper {
+  width: 100%;
+  margin: 1.5rem auto;
+  text-align: center;
+}
+.login-page main .sign-in-wrapper button,
+.signup-page main .sign-in-wrapper button {
+  width: 145px;
+  padding: 0.5rem 0rem;
+  text-transform: uppercase;
+  font-size: 20px;
+  font-weight: 600;
+  color: white;
+  background-color: #12317f;
+  outline: none;
+  border: none;
+}
+.login-page main .seperator,
+.signup-page main .seperator {
+  margin-top: 2.5rem;
+}
+.login-page main .seperator div,
+.signup-page main .seperator div {
+  width: 100%;
+  text-align: center;
+}
+.login-page main .seperator span,
+.signup-page main .seperator span {
+  height: 40px;
+  width: 70px;
+  background-color: lightgray;
+  padding: 0.5rem 0.8rem;
+  border-radius: 15px;
+  position: relative;
+  bottom: 20px;
+}
+.login-page main .social-login-options,
+.signup-page main .social-login-options {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+.login-page footer,
+.signup-page footer {
+  min-height: 10vh;
+  margin-top: 0;
+  background-color: #FF7D45;
+}
+.login-page footer .signup-container,
+.signup-page footer .signup-container {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 6rem;
+}
+.login-page footer .signup-container span,
+.signup-page footer .signup-container span {
+  margin-top: 0.5rem;
+  display: block;
+}
+.login-page footer .signup-container .sign-up-link,
+.signup-page footer .signup-container .sign-up-link {
+  text-decoration: underline;
+}
+
+.signup-page .signup-screen-wrapper main {
+  transform: translate(-50%, -35%);
+}
+.signup-page .signup-screen-wrapper .fieldset div {
+  margin-bottom: 0.5rem;
+}
+.signup-page .signup-screen-wrapper .signup-container {
+  margin-bottom: 1.5rem;
 }/*# sourceMappingURL=style.css.map */

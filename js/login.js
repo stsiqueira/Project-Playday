@@ -7,6 +7,8 @@ const facebookSignin = document.getElementById("fsignup");
 const twitterSignin = document.getElementById("tsignup");
 // var db = firebase.firestore();
 
+mailField.focus(); mailField.select(); 
+
 let appUserobject = get_appUser();
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {

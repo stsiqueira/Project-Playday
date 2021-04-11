@@ -1,0 +1,152 @@
+.login-page,
+.signup-page {
+  max-width: $max-width-screens;
+  margin: auto;
+
+  background-color: $color_the_darkest_orange;
+
+  header {
+    background-color: $color_more_darker_orange;
+    min-height: 90vh;
+    clip-path: circle(99.6% at 50% 0);
+
+    .branding {
+      width: 100%;
+      margin-top: 6rem;
+      text-align: center;
+
+      h1 {
+        font-size: 2.5rem;
+        font-family: "Damion";
+        font-weight: 700;
+        color: #ff4d00;
+        margin-top: 0.5rem;
+        span {
+          font-family: "Raleway";
+          color: #12317f;
+        }
+      }
+    }
+  }
+
+  main {
+    // margin: 0 10%;
+    padding: 1rem;
+    background-color: white;
+    border-radius: 20px;
+
+    position: absolute;
+    top: 55vh;
+    left: 50vw;
+    transform: translate(-50%, -40%);
+    z-index: 10;
+    width: 60%;
+    max-width: 300px;
+
+    h2 {
+      text-align: center;
+    }
+
+    input {
+      border-top-style: hidden;
+      border-right-style: hidden;
+      border-left-style: hidden;
+      border-bottom-style: solid;
+      border-color: black;
+
+      border-width: 1px;
+      height: 30px;
+      width: 100%;
+      padding: 0 0.5rem;
+      box-sizing: border-box;
+      &:focus {
+        outline: none;
+        background: transparent;
+        color: #12317f;
+        border-color: #12317f;
+      }
+    }
+
+    .forgot-link-wrapper {
+      margin-top: 1rem;
+      font-size: 0.8rem;
+    }
+
+    .sign-in-wrapper {
+      width: 100%;
+      margin: 1.5rem auto;
+      text-align: center;
+
+      button {
+        width: 145px;
+        padding: 0.5rem 0rem;
+        text-transform: uppercase;
+        font-size: 20px;
+        font-weight: 600;
+        color: white;
+        background-color: #12317f;
+        outline: none;
+        border: none;
+      }
+    }
+
+    .seperator {
+      margin-top: 2.5rem;
+
+      div {
+        width: 100%;
+        text-align: center;
+      }
+      span {
+        height: 40px;
+        width: 70px;
+        background-color: lightgray;
+        padding: 0.5rem 0.8rem;
+        border-radius: 15px;
+        position: relative;
+        bottom: 20px;
+      }
+    }
+
+    .social-login-options {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+    }
+  }
+
+  footer {
+    min-height: 10vh;
+    margin-top: 0;
+    background-color: $color_the_darkest_orange;
+
+    .signup-container {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 6rem;
+      span {
+        margin-top: 0.5rem;
+        display: block;
+      }
+      .sign-up-link {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.signup-page .signup-screen-wrapper {
+
+    main{
+        transform: translate(-50%, -35%);
+    }
+    .fieldset div {
+        margin-bottom: 0.5rem;
+      }
+
+      .signup-container {
+          margin-bottom: 1.5rem;
+      }
+    
+}
+
