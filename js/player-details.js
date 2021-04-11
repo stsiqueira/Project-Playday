@@ -216,6 +216,13 @@ function changeSport(typeOfCourts, destinationHtml, currentPageFlag) {
         }
     }
 
+    if(courts == undefined){
+        let output =    `<div class="courts">
+                            No courts saved under this category.
+                        </div>`
+        $(`.${destinationHtml}`).append(output);
+    }
+
     $("button").unbind().click(function() {
         let id = `#${this.id}`;
         let courtId = this.id.split('-');
