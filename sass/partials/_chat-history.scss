@@ -7,11 +7,10 @@
     max-width: $max-width-screens;
     margin: auto;
     // making header at the top and footer at the bottom 
-    @include screenHeight();
+    // @include screenHeight();
+    min-height: 100vh;
   
     main{
-            position: absolute;
-            top: 70px;
             width: 100%;
             padding-bottom: 5rem;
     }
@@ -47,7 +46,8 @@
     .chat-item{
         border-bottom: 2px solid #E5E5E5;
         max-width: 500px;
-        padding: 0 2%;        
+        padding: 0 2%; 
+        box-sizing: border-box;       
     }
 
     .chat-history-message{

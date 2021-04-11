@@ -30,7 +30,7 @@ const redirectBasedOnLogin = (user, socialLogin) => {
                 querySnapshot.forEach((doc) => {
                     if (appUserLocal == null || appUserLocal == "undefined") {
 
-                        let au = new AppUser(doc.data().userID, doc.data().name.substring(0, doc.data().name.indexOf(" ")), doc.data().name.substring(doc.data().name.indexOf(" ") + 1, doc.data().name.length), doc.data().dateOfBirth, doc.data().profilePic, doc.data().about, doc.data().userLocation, doc.data().sports);
+                        let au = new AppUser(doc.data().userID, doc.data().name.substring(0, doc.data().name.indexOf(" ")), doc.data().name.substring(doc.data().name.indexOf(" ") + 1, doc.data().name.length), doc.data().dateOfBirth, doc.data().profilePic, doc.data().about, doc.data().userLocation, doc.data().sports, doc.data().chatId, doc.data().currentPage,doc.data().userLocationCity);
                         appUserLocal = au;
                         sessionStorage.setItem("appUser", JSON.stringify(au));
                     }

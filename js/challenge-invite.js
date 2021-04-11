@@ -79,7 +79,7 @@ const printDefaultMessage = ()=>{
                     <h3>${friendProfile.name}</h3>
                 </div>            
                 <div class="invite-msg-wrapper">
-                    <textarea name="invite-msg" id="invite-msg" cols="30" rows="10">Hi ${friendProfile.name},\n\nI am looking for a partner to play tennis with, let's connect! My level is ${friendProfile.sports.tennis.userLevel}.
+                    <textarea name="invite-msg" id="invite-msg" cols="30" rows="10">Hi ${friendProfile.name},\n\nI am looking for a partner to play ${userAppProfile ?userAppProfile.currentPage : ""}, let's connect! ${userAppProfile ? "I consider myself at " + userAppProfile.sports.badminton.userLevel + " level.": ""}
                     </textarea>
                 </div>
                 <div class="buttons">
