@@ -2225,7 +2225,16 @@ body.home footer li {
 #chat-history-page .chat-item {
   border-bottom: 2px solid #E5E5E5;
   max-width: 500px;
-  padding-top: 0.5rem;
+  padding: 0 2%;
+}
+#chat-history-page .chat-history-message {
+  max-height: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  /* number of lines to show */
+  -webkit-box-orient: vertical;
 }
 #chat-history-page .chat-item a {
   display: flex;
@@ -2260,7 +2269,6 @@ body.home footer li {
   width: 55px;
   height: 55px;
   border-radius: 50%;
-  margin-left: 1rem;
 }
 #chat-history-page .hidden {
   display: none;

@@ -108,27 +108,3 @@ const printProfile = ()=>{
     `;
     $(".player-detail-content-wrapper").append(html);
 }
-const checkUpdateChat = () =>{
-    console.log("========")
-    console.log(userAppProfile.chats);
-   
-    userAppProfile.chats.forEach(chat => {
-        db.collection(chat).onSnapshot((snapshot) => {
-        snapshot.docChanges().forEach((change) => {
-            console.log(change.data());
-            // if (change.type === "added") {
-            //     console.log("A changed was made on chat:", chat);
-            // }
-            // if (change.type === "modified") {
-            //     console.log("Modified city: ", change.doc.data());
-            // }
-            // if (change.type === "removed") {
-            //     console.log("Removed city: ", change.doc.data());
-            // }
-        });
-    });
-    });
-}
-setInterval(() => {
-    // checkUpdateChat();
-}, 1000);

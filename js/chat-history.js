@@ -31,17 +31,16 @@ const printChats = () => {
     $(".chat-history").append(html);
 }
 
-const getMessages = (chat) => {
-
-    db.collection(chat).get()
+const getMessages = (chatId) => {
+    db.collection("chats").doc("chat").collection(chatId).get()
         .then((snapshot) => {
             snapshot.docChanges().forEach((change) => {
                 lastMsg = change.doc.data().message;
                 // console.log(lastMsg);
                 if (change.doc.data().senderId != userAppProfile.name) {
                     // console.log(change.doc.data().date.toDate());
-                    let lastCheck = userAppProfile.lastCheck[chat].date.toDate();
-                    console.log(chat);
+                    let lastCheck = userAppProfile.lastCheck[chatId].date.toDate();
+                    console.log(chatId);
                     console.log("========================================");
                     console.log(change.doc.data().date.toDate());
                     console.log(lastCheck);

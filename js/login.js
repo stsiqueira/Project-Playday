@@ -25,11 +25,11 @@ const signInWithEmailFunction = (e) => {
 	const email = mailField.value;
 	const password = passwordField.value;
     if(!email || !password) {
-        showToast("input all the fields");
+        showToast("Please enter email and password");
         return false;
     }
     if(email == password) {
-        showToast("Email and Passowrd cannot be the same");
+        showToast("Email and password cannot be same");
         return false;
     }
     // if (!checkPassword(password)) return false;
@@ -72,10 +72,10 @@ firebase.auth().signInWithEmailAndPassword(email, password)
             showToast("Please enter correct password");
         }
         else if(error.code == "auth/user-not-found") {
-            showToast("user not found");
+            showToast("User not found");
         }
         else if(error.code == "auth/too-many-requests") {
-            showToast("too many failed attempts please try after some time");
+            showToast("Too many failed attempts, please try after some time");
         }
         else {
             console.log(error)

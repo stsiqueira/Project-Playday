@@ -128,16 +128,18 @@ const checkMsg = () => {
             console.log("invalid")
         }else{
             console.log($("#invite-msg").val());
-            console.log(chatId);
-            db.collection(chatId).doc(generateDocumentId()).set({
+            console.log(chatId);               
+            db.collection("chats").doc("chat").collection(chatId).doc(generateDocumentId()).set({
                 senderId: userAppProfile.name,
                 receiverId: friendProfile.name, 
                 message: $("#invite-msg").val(),
                 date: new Date()
-            })
-            setTimeout(() => {
+            }).then(()=>{
                 window.location.assign(`chat-window.html?userAppId=${userAppId}&friendId=${friendId}`);
-            }, 2000);
+            }).catch((error) => {
+                console.log("Error in check Message: ", error);
+            });
+            
         }
     }else{
         window.location.assign(`chat-window.html?userAppId=${userAppId}&friendId=${friendId}`);
