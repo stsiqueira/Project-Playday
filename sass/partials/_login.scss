@@ -3,10 +3,10 @@
   max-width: $max-width-screens;
   margin: auto;
 
-  background-color: $color_the_darkest_orange;
+  background-color: $color_more_darker_orange;
 
   header {
-    background-color: $color_more_darker_orange;
+    background-color: $color_darker_orange;
     min-height: 90vh;
     clip-path: circle(99.6% at 50% 0);
 
@@ -118,7 +118,9 @@
   footer {
     min-height: 10vh;
     margin-top: 0;
-    background-color: $color_the_darkest_orange;
+    justify-content: start;
+    background-color: $color_more_darker_orange;
+    position: initial;
 
     .signup-container {
       width: 100%;
@@ -143,7 +145,7 @@
     }
     .signup-container {
       margin-bottom: 6rem;
-    }
+    }    
   }
 }
 
@@ -158,12 +160,21 @@
   .signup-container {
     margin-bottom: -1.5rem;
   }
+
+  footer{
+    margin-top: 1.5rem;
+  }
   @media screen and (min-height: 700px) {    
     main {
-      transform: translate(-50%, -35%);
+      transform: translate(-50%, -40%);
     }
     .signup-container {
       margin-bottom: 1.5rem;
+
+      footer{
+        margin-top: 2.5rem;
+      }
     }
+    
   }
 }

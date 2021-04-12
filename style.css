@@ -576,21 +576,21 @@ img {
 
 /* Location-Selection ================================================= */
 .location-selection {
-  background-color: #F0F0F3;
   max-width: 500px;
   margin: auto;
   min-height: 100vh;
   font-family: "Poppins", sans-serif;
   /* IMPORTANT */
 }
-.location-selection img {
-  max-width: 100%;
-  height: auto;
+.location-selection header h2 {
+  width: 100%;
+  text-align: center;
+  font-weight: 500;
+  font-size: 1.5rem;
+  color: #123180;
 }
 .location-selection main {
-  min-height: 100vh;
-  padding: 10vh 0.5rem 0 0.5rem;
-  margin: 0.5rem;
+  padding: 1rem;
 }
 .location-selection #message {
   display: none;
@@ -610,6 +610,8 @@ img {
   height: -moz-fit-content;
   height: fit-content;
   min-height: 320px;
+  overflow: hidden;
+  border-radius: 10px;
 }
 .location-selection canvas {
   width: 100%;
@@ -617,6 +619,7 @@ img {
 .location-selection .mapboxgl-canvas {
   border-radius: 8px;
   box-sizing: border-box;
+  max-width: 450px;
 }
 .location-selection #locationSearch {
   width: 100%;
@@ -700,6 +703,12 @@ img {
 }
 .location-selection .tomtomAttribution {
   display: none;
+}
+.location-selection footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  max-width: 500px;
 }
 .location-selection .hidden {
   display: none;
@@ -4900,11 +4909,11 @@ body.home footer li {
 .signup-page {
   max-width: 500px;
   margin: auto;
-  background-color: #FF7D45;
+  background-color: #FFB494;
 }
 .login-page header,
 .signup-page header {
-  background-color: #FFB494;
+  background-color: #FFDFD1;
   min-height: 90vh;
   -webkit-clip-path: circle(99.6% at 50% 0);
           clip-path: circle(99.6% at 50% 0);
@@ -5017,7 +5026,9 @@ body.home footer li {
 .signup-page footer {
   min-height: 10vh;
   margin-top: 0;
-  background-color: #FF7D45;
+  justify-content: start;
+  background-color: #FFB494;
+  position: initial;
 }
 .login-page footer .signup-container,
 .signup-page footer .signup-container {
@@ -5058,11 +5069,17 @@ body.home footer li {
 .signup-page .signup-screen-wrapper .signup-container {
   margin-bottom: -1.5rem;
 }
+.signup-page .signup-screen-wrapper footer {
+  margin-top: 1.5rem;
+}
 @media screen and (min-height: 700px) {
   .signup-page .signup-screen-wrapper main {
-    transform: translate(-50%, -35%);
+    transform: translate(-50%, -40%);
   }
   .signup-page .signup-screen-wrapper .signup-container {
     margin-bottom: 1.5rem;
+  }
+  .signup-page .signup-screen-wrapper .signup-container footer {
+    margin-top: 2.5rem;
   }
 }/*# sourceMappingURL=style.css.map */
