@@ -12,7 +12,7 @@
 
     .branding {
       width: 100%;
-      margin-top: 6rem;
+      margin-top: 1rem;
       text-align: center;
 
       h1 {
@@ -38,7 +38,7 @@
     position: absolute;
     top: 55vh;
     left: 50vw;
-    transform: translate(-50%, -40%);
+    transform: translate(-50%, -50%);
     z-index: 10;
     width: 60%;
     max-width: 300px;
@@ -123,7 +123,7 @@
     .signup-container {
       width: 100%;
       text-align: center;
-      margin-bottom: 6rem;
+      margin-bottom: 1rem;
       span {
         margin-top: 0.5rem;
         display: block;
@@ -133,20 +133,37 @@
       }
     }
   }
+
+  @media screen and (min-height: 700px) {
+    .branding{
+      margin-top: 6rem;
+    }
+    main {
+      transform: translate(-50%, -40%);
+    }
+    .signup-container {
+      margin-bottom: 6rem;
+    }
+  }
 }
 
 .signup-page .signup-screen-wrapper {
+  main {
+    transform: translate(-50%, -45%);
+  }
+  .fieldset div {
+    margin-bottom: 0.5rem;
+  }
 
-    main{
-        transform: translate(-50%, -35%);
+  .signup-container {
+    margin-bottom: -1.5rem;
+  }
+  @media screen and (min-height: 700px) {    
+    main {
+      transform: translate(-50%, -35%);
     }
-    .fieldset div {
-        margin-bottom: 0.5rem;
-      }
-
-      .signup-container {
-          margin-bottom: 1.5rem;
-      }
-    
+    .signup-container {
+      margin-bottom: 1.5rem;
+    }
+  }
 }
-
