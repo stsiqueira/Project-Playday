@@ -37,7 +37,7 @@ const redirectBasedOnLogin = (user, socialLogin) => {
                 });
             }).then(() => {
                 if (!socialLogin) {
-                    window.location.assign('log-in.html?signup=true');
+                    window.location.assign(`log-in.html?signup=true&useremail=${user.email}`);
                 }
                 else {
                     if (appUserLocal && appUserLocal.userLocation.latitude == "0" && appUserLocal.userLocation.longitude == "0") {
@@ -371,7 +371,10 @@ function showToast(text) {
     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
 
-updateCurrentPage();
+$( document ).ready(function() {
+    updateCurrentPage();
+});
+
 
 function isLoggedIn()  {
     firebase.auth().onAuthStateChanged(function(user) {

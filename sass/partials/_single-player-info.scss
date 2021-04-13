@@ -75,6 +75,7 @@
 
         display: grid;
         grid-template-columns: 1fr 3fr;
+        grid-gap: 0.2rem;
     }
     div.buttons{
         display: flex;

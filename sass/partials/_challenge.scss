@@ -7,6 +7,14 @@
     flex-flow: column nowrap;
     // justify-content: space-between;
 
+    header{
+        position: sticky;
+
+        width: 100%;
+        max-width: $max-width-screens;
+        top: 0;
+    }
+
     .title{
         margin: 0;
         h2{
@@ -66,10 +74,14 @@
     .cancel-button, .send-button{
         min-width: 100px;
     }
+
+    main{
+        margin-bottom: 6rem;
+    }
   
     footer{
         position: fixed;
         bottom: 0;left: 0;right: 0;
-        max-width: 500px; margin: auto;
+        max-width: $max-width-screens; margin: auto;
     }
 }

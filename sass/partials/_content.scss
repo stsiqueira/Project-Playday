@@ -292,6 +292,8 @@
       border: 1px solid #888;
       width: 50%;
 
+      border-radius: 20px;
+
       position: fixed;
       top: 50vh;
       left: 50vw;
@@ -388,6 +390,7 @@
   .modal-content #about-input {
     @include inputBoxStyle(#fff);
 
+    box-shadow: none;
     height: 100px;
     resize: none;
   }
@@ -544,6 +547,7 @@
 .change-password-accordion {
   display: none;
   .change-password {
-    padding: 0 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
   }
 }

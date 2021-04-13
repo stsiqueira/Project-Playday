@@ -11,8 +11,15 @@
     font-size: 1.5rem;
     color: #123180;
   }
+  header{
+    position: sticky;
+    top: 0;
+    width: 100%;
+    max-width: $max-width-screens;
+  }
   main {
     padding: 1rem;
+    padding-bottom: 6rem;
   }
   #message {
     display: none;
@@ -85,9 +92,12 @@
   }
 
   .skip-now {
-    margin-top: 5rem;
+    margin-top: 1rem;
     text-align: center;
     text-decoration: underline;
+    @media screen and (min-width: 700px) {
+      margin-top: 5rem;
+    }
   }
 
   #skip {

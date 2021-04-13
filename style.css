@@ -589,8 +589,16 @@ img {
   font-size: 1.5rem;
   color: #123180;
 }
+.location-selection header {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  max-width: 500px;
+}
 .location-selection main {
   padding: 1rem;
+  padding-bottom: 6rem;
 }
 .location-selection #message {
   display: none;
@@ -659,9 +667,14 @@ img {
   outline: none;
 }
 .location-selection .skip-now {
-  margin-top: 5rem;
+  margin-top: 1rem;
   text-align: center;
   text-decoration: underline;
+}
+@media screen and (min-width: 700px) {
+  .location-selection .skip-now {
+    margin-top: 5rem;
+  }
 }
 .location-selection #skip {
   width: -webkit-fit-content;
@@ -1125,6 +1138,7 @@ img {
   padding: 10px;
   border: 1px solid #888;
   width: 50%;
+  border-radius: 20px;
   position: fixed;
   top: 50vh;
   left: 50vw;
@@ -1214,6 +1228,7 @@ img {
   background: #fff;
   color: #7D7D7D;
   box-shadow: 4px 3px 6px -3px grey;
+  box-shadow: none;
   height: 100px;
   resize: none;
 }
@@ -1356,7 +1371,8 @@ img {
   display: none;
 }
 .change-password-accordion .change-password {
-  padding: 0 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
 }
 
 /* Content ================================================= */
@@ -2224,6 +2240,7 @@ body.home footer li {
   font-size: 18px;
   display: grid;
   grid-template-columns: 1fr 3fr;
+  grid-gap: 0.2rem;
 }
 .single-player-info div.buttons {
   display: flex;
@@ -2378,6 +2395,13 @@ body.home footer li {
   display: flex;
   flex-flow: column nowrap;
 }
+.challenge-invite-page header {
+  position: -webkit-sticky;
+  position: sticky;
+  width: 100%;
+  max-width: 500px;
+  top: 0;
+}
 .challenge-invite-page .title {
   margin: 0;
 }
@@ -2431,6 +2455,9 @@ body.home footer li {
 }
 .challenge-invite-page .cancel-button, .challenge-invite-page .send-button {
   min-width: 100px;
+}
+.challenge-invite-page main {
+  margin-bottom: 6rem;
 }
 .challenge-invite-page footer {
   position: fixed;
@@ -4979,6 +5006,7 @@ body.home footer li {
   background: transparent;
   color: #12317f;
   border-color: #12317f;
+  border-width: 3px;
 }
 .login-page main .forgot-link-wrapper,
 .signup-page main .forgot-link-wrapper {
