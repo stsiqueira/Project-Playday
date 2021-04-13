@@ -97,6 +97,7 @@
         background-color: #94ccf9;
         outline: none;
         border: none;
+        cursor: pointer;
       }
     }
 
@@ -122,6 +123,10 @@
       display: flex;
       flex-flow: row wrap;
       justify-content: space-between;
+
+      a:hover{
+        cursor: pointer;
+      }
     }
   }
 

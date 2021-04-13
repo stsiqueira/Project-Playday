@@ -1143,6 +1143,7 @@ img {
   top: 50vh;
   left: 50vw;
   transform: translate(-50%, -50%);
+  max-width: 400px;
 }
 .user-account-wrapper .user-bio .modal-content .about-button {
   margin-top: 1rem;
@@ -5042,6 +5043,7 @@ body.home footer li {
   background-color: #94ccf9;
   outline: none;
   border: none;
+  cursor: pointer;
 }
 .login-page main .seperator,
 .signup-page main .seperator,
@@ -5071,6 +5073,11 @@ body.home footer li {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
+}
+.login-page main .social-login-options a:hover,
+.signup-page main .social-login-options a:hover,
+.reset-page main .social-login-options a:hover {
+  cursor: pointer;
 }
 .login-page footer,
 .signup-page footer,
