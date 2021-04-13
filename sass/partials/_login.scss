@@ -1,0 +1,225 @@
+.login-page,
+.signup-page,
+.reset-page {
+  max-width: $max-width-screens;
+  margin: auto;
+
+  background-color: $color_more_darker_orange;
+  background-color: #ff9669;
+
+  header {
+    background-color: $color_darker_orange;
+    background-color: #94ccf9;
+    min-height: 90vh;
+    clip-path: circle(99.6% at 50% 0);
+    
+    .branding {
+      width: 100%;
+      margin-top: 1rem;
+      text-align: center;
+
+      h1 {
+        font-size: 2.5rem;
+        font-family: "Damion";
+        font-weight: 700;
+        color: #ff4d00;
+        margin-top: 0.5rem;
+        span {
+          font-family: "Raleway";
+          color: #12317f;
+        }
+      }
+    }
+  }
+
+  .page-text{
+    display: none;
+  }
+
+  main {
+    // margin: 0 10%;
+    padding: 1rem;
+    background-color: white;
+    border-radius: 20px;
+
+    position: absolute;
+    top: 55vh;
+    left: 50vw;
+    transform: translate(-50%, -45%);
+    z-index: 10;
+    width: 60%;
+    max-width: 300px;
+
+    h2 {
+      text-align: center;
+    }
+
+    input {
+      border-top-style: hidden;
+      border-right-style: hidden;
+      border-left-style: hidden;
+      border-bottom-style: solid;
+      border-color: black;
+
+      border-width: 1px;
+      height: 30px;
+      width: 100%;
+      padding: 0 0.5rem;
+      box-sizing: border-box;
+      &:focus {
+        outline: none;
+        background: transparent;
+        color: #12317f;
+        border-color: #12317f;
+        border-width: 3px;
+      }
+    }
+
+    .forgot-link-wrapper {
+      margin-top: 1rem;
+      font-size: 0.8rem;
+    }
+
+    .sign-in-wrapper {
+      width: 100%;
+      margin: 1.5rem auto;
+      text-align: center;
+
+      button {
+        width: 145px;
+        padding: 0.5rem 0rem;
+        text-transform: uppercase;
+        font-size: 20px;
+        font-weight: 600;
+        color: white;
+        color: #12317f;
+        background-color: #12317f;
+        background-color: #94ccf9;
+        outline: none;
+        border: none;
+      }
+    }
+
+    .seperator {
+      margin-top: 2.5rem;
+
+      div {
+        width: 100%;
+        text-align: center;
+      }
+      span {
+        height: 40px;
+        width: 70px;
+        background-color: lightgray;
+        padding: 0.5rem 0.8rem;
+        border-radius: 15px;
+        position: relative;
+        bottom: 20px;
+      }
+    }
+
+    .social-login-options {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+    }
+  }
+
+  footer {
+    min-height: 10vh;
+    margin-top: 0;
+    justify-content: start;
+    background-color: $color_more_darker_orange;
+    background-color: #ff9669;
+    position: initial;
+
+    .signup-container {
+      width: 100%;
+      text-align: center;
+      margin-top: 1rem;
+      span {
+        margin-top: 0.5rem;
+        display: block;
+      }
+      .sign-up-link {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  @media screen and (min-height: 700px) {
+    .branding{
+      margin-top: 6rem;
+    }
+    .page-text{
+      display: block;
+    }
+    main {
+      transform: translate(-50%, -40%);
+    }
+    .signup-container {
+      margin-top: 6rem;
+    }    
+  }
+}
+
+.signup-page .signup-screen-wrapper {
+  main {
+    transform: translate(-50%, -40%);
+  }
+  .fieldset div {
+    margin-bottom: 0.5rem;
+  }
+
+  .signup-container {
+    margin-top: 2.5rem;
+  }
+
+  footer{
+    margin-top: 1.5rem;
+  }
+  @media screen and (min-height: 700px) {    
+    main {
+      transform: translate(-50%, -40%);
+    }
+    .page-text{
+      display: block;
+    }
+    .signup-container {
+      margin-top: 1rem;
+
+      footer{
+        margin-top: 2.5rem;
+      }
+    }
+    
+  }
+}
+
+.reset-page {
+
+  header{
+    min-height: 70vh;
+  }
+  footer{
+    min-height: 30vh;
+
+    .signup-container{
+      margin-top: 2rem;
+    }
+  }
+
+  main{
+    transform: translate(-50%, -50%);
+  }
+  .fieldset{
+    border: none;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 2rem;
+
+    h3{
+      text-align: center;
+    }
+  }
+}

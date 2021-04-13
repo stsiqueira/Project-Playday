@@ -14,10 +14,10 @@ firebase.initializeApp(firebaseConfig);
 
 let appUserLocal;
 
-// const tomtomApiKey = "lDNGOihuwicB9jy3du63gNr5gUGwCAZC";
+const tomtomApiKey = "lDNGOihuwicB9jy3du63gNr5gUGwCAZC";
 // let tomtomApiKey = "ctMg0rMDauN3jPf1SOHXHVJNpJnhmGaS";
 // let tomtomApiKey = "XOeleMUFVN4TaGSAJwKm8y7IBfy7YeQA";
-let tomtomApiKey = "btLyAfWjgUeCnADorxtv6lVysyov8M0l";
+// let tomtomApiKey = "btLyAfWjgUeCnADorxtv6lVysyov8M0l";
 
 
 const redirectBasedOnLogin = (user, socialLogin) => {
@@ -30,14 +30,14 @@ const redirectBasedOnLogin = (user, socialLogin) => {
                 querySnapshot.forEach((doc) => {
                     if (appUserLocal == null || appUserLocal == "undefined") {
 
-                        let au = new AppUser(doc.data().userID, doc.data().name.substring(0, doc.data().name.indexOf(" ")), doc.data().name.substring(doc.data().name.indexOf(" ") + 1, doc.data().name.length), doc.data().dateOfBirth, doc.data().profilePic, doc.data().about, doc.data().userLocation, doc.data().sports);
+                        let au = new AppUser(doc.data().userID, doc.data().name.substring(0, doc.data().name.indexOf(" ")), doc.data().name.substring(doc.data().name.indexOf(" ") + 1, doc.data().name.length), doc.data().dateOfBirth, doc.data().profilePic, doc.data().about, doc.data().userLocation, doc.data().sports, doc.data().chatId, doc.data().currentPage,doc.data().userLocationCity);
                         appUserLocal = au;
                         sessionStorage.setItem("appUser", JSON.stringify(au));
                     }
                 });
             }).then(() => {
                 if (!socialLogin) {
-                    window.location.assign('log-in.html?signup=true');
+                    window.location.assign(`log-in.html?signup=true&useremail=${user.email}`);
                 }
                 else {
                     if (appUserLocal && appUserLocal.userLocation.latitude == "0" && appUserLocal.userLocation.longitude == "0") {

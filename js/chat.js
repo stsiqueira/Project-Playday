@@ -156,7 +156,7 @@ const updateLastCheck = (chatidtime,userid)=>{
 // }, 3000);
 
 const getMessages = (chatIdentifier) => {
-    db.collection(chatIdentifier).onSnapshot((snapshot)=>{
+    db.collection("chats").doc("chat").collection(chatIdentifier).onSnapshot((snapshot)=>{
         snapshot.docChanges().forEach((change)=>{
            if(change.type === "added"){
                    if(change.doc.data().senderId != userAppProfile.name){
@@ -217,7 +217,7 @@ const sendMessage = () => {
         console.log("invalid")
     }else{
         // change the chatID 
-        db.collection(chatId).doc(generateDocumentId()).set({
+        db.collection("chats").doc("chat").collection(chatId).doc(generateDocumentId()).set({
             senderId: userAppProfile.name,
             receiverId: friendProfile.name, 
             message: $("#chat-message-input").val(),

@@ -24,7 +24,7 @@ const signUpWithEmailFunction = (e) => {
 	const email = mailField.value;
 	const password = passwordField.value;
 	if(!email || !password || !confirmPasswordField.value || !passwordField.value) {
-        showToast("input all the fields")
+        showToast("Please provide input to all fields")
         return false;
     }
 	if (validateEmail(email)) {

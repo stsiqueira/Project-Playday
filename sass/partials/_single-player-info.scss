@@ -1,9 +1,12 @@
 .single-player-info{
+
+    max-width: $max-width-screens;
+    margin: auto;
+
     *{
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        list-style: 1.4;
       
     }
     body{
@@ -14,11 +17,17 @@
         font-family: $font_sans;
        
     }
+    .back-button{
+        position: relative;
+    }
+    header{
+        position: sticky;
+        top: 0;
+    }
     main{
         display: flex;
         flex-flow: column nowrap;
         justify-content: center;
-        align-items: center;
         
     }
     
@@ -43,7 +52,7 @@
         color: $color_footer_nav_link;
         // color:hotpink;
         margin-top: 1rem;
-        font-size: 2rem;
+        font-size: 1.5rem;
     }
     .player-detail-wrapper{
         background-color: #fff;
@@ -60,11 +69,12 @@
         background-color: $color-main-bg;
     }
     .player-description p{
-        margin: .5rem 0;
+        margin: 1rem 0;
         font-size: 18px;
-    }
-    .player-description p:nth-of-type(3){
-        margin: 2rem 0;
+
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        grid-gap: 0.2rem;
     }
     div.buttons{
         display: flex;

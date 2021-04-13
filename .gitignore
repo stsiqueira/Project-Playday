@@ -5,6 +5,6 @@ firebase.json
 .firebaserc
 html/login.html
 .style.css
-.style.css.map
+./style.css.map
 user-account-settings.css
 *.map

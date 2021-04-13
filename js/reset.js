@@ -5,6 +5,12 @@ const checkEmail = document.getElementById('check-email');
 
 const forgotPass = () => {
     const email = mailField.value;
+
+    if(!email){
+        showToast("Please input email address");
+            return;
+    }
+
     firebase.auth().fetchSignInMethodsForEmail(email)
     .then((signInMethods) => {
         if (signInMethods.length && signInMethods.includes("password")) {
@@ -14,7 +20,7 @@ const forgotPass = () => {
                 console.log("not sent");
             });
         } else {
-            console.log("user does not exist");
+            showToast("User does not exist");
         }
     })
     .catch((error) => { 

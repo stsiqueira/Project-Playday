@@ -79,7 +79,7 @@ const printDefaultMessage = ()=>{
                     <h3>${friendProfile.name}</h3>
                 </div>            
                 <div class="invite-msg-wrapper">
-                    <textarea name="invite-msg" id="invite-msg" cols="30" rows="10">Hi ${friendProfile.name},\n\nI am looking for a partner to play tennis with, let's connect! My level is ${friendProfile.sports.tennis.userLevel}.
+                    <textarea name="invite-msg" id="invite-msg" cols="30" rows="10">Hi ${friendProfile.name},\n\nI am looking for a partner to play ${userAppProfile ?userAppProfile.currentPage.toUpperCase() : ""}, let's connect! ${userAppProfile ? "I consider myself at " + userAppProfile.sports[userAppProfile.currentPage].userLevel + " level.": ""}
                     </textarea>
                 </div>
                 <div class="buttons">
@@ -95,12 +95,31 @@ const printDefaultMessage = ()=>{
 const generateDocumentId = ()=>{
     let date = new Date();
     let year = date.getFullYear().toString();
-    let month = date.getMonth() + 1;
-    let day = date.getDate();
-    let hour = date.getHours();
-    let min = date.getMinutes();
-    let sec = date.getSeconds();
-    return year+month+day+hour+min+sec;
+    let month = pad(date.getMonth() + 1);
+    let day = pad(date.getDate());
+    let hour = pad(date.getHours());
+    let min = pad(date.getMinutes());
+    let sec = pad(date.getSeconds());
+    let millisec = pad(date.getMilliseconds(),3);
+    return year+month+day+hour+min+sec+millisec;
+}
+
+function pad(n, numberofDigits = 2) {
+
+    if(numberofDigits == 2){
+        return  ((n < 10) ? ("0" + n) : n);
+    }
+    else if(numberofDigits == 3){
+
+        if(n<10){
+            return "00" + n;
+        }
+        else if(n<100){
+            return "0" + n;
+        }
+        else return n;
+    }
+    
 }
 const checkMsg = () => {
 
@@ -109,16 +128,18 @@ const checkMsg = () => {
             console.log("invalid")
         }else{
             console.log($("#invite-msg").val());
-            console.log(chatId);
-            db.collection(chatId).doc(generateDocumentId()).set({
+            console.log(chatId);               
+            db.collection("chats").doc("chat").collection(chatId).doc(generateDocumentId()).set({
                 senderId: userAppProfile.name,
                 receiverId: friendProfile.name, 
                 message: $("#invite-msg").val(),
                 date: new Date()
-            })
-            setTimeout(() => {
+            }).then(()=>{
                 window.location.assign(`chat-window.html?userAppId=${userAppId}&friendId=${friendId}`);
-            }, 2000);
+            }).catch((error) => {
+                console.log("Error in check Message: ", error);
+            });
+            
         }
     }else{
         window.location.assign(`chat-window.html?userAppId=${userAppId}&friendId=${friendId}`);

@@ -8,7 +8,7 @@
 @mixin borderRadiusButtons(){
     height: 50px;
     font-family: $font_sans;
-    font-weight: medium;
+    font-weight: 500;
     border-radius: 25px;
 
 }
@@ -22,7 +22,7 @@
 @mixin select-options{
     height: 32px;
     font-family: $font_sans;
-    font-weight: medium;
+    font-weight: 500;
     border-radius: 20px;
     outline: transparent;
 
@@ -105,7 +105,7 @@
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
     display: block;
     font-family: $font_sans;
-    font-weight: medium;
+    font-weight: 500;
     min-width: 170px;
     background-color: $bgColor;
     color: $fontColor;

@@ -78,21 +78,21 @@ const printProfile = ()=>{
             <div class="player-detail-wrapper">
                 <div class="player-description">
                     <p class="player-description-location"> 
-                        <strong>Location:</strong> 
+                        <span>Location:</span> 
                         <span>${friendProfile.userLocationCity}</span>
                     </p>
-                    <p class="player-description-location"> 
-                        <strong>Level:</strong> 
+                    <p class="player-description-level"> 
+                        <span>Level:</span> 
                         <span>${level}</span>
                     </p>
 
-                    <p class="player-description-location"> 
-                        <strong>About:</strong> 
+                    <p class="player-description-about"> 
+                        <span>About:</span> 
                         <span>${friendProfile.about}</span>
                     </p>
-                    <p class="player-description-location"> 
-                        <strong>I play at:</strong> 
-                        <span>${playAtPath}</span>
+                    <p class="player-description-courts"> 
+                        <span>I play at:</span> 
+                        <span>&#10022;${playAtPath.toString().split(',').join("<br />&#10022;")}</span>
                     </p>
                 </div>
             </div>
@@ -108,27 +108,3 @@ const printProfile = ()=>{
     `;
     $(".player-detail-content-wrapper").append(html);
 }
-const checkUpdateChat = () =>{
-    console.log("========")
-    console.log(userAppProfile.chats);
-   
-    userAppProfile.chats.forEach(chat => {
-        db.collection(chat).onSnapshot((snapshot) => {
-        snapshot.docChanges().forEach((change) => {
-            console.log(change.data());
-            // if (change.type === "added") {
-            //     console.log("A changed was made on chat:", chat);
-            // }
-            // if (change.type === "modified") {
-            //     console.log("Modified city: ", change.doc.data());
-            // }
-            // if (change.type === "removed") {
-            //     console.log("Removed city: ", change.doc.data());
-            // }
-        });
-    });
-    });
-}
-setInterval(() => {
-    // checkUpdateChat();
-}, 1000);
