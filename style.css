@@ -787,7 +787,7 @@ img {
 .select-court .radius {
   height: 32px;
   font-family: poppins, helvetica, arial, sans-serif;
-  font-weight: medium;
+  font-weight: 500;
   border-radius: 20px;
   outline: transparent;
   padding: 0 0 0 0.5rem;
@@ -1062,7 +1062,7 @@ img {
   z-index: 5;
 }
 .user-account-settings-page .user-name {
-  margin: 1.3 rem;
+  margin: 1.3rem;
   color: #12317f;
   text-align: center;
   font-weight: 500;
@@ -1105,7 +1105,7 @@ img {
   top: 6%;
   padding: 0.5rem;
   font-size: 1.3rem;
-  color: 767676;
+  color: #767676;
   cursor: pointer;
 }
 .user-account-wrapper .user-bio .edit:hover {
@@ -1447,7 +1447,7 @@ button:focus {
 button {
   height: 50px;
   font-family: poppins, helvetica, arial, sans-serif;
-  font-weight: medium;
+  font-weight: 500;
   border-radius: 25px;
 }
 
@@ -1464,7 +1464,7 @@ button {
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
   display: block;
   font-family: poppins, helvetica, arial, sans-serif;
-  font-weight: medium;
+  font-weight: 500;
   min-width: 170px;
   background-color: #6CC8A6;
   color: white;
@@ -1483,7 +1483,7 @@ button {
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
   display: block;
   font-family: poppins, helvetica, arial, sans-serif;
-  font-weight: medium;
+  font-weight: 500;
   min-width: 170px;
   background-color: #EAECF0;
   color: #505050;
@@ -1502,7 +1502,7 @@ button {
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
   display: block;
   font-family: poppins, helvetica, arial, sans-serif;
-  font-weight: medium;
+  font-weight: 500;
   min-width: 170px;
   background-color: #FF8188;
   color: white;
@@ -1529,7 +1529,6 @@ a {
   border-radius: 50%;
   width: 3rem;
   height: 3rem;
-  background-color: none !important;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1613,7 +1612,7 @@ button:focus {
 button {
   height: 50px;
   font-family: poppins, helvetica, arial, sans-serif;
-  font-weight: medium;
+  font-weight: 500;
   border-radius: 25px;
 }
 
@@ -1630,7 +1629,7 @@ button {
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
   display: block;
   font-family: poppins, helvetica, arial, sans-serif;
-  font-weight: medium;
+  font-weight: 500;
   min-width: 170px;
   background-color: #6CC8A6;
   color: white;
@@ -1649,7 +1648,7 @@ button {
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
   display: block;
   font-family: poppins, helvetica, arial, sans-serif;
-  font-weight: medium;
+  font-weight: 500;
   min-width: 170px;
   background-color: #EAECF0;
   color: #505050;
@@ -1668,7 +1667,7 @@ button {
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
   display: block;
   font-family: poppins, helvetica, arial, sans-serif;
-  font-weight: medium;
+  font-weight: 500;
   min-width: 170px;
   background-color: #FF8188;
   color: white;
@@ -1695,7 +1694,6 @@ a {
   border-radius: 50%;
   width: 3rem;
   height: 3rem;
-  background-color: none !important;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2181,7 +2179,6 @@ body.home footer li {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  list-style: 1.4;
 }
 .single-player-info body {
   background-color: #E5E5E5;
