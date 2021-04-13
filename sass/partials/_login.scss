@@ -4,12 +4,14 @@
   margin: auto;
 
   background-color: $color_more_darker_orange;
+  background-color: #ff9669;
 
   header {
     background-color: $color_darker_orange;
+    background-color: #94ccf9;
     min-height: 90vh;
     clip-path: circle(99.6% at 50% 0);
-
+    
     .branding {
       width: 100%;
       margin-top: 1rem;
@@ -29,6 +31,10 @@
     }
   }
 
+  .page-text{
+    display: none;
+  }
+
   main {
     // margin: 0 10%;
     padding: 1rem;
@@ -38,7 +44,7 @@
     position: absolute;
     top: 55vh;
     left: 50vw;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -45%);
     z-index: 10;
     width: 60%;
     max-width: 300px;
@@ -84,7 +90,9 @@
         font-size: 20px;
         font-weight: 600;
         color: white;
+        color: #12317f;
         background-color: #12317f;
+        background-color: #94ccf9;
         outline: none;
         border: none;
       }
@@ -120,12 +128,13 @@
     margin-top: 0;
     justify-content: start;
     background-color: $color_more_darker_orange;
+    background-color: #ff9669;
     position: initial;
 
     .signup-container {
       width: 100%;
       text-align: center;
-      margin-bottom: 1rem;
+      margin-top: 1rem;
       span {
         margin-top: 0.5rem;
         display: block;
@@ -140,25 +149,28 @@
     .branding{
       margin-top: 6rem;
     }
+    .page-text{
+      display: block;
+    }
     main {
       transform: translate(-50%, -40%);
     }
     .signup-container {
-      margin-bottom: 6rem;
+      margin-top: 6rem;
     }    
   }
 }
 
 .signup-page .signup-screen-wrapper {
   main {
-    transform: translate(-50%, -45%);
+    transform: translate(-50%, -40%);
   }
   .fieldset div {
     margin-bottom: 0.5rem;
   }
 
   .signup-container {
-    margin-bottom: -1.5rem;
+    margin-top: 2.5rem;
   }
 
   footer{
@@ -168,8 +180,11 @@
     main {
       transform: translate(-50%, -40%);
     }
+    .page-text{
+      display: block;
+    }
     .signup-container {
-      margin-bottom: 1.5rem;
+      margin-top: 1rem;
 
       footer{
         margin-top: 2.5rem;

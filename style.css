@@ -4910,10 +4910,12 @@ body.home footer li {
   max-width: 500px;
   margin: auto;
   background-color: #FFB494;
+  background-color: #ff9669;
 }
 .login-page header,
 .signup-page header {
   background-color: #FFDFD1;
+  background-color: #94ccf9;
   min-height: 90vh;
   -webkit-clip-path: circle(99.6% at 50% 0);
           clip-path: circle(99.6% at 50% 0);
@@ -4937,6 +4939,10 @@ body.home footer li {
   font-family: "Raleway";
   color: #12317f;
 }
+.login-page .page-text,
+.signup-page .page-text {
+  display: none;
+}
 .login-page main,
 .signup-page main {
   padding: 1rem;
@@ -4945,7 +4951,7 @@ body.home footer li {
   position: absolute;
   top: 55vh;
   left: 50vw;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -45%);
   z-index: 10;
   width: 60%;
   max-width: 300px;
@@ -4993,7 +4999,9 @@ body.home footer li {
   font-size: 20px;
   font-weight: 600;
   color: white;
+  color: #12317f;
   background-color: #12317f;
+  background-color: #94ccf9;
   outline: none;
   border: none;
 }
@@ -5028,13 +5036,14 @@ body.home footer li {
   margin-top: 0;
   justify-content: start;
   background-color: #FFB494;
+  background-color: #ff9669;
   position: initial;
 }
 .login-page footer .signup-container,
 .signup-page footer .signup-container {
   width: 100%;
   text-align: center;
-  margin-bottom: 1rem;
+  margin-top: 1rem;
 }
 .login-page footer .signup-container span,
 .signup-page footer .signup-container span {
@@ -5050,24 +5059,28 @@ body.home footer li {
 .signup-page .branding {
     margin-top: 6rem;
   }
+  .login-page .page-text,
+.signup-page .page-text {
+    display: block;
+  }
   .login-page main,
 .signup-page main {
     transform: translate(-50%, -40%);
   }
   .login-page .signup-container,
 .signup-page .signup-container {
-    margin-bottom: 6rem;
+    margin-top: 6rem;
   }
 }
 
 .signup-page .signup-screen-wrapper main {
-  transform: translate(-50%, -45%);
+  transform: translate(-50%, -40%);
 }
 .signup-page .signup-screen-wrapper .fieldset div {
   margin-bottom: 0.5rem;
 }
 .signup-page .signup-screen-wrapper .signup-container {
-  margin-bottom: -1.5rem;
+  margin-top: 2.5rem;
 }
 .signup-page .signup-screen-wrapper footer {
   margin-top: 1.5rem;
@@ -5076,8 +5089,11 @@ body.home footer li {
   .signup-page .signup-screen-wrapper main {
     transform: translate(-50%, -40%);
   }
+  .signup-page .signup-screen-wrapper .page-text {
+    display: block;
+  }
   .signup-page .signup-screen-wrapper .signup-container {
-    margin-bottom: 1.5rem;
+    margin-top: 1rem;
   }
   .signup-page .signup-screen-wrapper .signup-container footer {
     margin-top: 2.5rem;
