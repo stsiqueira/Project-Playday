@@ -33,13 +33,13 @@ db.collection("user").where("userID", "==", userApp.auid).get()
 
                 switch (sport) {
                     case "badminton":
-                        savedCourtsArray = friendProfile.sports.badminton.savedCourts;
+                        savedCourtsArray = friendProfile.sports.badminton.challengeCourts;
                         break;
                     case "tennis":
-                        savedCourtsArray = friendProfile.sports.tennis.savedCourts;
+                        savedCourtsArray = friendProfile.sports.tennis.challengeCourts;
                         break;
                     case "volleyball":
-                        savedCourtsArray = friendProfile.sports.volleyball.savedCourts;
+                        savedCourtsArray = friendProfile.sports.volleyball.challengeCourts;
                         break;
                 }
                 for(var i in savedCourtsArray)
@@ -92,7 +92,7 @@ const printProfile = ()=>{
                     </p>
                     <p class="player-description-courts"> 
                         <span>I play at:</span> 
-                        <span>&#10022;${playAtPath.toString().split(',').join("<br />&#10022;")}</span>
+                        <span>&#10022; ${playAtPath.toString().split(',').join("<br />&#10022; ")}</span>
                     </p>
                 </div>
             </div>

@@ -209,14 +209,17 @@ function changeSport(typeOfCourts, destinationHtml, currentPageFlag) {
         $(`.${destinationHtml} .courts`).remove();
     }
 
+    hasCourts = false;
+
     for (var key in courts) {
         count += 1;
         if (courts.hasOwnProperty(key)) {
             savedAndChallengeCourtsHtml(count, courts[key]['courtName'], selectedSport.value, key, destinationHtml, typeOfCourts);
+            hasCourts = true;
         }
     }
 
-    if(courts == undefined){
+    if(!hasCourts){
         let output =    `<div class="courts">
                             No courts saved under this category.
                         </div>`
