@@ -1,5 +1,6 @@
 .login-page,
-.signup-page {
+.signup-page,
+.reset-page {
   max-width: $max-width-screens;
   margin: auto;
 
@@ -192,5 +193,33 @@
       }
     }
     
+  }
+}
+
+.reset-page {
+
+  header{
+    min-height: 70vh;
+  }
+  footer{
+    min-height: 30vh;
+
+    .signup-container{
+      margin-top: 2rem;
+    }
+  }
+
+  main{
+    transform: translate(-50%, -50%);
+  }
+  .fieldset{
+    border: none;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 2rem;
+
+    h3{
+      text-align: center;
+    }
   }
 }

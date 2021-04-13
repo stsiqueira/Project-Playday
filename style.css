@@ -2478,7 +2478,7 @@ body.home footer li {
   color: #fff;
   text-align: center;
   border-radius: 25px;
-  padding: 16px;
+  padding: 12px 8px;
   position: fixed;
   z-index: 1;
   max-width: 14rem;
@@ -4933,14 +4933,16 @@ body.home footer li {
 
 /* Login ========================================= */
 .login-page,
-.signup-page {
+.signup-page,
+.reset-page {
   max-width: 500px;
   margin: auto;
   background-color: #FFB494;
   background-color: #ff9669;
 }
 .login-page header,
-.signup-page header {
+.signup-page header,
+.reset-page header {
   background-color: #FFDFD1;
   background-color: #94ccf9;
   min-height: 90vh;
@@ -4948,13 +4950,15 @@ body.home footer li {
           clip-path: circle(99.6% at 50% 0);
 }
 .login-page header .branding,
-.signup-page header .branding {
+.signup-page header .branding,
+.reset-page header .branding {
   width: 100%;
   margin-top: 1rem;
   text-align: center;
 }
 .login-page header .branding h1,
-.signup-page header .branding h1 {
+.signup-page header .branding h1,
+.reset-page header .branding h1 {
   font-size: 2.5rem;
   font-family: "Damion";
   font-weight: 700;
@@ -4962,16 +4966,19 @@ body.home footer li {
   margin-top: 0.5rem;
 }
 .login-page header .branding h1 span,
-.signup-page header .branding h1 span {
+.signup-page header .branding h1 span,
+.reset-page header .branding h1 span {
   font-family: "Raleway";
   color: #12317f;
 }
 .login-page .page-text,
-.signup-page .page-text {
+.signup-page .page-text,
+.reset-page .page-text {
   display: none;
 }
 .login-page main,
-.signup-page main {
+.signup-page main,
+.reset-page main {
   padding: 1rem;
   background-color: white;
   border-radius: 20px;
@@ -4984,11 +4991,13 @@ body.home footer li {
   max-width: 300px;
 }
 .login-page main h2,
-.signup-page main h2 {
+.signup-page main h2,
+.reset-page main h2 {
   text-align: center;
 }
 .login-page main input,
-.signup-page main input {
+.signup-page main input,
+.reset-page main input {
   border-top-style: hidden;
   border-right-style: hidden;
   border-left-style: hidden;
@@ -5001,7 +5010,8 @@ body.home footer li {
   box-sizing: border-box;
 }
 .login-page main input:focus,
-.signup-page main input:focus {
+.signup-page main input:focus,
+.reset-page main input:focus {
   outline: none;
   background: transparent;
   color: #12317f;
@@ -5009,18 +5019,21 @@ body.home footer li {
   border-width: 3px;
 }
 .login-page main .forgot-link-wrapper,
-.signup-page main .forgot-link-wrapper {
+.signup-page main .forgot-link-wrapper,
+.reset-page main .forgot-link-wrapper {
   margin-top: 1rem;
   font-size: 0.8rem;
 }
 .login-page main .sign-in-wrapper,
-.signup-page main .sign-in-wrapper {
+.signup-page main .sign-in-wrapper,
+.reset-page main .sign-in-wrapper {
   width: 100%;
   margin: 1.5rem auto;
   text-align: center;
 }
 .login-page main .sign-in-wrapper button,
-.signup-page main .sign-in-wrapper button {
+.signup-page main .sign-in-wrapper button,
+.reset-page main .sign-in-wrapper button {
   width: 145px;
   padding: 0.5rem 0rem;
   text-transform: uppercase;
@@ -5034,16 +5047,19 @@ body.home footer li {
   border: none;
 }
 .login-page main .seperator,
-.signup-page main .seperator {
+.signup-page main .seperator,
+.reset-page main .seperator {
   margin-top: 2.5rem;
 }
 .login-page main .seperator div,
-.signup-page main .seperator div {
+.signup-page main .seperator div,
+.reset-page main .seperator div {
   width: 100%;
   text-align: center;
 }
 .login-page main .seperator span,
-.signup-page main .seperator span {
+.signup-page main .seperator span,
+.reset-page main .seperator span {
   height: 40px;
   width: 70px;
   background-color: lightgray;
@@ -5053,13 +5069,15 @@ body.home footer li {
   bottom: 20px;
 }
 .login-page main .social-login-options,
-.signup-page main .social-login-options {
+.signup-page main .social-login-options,
+.reset-page main .social-login-options {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
 }
 .login-page footer,
-.signup-page footer {
+.signup-page footer,
+.reset-page footer {
   min-height: 10vh;
   margin-top: 0;
   justify-content: start;
@@ -5068,35 +5086,42 @@ body.home footer li {
   position: initial;
 }
 .login-page footer .signup-container,
-.signup-page footer .signup-container {
+.signup-page footer .signup-container,
+.reset-page footer .signup-container {
   width: 100%;
   text-align: center;
   margin-top: 1rem;
 }
 .login-page footer .signup-container span,
-.signup-page footer .signup-container span {
+.signup-page footer .signup-container span,
+.reset-page footer .signup-container span {
   margin-top: 0.5rem;
   display: block;
 }
 .login-page footer .signup-container .sign-up-link,
-.signup-page footer .signup-container .sign-up-link {
+.signup-page footer .signup-container .sign-up-link,
+.reset-page footer .signup-container .sign-up-link {
   text-decoration: underline;
 }
 @media screen and (min-height: 700px) {
   .login-page .branding,
-.signup-page .branding {
+.signup-page .branding,
+.reset-page .branding {
     margin-top: 6rem;
   }
   .login-page .page-text,
-.signup-page .page-text {
+.signup-page .page-text,
+.reset-page .page-text {
     display: block;
   }
   .login-page main,
-.signup-page main {
+.signup-page main,
+.reset-page main {
     transform: translate(-50%, -40%);
   }
   .login-page .signup-container,
-.signup-page .signup-container {
+.signup-page .signup-container,
+.reset-page .signup-container {
     margin-top: 6rem;
   }
 }
@@ -5126,4 +5151,26 @@ body.home footer li {
   .signup-page .signup-screen-wrapper .signup-container footer {
     margin-top: 2.5rem;
   }
+}
+
+.reset-page header {
+  min-height: 70vh;
+}
+.reset-page footer {
+  min-height: 30vh;
+}
+.reset-page footer .signup-container {
+  margin-top: 2rem;
+}
+.reset-page main {
+  transform: translate(-50%, -50%);
+}
+.reset-page .fieldset {
+  border: none;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 2rem;
+}
+.reset-page .fieldset h3 {
+  text-align: center;
 }/*# sourceMappingURL=style.css.map */

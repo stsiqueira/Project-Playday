@@ -371,10 +371,7 @@ function showToast(text) {
     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
 
-$( document ).ready(function() {
-    updateCurrentPage();
-});
-
+updateCurrentPage();
 
 function isLoggedIn()  {
     firebase.auth().onAuthStateChanged(function(user) {
