@@ -96,10 +96,6 @@ $(document).ready(function () {
     signInWithMail.addEventListener('click', signInWithEmailFunction);
 
 
-    var provider = new firebase.auth.GoogleAuthProvider();
-    var fbProvider = new firebase.auth.FacebookAuthProvider();
-    var tprovider = new firebase.auth.TwitterAuthProvider();
-
     gsignup.addEventListener('click', function () {
         googleSignOn(0, 2);
     });

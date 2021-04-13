@@ -46,10 +46,6 @@ const signUpWithEmailFunction = (e) => {
 	}
 }
 
-var provider = new firebase.auth.GoogleAuthProvider();
-var fbProvider = new firebase.auth.FacebookAuthProvider();
-var tprovider = new firebase.auth.TwitterAuthProvider();
-
 // signUp.addEventListener('click', signUpWithEmailFunction);
 
 gsignup.addEventListener('click',function(){

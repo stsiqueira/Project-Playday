@@ -107,6 +107,10 @@ const checkIfUserExist = (user, flag = 0, socialLogin = 0) => {
         });
 }
 
+var provider = new firebase.auth.GoogleAuthProvider();
+var fbProvider = new firebase.auth.FacebookAuthProvider();
+var tprovider = new firebase.auth.TwitterAuthProvider();
+
 // Invoking Sign Up function for Sign UP
 const googleSignOn = (flag, socialLogin) => {
     firebase.auth().signInWithPopup(provider)
