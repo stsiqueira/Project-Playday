@@ -3,8 +3,8 @@ var head = document.getElementsByTagName('HEAD')[0];
   
 // Create new link Element
 var link = document.createElement('link');
-var versionUpdate = (new Date()).getTime(); 
-// var versionUpdate = 1.1; 
+// var versionUpdate = (new Date()).getTime(); 
+var versionUpdate = 1.2; 
 // set the attributes for link element 
 link.rel = 'stylesheet'; 
 link.type = 'text/css';
