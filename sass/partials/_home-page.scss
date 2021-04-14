@@ -89,7 +89,20 @@ body.home {
     overflow-x: scroll;
     overflow-y: hidden;
     max-width: 100%;
-    padding-bottom: 2rem;
+    padding-bottom: 1rem;
+  }
+
+  .arrows {
+    display: flex;
+    justify-content: space-between;
+
+    .left i,
+    .right i{
+      color: gray;
+      background: transparent;
+    }
+
+    padding-bottom: 1rem;
   }
   .sports-cards {
     display: flex;

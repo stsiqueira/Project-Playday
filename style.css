@@ -1076,6 +1076,9 @@ img {
 .user-account-settings-page #location-info-wrapper {
   border-radius: 10px;
 }
+.user-account-settings-page .court-location {
+  line-height: 1.4;
+}
 
 .user-account-wrapper {
   margin-top: 2rem;
@@ -1088,7 +1091,7 @@ img {
 .user-account-wrapper .image-about-wrapper {
   background: #fff;
   border-radius: 10px;
-  box-shadow: 4px 3px 10px -3px grey;
+  box-shadow: 1px 1px 5px -1px grey;
 }
 .user-account-wrapper .image-wrapper {
   position: relative;
@@ -1128,7 +1131,7 @@ img {
   /* Enable scroll if needed */
   background-color: black;
   /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.6);
   /* Black w/ opacity */
 }
 .user-account-wrapper .user-bio .modal-content {
@@ -1137,13 +1140,18 @@ img {
   /* 15% from the top and centered */
   padding: 10px;
   border: 1px solid #888;
-  width: 50%;
+  width: 80%;
   border-radius: 20px;
   position: fixed;
   top: 50vh;
   left: 50vw;
   transform: translate(-50%, -50%);
   max-width: 400px;
+}
+.user-account-wrapper .user-bio .modal-content .modal-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .user-account-wrapper .user-bio .modal-content .about-button {
   margin-top: 1rem;
@@ -1165,14 +1173,14 @@ img {
 .user-account-wrapper .user-location-level-wrapper {
   display: flex;
   flex-flow: column nowrap;
-  box-shadow: 4px 3px 10px -3px grey;
+  box-shadow: 1px 1px 5px -1px grey;
   background: white;
   border-radius: 10px;
 }
 .user-account-wrapper .user-location-level-wrapper .apply {
   align-self: center;
   border: none;
-  box-shadow: 4px 3px 10px -3px grey;
+  box-shadow: 1px 1px 5px -1px grey;
   cursor: pointer;
   margin: 1rem;
 }
@@ -1229,6 +1237,7 @@ img {
   background: #fff;
   color: #7D7D7D;
   box-shadow: 4px 3px 6px -3px grey;
+  line-height: 1.4;
   box-shadow: none;
   height: 100px;
   resize: none;
@@ -1237,7 +1246,7 @@ img {
   padding-bottom: 1rem;
 }
 .user-account-wrapper .accordions-wrapper {
-  box-shadow: 4px 3px 10px -3px grey;
+  box-shadow: 1px 1px 5px -1px grey;
   background: white;
   border-radius: 20px;
   padding: 0.7rem 0;
@@ -1462,7 +1471,7 @@ button {
   font-weight: 500;
   padding-left: 1rem;
   padding-right: 1rem;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1);
   display: block;
   font-family: poppins, helvetica, arial, sans-serif;
   font-weight: 500;
@@ -1481,13 +1490,13 @@ button {
   font-weight: 500;
   padding-left: 1rem;
   padding-right: 1rem;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1);
   display: block;
   font-family: poppins, helvetica, arial, sans-serif;
   font-weight: 500;
   min-width: 170px;
   background-color: #EAECF0;
-  color: #505050;
+  color: darkblue;
 }
 
 .red-button {
@@ -1500,7 +1509,7 @@ button {
   font-weight: 500;
   padding-left: 1rem;
   padding-right: 1rem;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1);
   display: block;
   font-family: poppins, helvetica, arial, sans-serif;
   font-weight: 500;
@@ -1627,7 +1636,7 @@ button {
   font-weight: 500;
   padding-left: 1rem;
   padding-right: 1rem;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1);
   display: block;
   font-family: poppins, helvetica, arial, sans-serif;
   font-weight: 500;
@@ -1646,13 +1655,13 @@ button {
   font-weight: 500;
   padding-left: 1rem;
   padding-right: 1rem;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1);
   display: block;
   font-family: poppins, helvetica, arial, sans-serif;
   font-weight: 500;
   min-width: 170px;
   background-color: #EAECF0;
-  color: #505050;
+  color: darkblue;
 }
 
 .red-button {
@@ -1665,7 +1674,7 @@ button {
   font-weight: 500;
   padding-left: 1rem;
   padding-right: 1rem;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1);
   display: block;
   font-family: poppins, helvetica, arial, sans-serif;
   font-weight: 500;
@@ -1793,7 +1802,17 @@ body.home .horizontal-slider {
   overflow-x: scroll;
   overflow-y: hidden;
   max-width: 100%;
-  padding-bottom: 2rem;
+  padding-bottom: 1rem;
+}
+body.home .arrows {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 1rem;
+}
+body.home .arrows .left i,
+body.home .arrows .right i {
+  color: gray;
+  background: transparent;
 }
 body.home .sports-cards {
   display: flex;
@@ -2266,6 +2285,12 @@ body.home footer li {
 .single-player-info .report-button div .fa-exclamation-triangle {
   color: goldenrod;
   margin-right: 0.2rem;
+}
+.single-player-info .uc-court {
+  display: grid;
+  grid-template-columns: 10px auto;
+  grid-gap: 0.5rem;
+  margin-bottom: 0.6rem;
 }
 
 /* Chat Window ========================================= */
