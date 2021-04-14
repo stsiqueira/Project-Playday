@@ -69,6 +69,14 @@ db.collection("user").where("userID", "==", userApp.auid).get()
 
 
 const printProfile = ()=>{
+
+    let courtsListHtml = "";
+    playAtPath.forEach(c=>{
+        courtsListHtml += ` <span class="uc-court">
+                                <span>&#10022;</span>
+                                <span>${c}</span>
+                            </span>`;
+    })
     
     let html =`                 
             <div class="player-image header-image">
@@ -91,8 +99,9 @@ const printProfile = ()=>{
                         <span>${friendProfile.about}</span>
                     </p>
                     <p class="player-description-courts"> 
-                        <span>I play at:</span> 
-                        <span>&#10022; ${playAtPath.toString().split(',').join("<br />&#10022; ")}</span>
+                        <span>Play at:</span> 
+                        <span class="uc-courts">${courtsListHtml}</span>
+                        
                     </p>
                 </div>
             </div>

@@ -97,7 +97,7 @@ button {
 
 // grey button
 .grey-button{
-    @include basicButtonStyle($color-grey-button, $color_buttons_type_black); 
+    @include basicButtonStyle($color-grey-button, darkblue); 
 }
 
 .red-button{

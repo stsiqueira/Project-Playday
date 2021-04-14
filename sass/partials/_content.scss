@@ -233,6 +233,10 @@
   #location-info-wrapper {
     border-radius: 10px;
   }
+
+  .court-location{
+    line-height: 1.4;
+  }
   
 }
 
@@ -247,8 +251,7 @@
   .image-about-wrapper {
     background: #fff;
     border-radius: 10px;
-    -webkit-box-shadow: 4px 3px 10px -3px grey;
-    box-shadow: 4px 3px 10px -3px grey;
+    box-shadow: 1px 1px 5px -1px grey;
   }
 
   .image-wrapper {
@@ -281,7 +284,7 @@
       height: 100%; /* Full height */
       overflow: auto; /* Enable scroll if needed */
       background-color: rgb(0, 0, 0); /* Fallback color */
-      background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+      background-color: rgba(0, 0, 0, 0.6); /* Black w/ opacity */
     }
 
     /* Modal Content/Box */
@@ -290,7 +293,7 @@
       margin: 15% auto; /* 15% from the top and centered */
       padding: 10px;
       border: 1px solid #888;
-      width: 50%;
+      width: 80%;
 
       border-radius: 20px;
 
@@ -300,6 +303,11 @@
       transform: translate(-50%, -50%);
       max-width: 400px;
 
+      .modal-head{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
       .about-button {
         margin-top: 1rem;
         margin-left: auto;
@@ -325,16 +333,14 @@
   .user-location-level-wrapper {
     display: flex;
     flex-flow: column nowrap;
-    -webkit-box-shadow: 4px 3px 10px -3px grey;
-    box-shadow: 4px 3px 10px -3px grey;
+    box-shadow: 1px 1px 5px -1px grey;
     background: white;
     border-radius: 10px;
 
     .apply {
       align-self: center;
       border: none;
-      -webkit-box-shadow: 4px 3px 10px -3px grey;
-      box-shadow: 4px 3px 10px -3px grey;
+      box-shadow: 1px 1px 5px -1px grey;
       cursor: pointer;
       margin: 1rem;
     }
@@ -391,6 +397,7 @@
   .modal-content #about-input {
     @include inputBoxStyle(#fff);
 
+    line-height: 1.4;
     box-shadow: none;
     height: 100px;
     resize: none;
@@ -401,7 +408,7 @@
   }
 
   .accordions-wrapper {
-    box-shadow: 4px 3px 10px -3px grey;
+    box-shadow: 1px 1px 5px -1px grey;
     background: white;
     border-radius: 20px;
     padding: 0.7rem 0;

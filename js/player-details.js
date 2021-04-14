@@ -30,6 +30,7 @@ isLoggedIn();
 
 editIcon.onclick = function() {
     modal.style.display = "block";
+    aboutInput.select(); aboutInput.focus();
 }
 
 window.onclick = function(event) {
