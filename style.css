@@ -5204,6 +5204,12 @@ body.home footer li {
 .reset-page footer .signup-container .sign-up-link {
   text-decoration: underline;
 }
+.login-page footer a:hover,
+.signup-page footer a:hover,
+.reset-page footer a:hover {
+  color: #12317F;
+  font-size: 1.3rem;
+}
 @media screen and (min-height: 700px) {
   .login-page .branding,
 .signup-page .branding,
