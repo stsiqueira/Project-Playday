@@ -1,0 +1,96 @@
+.user-account-page {
+  .user-account-wrapper {
+    // position: relative;
+  }
+  .camera-widget-wrapper {
+    display: none;
+    background: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    min-height: 100vh;
+
+    
+
+    .camera-widget {
+      max-width: $max-width-screens;
+      margin: auto;
+      background: black;
+      padding-top: 10vh;
+
+     .widget-head{
+         max-width:400px;
+         margin: auto;
+
+         .cancel {
+            color: $color_the_darkest_orange;
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            padding: 0 2%;
+          }
+     }
+     
+      .widget-body {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: space-around;
+        align-items: center;
+      }
+
+      #canvas,
+      #output {
+        display: none;
+      }
+
+      #video {
+        width: 100%;
+      }
+
+      .camera-controls {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 1.3rem;
+
+        margin-top: 0.5rem;
+        padding: 1rem;
+        width: 100%;
+        box-sizing: border-box;
+        max-width: 400px;
+
+        div:hover{
+            cursor: pointer;
+        }
+
+        .gallery {
+          color: whitesmoke;
+          font-size: 2rem;
+        }
+        .retake {
+          color: whitesmoke;
+          font-size: 2rem;
+          display: none;
+        }
+        .capture {
+          border: 3px solid whitesmoke;
+          border-radius: 50%;
+          padding: 0.8rem;
+          color: salmon;
+        }
+        .save {
+          color: green;
+          font-size: 3rem;
+        }
+
+        .disabled {
+          pointer-events: none;
+          color: gray;
+        }
+      }
+    }
+  }
+}
