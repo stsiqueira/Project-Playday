@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PlayDay Account Settings</title>
-    <link rel="icon" href="../favicon.ico">
+    <link rel="icon" href="../favicon.ico" />
 
-    <script src="https://kit.fontawesome.com/ef8606d888.js" crossorigin="anonymous"></script>
-    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+    <script
+      src="https://kit.fontawesome.com/ef8606d888.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <!-- <link rel="stylesheet" href="../css/main.css"> -->
-    <link rel="manifest" href="../manifest.json">
+    <link rel="manifest" href="../manifest.json" />
 
     <!-- Firebase CDN  -->
     <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-app.js"></script>
@@ -19,137 +21,201 @@
     <script src="https://www.gstatic.com/firebasejs/8.2.3/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-storage.js"></script>
 
-
     <!-- User javascript Files -->
     <script src="../js/common.js?v=1.2" defer></script>
     <script src="../js/player-details.js?v=1.2" defer></script>
 
     <!-- <link rel="stylesheet" href="../style.css"> -->
-    <script type="text/javascript" src="../js/load-style.js?v=1.2" defer></script>
-</head>
+    <script
+      type="text/javascript"
+      src="../js/load-style.js?v=1.2"
+      defer
+    ></script>
+  </head>
 
-<body class="page user-account-settings-page">
-
+  <body class="page user-account-settings-page">
     <header>
-        <div class="back-button">
-            <a href="javascript:history.go(-1)">
-                <i class="fas fa-angle-left"> <span class="visually-hidden">back-button</span></i>
-            </a>
-        </div>
-        <div class="title-user-settings">
-            My Settings
-        </div>
+      <div class="back-button">
+        <a href="javascript:history.go(-1)">
+          <i class="fas fa-angle-left">
+            <span class="visually-hidden">back-button</span></i
+          >
+        </a>
+      </div>
+      <div class="title-user-settings">My Settings</div>
     </header>
 
-
     <main class="page user-account-page">
-        <div class="wrapper user-account-wrapper">
-            <div class="image-about-wrapper">
-                <div class="image-wrapper">
-                    <img src="" alt="image" id="user-image" class="user-img">
-                    <input type="file" id="imgupload" accept="image/*" style="display:none" />
+      <div class="wrapper user-account-wrapper">
+        <div class="image-about-wrapper">
+          <div class="image-wrapper">
+            <img src="" alt="image" id="user-image" class="user-img" />
+            <input
+              type="file"
+              id="imgupload"
+              accept="image/*"
+              style="display: none"
+            />
+          </div>
+          <div class="user-bio">
+            <h2 class="user-name"></h2>
+            <p class="about-player"></p>
+            <i class="fas fa-pen edit" id="edit-icon"></i>
+            <div id="myModal" class="modal">
+              <div class="modal-content">
+                <div class="modal-head">
+                  <span class="head-text">Tell us about yourself</span>
+                  <span class="close">&times;</span>
                 </div>
-                <div class="user-bio">
-                    <h2 class="user-name"></h2>
-                    <p class="about-player"></p>
-                    <i class="fas fa-pen edit" id="edit-icon"></i>
-                    <div id="myModal" class="modal">
-                        <div class="modal-content">
-                            <div class="modal-head">
-                                <span class="head-text">Tell us about yourself</span>
-                                <span class="close">&times;</span>
-                            </div>
-                            <div class="content-wrapper">
-                                <textarea type="text" class="input-text" name="about" id="about-input" cols="25" rows="20"></textarea>
-                                <!-- <textarea type="text" class="input-text" name="about" id="about-input" rows="4" cols="50" placeholder="Please enter the about"></textarea> -->
-                                <button class="green-button about-button" id="about-save">Save</button>
-                            </div>
-                        </div>
-                    </div>
+                <div class="content-wrapper">
+                  <textarea
+                    type="text"
+                    class="input-text"
+                    name="about"
+                    id="about-input"
+                    cols="25"
+                    rows="20"
+                  ></textarea>
+                  <!-- <textarea type="text" class="input-text" name="about" id="about-input" rows="4" cols="50" placeholder="Please enter the about"></textarea> -->
+                  <button class="green-button about-button" id="about-save">
+                    Save
+                  </button>
                 </div>
+              </div>
             </div>
-            <form action="/" class="user-location-level-wrapper">
-                <div class="location-info" id="location-info-wrapper">
-                    <label for="location-input">Location</label>
-                    <input type="text" id="location-input" class="location-input-box grey-button">
-                </div>
-                <div class="sport-info">
-                    <label for="change-sport">Change Sport</label>
-                    <select name="sports" class="grey-button sport-change" onchange="updateSport(currentPageFlag=0)"
-                        id="change-sport">
-                        <option value="NoSelect" selected>Not Selected</option>
-                        <option value="Tennis">Tennis</option>
-                        <option value="Badminton">Badminton</option>
-                        <option value="Volleyball">Volleyball</option>
-                    </select>
-                </div>
-                <div class="user-level-info">
-                    <label for="user-level">User Level</label>
-                    <select name="level" class="grey-button level-info" id="user-level">
-                        <option value="NoSelect" selected disabled>Not Selected</option>
-                        <option value="Beginner">Beginner</option>
-                        <option value="Intermediate">Intermediate</option>
-                        <option value="Advance">Advance</option>
-                    </select>
-                </div>
-                <input type="button" id="apply-changes" value="Save" class="green-button apply">
-            </form>
+          </div>
+        </div>
+        <form action="/" class="user-location-level-wrapper">
+          <div class="location-info" id="location-info-wrapper">
+            <label for="location-input">Location</label>
+            <input
+              type="text"
+              id="location-input"
+              class="location-input-box grey-button"
+            />
+          </div>
+          <div class="sport-info">
+            <label for="change-sport">Change Sport</label>
+            <select
+              name="sports"
+              class="grey-button sport-change"
+              onchange="updateSport(currentPageFlag=0)"
+              id="change-sport"
+            >
+              <option value="NoSelect" selected>Not Selected</option>
+              <option value="Tennis">Tennis</option>
+              <option value="Badminton">Badminton</option>
+              <option value="Volleyball">Volleyball</option>
+            </select>
+          </div>
+          <div class="user-level-info">
+            <label for="user-level">User Level</label>
+            <select name="level" class="grey-button level-info" id="user-level">
+              <option value="NoSelect" selected disabled>Not Selected</option>
+              <option value="Beginner">Beginner</option>
+              <option value="Intermediate">Intermediate</option>
+              <option value="Advance">Advance</option>
+            </select>
+          </div>
+          <input
+            type="button"
+            id="apply-changes"
+            value="Save"
+            class="green-button apply"
+          />
+        </form>
 
-            <div class="accordions-wrapper change-password-accordion" id="changePasswordWrapper">
-                <h2 class="change-text-heading">Change Password</h2>
-                <div class="change-password">
-
-                </div>
-            </div>
-
-            <section class="accordions-wrapper" id="courtSaved">
-                <h2 class="saved-courts-heading">Saved Courts</h2>
-                <div class="saved-courts">
-                </div>
-            </section>
-
-            <section class="accordions-wrapper" id="courtChallenged">
-                <h2 class="challenge-courts-heading">Challenge Courts</h2>
-                <div class="challenge-courts">
-                </div>
-            </section>
-
-            <button id="logout" onclick="signout()" class="logout red-button">Logout</button>
-            <!-- The actual toast -->
-            <div id="toast">Some text some message..</div>
+        <div
+          class="accordions-wrapper change-password-accordion"
+          id="changePasswordWrapper"
+        >
+          <h2 class="change-text-heading">Change Password</h2>
+          <div class="change-password"></div>
         </div>
 
+        <section class="accordions-wrapper" id="courtSaved">
+          <h2 class="saved-courts-heading">Saved Courts</h2>
+          <div class="saved-courts"></div>
+        </section>
+
+        <section class="accordions-wrapper" id="courtChallenged">
+          <h2 class="challenge-courts-heading">Challenge Courts</h2>
+          <div class="challenge-courts"></div>
+        </section>
+
+        <button id="logout" onclick="signout()" class="logout red-button">
+          Logout
+        </button>
+        <!-- The actual toast -->
+        <div id="toast">Some text some message..</div>
+
+        <div class="camera-widget-wrapper">
+          <div class="camera-widget">
+            <div class="widget-head">
+              <div class="cancel">
+                <span>Set your profile picture</span><span id="cancel"><i class="fas fa-window-close"></i></span>
+              </div>
+            </div>
+            <div class="widget-body">
+                <div class="camera" id="camera">
+                  <video id="video">Video stream not available.</video>
+                </div>
+                <canvas id="canvas"> </canvas>
+                <div class="output" id="output">
+                  <img
+                    id="photo"
+                    alt="The screen capture will appear in this box."
+                  />
+                </div>
+                <div class="camera-controls">
+                  <div class="gallery" id="gallery">
+                    <i class="fas fa-images"></i>
+                  </div>
+                  <div class="retake" id="retake">
+                    <i class="fas fa-redo-alt"></i>
+                  </div>
+                  <div class="capture" id="startbutton">
+                    <i class="fas fa-camera"></i>
+                  </div>
+                  <div class="save disabled" id="save">
+                    <i class="far fa-check-circle"></i>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
 
     <footer id="user-account-settings-footer">
-        <!-- Bottom Navigation Bar -->
+      <!-- Bottom Navigation Bar -->
 
-        <ul class="bottom-nav-bar footer-nav">
-
-            <li class="nav-elements nav-1">
-                <a href="home.html" class="icons-home footer-icons">
-                    <i class="fas fa-home"></i>
-                    <div class="button-text">Home</div>
-                    <span class="visually-hidden">Home button</span>
-                </a>
-            </li>
-            <li class="nav-elements nav-2">
-                <a href="chat-history.html" class="icons-chat footer-icons">
-                    <i class="fas fa-comment-alt"></i>
-                    <div class="button-text">Chat</div>
-                    <span class="visually-hidden">Chat button</span>
-                </a>
-            </li>
-            <li class="nav-elements nav-3 selected-foot-item">
-                <a href="user-account-settings.html" class="icons-user-setting footer-icons">
-                    <i class="fas fa-user-circle"></i>
-                    <div class="button-text">User Settings</div>
-                    <span class="visually-hidden">User setting button</span>
-                </a>
-            </li>
-        </ul>
+      <ul class="bottom-nav-bar footer-nav">
+        <li class="nav-elements nav-1">
+          <a href="home.html" class="icons-home footer-icons">
+            <i class="fas fa-home"></i>
+            <div class="button-text">Home</div>
+            <span class="visually-hidden">Home button</span>
+          </a>
+        </li>
+        <li class="nav-elements nav-2">
+          <a href="chat-history.html" class="icons-chat footer-icons">
+            <i class="fas fa-comment-alt"></i>
+            <div class="button-text">Chat</div>
+            <span class="visually-hidden">Chat button</span>
+          </a>
+        </li>
+        <li class="nav-elements nav-3 selected-foot-item">
+          <a
+            href="user-account-settings.html"
+            class="icons-user-setting footer-icons"
+          >
+            <i class="fas fa-user-circle"></i>
+            <div class="button-text">User Settings</div>
+            <span class="visually-hidden">User setting button</span>
+          </a>
+        </li>
+      </ul>
     </footer>
-
-</body>
-
+  </body>
 </html>

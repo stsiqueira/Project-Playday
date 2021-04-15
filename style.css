@@ -482,12 +482,13 @@ img {
 
 .user-account-wrapper .image-wrapper img {
   position: absolute;
-  height: 100px;
-  width: 100px;
+  height: 125px;
+  width: 125px;
   top: -4rem;
   left: 50%;
   transform: translateX(-50%);
   border-radius: 50%;
+  cursor: pointer;
 }
 
 /* Accessibility ================================================= */
@@ -1011,7 +1012,7 @@ img {
   align-content: space-between;
 }
 .user-account-settings-page p.about-player {
-  margin: 1.5rem 1rem;
+  margin: 1rem;
   text-align: center;
   line-height: 1.8;
 }
@@ -1097,7 +1098,7 @@ img {
   position: relative;
 }
 .user-account-wrapper .user-bio {
-  padding: 2rem 1rem 1rem 1rem;
+  padding: 3rem 1rem 1rem 1rem;
   position: relative;
   /* Modal Content/Box */
   /* The Close Button */
@@ -1729,14 +1730,6 @@ body {
   background-color: whitesmoke;
 }
 
-.home.hide-right {
-  transform: translateX(100%);
-}
-
-.home.slide-in {
-  transform: translateX(0);
-}
-
 body.home {
   max-width: 500px;
   margin: auto;
@@ -2291,6 +2284,85 @@ body.home footer li {
   grid-template-columns: 10px auto;
   grid-gap: 0.5rem;
   margin-bottom: 0.6rem;
+}
+
+/* Camera Widget ========================================= */
+.user-account-page .camera-widget-wrapper {
+  display: none;
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  min-height: 100vh;
+}
+.user-account-page .camera-widget-wrapper .camera-widget {
+  max-width: 500px;
+  margin: auto;
+  background: black;
+  padding-top: 10vh;
+}
+.user-account-page .camera-widget-wrapper .camera-widget .widget-head {
+  max-width: 400px;
+  margin: auto;
+}
+.user-account-page .camera-widget-wrapper .camera-widget .widget-head .cancel {
+  color: #FF7D45;
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  padding: 0 2%;
+}
+.user-account-page .camera-widget-wrapper .camera-widget .widget-body {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  align-items: center;
+}
+.user-account-page .camera-widget-wrapper .camera-widget #canvas,
+.user-account-page .camera-widget-wrapper .camera-widget #output {
+  display: none;
+}
+.user-account-page .camera-widget-wrapper .camera-widget #video {
+  width: 100%;
+}
+.user-account-page .camera-widget-wrapper .camera-widget .camera-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.3rem;
+  margin-top: 0.5rem;
+  padding: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  max-width: 400px;
+}
+.user-account-page .camera-widget-wrapper .camera-widget .camera-controls div:hover {
+  cursor: pointer;
+}
+.user-account-page .camera-widget-wrapper .camera-widget .camera-controls .gallery {
+  color: whitesmoke;
+  font-size: 2rem;
+}
+.user-account-page .camera-widget-wrapper .camera-widget .camera-controls .retake {
+  color: whitesmoke;
+  font-size: 2rem;
+  display: none;
+}
+.user-account-page .camera-widget-wrapper .camera-widget .camera-controls .capture {
+  border: 3px solid whitesmoke;
+  border-radius: 50%;
+  padding: 0.8rem;
+  color: salmon;
+}
+.user-account-page .camera-widget-wrapper .camera-widget .camera-controls .save {
+  color: green;
+  font-size: 3rem;
+}
+.user-account-page .camera-widget-wrapper .camera-widget .camera-controls .disabled {
+  pointer-events: none;
+  color: gray;
 }
 
 /* Chat Window ========================================= */
