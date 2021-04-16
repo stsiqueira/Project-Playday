@@ -1,7 +1,5 @@
 .user-account-page {
-  .user-account-wrapper {
-    // position: relative;
-  }
+
   .camera-widget-wrapper {
     display: none;
     background: rgba(0, 0, 0, 0.5);
@@ -25,12 +23,12 @@
          margin: auto;
 
          .cancel {
-            color: $color_the_darkest_orange;
+            color: whitesmoke;
             display: flex;
             justify-content: space-between;
             font-size: 1.5rem;
             margin-bottom: 1rem;
-            padding: 0 2%;
+            padding: 0;
           }
      }
      

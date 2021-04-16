@@ -447,7 +447,8 @@ footer a {
   font-size: 1.2rem;
   transition: 0.5s;
 }
-footer a i {
+footer a i,
+footer a .svg-inline--fa {
   font-size: 2rem;
   padding-bottom: 10px;
 }
@@ -2307,12 +2308,12 @@ body.home footer li {
   margin: auto;
 }
 .user-account-page .camera-widget-wrapper .camera-widget .widget-head .cancel {
-  color: #FF7D45;
+  color: whitesmoke;
   display: flex;
   justify-content: space-between;
   font-size: 1.5rem;
   margin-bottom: 1rem;
-  padding: 0 2%;
+  padding: 0;
 }
 .user-account-page .camera-widget-wrapper .camera-widget .widget-body {
   display: flex;
@@ -5203,6 +5204,12 @@ body.home footer li {
 .signup-page footer .signup-container .sign-up-link,
 .reset-page footer .signup-container .sign-up-link {
   text-decoration: underline;
+}
+.login-page footer a:hover,
+.signup-page footer a:hover,
+.reset-page footer a:hover {
+  color: #12317F;
+  font-size: 1.3rem;
 }
 @media screen and (min-height: 700px) {
   .login-page .branding,
