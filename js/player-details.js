@@ -76,9 +76,6 @@ aboutApply.addEventListener('click', function () {
 // ***************************************************
 
 
-// invoking file API *********************************
-
-
 /*Code reference: https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API/Taking_still_photos */
 // The width and height of the captured photo. We will set the
 // width to the value defined here, but the height will be
@@ -241,11 +238,16 @@ $("#save").click(() => {
     resetWidgetControls();
 });
 
+
+// invoking file API *********************************
+
+// Injecting the Image to the Dom
 const setImage = (url) => {
     var img = document.getElementById('user-image');
     img.setAttribute('src', url);
 }
 
+// Getting the download URL from the firebase storage
 const getDownloadUrl = (path = "/", user, flag = 0) => {
     const userImageRef = storageRef.child('user_images/' + path);
     userImageRef.getDownloadURL()
@@ -311,7 +313,7 @@ function handleFiles() {
         stopCamera();
     }
     else {
-        alert("please upload an image file");
+        showToast("please upload an image file");
     }
 }
 

@@ -146,6 +146,7 @@ const fbSignOn = (flag, socialLogin) => {
     });
 }
 
+// Twitter Login
 const tSignon = (flag, socialLogin) => {
     firebase.auth().signInWithPopup(tprovider)
     .then((result) => {

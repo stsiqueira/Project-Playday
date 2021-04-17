@@ -31,7 +31,6 @@ $(document).ready(function () {
         .then((url) => {
             if (flag) {
                 updateDbDetails('user', user.uid, 'profilePic', url);
-                console.log("hiii");
             }
         })
         .catch((error) => {
