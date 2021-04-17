@@ -164,6 +164,7 @@ const tSignon = (flag, socialLogin) => {
     });
 }
 
+//Read parameter values from url
 const urlParam = function (name) {
     var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
     if (results == null) {
@@ -174,6 +175,7 @@ const urlParam = function (name) {
     }
 }
 
+//update user level, if redirect has any value, user will be moved to redirected page
 const updateLevel = (sport = "Unknown", level, redirect = "") => {
     let db = firebase.firestore();
     firebase.auth().onAuthStateChanged(function (user) {
@@ -195,6 +197,7 @@ const updateLevel = (sport = "Unknown", level, redirect = "") => {
     });
 }
 
+//Local class to store user values, handy to serialize and desrialize data for later purposes
 class AppUser {
     constructor(auid, firstName, lastName, dob, profilePhoto, about, userLocation, sports, chatId, currentPage, userLocationCity = "Location Not Set") {
         this.auid = auid;
@@ -211,7 +214,7 @@ class AppUser {
     }
 }
 
-
+//Add, update court id, name and its type to the user profile
 const setCourts = (sport, courtType, courtId, courtName) => {
 
     let db = firebase.firestore();
@@ -232,6 +235,7 @@ const setCourts = (sport, courtType, courtId, courtName) => {
     });
 }
 
+//Move from home screen to any sports court, if the user is selecting the sport for first time then route to user level, else route to select-court
 const goToSportCourts = (sport) => {
 
     let routeToUserLevel = false;
@@ -260,7 +264,7 @@ const goToSportCourts = (sport) => {
 
 }
 
-
+//return session storage object of user
 const get_appUser = () => {
     if (appUserLocal == undefined || appUserLocal == "") {
         if (sessionStorage.getItem("appUser") === undefined || sessionStorage.getItem("appUser") === null) {
@@ -272,6 +276,8 @@ const get_appUser = () => {
     return appUserLocal;
 }
 
+
+//set session storage object of user
 async function set_appUser (redirect = "")  {
 
     let user = firebase.auth().currentUser;

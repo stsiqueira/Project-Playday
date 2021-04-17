@@ -90,7 +90,7 @@ $(document).ready(function () {
     showButtons();
   }
 
- 
+ //show coordinates on map.
   function showPosition(position) {
 
     hiddenCoordinates.lat = position.coords.latitude;
@@ -155,7 +155,6 @@ $(document).ready(function () {
           set_appUser("../html/home.html");
           
         });
-        //update local storage variable too LATERSS
       } else {
         // No user is signed in.
         window.location.assign('../index.html');
