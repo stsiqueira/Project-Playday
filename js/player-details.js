@@ -329,7 +329,7 @@ const updateUserPassword = (currentPassword, confirmPass) => {
         user.updatePassword(confirmPass.value).then(function () {
             showToast("Password Updated");
         }).catch(function (error) {
-            alert(error);
+            showToast(error);
         });
     }).catch(function (error) {
         showToast("Password Updation Failed");
