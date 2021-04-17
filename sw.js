@@ -58,7 +58,7 @@ self.addEventListener('activate', evt => {
 self.addEventListener('fetch', evt => {
 	evt.respondWith(
 		caches.match(evt.request).then(cacheRes => {
-		  return cacheRes || fetch(evt.request)
+		  	return cacheRes || fetch(evt.request)
 		}).catch(() => {
 			return caches.match("./html/offline.html");
 		})
