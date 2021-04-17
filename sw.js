@@ -42,10 +42,8 @@ self.addEventListener('install', function(event) {
 
 // activate event
 self.addEventListener('activate', evt => {
-	//console.log('service worker activated');
 	evt.waitUntil(
 		caches.keys().then(keys => {
-			//console.log(keys);
 			return Promise.all(keys
 				.filter(key => key !== staticCacheName)
 				.map(key => caches.delete(key))
@@ -58,7 +56,7 @@ self.addEventListener('activate', evt => {
 self.addEventListener('fetch', evt => {
 	evt.respondWith(
 		caches.match(evt.request).then(cacheRes => {
-		  return cacheRes || fetch(evt.request)
+		  	return cacheRes || fetch(evt.request)
 		}).catch(() => {
 			return caches.match("./html/offline.html");
 		})

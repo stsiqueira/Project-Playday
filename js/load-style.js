@@ -1,13 +1,9 @@
-// Get HTML head element
+//Js file to add versioning on styles that avoids refering cached version
 var head = document.getElementsByTagName('HEAD')[0]; 
-  
-// Create new link Element
 var link = document.createElement('link');
 // var versionUpdate = (new Date()).getTime(); 
-var versionUpdate = 1.2; 
-// set the attributes for link element 
+var versionUpdate = 1.3; 
 link.rel = 'stylesheet'; 
 link.type = 'text/css';
 link.href = '../style.css?v='+ versionUpdate; 
-// Append link element to HTML head
 head.appendChild(link); 

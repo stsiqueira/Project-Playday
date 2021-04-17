@@ -17,6 +17,7 @@ $(document).ready(function () {
         passwordField.focus(); passwordField.select();
     }
 
+    // Checking whether the user is signed in when loading the page
     let appUserobject = get_appUser();
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {

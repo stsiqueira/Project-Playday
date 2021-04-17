@@ -24,6 +24,7 @@ $(document).ready(function () {
 
     let courtsRetrieved = [];
 
+    //fetch the result from tomtom api and load in html container
     const loadResult = async () => {
         return $.getJSON(`https://api.tomtom.com/search/2/poiSearch/${sports}.JSON?key=${tomtomApiKey}&typeahead=true&lat=${userSelectedLocation.lat}&lon=${userSelectedLocation.lon}&limit=20&radius=${radius}`, function (response) {
             let output = $('#api-result ul').html();
@@ -52,12 +53,6 @@ $(document).ready(function () {
                     }
 
                     // CODE TO CHECK NUMBER OF PLAYERS PLAYING
-
-
-
-                    // if(havePOIDetails && imgSrc != defaultImgSrc)
-                    // output += `<li id="entry-${count}"><a><h3 class="court-name">${element.poi.name}</h3><div class="img-wrapper"><img id="img-${count}" src="${imgSrc}" class="c-img"></div><div class="meta-data"><div class="poiIDHidden">${element.dataSources.poiDetails[0].id}</div><div class="address">${element.address.freeformAddress}</div><div class="players-playing-count">${players} active players</div></div></a></li>`
-                    // else output += `<li id="entry-${count}"><a><h3 class="court-name">${element.poi.name}</h3><div class="img-wrapper"><img id="img-${count}" src="${imgSrc}" class="c-img"></div><div class="meta-data"><div class="poiIDHidden">NA</div><div class="address">${element.address.freeformAddress}</div><div class="players-playing-count">${players} active players</div></div></a></li>`
 
                     output += `<li class="apiResultRow" id="entry-${count}" data-distance="${element.dist}" data-playersCount="0">
 
@@ -94,18 +89,8 @@ $(document).ready(function () {
         });
     }
 
+    //get images of court from tom tom api
     function callPoiDetails(apikey, poiId) {
-        // $.getJSON(`https://api.tomtom.com/search/2/poiDetails.json?key=${apikey}&id=${poiId}`, {async:false},  function (response) {
-        //     let imgSrc = "https://images.pexels.com/photos/3660204/pexels-photo-3660204.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=500";
-
-        //     if (response.hasOwnProperty("result") && response.result.hasOwnProperty("photos")) {
-        //         let photoId = response.result.photos[0].id;
-
-        //         imgSrc = `https://api.tomtom.com/search/2/poiPhoto?key=${apikey}&id=${photoId}`
-        //     }
-
-        //     return imgSrc
-        // });
 
         let imgSrc = noImg();
         $.ajax({
@@ -131,6 +116,7 @@ $(document).ready(function () {
         $("#sortby").val("none");
     });
 
+    //change the rradius distance
     async function radiusChange(){
         radius = $("#radius").val() * 1000;
         await loadResult();
@@ -205,6 +191,7 @@ $(document).ready(function () {
         }, 1000);
     });
 
+    //apply styles to save court and resgister button
     async function checkUserCourtStatus(sport, uniqueCourtId) {
 
         let isSavedCourt = await isActiveCourt(sport, "savedCourts", uniqueCourtId);
@@ -288,14 +275,7 @@ $(document).ready(function () {
         }
     });
 
-    // $("#show-players-list").click(function () {
-
-    //     let sport = urlParam("sport");
-    //     let uniqueCourtId = $("#selected-court-id").html().trim();
-    //     getCourtPlayers(sport, uniqueCourtId);
-
-    // });
-
+    //fetch all players registered to a single court
     const getCourtPlayers = (sport, uniqueCourtId, divId = "", countOnly = true) => {
 
         let query = `sports.${sport}.challengeCourts.${uniqueCourtId}`;
@@ -390,7 +370,7 @@ $(document).ready(function () {
 
 
     }
-
+    //this function is not used, but still kept here as reference for future project to use Promise.
     const isActiveCourtCheck = function (sport, courtType, uniqueCourtId) {
         let isActive = false;
         return new Promise(function (resolve, reject) {
@@ -421,6 +401,7 @@ $(document).ready(function () {
         });
     }
 
+    //route to other user details while clicking on active users list
     $(document.body).on('click', '.court-player', function () {
 
         let selectedRow = $(this).attr('id').substr($(this).attr('id').indexOf("-") + 1);

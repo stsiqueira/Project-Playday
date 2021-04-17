@@ -14,15 +14,17 @@ const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const friendId = urlParams.get('courtPlayerId');
 const sport = urlParams.get('sport');
-console.log(userApp.auid);
+// console.log(userApp.auid);
+//check whether user is loggedIn.
 isLoggedIn();
 
+// here we check at the URL which sport are we in an then we grab the information about the player we want to play with. 
 db.collection("user").where("userID", "==", userApp.auid).get()
     .then((querySnapshot)=>{
         querySnapshot.forEach((doc) => {
-            console.log("userAppProfile");
+            // console.log("userAppProfile");
             userAppProfile = doc.data();
-            console.log(userAppProfile);
+            // console.log(userAppProfile);
         })
     })
     .then(()=>{
@@ -67,7 +69,7 @@ db.collection("user").where("userID", "==", userApp.auid).get()
         console.log("Error getting documents: ", error);
     });
 
-
+// print the info about the player we want to play with.
 const printProfile = ()=>{
 
     let courtsListHtml = "";

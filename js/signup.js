@@ -10,17 +10,15 @@ const twitterSignin = document.getElementById("tsignup");
 
 // var db = firebase.firestore();
 let appUserobject = get_appUser();
-console.log(appUserobject);
 firebase.auth().onAuthStateChanged(function(user) {
     if (user && appUserobject) {
         window.location.href = "home.html";
     }
 });
 
-
+// function for checking the validation and creates the user account with email
 const signUpWithEmailFunction = (e) => {
 	e.preventDefault();
-	console.log("clicked");
 	const email = mailField.value;
 	const password = passwordField.value;
 	if(!email || !password || !confirmPasswordField.value || !passwordField.value) {
@@ -48,6 +46,7 @@ const signUpWithEmailFunction = (e) => {
 
 // signUp.addEventListener('click', signUpWithEmailFunction);
 
+// Getting the click events for social logins
 gsignup.addEventListener('click',function(){
     googleSignOn(0, 2);
 });

@@ -15,9 +15,9 @@ const forgotPass = () => {
     .then((signInMethods) => {
         if (signInMethods.length && signInMethods.includes("password")) {
             firebase.auth().sendPasswordResetEmail(email).then(function() {
-                console.log("email sent");
+                showToast("email sent");
             }).catch(function(error) {
-                console.log("not sent");
+                showToast("not sent");
             });
         } else {
             showToast("User does not exist");
@@ -25,7 +25,7 @@ const forgotPass = () => {
     })
     .catch((error) => { 
         // Some error occurred.
-        console.log("error occured");
+        showToast("error occured");
     });
 }
 

@@ -1,12 +1,16 @@
+////////////////////////////////////////////
+//  Variables
+//////////////////////////////////////////// 
+
 // const db =firebase.firestore(); 
 let userApp = get_appUser(); //common.js
 let friendProfile = {};
 let lastMsg = "";
 let counterMsg = 0
-
+//check whether user is loggedIn.
 isLoggedIn();
 
-
+// print all the chats that user is part of.
 const printChats = () => {
 
     let html = `            
@@ -31,6 +35,7 @@ const printChats = () => {
     $(".chat-history").append(html);
 }
 
+// get messages from DB and count the number of unread messages, if that is the case.
 const getMessages = (chatId) => {
     db.collection("chats").doc("chat").collection(chatId).get()
         .then((snapshot) => {
@@ -40,17 +45,17 @@ const getMessages = (chatId) => {
                 if (change.doc.data().senderId != userAppProfile.name) {
                     // console.log(change.doc.data().date.toDate());
                     let lastCheck = userAppProfile.lastCheck[chatId].date.toDate();
-                    console.log(chatId);
-                    console.log("========================================");
-                    console.log(change.doc.data().date.toDate());
-                    console.log(lastCheck);
-                    console.log("=========");
+                    // console.log(chatId);
+                    // console.log("========================================");
+                    // console.log(change.doc.data().date.toDate());
+                    // console.log(lastCheck);
+                    // console.log("=========");
                     if (change.doc.data().date.toDate() > lastCheck) {
-                        console.log(change.doc.data().date.toDate());
+                        // console.log(change.doc.data().date.toDate());
                         counterMsg++;
-                        console.log("contador = " + counterMsg);
+                        // console.log("contador = " + counterMsg);
                     } else {
-                        console.log(lastCheck);
+                        // console.log(lastCheck);
                     }
 
                 }
@@ -61,7 +66,7 @@ const getMessages = (chatId) => {
             counterMsg = 0;
         });
 }
-
+// bring all the chats that user is part of.
 const getChats = (friendid, chat) => {
     db.collection("user").where("chatId", "==", friendid).get()
         .then((querySnapshot) => {
@@ -73,6 +78,7 @@ const getChats = (friendid, chat) => {
     getMessages(chat);
 }
 
+// the chatID is a concatenation of chatID of both users. here we create this field to search for chats.
 db.collection("user").where("userID", "==", userApp.auid).get()
     .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {

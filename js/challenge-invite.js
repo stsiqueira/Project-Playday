@@ -1,23 +1,8 @@
-////////////////////////////////////////////
-//  Variables
-//////////////////////////////////////////// 
-// var firebaseConfig = {
-//     apiKey: "AIzaSyCVfkLdpaLZUwFN8eMVMSptFoZfOpp1pZ8",
-//     authDomain: "playday-f43e6.firebaseapp.com",
-//     databaseURL: "https://playday-f43e6-default-rtdb.firebaseio.com",
-//     storageBucket: "https://console.firebase.google.com/project/playday-f43e6/storage/playday-f43e6.appspot.com/files",
-//     projectId: "playday-f43e6",
-//     storageBucket: "playday-f43e6.appspot.com",
-//     messagingSenderId: "732773100147",
-//     appId: "1:732773100147:web:13f7a6804851ac8486d806",
-//     measurementId: "G-TZB3NY5S6W"
-// };
-// // Initialize Firebase
-// firebase.initializeApp(firebaseConfig);
-////////////////////////////////////////////
-//  Variables
-//////////////////////////////////////////// 
 
+////////////////////////////////////////////
+//  Variables
+//////////////////////////////////////////// 
+//check whether user is loggedIn.
 isLoggedIn();
 
 // let db =firebase.firestore();
@@ -32,7 +17,8 @@ const userAppId = urlParams.get('userAppId');
 ////////////////////////////////////////////
 //  DB connection - get Profiles
 //////////////////////////////////////////// 
-
+// the chatID is a concatenation of chatID of both users. here we create this field to search for chats.
+// we also use the verifyChallenge to check if user has challenged before or not.
 db.collection("user").where("userID", "==", userAppId).get()
     .then((querySnapshot)=>{
         querySnapshot.forEach((doc) => {
@@ -49,15 +35,15 @@ db.collection("user").where("userID", "==", userAppId).get()
                 }else{
                     chatId = "chatID" + friendProfile.chatId + userAppProfile.chatId;
                 }
-                console.log(friendProfile.chats);
+                // console.log(friendProfile.chats);
                 friendProfile.chats.forEach(chatid => {
-                    console.log(chatid);
-                    console.log(chatId);
+                    // console.log(chatid);
+                    // console.log(chatId);
                     if (chatId === chatid) {
                         verifyChallenge = true;
-                        console.log(verifyChallenge);
+                        // console.log(verifyChallenge);
                     }
-                    console.log(verifyChallenge);
+                    // console.log(verifyChallenge);
                 });
 
                 printDefaultMessage();
@@ -72,6 +58,7 @@ db.collection("user").where("userID", "==", userAppId).get()
 //  Functions
 //////////////////////////////////////////// 
 
+// send the default message challenging the player.
 const printDefaultMessage = ()=>{
     
     let html =` <div class="player-image">
@@ -91,7 +78,7 @@ const printDefaultMessage = ()=>{
     `;
     $(".challenge-invite-wrapper").append(html);
 }
-
+// generate an Id for the document based on precisely time.
 const generateDocumentId = ()=>{
     let date = new Date();
     let year = date.getFullYear().toString();
@@ -103,7 +90,7 @@ const generateDocumentId = ()=>{
     let millisec = pad(date.getMilliseconds(),3);
     return year+month+day+hour+min+sec+millisec;
 }
-
+// just to transform 1 digit in 2 from date parameters.
 function pad(n, numberofDigits = 2) {
 
     if(numberofDigits == 2){
@@ -121,14 +108,16 @@ function pad(n, numberofDigits = 2) {
     }
     
 }
+// here we chack if the challenge was done before. PLayers can challenge only one time. Once the ranking features is on,
+// then we change this function. because it only sends a default message, we dont want to spam players.
 const checkMsg = () => {
 
     if(verifyChallenge == false){
         if($("#invite-msg").val() == ""){
-            console.log("invalid")
+            // console.log("invalid")
         }else{
-            console.log($("#invite-msg").val());
-            console.log(chatId);               
+            // console.log($("#invite-msg").val());
+            // console.log(chatId);               
             db.collection("chats").doc("chat").collection(chatId).doc(generateDocumentId()).set({
                 senderId: userAppProfile.name,
                 receiverId: friendProfile.name, 

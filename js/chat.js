@@ -59,7 +59,7 @@ db.collection("user").where("userID", "==", userAppId).get()
                     // console.log(chatId);
                     if (chatId === chatid) {
                         pushChatId = false;
-                        console.log(pushChatId);
+                        // console.log(pushChatId);
                         // console.log("=========");
                     }
                     // console.log(pushChatId);
@@ -92,10 +92,10 @@ db.collection("user").where("userID", "==", userAppId).get()
                          
 
                     });
-                    console.log(chatId);
+                    // console.log(chatId);
                     let string = `lastCheck.${chatId}.date`;
-                    console.log(string);
-                    console.log(friendProfile.userID);
+                    // console.log(string);
+                    // console.log(friendProfile.userID);
                     updateLastCheck(string, friendProfile.userID);
                 };
 
@@ -119,6 +119,7 @@ db.collection("user").where("userID", "==", userAppId).get()
 ////////////////////////////////////////////
 //  Functions
 //////////////////////////////////////////// 
+// for the number of messages on chat history we created a field lastcheck with the chatId and the date. Here we update this field.
 const lastCheck = () =>{
     db.collection("user").where("userID", "==", userAppId).get()
         .then((snapshot)=>{
@@ -130,13 +131,14 @@ const lastCheck = () =>{
             });
         });      
 };
+// Continue -- for the number of messages on chat history we created a field lastcheck with the chatId and the date. Here we update this field.
 const updateLastCheck = (chatidtime,userid)=>{
     let field = chatidtime;
     if(userid == userAppProfile.userID){
         fieldData = new Date;
     }else{
         fieldData = new Date(20201204);
-        console.log("lastcheck friend atualizado");
+        // console.log("lastcheck friend atualizado");
     }
     console.log(fieldData);
     db.collection("user").doc( userid).update({
@@ -150,11 +152,8 @@ const updateLastCheck = (chatidtime,userid)=>{
     });
 
 }
-// setTimeout(() => {
-    // console.log(chatId);
-    // getMessages(chatId); 
-// }, 3000);
 
+// connect to firebaseand, get the messages and print them on screen.
 const getMessages = (chatIdentifier) => {
     db.collection("chats").doc("chat").collection(chatIdentifier).onSnapshot((snapshot)=>{
         snapshot.docChanges().forEach((change)=>{
@@ -181,7 +180,7 @@ const getMessages = (chatIdentifier) => {
         });
     });
 }
-
+// generate an Id for the document based on precisely time.
 const generateDocumentId = ()=>{
     let date = new Date();
     let year = date.getFullYear().toString();
@@ -193,7 +192,7 @@ const generateDocumentId = ()=>{
     let millisec = pad(date.getMilliseconds(),3);
     return year+month+day+hour+min+sec+millisec;
 }
-
+// just to transform 1 digit in 2 from date parameters.
 function pad(n, numberofDigits = 2) {
 
     if(numberofDigits == 2){
@@ -211,10 +210,10 @@ function pad(n, numberofDigits = 2) {
     }
     
 }
-
+// send message
 const sendMessage = () => {
     if($("#chat-message").val() == " "){
-        console.log("invalid")
+        // console.log("invalid");
     }else{
         // change the chatID 
         db.collection("chats").doc("chat").collection(chatId).doc(generateDocumentId()).set({
