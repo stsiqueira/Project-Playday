@@ -426,8 +426,6 @@ submitButton.addEventListener('click', function (event) {
     }
 });
 
-// ************************************************
-
 const courtAccordion = (id, classnames, headingClassName) => {
     var acc = document.getElementById(id);
     heading = document.getElementsByClassName(headingClassName)[0];
@@ -441,6 +439,9 @@ const courtAccordion = (id, classnames, headingClassName) => {
     }
 }
 
+// ************************************************
+
+// Get Sign In Method for showing the change password option
 const getSignInMethod = () => {
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
@@ -476,6 +477,7 @@ const capitalize = (s) => {
     return s.charAt(0).toUpperCase() + s.slice(1)
 }
 
+// Updating the sport when the the page is loading
 function getCurrentPage() {
     if (appUserobject.currentPage) {
         updateSport(1);
